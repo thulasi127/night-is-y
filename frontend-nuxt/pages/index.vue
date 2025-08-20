@@ -1,16 +1,19 @@
 <template>
-  <video autoplay loop muted playsinline class="w-full h-screen object-cover">
+  <video
+    autoplay
+    muted
+    playsinline
+    class="w-full h-screen object-cover"
+    @ended="goToHome"
+  >
     <source src="/videos/landing.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
   </video>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
-
 const router = useRouter()
 
-function goToHome() {
+const goToHome = () => {
   router.push('/home')
 }
 </script>
