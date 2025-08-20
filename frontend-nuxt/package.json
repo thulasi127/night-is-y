@@ -10,7 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "nuxt": "^3.17.6",
+    "@sanity/client": "^7.9.0",
+    "nuxt": "^3.18.1",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
   }
