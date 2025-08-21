@@ -1,12 +1,7 @@
 <template>
-  <video
-    autoplay
-    muted
-    playsinline
-    class="w-full h-screen object-cover"
-    @ended="goToHome"
-  >
+  <video autoplay muted loop playsinline class="fullscreen-video">
     <source src="/videos/landing.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
   </video>
 </template>
 
