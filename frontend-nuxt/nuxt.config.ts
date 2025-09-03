@@ -1,3 +1,4 @@
 export default defineNuxtConfig({
-  css: ['~/assets/css/global.css']
+  css: ['~/assets/css/global.css'],
+  compatibilityDate: '2025-09-03',
 })

@@ -6,7 +6,7 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'video',
+      name: 'backgroundVideo', // rename here
       title: 'Background Video',
       type: 'file',
       options: {
