@@ -15,3 +15,16 @@ body {
     object-fit: cover;
     z-index: -1;
 }
+
+
+/* if you already have this file, just make sure body is black */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: #000;
+}

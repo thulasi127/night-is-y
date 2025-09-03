@@ -63,12 +63,10 @@ const closeMenu = () => (isMobileMenuOpen.value = false)
 }
 
 .header {
-  width: 100%;
-  background-color: transparent;
-  padding: clamp(16px, 2.4vw, 28px) 0;
-  position: fixed;      /* keep it on top across pages */
+  position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 1000;
+  background: transparent; /* keep it see-through */
+  z-index: 1000;           /* above the video (z-index: 0) */
 }
 
 /* Follow your flex + absolute center pattern, but with larger gutters */
