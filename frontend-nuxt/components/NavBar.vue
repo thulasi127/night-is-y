@@ -64,7 +64,8 @@ const closeMenu = () => (isMobileMenuOpen.value = false)
 
 .header {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 20px; /* Lower the navbar slightly */
+  left: 0; right: 0;
   background: transparent; /* keep it see-through */
   z-index: 1000;           /* above the video (z-index: 0) */
 }
@@ -81,7 +82,10 @@ const closeMenu = () => (isMobileMenuOpen.value = false)
 }
 
 /* Left */
-.logo { flex-shrink: 0; }
+.logo {
+  flex-shrink: 0;
+  margin-left: var(--gutter);
+}
 .logo-link { display: inline-flex; align-items: center; }
 .logo-image { height: clamp(48px, 5vw, 80px); width: auto; object-fit: contain; }
 
@@ -95,7 +99,12 @@ const closeMenu = () => (isMobileMenuOpen.value = false)
 .brand-image { height: clamp(22px, 2.2vw, 34px); width: auto; object-fit: contain; }
 
 /* Right */
-.nav { display: flex; align-items: center; gap: clamp(20px, 2.2vw, 40px); }
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2.2vw, 40px);
+  margin-right: var(--gutter);
+}
 .nav-link { text-decoration: none; transition: opacity .3s ease; }
 .nav-link:hover { opacity: .7; }
 .nav-link img { height: 21px; width: auto; object-fit: contain; }
