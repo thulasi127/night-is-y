@@ -20,7 +20,6 @@ const goHome = () => {
       preload="auto"
       @ended="goHome"
     />
-    <button class="skip" @click="goHome">Skip</button>
   </div>
 </template>
 
@@ -38,16 +37,5 @@ const goHome = () => {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-}
-.skip {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  padding: 8px 12px;
-  background: rgba(255,255,255,.2);
-  border: 1px solid rgba(255,255,255,.35);
-  color: #fff;
-  border-radius: 6px;
-  cursor: pointer;
 }
 </style>
