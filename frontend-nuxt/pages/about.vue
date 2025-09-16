@@ -11,8 +11,8 @@
           <br /> FROM FILMS TO SERIES AND MUSIC VIDEOS, NIY IS A HOME FOR
           STORYTELLING THAT MOVES, QUESTIONS, AND CONNECTS.
           </p>
-          <NuxtLink to="/about-team" class="meet-the-team-cta">
-            MEET THE TEAM
+          <NuxtLink to="/about-devery" class="meet-the-team-link">
+            Meet the Team
           </NuxtLink>
       </div>
     </div>
@@ -65,7 +65,7 @@ import NavBar from '~/components/NavBar.vue'
   letter-spacing: 0;
 }
 
-.meet-the-team-cta {
+.meet-the-team-link {
   color: rgba(255, 255, 255, 0.75);
   font-size: 48px;
   font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
@@ -92,7 +92,7 @@ import NavBar from '~/components/NavBar.vue'
   transition: transform 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
-.meet-the-team-cta:hover {
+.meet-the-team-link:hover {
   transform: scale(1.08);
   -webkit-text-fill-color: #593792;
   color: #593792;

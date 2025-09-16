@@ -43,21 +43,39 @@
             BACKSPOT
           </span>
           <div class="frame">
-            <img
-              class="imdb-logo"
-              alt="Imdb logo"
-              src="https://c.animaapp.com/Wqg9SAYU/img/imdb-logo@2x.png"
-            />
-            <Instagram
-              class="instagram-instance"
-              img="https://c.animaapp.com/Wqg9SAYU/img/instagram.svg"
-              size="forty-eight"
-            />
-            <Youtube
-              class="youtube-instance"
-              img="https://c.animaapp.com/Wqg9SAYU/img/youtube.svg"
-              size="forty-eight"
-            />
+            <a
+              href="https://www.imdb.com/name/nm2711203/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="imdb-logo"
+                alt="Imdb logo"
+                src="https://c.animaapp.com/Wqg9SAYU/img/imdb-logo@2x.png"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/deveryjacobs/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Instagram
+                class="instagram-instance"
+                img="https://c.animaapp.com/Wqg9SAYU/img/instagram.svg"
+                size="forty-eight"
+              />
+            </a>
+            <a
+              href="https://www.youtube.com/watch?v=50tELFkt6RM"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Youtube
+                class="youtube-instance"
+                img="https://c.animaapp.com/Wqg9SAYU/img/youtube.svg"
+                size="forty-eight"
+              />
+            </a>
           </div>
         </div>
       </div>
