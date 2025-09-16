@@ -1,48 +1,45 @@
 <template>
-  <div class="about-page-devery">
+  <div class="about-team-page">
     <NavBar />
-    <div class="main-content">
-      <div class="left-image-block">
-        <div class="the-team-title">THE TEAM</div>
+    <div class="about-page-devery-content">
+      <div class="header-row">
+        <h1 class="the-team-heading">THE TEAM</h1>
+      </div>
+      <div class="main-content-row">
         <img
           class="image"
-          alt="Image"
+          alt="Devery Jacobs Headshot"
           src="https://c.animaapp.com/Wqg9SAYU/img/headshot-devery.jpg"
         />
-      </div>
-      <div class="right-info-block">
-        <div class="names-row">
-          <span class="devery-jacobs overline">DEVERY JACOBS</span>
-          <span class="text-wrapper-2 overline">D.W. WATERSON</span>
-        </div>
-        <div class="bio-block">
-          <p class="kawennahere-devery">
+        <div class="main-text-block">
+          <div class="names-row">
+            <span class="devery-jacobs overline">DEVERY JACOBS</span>
+            <span class="dw-waterson overline">D.W. WATERSON</span>
+          </div>
+          <div class="devery-meta">
             <span class="span">
-              KAWENNAHERE DEVERY JACOBS <br />
+              KAWENNAHERE DEVERY JACOBS<br />
               PRODUCER &amp; ACTOR (SHE/HER)
             </span>
-            <span class="text-wrapper-3"> </span>
-            <span class="text-wrapper-4">
-              KAWENNAHERE DEVERY JACOBS IS A FILMMAKER, ACTOR, AND WRITER
-              KNOWN FOR STARRING IN AWARD-WINNING PROJECTS LIKE RHYMES FOR
-              YOUNG GHOULS, THE ORDER, AND RESERVATION DOGS. AS A CO-FOUNDER
-              OF NIGHT IS Y, DEVERY BRINGS A SHARP, PERSONAL LENS TO STORIES
-              CENTERING IDENTITY, RESILIENCE, AND QUEER PERSPECTIVES. SHE'S
-              A TIFF RISING STAR AND A POWERFUL VOICE IN CANADA'S CREATIVE
-              SCENE, BOTH IN FRONT OF AND BEHIND THE CAMERA.
-              <br />
-            </span>
-            <span class="text-wrapper-5">
-              <br />
-              PAST NOTABLE WORK:
-            </span>
-            <span class="text-wrapper-3"> </span>
-            <span class="text-wrapper-4">
-              RESERVATION DOGS · RHYMES FOR YOUNG GHOULS · THE ORDER ·
-              BACKSPOT
-            </span>
-            <span class="text-wrapper-3"> </span>
-          </p>
+          </div>
+          <span class="text-wrapper-4">
+            KAWENNAHERE DEVERY JACOBS IS A FILMMAKER, ACTOR, AND WRITER
+            KNOWN FOR STARRING IN AWARD-WINNING PROJECTS LIKE RHYMES FOR
+            YOUNG GHOULS, THE ORDER, AND RESERVATION DOGS. AS A CO-FOUNDER
+            OF NIGHT IS Y, DEVERY BRINGS A SHARP, PERSONAL LENS TO STORIES
+            CENTERING IDENTITY, RESILIENCE, AND QUEER PERSPECTIVES. SHE'S
+            A TIFF RISING STAR AND A POWERFUL VOICE IN CANADA'S CREATIVE
+            SCENE, BOTH IN FRONT OF AND BEHIND THE CAMERA.
+          </span>
+          <br /><br />
+          <span class="text-wrapper-5">
+            PAST NOTABLE WORK:
+          </span>
+          <br />
+          <span class="text-wrapper-4">
+            RESERVATION DOGS · RHYMES FOR YOUNG GHOULS · THE ORDER ·
+            BACKSPOT
+          </span>
           <div class="frame">
             <img
               class="imdb-logo"
@@ -73,7 +70,7 @@ import Instagram from "../components/Instagram.vue";
 import Youtube from "../components/Youtube.vue";
 
 export default defineComponent({
-  name: "AboutPageDevery",
+  name: "AboutTeamPage",
   components: {
     NavBar,
     Instagram,
@@ -82,39 +79,54 @@ export default defineComponent({
 });
 </script>
 
-<style>
-.about-page-devery {
+<style scoped>
+.about-team-page {
   background: #000;
   min-height: 100vh;
   width: 100vw;
-  position: relative;
-}
-
-.main-content {
+  overflow-x: hidden;
+  overflow-y: auto;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  margin-top: 120px; /* Space for navbar and "The Team" title */
-  width: 100vw;
-  gap: 48px;
+  flex-direction: column;
 }
 
-.left-image-block {
+.about-page-devery-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  position: relative;
+  padding-top: 120px; /* space below navbar */
+  width: 100%;
 }
 
-.the-team-title {
-  color: #ffffff;
-  font-family: "Right Grotesk-SpatialBlack", Helvetica;
+.header-row {
+  margin-left: 42px;
+  margin-top: 64px;
+}
+
+.the-team-heading {
+  width: 626px; /* Match the image width */
+  height: 106px;
+  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
   font-size: 100px;
   font-weight: 900;
+  line-height: 30px;
+  color: white;
   letter-spacing: 0;
-  line-height: 1;
-  margin-bottom: 24px;
+  word-wrap: break-word;
+  text-transform: none;
+  margin-bottom: 0;
+  align-items: flex-end;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.main-content-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: flex-start;
   margin-left: 42px;
 }
 
@@ -122,99 +134,142 @@ export default defineComponent({
   width: 626px;
   height: 708px;
   object-fit: cover;
-  margin-left: 0;
+  margin-right: 64px;
 }
 
-.right-info-block {
+.main-text-block {
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
-  min-width: 600px;
-  margin-top: 0;
 }
 
 .names-row {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  gap: 32px;
-  margin-bottom: 32px;
-  /* Align with top of image */
-  margin-top: 0;
+  align-items: flex-end;
+  gap: 48px;
+  margin-bottom: 16px;
+  width: 100%;
+  white-space: nowrap;
 }
 
-.devery-jacobs.overline,
-.text-wrapper-2.overline {
-  font-family: "Right Grotesk-SpatialBlack", Helvetica;
+.devery-jacobs,
+.devery-jacobs.overline {
+  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
   font-size: 48px;
   font-weight: 900;
   line-height: 45px;
-  white-space: nowrap;
+  color: white;
+  letter-spacing: 0;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-transform: none;
   text-decoration: overline;
   text-decoration-thickness: 3px;
-}
-
-.devery-jacobs.overline {
-  color: #fff;
   text-decoration-color: #d90ec1ba;
 }
 
-.text-wrapper-2.overline {
-  color: #ffffff80;
-  text-decoration-color: rgba(255,255,255,0.75);
+.dw-waterson,
+.dw-waterson.overline {
+  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-transform: uppercase;
+  text-decoration: overline;
+  text-decoration-thickness: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+  transition: color 0.2s;
 }
 
-.bio-block {
-  margin-top: 0;
+.dw-waterson:hover,
+.dw-waterson.overline:hover {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration-color: rgba(255, 255, 255, 0.75);
 }
 
-.kawennahere-devery {
-  color: #ffffff;
-  font-family: "Neue Montreal-Medium", Helvetica;
+.devery-meta {
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 30px;
-  margin-bottom: 16px;
+  letter-spacing: 0;
+  color: #fff;
+  margin-bottom: 32px;
+  margin-top: 24px;
 }
 
 .span {
   font-weight: 500;
-}
-
-.text-wrapper-3 {
-  font-family: "Neue Montreal-Light", Helvetica;
-  font-size: 16px;
-  font-weight: 300;
+  font-size: 28px;
+  line-height: 1.2;
 }
 
 .text-wrapper-4 {
-  font-family: "Neue Montreal-Regular", Helvetica;
+  font-family: "Neue Montreal-Regular", Helvetica, Arial, sans-serif;
   font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0;
+  color: #fff;
 }
 
 .text-wrapper-5 {
-  font-family: "Neue Montreal-Bold", Helvetica;
+  font-family: "Neue Montreal-Bold", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0;
+  color: #fff;
+  margin-top: 24px;
 }
 
 .frame {
+  height: 99px;
+  width: 256px;
   display: flex;
-  flex-direction: row;
+  align-items: center;
   gap: 24px;
   margin-top: 32px;
 }
 
 .imdb-logo {
+  aspect-ratio: 1;
   height: 48px;
   width: 48px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .instagram-instance,
 .youtube-instance {
   height: 48px !important;
   width: 48px !important;
+  position: static !important;
+}
+
+.label .span {
+  font-family: "Neue Montreal-Light", Helvetica;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.label .text-wrapper-2 {
+  font-family: "Neue Montreal-Regular", Helvetica;
+  font-size: 16px;
+}
+
+.label .text-wrapper-3 {
+  font-family: "Neue Montreal-Bold", Helvetica;
+  font-size: 16px;
+  font-weight: 700;
 }
 </style>
