@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@sanity/client": "^7.9.0",
+    "normalize-path": "^3.0.0",
     "nuxt": "^3.18.1",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"

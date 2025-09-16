@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@iconify/vue": "^5.0.0",
     "@sanity/client": "^7.11.0"
   }
 }

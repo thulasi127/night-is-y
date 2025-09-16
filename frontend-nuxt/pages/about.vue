@@ -10,10 +10,10 @@
           PEOPLE AND REAL STORIES.
           <br /> FROM FILMS TO SERIES AND MUSIC VIDEOS, NIY IS A HOME FOR
           STORYTELLING THAT MOVES, QUESTIONS, AND CONNECTS.
-        </p>
-        <NuxtLink to="/about-team" class="meet-the-team-cta">
-          MEET THE TEAM
-        </NuxtLink>
+          </p>
+          <NuxtLink to="/about-team" class="meet-the-team-cta">
+            MEET THE TEAM
+          </NuxtLink>
       </div>
     </div>
   </div>
