@@ -21,17 +21,17 @@
           <div class="devery-meta">
             <span class="span">
               KAWENNAHERE DEVERY JACOBS<br />
-              PRODUCER &amp; ACTOR (SHE/HER)
+              PRODUCER &amp; ACTOR (She/Her)
             </span>
           </div>
           <span class="text-wrapper-4">
-            KAWENNAHERE DEVERY JACOBS IS A FILMMAKER, ACTOR, AND WRITER
-            KNOWN FOR STARRING IN AWARD-WINNING PROJECTS LIKE RHYMES FOR
-            YOUNG GHOULS, THE ORDER, AND RESERVATION DOGS. AS A CO-FOUNDER
-            OF NIGHT IS Y, DEVERY BRINGS A SHARP, PERSONAL LENS TO STORIES
-            CENTERING IDENTITY, RESILIENCE, AND QUEER PERSPECTIVES. SHE'S
-            A TIFF RISING STAR AND A POWERFUL VOICE IN CANADA'S CREATIVE
-            SCENE, BOTH IN FRONT OF AND BEHIND THE CAMERA.
+            Kawennahere Devery Jacobs is a filmmaker, actor, and writer
+            known for starring in award-winning projects like Rhymes for
+            Young Ghouls, The Order, and Reservation Dogs. As a co-founder
+            of Night is Y, Devery brings a sharp, personal lens to stories
+            centering identity, resilience, and queer perspectives. She’s
+            a TIFF rising star and a powerful voice in Canada’s creative
+            scene, both in front of and behind the camera.
           </span>
           <br /><br />
           <span class="text-wrapper-5">
@@ -281,30 +281,45 @@ export default defineComponent({
   text-decoration-color: rgba(255, 255, 255, 0.75);
 }
 
-.devery-meta, .span {
+.devery-meta, .span,
+.text-wrapper-4,
+.notable-works-horizontal a {
   font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #fff;
+  line-height: 30px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.text-wrapper-5 {
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0px;
+  color: #fff;
+  margin-top: 24px;
+  text-transform: uppercase;
+}
+
+.devery-meta, .span {
   font-size: 24px;
   font-weight: 500;
-  color: #fff;
   margin-bottom: 32px;
   margin-top: 24px;
 }
 
 .text-wrapper-4 {
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: #fff;
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-weight: 400; /* thinner than 500 */
+  font-style: normal;
+  font-size: 24px;
   line-height: 30px;
-}
-
-.text-wrapper-5 {
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  text-transform: uppercase;
+  letter-spacing: 0px;
   color: #fff;
-  margin-top: 24px;
+  text-transform: none;
 }
 
 .notable-works-list {
@@ -341,12 +356,16 @@ export default defineComponent({
 }
 
 .notable-works-horizontal a {
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   color: #fff;
   text-decoration: underline;
   text-transform: none;
+  letter-spacing: 0px;
+  line-height: 30px;
+  transition: color 0.2s;
+  white-space: nowrap;
 }
 
 .notable-works-horizontal a:hover {

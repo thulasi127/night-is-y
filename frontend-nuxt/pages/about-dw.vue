@@ -21,7 +21,7 @@
           <div class="devery-meta">
             <span class="span">
               D.W. WATERSON<br />
-              DIRECTOR (they/them)
+              DIRECTOR (They/Them)
             </span>
           </div>
           <span class="text-wrapper-4">
@@ -90,17 +90,14 @@ import Instagram from "../components/Instagram.vue";
 import Youtube from "../components/Youtube.vue";
 
 const works = [
+
   {
-    title: "Music videos for Caveboy, Princess Century, For Esmé",
-    url: "https://www.youtube.com/watch?v=QyQGdQkqKjA",
+    title: "Priyanka – No New Friends",
+    url: "https://www.youtube.com/watch?v=9zGMgmApAYM&feature=youtu.be",
   },
   {
-    title: "That’s My DJ (series)",
-    url: "https://www.imdb.com/title/tt4446754/",
-  },
-  {
-    title: "Turn Up Charlie (Netflix)",
-    url: "https://www.imdb.com/title/tt8640976/",
+    title: "Turn Up Charlie",
+    url: "https://www.youtube.com/watch?v=IOsU1RoI6CM&feature=youtu.be",
   },
 ];
 
@@ -272,40 +269,35 @@ export default defineComponent({
   text-decoration-color: #d90ec1ba; /* switched to magenta */
 }
 
-.devery-meta {
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+.devery-meta, .span {
+  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
   font-size: 24px;
   font-weight: 500;
-  line-height: 30px;
-  letter-spacing: 0;
   color: #fff;
   margin-bottom: 32px;
   margin-top: 24px;
 }
 
-.span {
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 1.2;
-}
-
 .text-wrapper-4 {
-  font-family: "Neue Montreal-Regular", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
   font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
   line-height: 30px;
-  letter-spacing: 0;
+  letter-spacing: 0px;
   color: #fff;
+  text-transform: none;
 }
 
 .text-wrapper-5 {
-  font-family: "Neue Montreal-Bold", Helvetica, Arial, sans-serif;
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 30px;
-  letter-spacing: 0;
+  letter-spacing: 0px;
   color: #fff;
   margin-top: 24px;
+  text-transform: uppercase;
 }
 
 .notable-works-list {
@@ -342,11 +334,14 @@ export default defineComponent({
 }
 
 .notable-works-horizontal a {
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
-  color: #fff;
-  font-weight: 600;
-  text-decoration: underline;
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
   font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  text-decoration: underline;
+  text-transform: none;
+  letter-spacing: 0px;
+  line-height: 30px;
   transition: color 0.2s;
   white-space: nowrap;
 }
