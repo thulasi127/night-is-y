@@ -8,27 +8,19 @@
           src="https://c.animaapp.com/2lD2yyWL/img/image-6@2x.png"
         />
       </NuxtLink>
-      <div class="nav-section">
-        <img
-          class="nav-brand"
-          alt="Night IS y"
-          src="https://c.animaapp.com/2lD2yyWL/img/night-is-y.png"
-        />
-        <nav class="nav">
-          <NuxtLink to="/about" class="nav-link">
-            <img alt="About" src="https://c.animaapp.com/GSAE547a/img/about.png" />
-          </NuxtLink>
-          <NuxtLink to="/work" class="nav-link">
-            <img alt="Work" src="https://c.animaapp.com/GSAE547a/img/work.png" />
-          </NuxtLink>
-          <NuxtLink to="/press" class="nav-link">
-            <img alt="Press" src="https://c.animaapp.com/GSAE547a/img/press.png" />
-          </NuxtLink>
-          <NuxtLink to="/contact" class="nav-link">
-            <img alt="Contact" src="https://c.animaapp.com/GSAE547a/img/contact.png" />
-          </NuxtLink>
-        </nav>
-      </div>
+      
+      <img
+        class="nav-brand"
+        alt="Night IS y"
+        src="https://c.animaapp.com/2lD2yyWL/img/night-is-y.png"
+      />
+      
+      <nav class="nav">
+        <NuxtLink to="/about" class="nav-link">About</NuxtLink>
+        <NuxtLink to="/projects" class="nav-link">Work</NuxtLink>
+        <NuxtLink to="/press" class="nav-link">Press</NuxtLink>
+        <NuxtLink to="/contact" class="nav-link">Contact</NuxtLink>
+      </nav>
     </div>
   </header>
 </template>
@@ -44,83 +36,140 @@ export default defineComponent({
 <style>
 .navbar {
   background-color: transparent;
-  height: 132px;
-  left: 50%;
-  position: absolute;
-  top: 1px;
-  width: 1728px;
-  transform: translateX(-50%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 120px;
 }
 
 .navbar-content {
-  height: 138px;
-  left: 42px;
-  position: relative;
-  top: 39px;
-  width: 1644px;
+  max-width: 1728px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
 }
 
 .logo {
-  aspect-ratio: 0.89;
-  height: 138px;
-  left: 0;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  width: 123px;
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+  justify-self: start;
 }
 
-.nav-section {
-  height: 65px;
-  left: 0;
-  position: absolute;
-  top: 4px;
-  width: 1644px;
+.logo:hover {
+  opacity: 0.8;
 }
 
 .nav-brand {
-  height: 26px;
-  left: 764px;
-  position: absolute;
-  top: 9px;
-  width: 117px;
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  justify-self: center;
 }
 
 .nav {
   display: flex;
-  gap: 20px;
-  position: absolute;
-  top: 11px;
+  gap: 2rem;
+  align-items: center;
+  justify-self: end;
 }
 
 .nav-link {
-  height: 21px;
+  color: #ffffff;
+  font-family: "Neue Montreal-Regular", Helvetica;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #cccccc;
+}
+
+.nav-link::after {
+  content: '';
   position: absolute;
-  top: 11px;
-  display: flex;
-  align-items: center;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #ffffff;
+  transition: width 0.3s ease;
 }
 
-.nav-link:nth-child(1) { /* About */
-  left: 1241px;
-  width: 68px;
-}
-.nav-link:nth-child(2) { /* Work */
-  left: 1353px;
-  width: 61px;
-}
-.nav-link:nth-child(3) { /* Press */
-  left: 1461px;
-  width: 62px;
-}
-.nav-link:nth-child(4) { /* Contact */
-  left: 1555px;
-  width: 90px;
-}
-
-.nav-link img {
-  height: 100%;
+.nav-link:hover::after {
   width: 100%;
-  object-fit: contain;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    height: 80px;
+  }
+  
+  .navbar-content {
+    padding: 0 1rem;
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
+  }
+  
+  .logo {
+    height: clamp(40px, 8vh, 50px);
+  }
+  
+  .nav {
+    gap: clamp(0.5rem, 2vw, 1rem);
+  }
+  
+  .nav-link {
+    font-size: clamp(0.8rem, 2.2vw, 0.9rem);
+  }
+  
+  .nav-brand {
+    height: clamp(16px, 4vh, 20px);
+  }
+}
+
+/* Very small screens (landscape phones) */
+@media (max-height: 500px) {
+  .navbar {
+    height: 60px;
+  }
+  
+  .logo {
+    height: clamp(30px, 6vh, 40px);
+  }
+  
+  .nav-brand {
+    height: clamp(12px, 3vh, 16px);
+  }
+  
+  .nav-link {
+    font-size: clamp(0.7rem, 2vw, 0.8rem);
+  }
+}
+
+/* Tablet landscape */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .navbar {
+    height: clamp(80px, 10vh, 100px);
+  }
+  
+  .logo {
+    height: clamp(50px, 8vh, 70px);
+  }
+  
+  .nav-brand {
+    height: clamp(20px, 4vh, 25px);
+  }
 }
 </style>
