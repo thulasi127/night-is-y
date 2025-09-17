@@ -37,11 +37,14 @@
           <span class="text-wrapper-5">
             PAST NOTABLE WORK:
           </span>
-          <br />
-          <span class="text-wrapper-4">
-            RESERVATION DOGS · RHYMES FOR YOUNG GHOULS · THE ORDER ·
-            BACKSPOT
-          </span>
+          <div class="notable-works-horizontal">
+            <template v-for="(work, idx) in sortedWorks" :key="work.title">
+              <a :href="work.url" target="_blank" rel="noopener noreferrer">
+                {{ work.title }}
+              </a>
+              <span v-if="idx < sortedWorks.length - 1" class="dot">•</span>
+            </template>
+          </div>
           <div class="frame">
             <a
               href="https://www.imdb.com/name/nm2711203/"
@@ -84,10 +87,33 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import NavBar from "../components/NavBar.vue";
 import Instagram from "../components/Instagram.vue";
 import Youtube from "../components/Youtube.vue";
+
+const works = [
+  {
+    title: "Marvel Studios' Echo",
+    url: "https://www.youtube.com/watch?v=AFUKnherhuw&feature=youtu.be",
+  },
+  {
+    title: "Reservation Dogs Season 1",
+    url: "https://www.youtube.com/watch?v=YWYVTyhFAOU&feature=youtu.be",
+  },
+  {
+    title: "Reservation Dogs Season 2",
+    url: "https://www.youtube.com/watch?v=PInqPhN5YjQ&feature=youtu.be",
+  },
+  {
+    title: "Reservation Dogs Season 3",
+    url: "https://www.youtube.com/watch?v=rGz501EhVJs&feature=youtu.be",
+  },
+  {
+    title: "Rhymes for Young Ghouls",
+    url: "https://www.youtube.com/watch?v=-kk7IxWINLQ&feature=youtu.be",
+  },
+];
 
 export default defineComponent({
   name: "AboutTeamPage",
@@ -95,6 +121,12 @@ export default defineComponent({
     NavBar,
     Instagram,
     Youtube,
+  },
+  setup() {
+    const sortedWorks = computed(() =>
+      [...works].sort((a, b) => a.title.localeCompare(b.title))
+    );
+    return { sortedWorks };
   },
 });
 </script>
@@ -271,6 +303,62 @@ export default defineComponent({
   letter-spacing: 0;
   color: #fff;
   margin-top: 24px;
+}
+
+.notable-works-list {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.notable-works-list li {
+  margin-bottom: 6px;
+}
+
+.notable-works-list a {
+  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  color: #d90ec1ba;
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.notable-works-list a:hover {
+  color: #fff;
+}
+
+.notable-works-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.notable-works-horizontal a {
+  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 16px;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.notable-works-horizontal a:hover {
+  color: #d90ec1ba;
+}
+
+.notable-works-horizontal .dot {
+  color: #fff;
+  font-size: 10px;
+  margin: 0 6px;
+  user-select: none;
+  font-weight: bold;
+  line-height: 1;
 }
 
 .frame {
