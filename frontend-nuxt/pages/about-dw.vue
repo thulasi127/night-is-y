@@ -9,29 +9,23 @@
           <h1 class="the-team-heading">THE TEAM</h1>
           <img
             class="image"
-            alt="Devery Jacobs Headshot"
-            src="https://c.animaapp.com/Wqg9SAYU/img/headshot-devery.jpg"
+            alt="D.W. Waterson Headshot"
+            src="/images/headshot-dw.jpg"
           />
         </div>
         <div class="main-text-block">
           <div class="names-row">
-            <span class="devery-jacobs overline">DEVERY JACOBS</span>
-            <NuxtLink to="/about-dw" class="dw-waterson overline">D.W. WATERSON</NuxtLink>
+            <NuxtLink to="/about-devery" class="devery-jacobs overline">DEVERY JACOBS</NuxtLink>
+            <span class="dw-waterson overline">D.W. WATERSON</span>
           </div>
           <div class="devery-meta">
             <span class="span">
-              KAWENNAHERE DEVERY JACOBS<br />
-              PRODUCER &amp; ACTOR (SHE/HER)
+              D.W. WATERSON<br />
+              DIRECTOR (they/them)
             </span>
           </div>
           <span class="text-wrapper-4">
-            KAWENNAHERE DEVERY JACOBS IS A FILMMAKER, ACTOR, AND WRITER
-            KNOWN FOR STARRING IN AWARD-WINNING PROJECTS LIKE RHYMES FOR
-            YOUNG GHOULS, THE ORDER, AND RESERVATION DOGS. AS A CO-FOUNDER
-            OF NIGHT IS Y, DEVERY BRINGS A SHARP, PERSONAL LENS TO STORIES
-            CENTERING IDENTITY, RESILIENCE, AND QUEER PERSPECTIVES. SHE'S
-            A TIFF RISING STAR AND A POWERFUL VOICE IN CANADA'S CREATIVE
-            SCENE, BOTH IN FRONT OF AND BEHIND THE CAMERA.
+            D.W. Waterson is an award-winning director and creator behind That’s My DJ, a cult digital series that earned them Best Director at NYTVF, TO Webfest, and Vancouver WebFest. A CFC alum signed to The Gersh Agency and Meridian Artists, D.W. has directed music videos for artists like Caveboy, For Esmé, and Featurette. They blend cinematic vision with sound and motion to tell bold, emotional, and unforgettable stories.
           </span>
           <br /><br />
           <span class="text-wrapper-5">
@@ -47,7 +41,7 @@
           </div>
           <div class="frame">
             <a
-              href="https://www.imdb.com/name/nm2711203/"
+              href="https://www.imdb.com/name/nm6574292/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -58,7 +52,7 @@
               />
             </a>
             <a
-              href="https://www.instagram.com/deveryjacobs/"
+              href="https://www.instagram.com/dwwaterson/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -69,7 +63,7 @@
               />
             </a>
             <a
-              href="https://www.youtube.com/watch?v=50tELFkt6RM"
+              href="https://www.youtube.com/watch?v=QyQGdQkqKjA"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -83,6 +77,9 @@
         </div>
       </div>
     </div>
+    <transition name="fade" mode="out-in">
+      <NuxtPage />
+    </transition>
   </div>
 </template>
 
@@ -94,29 +91,21 @@ import Youtube from "../components/Youtube.vue";
 
 const works = [
   {
-    title: "Marvel Studios' Echo",
-    url: "https://www.youtube.com/watch?v=AFUKnherhuw&feature=youtu.be",
+    title: "Music videos for Caveboy, Princess Century, For Esmé",
+    url: "https://www.youtube.com/watch?v=QyQGdQkqKjA",
   },
   {
-    title: "Reservation Dogs Season 1",
-    url: "https://www.youtube.com/watch?v=YWYVTyhFAOU&feature=youtu.be",
+    title: "That’s My DJ (series)",
+    url: "https://www.imdb.com/title/tt4446754/",
   },
   {
-    title: "Reservation Dogs Season 2",
-    url: "https://www.youtube.com/watch?v=PInqPhN5YjQ&feature=youtu.be",
-  },
-  {
-    title: "Reservation Dogs Season 3",
-    url: "https://www.youtube.com/watch?v=rGz501EhVJs&feature=youtu.be",
-  },
-  {
-    title: "Rhymes for Young Ghouls",
-    url: "https://www.youtube.com/watch?v=-kk7IxWINLQ&feature=youtu.be",
+    title: "Turn Up Charlie (Netflix)",
+    url: "https://www.imdb.com/title/tt8640976/",
   },
 ];
 
 export default defineComponent({
-  name: "AboutTeamPage",
+  name: "AboutDWPage",
   components: {
     NavBar,
     Instagram,
@@ -130,16 +119,12 @@ export default defineComponent({
     onMounted(() => {
       const img = document.querySelector('.image');
       if (img) {
-        if (img.complete) {
+        img.addEventListener('load', () => {
           img.classList.add('loaded');
-        } else {
-          img.addEventListener('load', () => {
-            img.classList.add('loaded');
-          });
-        }
+        });
       }
     });
-    return { sortedWorks };
+    return { sortedWorks, imgLoaded };
   },
 });
 </script>
@@ -198,16 +183,16 @@ export default defineComponent({
 }
 
 .the-team-heading {
+  width: 100%;
+  height: 106px;
   font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
   font-size: 100px;
   font-weight: 900;
-  text-transform: uppercase;
-  color: white;
-  width: 100%;
-  height: 106px;
   line-height: 30px;
+  color: white;
   letter-spacing: 0;
   word-wrap: break-word;
+  text-transform: uppercase;
   margin-bottom: 0;
   text-align: right;
   margin-top: 144px; /* Increased from 128px */
@@ -219,7 +204,7 @@ export default defineComponent({
   height: 708px;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1); /* slower fade */
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .image.loaded {
@@ -245,64 +230,80 @@ export default defineComponent({
 }
 
 .devery-jacobs,
-.devery-jacobs.overline,
+.devery-jacobs.overline {
+  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-transform: none;
+  text-decoration: overline;
+  text-decoration-thickness: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.5); /* switched to faded white */
+  transition: color 0.2s;
+}
+
+.devery-jacobs:hover,
+.devery-jacobs.overline:hover {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration-color: rgba(255, 255, 255, 0.75);
+}
+
 .dw-waterson,
 .dw-waterson.overline {
   font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
   font-size: 48px;
   font-weight: 900;
   line-height: 45px;
+  color: white;
   letter-spacing: 0;
   word-wrap: break-word;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-transform: uppercase;
   text-decoration: overline;
   text-decoration-thickness: 3px;
-}
-.devery-jacobs,
-.devery-jacobs.overline {
-  color: white;
-  text-transform: none;
-  text-decoration-color: #d90ec1ba;
-}
-.dw-waterson,
-.dw-waterson.overline {
-  color: rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
-  text-decoration-color: rgba(255, 255, 255, 0.5);
-  transition: color 0.2s, text-decoration-color 0.2s;
-  cursor: pointer;
+  text-decoration-color: #d90ec1ba; /* switched to magenta */
 }
 
-.dw-waterson:hover,
-.dw-waterson.overline:hover {
-  color: rgba(255, 255, 255, 0.75);
-  text-decoration-color: rgba(255, 255, 255, 0.75);
-}
-
-.devery-meta, .span {
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+.devery-meta {
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
   font-size: 24px;
   font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0;
   color: #fff;
   margin-bottom: 32px;
   margin-top: 24px;
 }
 
+.span {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.2;
+}
+
 .text-wrapper-4 {
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-family: "Neue Montreal-Regular", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
-  color: #fff;
   line-height: 30px;
+  letter-spacing: 0;
+  color: #fff;
 }
 
 .text-wrapper-5 {
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-family: "Neue Montreal-Bold", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 700;
-  text-transform: uppercase;
+  line-height: 30px;
+  letter-spacing: 0;
   color: #fff;
   margin-top: 24px;
 }
@@ -342,11 +343,12 @@ export default defineComponent({
 
 .notable-works-horizontal a {
   font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 600;
   color: #fff;
+  font-weight: 600;
   text-decoration: underline;
-  text-transform: none;
+  font-size: 16px;
+  transition: color 0.2s;
+  white-space: nowrap;
 }
 
 .notable-works-horizontal a:hover {
@@ -386,4 +388,16 @@ export default defineComponent({
 }
 
 /* Optional: responsive tweaks for the 626px column can go here */
+</style>
+
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
+}
 </style>
