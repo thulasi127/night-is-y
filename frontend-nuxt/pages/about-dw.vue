@@ -41,7 +41,7 @@
           </div>
           <div class="frame">
             <a
-              href="https://www.imdb.com/name/nm6574292/"
+              href="https://www.imdb.com/name/nm3585842/?ref_=nv_sr_srsg_7_tt_0_nm_8_in_0_q_dw%2520"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -52,7 +52,7 @@
               />
             </a>
             <a
-              href="https://www.instagram.com/dwwaterson/"
+              href="https://www.instagram.com/dw_waterson/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -63,7 +63,7 @@
               />
             </a>
             <a
-              href="https://www.youtube.com/watch?v=QyQGdQkqKjA"
+              href="https://www.youtube.com/@DWWaterson24"
               target="_blank"
               rel="noopener noreferrer"
             >
