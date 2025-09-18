@@ -30,8 +30,8 @@
 
 <script setup>
 import releasedProjectsCover from '../public/images/film-menu.png';
-import inDevelopmentProjectsCover from '../public/images/dev-menu.png';
-import image from '../public/images/music-menu.png';
+import inDevelopmentProjectsCover from '../public/images/music-menu.png';
+import image from '../public/images/dev-menu.png';
 </script>
 
 <style scoped>
