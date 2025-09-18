@@ -1,41 +1,37 @@
 <template>
   <div class="projects-page-menu">
     <NavBar />
-    <div class="main-content">
-      <div class="projects-header">
-        <h1 class="projects-title">PROJECTS</h1>
-      </div>
-      <div class="projects-grid">
-        <div v-for="project in projects" :key="project.title" class="project-card">
-          <img :src="project.image" :alt="project.title" class="project-img" />
-          <div class="project-overlay">
-            <h2 class="project-name">{{ project.title }}</h2>
-            <p class="project-desc">{{ project.desc }}</p>
-          </div>
-        </div>
-      </div>
+    <div class="projects">PROJECTS</div>
+    <div class="img-container">
+      <img
+        class="released-projects"
+        alt="Released projects"
+        :src="releasedProjectsCover"
+      />
+      <div class="img-overlay"></div>
     </div>
+    <div class="film-series">FILM &amp; SERIES</div>
+    <div class="img-container">
+      <img
+        class="in-development"
+        alt="In development"
+        :src="inDevelopmentProjectsCover"
+      />
+      <div class="img-overlay"></div>
+    </div>
+    <div class="img-container">
+      <img class="img" alt="In development" :src="image" />
+      <div class="img-overlay"></div>
+    </div>
+    <div class="music-videos">MUSIC VIDEOS</div>
+    <div class="text-wrapper">IN DEVELOPMENT</div>
   </div>
 </template>
 
 <script setup>
-const projects = [
-  {
-    title: "Film & Series",
-    image: "/images/film-menu.png",
-    desc: "Award-winning films and original series.",
-  },
-  {
-    title: "Music Videos",
-    image: "/images/music-menu.png",
-    desc: "Cinematic music videos for bold artists.",
-  },
-  {
-    title: "In Development",
-    image: "/images/dev-menu.png",
-    desc: "Upcoming projects and creative concepts.",
-  },
-];
+import releasedProjectsCover from '../public/images/film-menu.png';
+import inDevelopmentProjectsCover from '../public/images/dev-menu.png';
+import image from '../public/images/music-menu.png';
 </script>
 
 <style scoped>
@@ -43,130 +39,143 @@ const projects = [
   background: #000;
   min-height: 100vh;
   width: 100vw;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 4rem;
-}
-
-.main-content {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding-top: 7rem; /* Space below navbar */
-  padding-bottom: 2rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.projects-header {
-  margin-bottom: 2.5rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.projects-title {
-  margin: 0;
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
-  font-size: 80px;
-  font-weight: 900;
-  color: white;
-  text-transform: uppercase;
-  text-align: center;
-  letter-spacing: 0;
-}
-
-.projects-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  width: 100%;
-  align-items: center;
-}
-
-.project-card {
   position: relative;
+  overflow-x: hidden;
+}
+
+.projects {
+  color: #ffffff;
+  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-size: 100px;
+  font-weight: 900;
+  position: absolute;
+  top: 275px;
+  left: 42px;
+  letter-spacing: 0;
+  line-height: 30px;
+  width: 1195px;
+}
+
+.img-container {
+  position: absolute;
+  left: 0;
   width: 100%;
-  max-width: 700px;
-  height: calc((100vh - 12rem) / 3); /* Split page into 3 equal sections, leaving space for title/header */
-  border-radius: 18px;
-  overflow: hidden;
-  background: #111;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-  display: flex;
-  align-items: flex-end;
+  height: 247px;
+  /* Each image will be positioned individually */
 }
 
-.project-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+.img-container:nth-of-type(2) { top: 339px; } /* released-projects */
+.img-container:nth-of-type(4) { top: 586px; } /* in-development */
+.img-container:nth-of-type(5) { top: 833px; } /* img */
+
+.img-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30,30,30,0.25); /* Dark overlay by default */
+  transition: background 0.3s;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.project-img {
+.img-container:hover .img-overlay {
+  background: rgba(30,30,30,0); /* Remove overlay on hover */
+}
+
+.img-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: filter 0.3s;
-}
-
-.project-card:hover .project-img {
-  filter: brightness(0.7) blur(1px);
-}
-
-.project-overlay {
+  transition: box-shadow 0.3s;
   position: absolute;
   left: 0;
-  bottom: 0;
-  width: 100%;
-  padding: 2rem 2.5rem;
-  background: linear-gradient(0deg, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.0) 100%);
-  color: #fff;
+  top: 0;
+  z-index: 1;
+}
+
+.img-container:hover img {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+.released-projects,
+.in-development,
+.img {
+  /* Remove position and sizing from these classes, handled by .img-container img */
+}
+
+.film-series,
+.music-videos,
+.text-wrapper {
+  z-index: 10; /* Ensure headings are above images and overlays */
+  position: absolute;
+  align-items: center;
+  color: #ffffff;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.project-name {
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
-  font-size: 2.2rem;
-  font-weight: 900;
-  margin: 0 0 0.5rem 0;
-  text-transform: uppercase;
-  letter-spacing: 0;
-}
-
-.project-desc {
   font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
-  font-size: 1.15rem;
+  font-size: 36px;
   font-weight: 400;
-  margin: 0;
-  opacity: 0.85;
+  height: 96px;
+  justify-content: center;
+  right: 42px;
+  text-align: right;
+  width: 326px;
 }
 
+.film-series {
+  top: 492px;
+}
+
+.music-videos {
+  top: 737px;
+}
+
+.text-wrapper {
+  top: 982px;
+}
+
+/* Responsive styles */
 @media (max-width: 900px) {
-  .main-content {
-    padding-top: 4rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    max-width: 100vw;
+  .projects {
+    font-size: 4rem;
+    top: 150px;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    text-align: center;
   }
-  .projects-title {
-    font-size: 2.5rem;
+
+  .img-container {
+    height: 150px;
   }
-  .project-card {
-    max-width: 100%;
-    height: 180px;
+  .img-container:nth-of-type(2) { top: 220px; }
+  .img-container:nth-of-type(4) { top: 420px; }
+  .img-container:nth-of-type(5) { top: 620px; }
+
+  .film-series,
+  .music-videos,
+  .text-wrapper {
+    font-size: 1.5rem;
+    height: auto;
+    width: auto;
+    left: 1rem;
+    right: 1rem;
+    justify-content: flex-start;
+    text-align: left;
   }
-  .project-overlay {
-    padding: 1rem;
+
+  .film-series {
+    top: 380px;
+  }
+
+  .music-videos {
+    top: 580px;
+  }
+
+  .text-wrapper {
+    top: 780px;
   }
 }
 </style>
