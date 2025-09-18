@@ -1,31 +1,32 @@
 <template>
   <div class="projects-page-menu">
     <NavBar />
-    <div class="projects-heading-spacer"></div>
-    <div class="projects">PROJECTS</div>
-    <div class="project-rows">
-      <div class="img-container">
-        <img
-          class="released-projects"
-          alt="Released projects"
-          :src="releasedProjectsCover"
-        />
-        <div class="img-overlay"></div>
-        <div class="row-label film-series">FILM &amp; SERIES</div>
-      </div>
-      <div class="img-container">
-        <img
-          class="in-development"
-          alt="In development"
-          :src="inDevelopmentProjectsCover"
-        />
-        <div class="img-overlay"></div>
-        <div class="row-label music-videos">MUSIC VIDEOS</div>
-      </div>
-      <div class="img-container">
-        <img class="img" alt="In development" :src="image" />
-        <div class="img-overlay"></div>
-        <div class="row-label text-wrapper">IN DEVELOPMENT</div>
+    <div class="projects-content">
+      <div class="projects">PROJECTS</div>
+      <div class="project-rows">
+        <div class="img-container">
+          <img
+            class="released-projects"
+            alt="Released projects"
+            :src="releasedProjectsCover"
+          />
+          <div class="img-overlay"></div>
+          <div class="row-label film-series">FILM &amp; SERIES</div>
+        </div>
+        <div class="img-container">
+          <img
+            class="in-development"
+            alt="In development"
+            :src="inDevelopmentProjectsCover"
+          />
+          <div class="img-overlay"></div>
+          <div class="row-label music-videos">MUSIC VIDEOS</div>
+        </div>
+        <div class="img-container">
+          <img class="img" alt="In development" :src="image" />
+          <div class="img-overlay"></div>
+          <div class="row-label text-wrapper">IN DEVELOPMENT</div>
+        </div>
       </div>
     </div>
   </div>
@@ -46,11 +47,15 @@ import image from '../public/images/dev-menu.png';
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Center everything vertically */
 }
 
-.projects-heading-spacer {
-  height: 80px; /* Adjust to match your navbar height */
-  flex-shrink: 0;
+.projects-content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  justify-content: center; /* Center group vertically */
 }
 
 .projects {
@@ -58,32 +63,29 @@ import image from '../public/images/dev-menu.png';
   font-family: "Right Grotesk-SpatialBlack", Helvetica;
   font-size: 80px;
   font-weight: 900;
-  margin: 0 0 16px 42px; /* Less space below heading */
+  margin-left: 42px;
+  margin-bottom: 8px;
   letter-spacing: 0;
   line-height: 1;
-  width: auto;
   height: 110px;
-  flex-shrink: 0;
   display: flex;
   align-items: flex-end;
+  text-align: left;
 }
 
 .project-rows {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: stretch;
-  align-items: stretch;
-  gap: 8px; /* Less space between rows */
-  height: 100%;
+  gap: 8px;
+  width: 100%;
+  flex: 1;
 }
 
 .img-container {
   position: relative;
   flex: 1 1 0;
-  width: 100%;
-  min-height: 80px;
-  max-height: 180px;
+  min-height: 180px;   /* Increased thickness */
+  max-height: 400px;   /* Increased maximum thickness */
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -97,6 +99,11 @@ import image from '../public/images/dev-menu.png';
   display: block;
   filter: brightness(0.7);
   transition: filter 0.3s, box-shadow 0.3s;
+}
+
+.img-container:hover img {
+  filter: brightness(1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
 }
 
 .img-overlay {
@@ -113,11 +120,6 @@ import image from '../public/images/dev-menu.png';
 
 .img-container:hover .img-overlay {
   background: rgba(30,30,30,0);
-}
-
-.img-container:hover img {
-  filter: brightness(1);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
 }
 
 .row-label {
@@ -137,12 +139,13 @@ import image from '../public/images/dev-menu.png';
 }
 
 @media (max-width: 900px) {
-  .projects-heading-spacer {
-    height: 56px;
+  .projects-content {
+    justify-content: center;
   }
   .projects {
     font-size: 2.5rem;
-    margin: 0 0 8px 16px;
+    margin-left: 16px;
+    margin-bottom: 8px;
     height: 60px;
   }
   .row-label {
@@ -152,8 +155,8 @@ import image from '../public/images/dev-menu.png';
     padding: 4px 10px;
   }
   .img-container {
-    min-height: 60px;
-    max-height: 100px;
+    min-height: 120px;
+    max-height: 220px;
   }
 }
 </style>
