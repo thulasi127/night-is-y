@@ -4,7 +4,7 @@
     <div class="projects-content">
       <div class="projects">PROJECTS</div>
       <div class="project-rows">
-        <NuxtLink to="/film-series" class="img-container link-row">
+        <div class="img-container clickable" @click="goToFilmSeries">
           <img
             class="released-projects"
             alt="Released projects"
@@ -12,7 +12,7 @@
           />
           <div class="img-overlay"></div>
           <div class="row-label film-series">FILM &amp; SERIES</div>
-        </NuxtLink>
+        </div>
         <div class="img-container">
           <img
             class="in-development"
@@ -36,6 +36,12 @@
 import releasedProjectsCover from '../public/images/film-menu.png';
 import inDevelopmentProjectsCover from '../public/images/music-menu.png';
 import image from '../public/images/dev-menu.png';
+
+const router = useRouter();
+const goToFilmSeries = () => {
+  router.push('/film-series');
+};
+
 </script>
 
 <style scoped>
