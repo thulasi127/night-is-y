@@ -43,31 +43,29 @@ const projects = [
   background: #000;
   min-height: 100vh;
   width: 100vw;
+  padding-bottom: 3rem; /* Ensures space at the bottom */
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 4rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-bottom: 4px solid #222; /* Visible bottom boundary */
 }
 
 .main-content {
-  width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding-top: 7rem; /* Space below navbar */
+  padding-top: 6rem;
   padding-bottom: 2rem;
   padding-left: 2rem;
   padding-right: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  min-height: calc(100vh - 3rem - 4px); /* Ensures content fits above bottom boundary */
+  box-sizing: border-box;
+  pointer-events: auto;
 }
 
 .projects-header {
   margin-bottom: 2.5rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .projects-title {
@@ -75,30 +73,29 @@ const projects = [
   font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
   font-size: 80px;
   font-weight: 900;
+  line-height: 1;
   color: white;
-  text-transform: uppercase;
-  text-align: center;
   letter-spacing: 0;
+  text-transform: uppercase;
+  text-align: left;
 }
 
 .projects-grid {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
   width: 100%;
-  align-items: center;
 }
 
 .project-card {
   position: relative;
   width: 100%;
-  max-width: 700px;
-  height: calc((100vh - 12rem) / 3); /* Split page into 3 equal sections, leaving space for title/header */
-  border-radius: 18px;
+  aspect-ratio: 16/6;
+  border-radius: 16px;
   overflow: hidden;
   background: #111;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s cubic-bezier(.4,0,.2,1);
   cursor: pointer;
   display: flex;
   align-items: flex-end;
@@ -106,7 +103,7 @@ const projects = [
 
 .project-card:hover {
   transform: scale(1.02);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.3);
 }
 
 .project-img {
@@ -114,7 +111,7 @@ const projects = [
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: filter 0.3s;
+  transition: filter 0.3s cubic-bezier(.4,0,.2,1);
 }
 
 .project-card:hover .project-img {
@@ -129,6 +126,7 @@ const projects = [
   padding: 2rem 2.5rem;
   background: linear-gradient(0deg, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.0) 100%);
   color: #fff;
+  transition: background 0.3s;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -139,8 +137,8 @@ const projects = [
   font-size: 2.2rem;
   font-weight: 900;
   margin: 0 0 0.5rem 0;
-  text-transform: uppercase;
   letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .project-desc {
@@ -156,14 +154,13 @@ const projects = [
     padding-top: 4rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    max-width: 100vw;
   }
   .projects-title {
     font-size: 2.5rem;
   }
   .project-card {
-    max-width: 100%;
-    height: 180px;
+    aspect-ratio: 16/9;
+    min-height: 180px;
   }
   .project-overlay {
     padding: 1rem;
