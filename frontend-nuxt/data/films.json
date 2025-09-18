@@ -1,0 +1,37 @@
+[{
+        "id": 1,
+        "title": "BACKSPOT (2023)",
+        "poster": "https://c.animaapp.com/8fMaI8OW/img/image-10.png",
+        "type": "film"
+    },
+    {
+        "id": 2,
+        "title": "MYSTERY SERIES (2024)",
+        "poster": "https://c.animaapp.com/8fMaI8OW/img/image-11.png",
+        "type": "series"
+    },
+    {
+        "id": 3,
+        "title": "DRAMA FILM (2023)",
+        "poster": "https://c.animaapp.com/8fMaI8OW/img/image-12.png",
+        "type": "film"
+    },
+    {
+        "id": 4,
+        "title": "ACTION SERIES (2024)",
+        "poster": "https://c.animaapp.com/8fMaI8OW/img/image-10.png",
+        "type": "series"
+    },
+    {
+        "id": 5,
+        "title": "THRILLER FILM (2023)",
+        "poster": "https://c.animaapp.com/8fMaI8OW/img/image-11.png",
+        "type": "film"
+    },
+    {
+        "id": 6,
+        "title": "COMEDY SERIES (2024)",
+        "poster": "https://c.animaapp.com/8fMaI8OW/img/image-12.png",
+        "type": "series"
+    }
+]

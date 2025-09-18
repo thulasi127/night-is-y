@@ -4,7 +4,7 @@
     <div class="projects-content">
       <div class="projects">PROJECTS</div>
       <div class="project-rows">
-        <div class="img-container">
+        <NuxtLink to="/film-series" class="img-container link-row">
           <img
             class="released-projects"
             alt="Released projects"
@@ -12,7 +12,7 @@
           />
           <div class="img-overlay"></div>
           <div class="row-label film-series">FILM &amp; SERIES</div>
-        </div>
+        </NuxtLink>
         <div class="img-container">
           <img
             class="in-development"
