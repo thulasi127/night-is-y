@@ -1,14 +1,15 @@
 <template>
-  <div class="projects-page-film-centered">
+  <div class="projects-page-film centered-layout">
     <NavBar />
-    <div class="projects-cta" @click="goToProjects" style="cursor:pointer">
-      <ChevronLeftIcon class="chevron-icon" />
-      <span class="projects-text">PROJECTS</span>
+    <div class="film-series-header-row">
+      <div class="projects-cta" @click="goToProjects">
+        <ChevronLeftIcon class="chevron-left-small" />
+        <span class="projects-text">PROJECTS</span>
+      </div>
+      <div class="film-series-title">FILM &amp; SERIES</div>
     </div>
-    <!-- Film & Series title, shifted to the right above the rightmost poster -->
-    <h1 class="film-series-heading film-series-heading-right">FILM &amp; SERIES</h1>
     <div
-      class="carousel-wrapper"
+      class="posters-row"
       @mousedown="startDrag"
       @mousemove="onDrag"
       @mouseup="endDrag"
@@ -17,54 +18,54 @@
       @touchmove="onDrag"
       @touchend="endDrag"
     >
-      <button
-        class="carousel-arrow carousel-arrow-left"
-        :disabled="!canGoPrevious"
-        @click="previousSlide"
-        aria-label="Previous"
+      <div
+        v-for="(film, idx) in visibleFilms"
+        :key="film.id"
+        class="poster-image-wrapper"
+        @mouseenter="hovered = idx"
+        @mouseleave="hovered = null"
       >
-        <ChevronLeftIcon class="arrow-icon" />
-      </button>
-      <div class="carousel-track" :style="trackStyle">
-        <div
-          v-for="(film, index) in films"
-          :key="film.id"
-          class="carousel-item"
-        >
+        <div class="image">
           <img
+            class="img"
+            :class="{ 'poster-hovered': hovered === idx }"
             :src="film.poster"
             :alt="film.title"
-            class="film-poster-img"
-            loading="lazy"
           />
-          <div class="carousel-film-title">{{ film.title }}</div>
+          <div v-if="hovered === idx" class="poster-overlay immediate center-overlay">
+            <div class="poster-title-neue">{{ film.title }}</div>
+            <div class="poster-type-neue">{{ film.type }}</div>
+          </div>
         </div>
       </div>
-      <button
-        class="carousel-arrow carousel-arrow-right"
-        :disabled="!canGoNext"
-        @click="nextSlide"
-        aria-label="Next"
-      >
-        <ChevronRightIcon class="arrow-icon" />
-      </button>
     </div>
+    <button
+      class="arrow arrow-left"
+      :disabled="!canGoPrevious"
+      :style="{ opacity: canGoPrevious ? 1 : 0.3 }"
+      @click="previousSlide"
+      aria-label="Previous"
+    >
+      <ChevronLeftIcon class="arrow-icon" />
+    </button>
+    <button
+      class="arrow arrow-right"
+      :disabled="!canGoNext"
+      :style="{ opacity: canGoNext ? 1 : 0.3 }"
+      @click="nextSlide"
+      aria-label="Next"
+    >
+      <ChevronRightIcon class="arrow-icon" />
+    </button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted } from "vue";
-import { useRouter } from 'vue-router';
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
 import NavBar from "../components/NavBar.vue";
 import filmsData from "../data/films.json";
-
-interface Film {
-  id: number;
-  title: string;
-  poster: string;
-  type: string;
-}
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: "ProjectsPageFilm",
@@ -74,51 +75,37 @@ export default defineComponent({
     NavBar
   },
   setup() {
-    const router = useRouter();
-    const films = ref<Film[]>([]);
+    const films = ref([]);
     const currentIndex = ref(0);
     const itemsPerPage = 3;
+    const hovered = ref<number | null>(null);
+    const router = useRouter();
 
-    // Drag state
+    // Drag/swipe state
     const dragStartX = ref<number | null>(null);
     const dragDelta = ref(0);
 
-    const currentFilms = computed(() => {
-      if (films.value.length === 0) return [];
-      const start = currentIndex.value;
-      return films.value.slice(start, start + itemsPerPage);
+    onMounted(() => {
+      films.value = filmsData;
     });
 
-    const canGoNext = computed(() => {
-      return currentIndex.value < films.value.length - itemsPerPage;
-    });
+    const visibleFilms = computed(() =>
+      films.value.slice(currentIndex.value, currentIndex.value + itemsPerPage)
+    );
 
-    const canGoPrevious = computed(() => {
-      return currentIndex.value > 0;
-    });
-
-    const nextSlide = () => {
-      if (canGoNext.value) {
-        currentIndex.value++;
-      }
-    };
+    const canGoPrevious = computed(() => currentIndex.value > 0);
+    const canGoNext = computed(
+      () => currentIndex.value + itemsPerPage < films.value.length
+    );
 
     const previousSlide = () => {
-      if (canGoPrevious.value) {
-        currentIndex.value--;
-      }
+      if (canGoPrevious.value) currentIndex.value--;
+    };
+    const nextSlide = () => {
+      if (canGoNext.value) currentIndex.value++;
     };
 
-    const goToProjects = () => {
-      router.push('/projects');
-    };
-
-    const trackStyle = computed(() => ({
-      transform: `translateX(calc(-${currentIndex.value * (100 / itemsPerPage)}% + ${dragDelta.value}px))`,
-      transition: dragStartX.value === null ? 'transform 0.5s cubic-bezier(.77,0,.18,1)' : 'none'
-    }));
-
-    // Drag/Swipe handlers
+    // Drag/swipe handlers
     const startDrag = (e: MouseEvent | TouchEvent) => {
       dragStartX.value = 'touches' in e ? e.touches[0].clientX : e.clientX;
       dragDelta.value = 0;
@@ -138,224 +125,205 @@ export default defineComponent({
       dragDelta.value = 0;
     };
 
-    onMounted(() => {
-      films.value = filmsData;
-    });
+    const goToProjects = () => {
+      router.push('/projects');
+    };
 
     return {
       films,
+      visibleFilms,
       currentIndex,
-      canGoNext,
-      canGoPrevious,
-      nextSlide,
       previousSlide,
-      goToProjects,
-      trackStyle,
-      currentFilms,
+      nextSlide,
+      canGoPrevious,
+      canGoNext,
+      hovered,
       startDrag,
       onDrag,
-      endDrag
+      endDrag,
+      goToProjects
     };
   }
 });
 </script>
 
 <style>
-.projects-page-film-centered {
-  min-height: 100vh;
-  width: 100vw;
-  background: linear-gradient(0deg, #000 0%, #000 100%);
+.centered-layout {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(0deg, #000 0%, #000 100%);
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
-.header {
+.film-series-header-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  max-width: 1728px;
-  margin: 0 auto;
-  position: relative;
+  margin-top: 32px;
+  margin-bottom: 40px;
+  gap: 32px;
 }
 
 .projects-cta {
-  position: absolute;
-  top: 40px;
-  left: 60px;
-  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
 }
 
-.released-projects {
+.chevron-left-small {
+  width: 22px;
+  height: 22px;
   color: #fff;
-  font-family: "Right Grotesk-Medium", Helvetica;
-  font-size: 36px;
-  font-weight: 500;
-  text-align: center;
-  margin-top: 60px;
-  margin-bottom: 20px;
 }
 
-.carousel-wrapper {
+.projects-text {
+  color: #fff;
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.08px;
+  line-height: 15px;
+}
+
+.film-series-title {
+  color: #fff;
+  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.posters-row {
+  width: 100%;
+  max-width: 1728px;
+  height: 670px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  user-select: none;
+  touch-action: pan-y;
+  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+}
+
+.poster-image-wrapper {
+  position: relative;
+  width: 455px;
+  height: 670px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1400px;
-  max-width: 90vw;
-  margin: 0 auto;
-  position: relative;
-  height: 700px;
-  user-select: none;
-  touch-action: pan-y;
 }
 
-.carousel-arrow {
-  background: none;
-  border: none;
-  width: 60px;
+.image {
+  height: 662px;
+  width: 447px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img {
+  aspect-ratio: 0.68;
+  height: 670px;
+  width: 455px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  transition: filter 0.15s;
+}
+
+.poster-hovered {
+  filter: brightness(0.5);
+}
+
+.poster-overlay.immediate.center-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 1;
+  transition: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.poster-title-neue {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 28px;
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 30px;
+  word-wrap: break-word;
+  margin-bottom: 8px;
+}
+
+.poster-type-neue {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 22px;
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 26px;
+  word-wrap: break-word;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 68px;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  transition: background 0.2s;
+  background: none;
+  border: none;
+  transition: opacity 0.2s;
 }
-.carousel-arrow:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
+.arrow-left {
+  left: 67px;
 }
+.arrow-right {
+  right: 67px;
+}
+
 .arrow-icon {
   width: 40px;
   height: 40px;
   color: #fff;
 }
 
-.carousel-arrow-left {
-  position: absolute;
-  left: -80px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.carousel-arrow-right {
-  position: absolute;
-  right: -80px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.carousel-track {
-  display: flex;
-  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
-  width: 100%;
-  height: 700px;
-  overflow: hidden;
-  will-change: transform;
-}
-
-.carousel-item {
-  min-width: calc(100% / 3);
-  max-width: calc(100% / 3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
-.film-poster-img {
-  width: 100%;
-  max-width: 420px;
-  height: 620px;
-  object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  margin-bottom: 18px;
-  transition: box-shadow 0.2s;
-}
-
-.carousel-film-title {
-  color: #fff;
-  font-family: "Neue Montreal-Regular", Helvetica, Arial, sans-serif;
-  font-size: 22px;
-  font-weight: 400;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.projects-title-font {
-  font-family: "Right Grotesk-Medium", Helvetica, Arial, sans-serif;
-  font-size: 36px;
-  font-weight: 500;
-  letter-spacing: 0.08px;
-  text-transform: uppercase;
-  color: #fff;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.projects {
-  color: #ffffff;
-  font-family: "Right Grotesk-SpatialBlack", Helvetica;
-  font-size: 80px;
-  font-weight: 900;
-  margin-left: 42px;
-  margin-bottom: 8px;
-  letter-spacing: 0;
-  line-height: 1;
-  height: 110px;
-  display: flex;
-  align-items: flex-end;
-  text-align: left;
-}
-
-.film-series-title {
-  margin-top: 60px;
-  margin-bottom: 8px;
-  text-align: left;
-  justify-content: flex-start;
-  margin-left: 42px;
-}
-
-.film-title {
-  display: none; /* Hide the subheading */
-}
-
-.film-series-heading {
-  width: 100%;
-  height: 106px;
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
-  font-size: 100px;
-  font-weight: 900;
-  line-height: 1.1;
-  color: white;
-  letter-spacing: 0;
-  word-wrap: break-word;
-  text-transform: uppercase;
-  margin-top: 144px;
-  margin-bottom: 0;
-  text-align: left;
-  margin-left: 42px;
-}
-
-.film-series-heading-right {
-  text-align: left;
-  margin-left: 0;
-  margin-right: 42px;
-  /* Optionally, add a max-width to prevent overflow on small screens */
-  max-width: 1400px;
-  width: 100%;
-}
-
-@media (max-width: 900px) {
-  .film-series-heading,
-  .film-series-heading-right {
-    font-size: 2.5rem;
-    height: 60px;
-    margin-top: 60px;
-    margin-right: 12px;
-  }
+button.arrow:disabled {
+  cursor: not-allowed;
 }
 </style>
