@@ -1,4 +1,11 @@
 export default defineNuxtConfig({
-  css: ['~/assets/css/global.css'],
-  compatibilityDate: '2025-09-03',
+  nitro: { preset: 'vercel' },
+  routeRules: {
+    '/': { prerender: true },        // allow landing
+    '/home': { prerender: true },    // allow homepage (optional)
+    '/**': { redirect: '/' }         // everything else goes to landing
+  },
+  nitro: {
+    prerender: { routes: ['/', '/home'] } // keep if you want static output for these
+  }
 })
