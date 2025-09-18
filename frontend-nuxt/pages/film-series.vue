@@ -1,153 +1,62 @@
 <template>
-  <div class="projects-page-film" data-model-id="19:1326">
-    <img
-      class="IMG"
-      alt="Img"
-      src="https://c.animaapp.com/8fMaI8OW/img/img-3986-1.png"
-    />
-    <div class="released-projects">FILM & SERIES</div>
-    <div class="film-title">{{ currentFilms[0]?.title || '' }}</div>
-    
-    <div class="carousel-container">
-      <div 
-        v-for="(film, index) in currentFilms" 
-        :key="film.id"
-        :class="['film-poster', `poster-${index + 1}`]"
-      >
-        <img
-          :src="film.poster"
-          :alt="film.title"
-        />
-      </div>
-    </div>
-
-    <div 
-      class="arrow-right"
-      :class="{ 'arrow-disabled': !canGoNext }"
-      @click="nextSlide"
-    >
-      <ChevronRightIcon class="arrow-icon" />
-    </div>
-    
-    <div 
-      class="arrow-left"
-      :class="{ 'arrow-disabled': !canGoPrevious }"
-      @click="previousSlide"
-    >
-      <ChevronLeftIcon class="arrow-icon" />
-    </div>
-    <div class="projects-cta">
-      <ChevronLeft class="chevron-icon" />
+  <div class="projects-page-film-centered">
+    <NavBar />
+    <div class="projects-cta" @click="goToProjects" style="cursor:pointer">
+      <ChevronLeftIcon class="chevron-icon" />
       <span class="projects-text">PROJECTS</span>
     </div>
-    <div class="header">
-      <div class="section">
-        <img
-          class="c-ontact"
-          alt="C ontact"
-          src="https://c.animaapp.com/8fMaI8OW/img/contact-2.png"
-        />
-        <img
-          class="press"
-          alt="Press"
-          src="https://c.animaapp.com/8fMaI8OW/img/press-2.png"
-        />
-        <img
-          class="work"
-          alt="Work"
-          src="https://c.animaapp.com/8fMaI8OW/img/work.png"
-        />
-        <img
-          class="about"
-          alt="About"
-          src="https://c.animaapp.com/8fMaI8OW/img/about-2.png"
-        />
-        <img
-          class="NIGHT-IS-y"
-          alt="Night IS y"
-          src="https://c.animaapp.com/8fMaI8OW/img/night-is-y.png"
-        />
-      </div>
-      <img
-        class="img-2"
-        alt="Image"
-        src="https://c.animaapp.com/8fMaI8OW/img/rectangle@2x.png"
-      />
-      <div class="div">
-        <div class="section">
+    <!-- Film & Series title, styled and positioned to the left -->
+    <h1 class="film-series-heading">FILM &amp; SERIES</h1>
+    <div
+      class="carousel-wrapper"
+      @mousedown="startDrag"
+      @mousemove="onDrag"
+      @mouseup="endDrag"
+      @mouseleave="endDrag"
+      @touchstart="startDrag"
+      @touchmove="onDrag"
+      @touchend="endDrag"
+    >
+      <button
+        class="carousel-arrow carousel-arrow-left"
+        :disabled="!canGoPrevious"
+        @click="previousSlide"
+        aria-label="Previous"
+      >
+        <ChevronLeftIcon class="arrow-icon" />
+      </button>
+      <div class="carousel-track" :style="trackStyle">
+        <div
+          v-for="(film, index) in films"
+          :key="film.id"
+          class="carousel-item"
+        >
           <img
-            class="c-ontact"
-            alt="C ontact"
-            src="https://c.animaapp.com/8fMaI8OW/img/contact-2.png"
+            :src="film.poster"
+            :alt="film.title"
+            class="film-poster-img"
+            loading="lazy"
           />
-          <img
-            class="press"
-            alt="Press"
-            src="https://c.animaapp.com/8fMaI8OW/img/press-2.png"
-          />
-          <img
-            class="work"
-            alt="Work"
-            src="https://c.animaapp.com/8fMaI8OW/img/work-1.png"
-          />
-          <img
-            class="about"
-            alt="About"
-            src="https://c.animaapp.com/8fMaI8OW/img/about-2.png"
-          />
-          <img
-            class="NIGHT-IS-y"
-            alt="Night IS y"
-            src="https://c.animaapp.com/8fMaI8OW/img/night-is-y-2.png"
-          />
+          <div class="carousel-film-title">{{ film.title }}</div>
         </div>
-        <img
-          class="img-2"
-          alt="Image"
-          src="https://c.animaapp.com/8fMaI8OW/img/rectangle@2x.png"
-        />
       </div>
-      <div class="div">
-        <div class="section">
-          <img
-            class="c-ontact"
-            alt="C ontact"
-            src="https://c.animaapp.com/8fMaI8OW/img/contact-2.png"
-          />
-          <img
-            class="press"
-            alt="Press"
-            src="https://c.animaapp.com/8fMaI8OW/img/press-2.png"
-          />
-          <img
-            class="work-2"
-            alt="Work"
-            src="https://c.animaapp.com/8fMaI8OW/img/work-2.png"
-          />
-          <img
-            class="about"
-            alt="About"
-            src="https://c.animaapp.com/8fMaI8OW/img/about-2.png"
-          />
-          <img
-            class="NIGHT-IS-y"
-            alt="Night IS y"
-            src="https://c.animaapp.com/8fMaI8OW/img/night-is-y-2.png"
-          />
-        </div>
-        <img
-          class="img-2"
-          alt="Rectangle"
-          src="https://c.animaapp.com/8fMaI8OW/img/rectangle@2x.png"
-        />
-      </div>
+      <button
+        class="carousel-arrow carousel-arrow-right"
+        :disabled="!canGoNext"
+        @click="nextSlide"
+        aria-label="Next"
+      >
+        <ChevronRightIcon class="arrow-icon" />
+      </button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted } from "vue";
+import { useRouter } from 'vue-router';
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
+import NavBar from "../components/NavBar.vue";
 import filmsData from "../data/films.json";
 
 interface Film {
@@ -161,20 +70,27 @@ export default defineComponent({
   name: "ProjectsPageFilm",
   components: {
     ChevronLeftIcon,
-    ChevronRightIcon
+    ChevronRightIcon,
+    NavBar
   },
   setup() {
+    const router = useRouter();
     const films = ref<Film[]>([]);
     const currentIndex = ref(0);
     const itemsPerPage = 3;
 
+    // Drag state
+    const dragStartX = ref<number | null>(null);
+    const dragDelta = ref(0);
+
     const currentFilms = computed(() => {
-      const start = currentIndex.value * itemsPerPage;
+      if (films.value.length === 0) return [];
+      const start = currentIndex.value;
       return films.value.slice(start, start + itemsPerPage);
     });
 
     const canGoNext = computed(() => {
-      return (currentIndex.value + 1) * itemsPerPage < films.value.length;
+      return currentIndex.value < films.value.length - itemsPerPage;
     });
 
     const canGoPrevious = computed(() => {
@@ -193,285 +109,234 @@ export default defineComponent({
       }
     };
 
+    const goToProjects = () => {
+      router.push('/projects');
+    };
+
+    const trackStyle = computed(() => ({
+      transform: `translateX(calc(-${currentIndex.value * (100 / itemsPerPage)}% + ${dragDelta.value}px))`,
+      transition: dragStartX.value === null ? 'transform 0.5s cubic-bezier(.77,0,.18,1)' : 'none'
+    }));
+
+    // Drag/Swipe handlers
+    const startDrag = (e: MouseEvent | TouchEvent) => {
+      dragStartX.value = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      dragDelta.value = 0;
+    };
+    const onDrag = (e: MouseEvent | TouchEvent) => {
+      if (dragStartX.value === null) return;
+      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      dragDelta.value = clientX - dragStartX.value;
+    };
+    const endDrag = (e: MouseEvent | TouchEvent) => {
+      if (dragStartX.value === null) return;
+      const clientX = 'changedTouches' in e ? e.changedTouches[0].clientX : (e as MouseEvent).clientX;
+      const delta = clientX - dragStartX.value;
+      if (delta > 80 && canGoPrevious.value) previousSlide();
+      else if (delta < -80 && canGoNext.value) nextSlide();
+      dragStartX.value = null;
+      dragDelta.value = 0;
+    };
+
     onMounted(() => {
       films.value = filmsData;
     });
 
     return {
-      currentFilms,
+      films,
+      currentIndex,
       canGoNext,
       canGoPrevious,
       nextSlide,
-      previousSlide
+      previousSlide,
+      goToProjects,
+      trackStyle,
+      currentFilms,
+      startDrag,
+      onDrag,
+      endDrag
     };
   }
 });
 </script>
 
 <style>
-.projects-page-film {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%);
-  min-height: 1080px;
-  min-width: 1728px;
-  overflow: hidden;
+.projects-page-film-centered {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(0deg, #000 0%, #000 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
+  overflow-x: hidden;
+}
+
+.header {
   width: 100%;
+  max-width: 1728px;
+  margin: 0 auto;
+  position: relative;
 }
 
-.projects-page-film .IMG {
-  aspect-ratio: 1.77;
-  height: 1080px;
-  left: -1728px;
-  object-fit: cover;
+.projects-cta {
   position: absolute;
-  top: -5787px;
-  width: 1909px;
+  top: 40px;
+  left: 60px;
+  z-index: 10;
 }
 
-.projects-page-film .released-projects {
-  color: #ffffff;
+.released-projects {
+  color: #fff;
   font-family: "Right Grotesk-Medium", Helvetica;
   font-size: 36px;
   font-weight: 500;
-  left: 593px;
-  letter-spacing: 0;
-  line-height: 30px;
-  position: absolute;
   text-align: center;
-  top: 183px;
-  white-space: nowrap;
-  width: 541px;
+  margin-top: 60px;
+  margin-bottom: 20px;
 }
 
-.projects-page-film .film-title {
-  color: transparent;
-  font-family: "Helvetica Neue-UltraLight", Helvetica;
-  font-size: 28px;
-  font-weight: 300;
-  left: 593px;
-  letter-spacing: 0;
-  line-height: 30px;
-  position: absolute;
-  text-align: center;
-  top: 978px;
-  white-space: nowrap;
-  width: 541px;
-}
-
-.projects-page-film .carousel-container {
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1400px;
+  max-width: 90vw;
+  margin: 0 auto;
   position: relative;
-  width: 100%;
-  height: 670px;
+  height: 700px;
+  user-select: none;
+  touch-action: pan-y;
 }
 
-.projects-page-film .film-poster {
-  position: absolute;
-  top: 275px;
-  transition: all 0.3s ease;
-}
-
-.projects-page-film .film-poster img {
-  aspect-ratio: 0.68;
-  height: 670px;
-  object-fit: cover;
-  width: 100%;
-}
-
-.projects-page-film .poster-1 {
-  left: 143px;
-  width: 455px;
-}
-
-.projects-page-film .poster-1 img {
-  height: 670px;
-  width: 455px;
-}
-
-.projects-page-film .poster-2 {
-  left: 641px;
-  width: 447px;
-}
-
-.projects-page-film .poster-2 img {
-  height: 662px;
-  width: 447px;
-}
-
-.projects-page-film .poster-3 {
-  left: 1138px;
-  width: 447px;
-}
-
-.projects-page-film .poster-3 img {
-  height: 662px;
-  width: 447px;
-}
-
-.projects-page-film .arrow-right {
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
+.carousel-arrow {
+  background: none;
+  border: none;
+  width: 60px;
   height: 60px;
-  justify-content: center;
-  left: 1597px;
-  position: absolute;
-  top: 576px;
-  transition: all 0.3s ease;
-  width: 68px;
-}
-
-.projects-page-film .arrow-right:hover:not(.arrow-disabled) {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-
-.projects-page-film .arrow-left {
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  cursor: pointer;
   display: flex;
-  height: 60px;
+  align-items: center;
   justify-content: center;
-  left: 67px;
-  position: absolute;
-  top: 576px;
-  transition: all 0.3s ease;
-  width: 68px;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s;
 }
-
-.projects-page-film .arrow-left:hover:not(.arrow-disabled) {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-
-.projects-page-film .arrow-disabled {
-  cursor: not-allowed;
+.carousel-arrow:disabled {
   opacity: 0.3;
+  cursor: not-allowed;
+}
+.arrow-icon {
+  width: 40px;
+  height: 40px;
+  color: #fff;
 }
 
-.projects-page-film .arrow-disabled:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  transform: none !important;
+.carousel-arrow-left {
+  position: absolute;
+  left: -80px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.carousel-arrow-right {
+  position: absolute;
+  right: -80px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.projects-page-film .arrow-icon {
-  color: white;
-  height: 24px;
-  width: 24px;
-}
-
-.projects-page-film .projects-cta {
-  align-items: center;
-  color: #ffffff;
-  cursor: pointer;
+.carousel-track {
   display: flex;
-  font-family: "Neue Montreal-Regular", Helvetica;
-  font-size: 20px;
-  font-weight: 400;
-  gap: 8px;
-  left: 147px;
-  letter-spacing: 0.08px;
-  line-height: 15px;
-  position: absolute;
-  top: 210px;
-  transition: opacity 0.2s ease;
+  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+  will-change: transform;
 }
 
-.projects-page-film .projects-cta:hover {
-  opacity: 0.8;
+.carousel-item {
+  min-width: calc(100% / 3);
+  max-width: calc(100% / 3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
-.projects-page-film .chevron-icon {
-  height: 22px;
-  width: 22px;
-}
-
-.projects-page-film .projects-text {
-  white-space: nowrap;
-}
-
-.projects-page-film .header {
-  height: 132px;
-  left: 0;
-  position: absolute;
-  top: 10px;
-  width: 1728px;
-}
-
-.projects-page-film .section {
-  height: 65px;
-  left: 42px;
-  position: absolute;
-  top: 43px;
-  width: calc(100% - 84px);
-}
-
-.projects-page-film .c-ontact {
-  height: 49.77%;
-  left: 94.57%;
-  position: absolute;
-  top: 16.74%;
-  width: 5.41%;
-}
-
-.projects-page-film .press {
-  height: 49.77%;
-  left: 88.85%;
-  position: absolute;
-  top: 16.74%;
-  width: 5.41%;
-}
-
-.projects-page-film .work {
-  height: 49.77%;
-  left: 82.31%;
-  position: absolute;
-  top: 16.74%;
-  width: 5.41%;
-}
-
-.projects-page-film .about {
-  height: 49.77%;
-  left: 75.52%;
-  position: absolute;
-  top: 16.74%;
-  width: 5.41%;
-}
-
-.projects-page-film .NIGHT-IS-y {
-  height: 49.23%;
-  left: 46.50%;
-  position: absolute;
-  top: 13.19%;
-  width: 8.52%;
-}
-
-.projects-page-film .img-2 {
-  aspect-ratio: 0.89;
-  height: 138px;
-  left: 42px;
+.film-poster-img {
+  width: 100%;
+  max-width: 420px;
+  height: 620px;
   object-fit: cover;
-  position: absolute;
-  top: 39px;
-  width: 123px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  margin-bottom: 18px;
+  transition: box-shadow 0.2s;
 }
 
-.projects-page-film .div {
-  height: 132px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 1728px;
+.carousel-film-title {
+  color: #fff;
+  font-family: "Neue Montreal-Regular", Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-.projects-page-film .work-2 {
-  height: 49.77%;
-  left: 82.29%;
-  position: absolute;
-  top: 16.71%;
-  width: 5.41%;
+.projects-title-font {
+  font-family: "Right Grotesk-Medium", Helvetica, Arial, sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: 0.08px;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.projects {
+  color: #ffffff;
+  font-family: "Right Grotesk-SpatialBlack", Helvetica;
+  font-size: 80px;
+  font-weight: 900;
+  margin-left: 42px;
+  margin-bottom: 8px;
+  letter-spacing: 0;
+  line-height: 1;
+  height: 110px;
+  display: flex;
+  align-items: flex-end;
+  text-align: left;
+}
+
+.film-series-title {
+  margin-top: 60px;
+  margin-bottom: 8px;
+  text-align: left;
+  justify-content: flex-start;
+  margin-left: 42px;
+}
+
+.film-title {
+  display: none; /* Hide the subheading */
+}
+
+.film-series-heading {
+  width: 100%;
+  height: 106px;
+  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-size: 100px;
+  font-weight: 900;
+  line-height: 1.1;
+  color: white;
+  letter-spacing: 0;
+  word-wrap: break-word;
+  text-transform: uppercase;
+  margin-top: 144px;
+  margin-bottom: 0;
+  text-align: left;
+  margin-left: 42px;
 }
 </style>
