@@ -1,30 +1,33 @@
 <template>
   <div class="projects-page-menu">
     <NavBar />
+    <div class="projects-heading-spacer"></div>
     <div class="projects">PROJECTS</div>
-    <div class="img-container">
-      <img
-        class="released-projects"
-        alt="Released projects"
-        :src="releasedProjectsCover"
-      />
-      <div class="img-overlay"></div>
+    <div class="project-rows">
+      <div class="img-container">
+        <img
+          class="released-projects"
+          alt="Released projects"
+          :src="releasedProjectsCover"
+        />
+        <div class="img-overlay"></div>
+        <div class="row-label film-series">FILM &amp; SERIES</div>
+      </div>
+      <div class="img-container">
+        <img
+          class="in-development"
+          alt="In development"
+          :src="inDevelopmentProjectsCover"
+        />
+        <div class="img-overlay"></div>
+        <div class="row-label music-videos">MUSIC VIDEOS</div>
+      </div>
+      <div class="img-container">
+        <img class="img" alt="In development" :src="image" />
+        <div class="img-overlay"></div>
+        <div class="row-label text-wrapper">IN DEVELOPMENT</div>
+      </div>
     </div>
-    <div class="film-series">FILM &amp; SERIES</div>
-    <div class="img-container">
-      <img
-        class="in-development"
-        alt="In development"
-        :src="inDevelopmentProjectsCover"
-      />
-      <div class="img-overlay"></div>
-    </div>
-    <div class="img-container">
-      <img class="img" alt="In development" :src="image" />
-      <div class="img-overlay"></div>
-    </div>
-    <div class="music-videos">MUSIC VIDEOS</div>
-    <div class="text-wrapper">IN DEVELOPMENT</div>
   </div>
 </template>
 
@@ -38,50 +41,53 @@ import image from '../public/images/dev-menu.png';
 .projects-page-menu {
   background: #000;
   min-height: 100vh;
+  height: 100vh;
   width: 100vw;
-  position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-heading-spacer {
+  height: 80px; /* Adjust to match your navbar height */
+  flex-shrink: 0;
 }
 
 .projects {
   color: #ffffff;
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
-  font-size: 100px;
+  font-family: "Right Grotesk-SpatialBlack", Helvetica;
+  font-size: 80px;
   font-weight: 900;
-  position: absolute;
-  top: 275px;
-  left: 42px;
+  margin: 0 0 16px 42px; /* Less space below heading */
   letter-spacing: 0;
-  line-height: 30px;
-  width: 1195px;
+  line-height: 1;
+  width: auto;
+  height: 110px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.project-rows {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  gap: 8px; /* Less space between rows */
+  height: 100%;
 }
 
 .img-container {
-  position: absolute;
-  left: 0;
+  position: relative;
+  flex: 1 1 0;
   width: 100%;
-  height: 247px;
-  /* Each image will be positioned individually */
-}
-
-.img-container:nth-of-type(2) { top: 339px; } /* released-projects */
-.img-container:nth-of-type(4) { top: 586px; } /* in-development */
-.img-container:nth-of-type(5) { top: 833px; } /* img */
-
-.img-overlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(30,30,30,0.25); /* Dark overlay by default */
-  transition: background 0.3s;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.img-container:hover .img-overlay {
-  background: rgba(30,30,30,0); /* Remove overlay on hover */
+  min-height: 80px;
+  max-height: 180px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  overflow: hidden;
 }
 
 .img-container img {
@@ -89,93 +95,65 @@ import image from '../public/images/dev-menu.png';
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: box-shadow 0.3s;
+  filter: brightness(0.7);
+  transition: filter 0.3s, box-shadow 0.3s;
+}
+
+.img-overlay {
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(30,30,30,0.25);
+  transition: background 0.3s;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.img-container:hover .img-overlay {
+  background: rgba(30,30,30,0);
 }
 
 .img-container:hover img {
+  filter: brightness(1);
   box-shadow: 0 8px 32px rgba(0,0,0,0.25);
 }
 
-.released-projects,
-.in-development,
-.img {
-  /* Remove position and sizing from these classes, handled by .img-container img */
-}
-
-.film-series,
-.music-videos,
-.text-wrapper {
-  z-index: 10; /* Ensure headings are above images and overlays */
+.row-label {
   position: absolute;
-  align-items: center;
-  color: #ffffff;
-  display: flex;
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
-  font-size: 36px;
-  font-weight: 400;
-  height: 96px;
-  justify-content: center;
   right: 42px;
-  text-align: right;
-  width: 326px;
+  bottom: 32px;
+  color: #fff;
+  font-family: "Neue Montreal-Regular", Helvetica;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  padding: 8px 20px;
+  border-radius: 4px;
+  z-index: 3;
+  pointer-events: none;
 }
 
-.film-series {
-  top: 492px;
-}
-
-.music-videos {
-  top: 737px;
-}
-
-.text-wrapper {
-  top: 982px;
-}
-
-/* Responsive styles */
 @media (max-width: 900px) {
+  .projects-heading-spacer {
+    height: 56px;
+  }
   .projects {
-    font-size: 4rem;
-    top: 150px;
-    left: 1rem;
-    right: 1rem;
-    width: auto;
-    text-align: center;
+    font-size: 2.5rem;
+    margin: 0 0 8px 16px;
+    height: 60px;
   }
-
+  .row-label {
+    font-size: 1rem;
+    right: 12px;
+    bottom: 12px;
+    padding: 4px 10px;
+  }
   .img-container {
-    height: 150px;
-  }
-  .img-container:nth-of-type(2) { top: 220px; }
-  .img-container:nth-of-type(4) { top: 420px; }
-  .img-container:nth-of-type(5) { top: 620px; }
-
-  .film-series,
-  .music-videos,
-  .text-wrapper {
-    font-size: 1.5rem;
-    height: auto;
-    width: auto;
-    left: 1rem;
-    right: 1rem;
-    justify-content: flex-start;
-    text-align: left;
-  }
-
-  .film-series {
-    top: 380px;
-  }
-
-  .music-videos {
-    top: 580px;
-  }
-
-  .text-wrapper {
-    top: 780px;
+    min-height: 60px;
+    max-height: 100px;
   }
 }
 </style>
