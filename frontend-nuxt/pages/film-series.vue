@@ -5,8 +5,8 @@
       <ChevronLeftIcon class="chevron-icon" />
       <span class="projects-text">PROJECTS</span>
     </div>
-    <!-- Film & Series title, styled and positioned to the left -->
-    <h1 class="film-series-heading">FILM &amp; SERIES</h1>
+    <!-- Film & Series title, shifted to the right above the rightmost poster -->
+    <h1 class="film-series-heading film-series-heading-right">FILM &amp; SERIES</h1>
     <div
       class="carousel-wrapper"
       @mousedown="startDrag"
@@ -338,5 +338,24 @@ export default defineComponent({
   margin-bottom: 0;
   text-align: left;
   margin-left: 42px;
+}
+
+.film-series-heading-right {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 42px;
+  /* Optionally, add a max-width to prevent overflow on small screens */
+  max-width: 1400px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .film-series-heading,
+  .film-series-heading-right {
+    font-size: 2.5rem;
+    height: 60px;
+    margin-top: 60px;
+    margin-right: 12px;
+  }
 }
 </style>
