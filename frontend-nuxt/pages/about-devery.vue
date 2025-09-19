@@ -10,7 +10,7 @@
           <img
             class="image"
             alt="Devery Jacobs Headshot"
-            src="https://c.animaapp.com/Wqg9SAYU/img/headshot-devery.jpg"
+            src="/Image/Headshots/headshot-1.jpg"
           />
         </div>
         <div class="main-text-block">
@@ -130,13 +130,9 @@ export default defineComponent({
     onMounted(() => {
       const img = document.querySelector('.image');
       if (img) {
-        if (img.complete) {
+        img.addEventListener('load', () => {
           img.classList.add('loaded');
-        } else {
-          img.addEventListener('load', () => {
-            img.classList.add('loaded');
-          });
-        }
+        });
       }
     });
     return { sortedWorks };
@@ -219,7 +215,7 @@ export default defineComponent({
   height: 708px;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1); /* slower fade */
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .image.loaded {
