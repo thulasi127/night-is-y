@@ -132,6 +132,7 @@ export default defineComponent({
       dragDelta.value = 0;
     };
 
+    // Ensure CTA leads to /projects page
     const goToProjects = () => {
       router.push('/projects');
     };
@@ -187,6 +188,8 @@ export default defineComponent({
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  z-index: 10; /* Ensure it's above other elements */
+  pointer-events: auto;
 }
 
 .film-series-title {
