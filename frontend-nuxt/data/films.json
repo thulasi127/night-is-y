@@ -20,10 +20,8 @@
             }
         ],
         "awards": "Awards & Accolades",
-        "gallery": [
-            "/image/Posters/film-series/film-poster-3.jpg",
-            "/image/Posters/film-series/film-poster-4.jpg"
-        ]
+        "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "isCertifiedFresh": true
     },
     {
         "id": 2,
@@ -42,9 +40,8 @@
             "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
         }],
         "awards": "",
-        "gallery": [
-            "/image/Posters/film-series/film-poster-4.jpg"
-        ]
+        "trailer": "https://www.youtube.com/embed/example1",
+        "isCertifiedFresh": false
     },
     {
         "id": 3,
@@ -63,9 +60,8 @@
             "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
         }],
         "awards": "",
-        "gallery": [
-            "/image/Posters/film-series/film-poster-1.jpg"
-        ]
+        "trailer": "https://www.youtube.com/embed/example2",
+        "isCertifiedFresh": true
     },
     {
         "id": 4,
@@ -84,8 +80,7 @@
             "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
         }],
         "awards": "",
-        "gallery": [
-            "/image/Posters/film-series/film-poster-2.jpg"
-        ]
+        "trailer": "https://www.youtube.com/embed/example3",
+        "isCertifiedFresh": false
     }
 ]
