@@ -8,7 +8,7 @@
           <img
             class="released-projects"
             alt="Released projects"
-            :src="releasedProjectsCover"
+            src="/image/project-covers/film-series/film-cover-1.jpg"
           />
           <div class="img-overlay"></div>
           <div class="row-label film-series">FILM &amp; SERIES</div>
@@ -16,14 +16,18 @@
         <div class="img-container">
           <img
             class="in-development"
-            alt="In development"
-            :src="inDevelopmentProjectsCover"
+            alt="Music Videos"
+            src="/image/project-covers/music-videos/music-video-cover-1.jpg"
           />
           <div class="img-overlay"></div>
           <div class="row-label music-videos">MUSIC VIDEOS</div>
         </div>
         <div class="img-container">
-          <img class="img" alt="In development" :src="image" />
+          <img
+            class="img"
+            alt="In development"
+            src="/image/project-covers/in-dev/in-dev-cover-1.jpg"
+          />
           <div class="img-overlay"></div>
           <div class="row-label text-wrapper">IN DEVELOPMENT</div>
         </div>
@@ -33,10 +37,6 @@
 </template>
 
 <script setup>
-import releasedProjectsCover from '../public/images/film-menu.png';
-import inDevelopmentProjectsCover from '../public/images/music-menu.png';
-import image from '../public/images/dev-menu.png';
-
 const router = useRouter();
 const goToFilmSeries = () => {
   router.push('/film-series');

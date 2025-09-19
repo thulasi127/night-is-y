@@ -33,8 +33,10 @@
             :alt="film.title"
           />
           <div v-if="hovered === idx" class="poster-overlay immediate center-overlay">
-            <div class="poster-title-neue">{{ film.title }}</div>
-            <div class="poster-type-neue">{{ film.type }}</div>
+            <div class="poster-title-neue">{{ displayTitle(film) }}</div>
+            <div class="poster-type-neue">
+              {{ film.type ? film.type : 'Film' }}
+            </div>
           </div>
         </div>
       </div>
@@ -89,6 +91,11 @@ export default defineComponent({
       films.value = filmsData;
     });
 
+    // Helper function to concatenate title and year
+    const displayTitle = (film: { title: string; year?: string }) => {
+      return film.year ? `${film.title} (${film.year})` : film.title;
+    };
+
     const visibleFilms = computed(() =>
       films.value.slice(currentIndex.value, currentIndex.value + itemsPerPage)
     );
@@ -141,7 +148,8 @@ export default defineComponent({
       startDrag,
       onDrag,
       endDrag,
-      goToProjects
+      goToProjects,
+      displayTitle
     };
   }
 });

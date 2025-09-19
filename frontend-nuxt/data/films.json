@@ -1,25 +1,28 @@
 [{
         "id": 1,
-        "title": "Backspot (2024)",
-        "poster": "/images/film-posters/BACKSPOT POSTER FINAL 2024 .jpg",
-        "type": "film"
+        "title": "Backspot",
+        "year": "2023",
+        "poster": "/image/Posters/film-series/film-poster-3.jpg"
     },
     {
         "id": 2,
-        "title": "Series 1",
-        "poster": "/images/film-posters/S1-NEW-Poster.jpg",
-        "type": "series"
+        "year": "2014",
+        "title": "That's My DJ - Season 1",
+        "type": "Series",
+        "poster": "/image/Posters/film-series/film-poster-4.jpg"
     },
     {
         "id": 3,
-        "title": "TMDJS 2",
-        "poster": "/images/film-posters/TMDJS2_PosterLaurels2019.png",
-        "type": "film"
+        "year": "2016",
+        "title": "That's My DJ - Season 2",
+        "type": "Series",
+        "poster": "/image/Posters/film-series/film-poster-1.jpg"
     },
     {
         "id": 4,
-        "title": "TMDJS 3",
-        "poster": "/images/film-posters/TMDJS3PosterLaurels2019.jpg",
-        "type": "film"
+        "year": "2017",
+        "title": "That's My DJ - Season 3",
+        "type": "Series",
+        "poster": "/image/Posters/film-series/film-poster-2.jpg"
     }
 ]
