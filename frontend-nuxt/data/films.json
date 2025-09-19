@@ -2,27 +2,90 @@
         "id": 1,
         "title": "Backspot",
         "year": "2023",
-        "poster": "/image/Posters/film-series/film-poster-3.jpg"
+        "type": "Film",
+        "poster": "/image/Posters/film-series/film-poster-3.jpg",
+        "subtitle": "2023 • 1H 33M",
+        "description": "An ambitious cheerleader faces both new adversity and the increased drive for perfection and triumph when she and her girlfriend are selected for an all-star cheer squad and its demanding head coach.",
+        "director": {
+            "name": "D.W. Waterson",
+            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
+        },
+        "writers": [{
+                "name": "Joanne Sarazen",
+                "imdb": "https://www.imdb.com/name/nm5533284/?ref_=tt_ov_2_1"
+            },
+            {
+                "name": "D.W. Waterson",
+                "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
+            }
+        ],
+        "awards": "Awards & Accolades",
+        "gallery": [
+            "/image/Posters/film-series/film-poster-3.jpg",
+            "/image/Posters/film-series/film-poster-4.jpg"
+        ]
     },
     {
         "id": 2,
-        "year": "2014",
         "title": "That's My DJ - Season 1",
+        "year": "2014",
         "type": "Series",
-        "poster": "/image/Posters/film-series/film-poster-4.jpg"
+        "poster": "/image/Posters/film-series/film-poster-4.jpg",
+        "subtitle": "2014 • Season One",
+        "description": "A series exploring the lives, loves, and losses of young people in the Toronto electronic music scene.",
+        "director": {
+            "name": "D.W. Waterson",
+            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
+        },
+        "writers": [{
+            "name": "D.W. Waterson",
+            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
+        }],
+        "awards": "",
+        "gallery": [
+            "/image/Posters/film-series/film-poster-4.jpg"
+        ]
     },
     {
         "id": 3,
-        "year": "2016",
         "title": "That's My DJ - Season 2",
+        "year": "2016",
         "type": "Series",
-        "poster": "/image/Posters/film-series/film-poster-1.jpg"
+        "poster": "/image/Posters/film-series/film-poster-1.jpg",
+        "subtitle": "2016 • Season Two",
+        "description": "The second season continues to follow the Toronto music scene, focusing on new characters and deeper stories.",
+        "director": {
+            "name": "D.W. Waterson",
+            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
+        },
+        "writers": [{
+            "name": "D.W. Waterson",
+            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
+        }],
+        "awards": "",
+        "gallery": [
+            "/image/Posters/film-series/film-poster-1.jpg"
+        ]
     },
     {
         "id": 4,
-        "year": "2017",
         "title": "That's My DJ - Season 3",
+        "year": "2017",
         "type": "Series",
-        "poster": "/image/Posters/film-series/film-poster-2.jpg"
+        "poster": "/image/Posters/film-series/film-poster-1.jpg",
+        "subtitle": "2017 • Season Three",
+        "description": "The third season brings new challenges and relationships to the forefront in the Toronto music scene.",
+        "director": {
+            "name": "D.W. Waterson",
+            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
+        },
+        "writers": [{
+            "name": "D.W. Waterson",
+            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
+        }],
+        "awards": "",
+        "gallery": [
+            "/image/Posters/film-series/film-poster-1.jpg"
+        ]
     }
 ]
