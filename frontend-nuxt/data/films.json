@@ -20,7 +20,7 @@
             }
         ],
         "awards": "Awards & Accolades",
-        "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "trailer": "https://www.youtube.com/embed/d179l90jW88",
         "isCertifiedFresh": true
     },
     {
@@ -40,7 +40,7 @@
             "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
         }],
         "awards": "",
-        "trailer": "https://www.youtube.com/embed/example1",
+        "trailer": "https://www.youtube.com/embed/adH0eqIqlU0",
         "isCertifiedFresh": false
     },
     {
@@ -60,7 +60,7 @@
             "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
         }],
         "awards": "",
-        "trailer": "https://www.youtube.com/embed/example2",
+        "trailer": "https://www.youtube.com/embed/PTEDIiZZ3Hc",
         "isCertifiedFresh": true
     },
     {
@@ -80,7 +80,7 @@
             "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
         }],
         "awards": "",
-        "trailer": "https://www.youtube.com/embed/example3",
+        "trailer": "https://www.youtube.com/embed/T1Kix42EXRY",
         "isCertifiedFresh": false
     }
 ]
