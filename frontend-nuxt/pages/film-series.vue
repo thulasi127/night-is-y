@@ -168,15 +168,32 @@ export default defineComponent({
   width: 100%;
   margin-top: 32px;
   margin-bottom: 40px;
-  gap: 32px;
+  position: relative;
 }
 
 .projects-cta {
+  position: absolute;
+  left: 192px; /* Shift right by 4 tabs (approx 4 x 48px) */
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
   cursor: pointer;
+}
+
+.film-series-title {
+  margin: 0 auto;
+  color: #fff;
+  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 2;
+  white-space: nowrap;
+  flex: 1;
 }
 
 .chevron-left-small {
@@ -192,19 +209,6 @@ export default defineComponent({
   font-weight: 400;
   letter-spacing: 0.08px;
   line-height: 15px;
-}
-
-.film-series-title {
-  color: #fff;
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
-  font-size: 48px;
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  text-align: center;
-  z-index: 2;
-  white-space: nowrap;
 }
 
 .posters-row {
