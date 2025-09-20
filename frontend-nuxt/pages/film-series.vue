@@ -24,7 +24,8 @@
         class="poster-image-wrapper"
         @mouseenter="hovered = idx"
         @mouseleave="hovered = null"
-        @click="openModal(film)"
+        @click="openModal(film, $event)"
+        ref="posterRefs"
         style="cursor:pointer"
       >
         <div class="image">
@@ -61,7 +62,12 @@
     >
       <ChevronRightIcon class="arrow-icon" />
     </button>
-    <FilmModal v-if="modalOpen && modalFilm" :film="modalFilm" :close="closeModal" />
+    <FilmModal
+      v-if="modalOpen && modalFilm"
+      :film="modalFilm"
+      :close="closeModal"
+      :posterRect="posterRect"
+    />
 
   </div>
 </template>
@@ -91,6 +97,7 @@ export default defineComponent({
     const router = useRouter();
     const modalOpen = ref(false);
     const modalFilm = ref<any>(null);
+    const posterRect = ref<any>(null);
 
     // Drag/swipe state
     const dragStartX = ref<number | null>(null);
@@ -146,8 +153,10 @@ export default defineComponent({
       router.push('/projects');
     };
 
-    const openModal = (film: any) => {
+    const openModal = (film: any, event: MouseEvent) => {
+      const rect = event.currentTarget.getBoundingClientRect();
       modalFilm.value = film;
+      posterRect.value = rect;
       modalOpen.value = true;
     };
     const closeModal = () => {
@@ -172,7 +181,8 @@ export default defineComponent({
       modalOpen,
       openModal,
       closeModal,
-      modalFilm
+      modalFilm,
+      posterRect
     };
   }
 });
