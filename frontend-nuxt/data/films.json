@@ -5,7 +5,7 @@
         "type": "Film",
         "poster": "/image/Posters/film-series/film-poster-3.jpg",
         "subtitle": "2023 • 1H 33M",
-        "description": "An ambitious cheerleader faces both new adversity and the increased drive for perfection and triumph when she and her girlfriend are selected for an all-star cheer squad and its demanding head coach.",
+        "description": "An ambitious cheerleader faces both new adversity and the increased drive for perfection and triumph when she and her girlfriend are selected for an all-star cheer squad and its demanding head coach (Evan Rachel Wood). With a competition looming, Riley must navigate her drive with her crippling anxiety as one wrong move will bring her crashing to the ground. An ambitious cheerleader faces both new adversity and the increased drive for perfection and triumph when she and her girlfri",
         "director": {
             "name": "D.W. Waterson",
             "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
@@ -19,9 +19,84 @@
                 "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
             }
         ],
+        "starring": [{
+                "name": "Devery Jacobs",
+                "imdb": ""
+            },
+            {
+                "name": "Shannyn Sossamon",
+                "imdb": ""
+            },
+            {
+                "name": "Evan Rachel Wood",
+                "imdb": ""
+            }
+        ],
+        "executiveProducers": [{
+            "name": "Elliot Page",
+            "imdb": ""
+        }],
         "awards": "Awards & Accolades",
         "trailer": "https://www.youtube.com/embed/d179l90jW88",
-        "isCertifiedFresh": true
+        "isCertifiedFresh": true,
+        "awardsAndNominations": [{
+                "year": 2025,
+                "status": "Nominee",
+                "award": "GLAAD Media Award",
+                "category": "Outstanding Film - Limited Theatrical Release",
+                "festival": null,
+                "notes": null,
+                "link": ""
+            },
+            {
+                "year": 2025,
+                "status": "Nominee",
+                "award": "Canadian Screen Award",
+                "category": "Achievement in Casting",
+                "festival": null,
+                "notes": null,
+                "link": ""
+            },
+            {
+                "year": 2025,
+                "status": "Nominee",
+                "award": "Canadian Screen Award",
+                "category": "Achievement in Sound Mixing",
+                "festival": null,
+                "notes": null,
+                "link": ""
+            },
+            {
+                "year": 2024,
+                "status": "Winner",
+                "award": "Audience Award",
+                "category": "Festival Favourites",
+                "festival": "SXSW Film Festival",
+                "notes": null,
+                "link": ""
+            },
+            {
+                "year": 2023,
+                "status": "Nominee",
+                "award": "Kevin Tierney Emerging Producer Award",
+                "category": "Feature Film",
+                "festival": null,
+                "notes": null,
+                "link": ""
+            }
+        ],
+        "articles": [
+            { "title": "Precision Under Pressure", "url": "" },
+            { "title": "The Art of the Hit", "url": "" },
+            { "title": "Moments That Stuck the Landing", "url": "" },
+            { "title": "From Sidelines to Spotlight", "url": "" },
+            { "title": "Bodies in Motion, Minds at War", "url": "" },
+            { "title": "The Power of the Prep", "url": "" },
+            { "title": "Applause Between the Lines", "url": "" },
+            { "title": "No Room for Error", "url": "" },
+            { "title": "Backspot Delivers the Drama", "url": "" },
+            { "title": "What the Critics Are Cheering For", "url": "" }
+        ]
     },
     {
         "id": 2,
@@ -41,7 +116,9 @@
         }],
         "awards": "",
         "trailer": "https://www.youtube.com/embed/adH0eqIqlU0",
-        "isCertifiedFresh": false
+        "isCertifiedFresh": false,
+        "awardsAndNominations": [],
+        "articles": []
     },
     {
         "id": 3,
@@ -61,7 +138,9 @@
         }],
         "awards": "",
         "trailer": "https://www.youtube.com/embed/PTEDIiZZ3Hc",
-        "isCertifiedFresh": true
+        "isCertifiedFresh": true,
+        "awardsAndNominations": [],
+        "articles": []
     },
     {
         "id": 4,
@@ -81,6 +160,8 @@
         }],
         "awards": "",
         "trailer": "https://www.youtube.com/embed/T1Kix42EXRY",
-        "isCertifiedFresh": false
+        "isCertifiedFresh": false,
+        "awardsAndNominations": [],
+        "articles": []
     }
 ]

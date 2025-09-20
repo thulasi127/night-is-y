@@ -43,21 +43,6 @@
         </div>
       </div>
     </div>
-    <!-- Modal test -->
-    <div v-if="modalOpen" class="test-modal-overlay">
-      <div class="test-modal-content">
-        <div class="modal-film-details">
-          <img v-if="modalFilm.poster" :src="modalFilm.poster" alt="Film Poster" class="modal-poster" />
-          <div class="modal-text">
-            <h2 class="modal-title">{{ modalFilm.title }}</h2>
-            <p class="modal-description">{{ modalFilm.description }}</p>
-            <p class="modal-type">{{ modalFilm.type }}</p>
-            <p class="modal-year">{{ modalFilm.year }}</p>
-          </div>
-        </div>
-        <button @click="closeModal" style="margin-left:16px;">Close</button>
-      </div>
-    </div>
     <button
       class="arrow arrow-left"
       :disabled="!canGoPrevious"
@@ -76,41 +61,8 @@
     >
       <ChevronRightIcon class="arrow-icon" />
     </button>
-    <div v-if="modalOpen && modalFilm" class="film-modal-overlay" @click.self="closeModal">
-      <div class="frame">
-        <img class="image" :alt="modalFilm.title" :src="modalFilm.poster" />
-        <div class="text-wrapper">{{ modalFilm.title }}</div>
-        <button class="size-48" @click="closeModal" aria-label="Close" style="background:none;border:none;position:absolute;top:43px;left:1495px;color:#F5F5F5;font-size:2rem;cursor:pointer;">×</button>
-        <div class="element">{{ modalFilm.subtitle }}</div>
-        <img v-if="modalFilm.gallery && modalFilm.gallery[1]" class="img" :alt="modalFilm.title" :src="modalFilm.gallery[1]" />
-        <p class="div">{{ modalFilm.description }}</p>
-        <p class="director-info">
-          <span class="span">DIRECTOR | </span>
-          <a :href="modalFilm.director.imdb" target="_blank" rel="noopener noreferrer">
-            <span class="text-wrapper-2">{{ modalFilm.director.name }}</span>
-          </a>
-        </p>
-        <p class="writers-info">
-          <span class="span">WRITERS | </span>
-          <template v-for="(writer, i) in modalFilm.writers" :key="i">
-            <a :href="writer.imdb" target="_blank" rel="noopener noreferrer">
-              <span class="text-wrapper-2">{{ writer.name }}</span>
-            </a>
-            <span v-if="i < modalFilm.writers.length - 1" class="span"> • </span>
-          </template>
-        </p>
-        <iframe
-          class="trailer-video"
-          :src="modalFilm.trailer"
-          title="Trailer"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-        <div class="awards-accolades">{{ modalFilm.awards }}</div>
-        <!-- Add KeyboardArrowDown if you want -->
-      </div>
-    </div>
+    <FilmModal v-if="modalOpen && modalFilm" :film="modalFilm" :close="closeModal" />
+
   </div>
 </template>
 
@@ -120,13 +72,16 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
 import NavBar from "../components/NavBar.vue";
 import filmsData from "../data/films.json";
 import { useRouter } from 'vue-router';
+import FilmModal from "~/components/FilmModal.vue";
+
 
 export default defineComponent({
   name: "ProjectsPageFilm",
   components: {
     ChevronLeftIcon,
     ChevronRightIcon,
-    NavBar
+    NavBar,
+    FilmModal,
   },
   setup() {
     const films = ref([]);
@@ -462,18 +417,7 @@ button.arrow:disabled {
   margin: 0;
 }
 
-.film-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
-  z-index: 3000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 .frame {
   position: relative;
@@ -485,122 +429,9 @@ button.arrow:disabled {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-.text-wrapper {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  right: 16px;
-  color: #fff;
-  font-size: 24px;
-  font-weight: 500;
-  text-align: center;
-  z-index: 10;
-}
-
-.size-48 {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: none;
-  border: none;
-  color: #f5f5f5;
-  font-size: 2rem;
-}
-
-.element {
-  margin: 16px 0;
-  color: #fff;
-  font-size: 18px;
-  text-align: center;
-}
-
-.rectangle {
-  width: 100%;
-  height: auto;
-  margin: 16px 0;
-}
-
-.awards-accolades {
-  color: #fff;
-  font-size: 16px;
-  text-align: center;
-  margin-top: 8px;
-}
 
 /* New styles for FilmModal */
-.film-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.frame {
-  background-color: rgba(0, 0, 0, 0.85);
-  height: 812px;
-  position: relative;
-  width: 1580px;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  box-sizing: border-box;
-}
-.frame .image {
-  aspect-ratio: 0.68;
-  height: 400px;
-  left: 40px;
-  position: absolute;
-  top: 20px;
-  width: 272px;
-  object-fit: cover;
-}
-.frame .text-wrapper {
-  color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica;
-  font-size: 48px;
-  font-weight: 400;
-  left: 340px;
-  letter-spacing: 0;
-  line-height: 52px;
-  position: absolute;
-  top: 20px;
-  white-space: nowrap;
-  width: 500px;
-}
-.frame .x-instance {
-  height: 30px !important;
-  left: 1520px !important;
-  top: 20px !important;
-  width: 30px !important;
-  position: absolute !important;
-}
-.frame .element {
-  align-items: center;
-  color: #ffffff;
-  display: flex;
-  font-family: "Neue Montreal-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  height: 20px;
-  justify-content: flex-start;
-  left: 340px;
-  letter-spacing: 0.08px;
-  line-height: 20px;
-  position: absolute;
-  top: 80px;
-  width: 400px;
-}
+
 .frame .rotten-tomatoes {
   aspect-ratio: 0.95;
   height: 18px;
@@ -609,88 +440,5 @@ button.arrow:disabled {
   margin-left: 8px;
   vertical-align: middle;
 }
-.frame .div {
-  color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  left: 340px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
-  top: 120px;
-  width: 800px;
-}
-.frame .director-info {
-  color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  left: 340px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
-  top: 220px;
-  width: 600px;
-  margin: 0;
-}
-.frame .writers-info {
-  color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  left: 340px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
-  top: 250px;
-  width: 600px;
-  margin: 0;
-}
-.frame .span {
-  color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0;
-}
-.frame .text-wrapper-2 {
-  color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-decoration: none;
-}
-.frame .trailer-video {
-  height: 400px;
-  left: 340px;
-  position: absolute;
-  top: 290px;
-  width: 800px;
-  border: none;
-  border-radius: 8px;
-}
-.frame .awards-accolades {
-  align-items: center;
-  color: #ffffff;
-  display: flex;
-  font-family: "Neue Montreal-Medium", Helvetica;
-  font-size: 14px;
-  font-weight: 500;
-  height: 39px;
-  justify-content: center;
-  left: 650px;
-  letter-spacing: 0.10px;
-  line-height: 20px;
-  position: absolute;
-  text-align: center;
-  top: 700px;
-  width: 181px;
-}
-.frame .keyboard-arrow-down-instance {
-  left: 740px !important;
-  top: 720px !important;
-  position: absolute !important;
-}
+
 </style>

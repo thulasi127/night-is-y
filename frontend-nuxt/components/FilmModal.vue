@@ -1,50 +1,41 @@
 <template>
   <div class="film-modal-overlay" @click.self="close">
-    <div class="frame" data-model-id="115:599">
-      <img
-        class="image"
-        :alt="film.title"
-        :src="film.poster"
-      />
+    <div class="frame">
+      <!-- Close button -->
+      <button class="close-modal-button" @click="close" aria-label="Close">×</button>
+      <!-- Poster image -->
+      <img v-if="film.poster" class="image" :alt="film.title" :src="film.poster" />
+      <!-- Title -->
       <div class="text-wrapper">{{ film.title }}</div>
-      <X
-        className="x-instance"
-        img="https://c.animaapp.com/2hXfPSxK/img/x.svg"
-        size="forty-eight"
-        @click="close"
-        style="cursor:pointer;"
-      />
+      <!-- Subtitle / year / duration / badge row -->
       <div class="element">
-        {{ film.subtitle }}
+        {{ film.subtitle || (film.year ? film.year : '') }}
         <template v-if="film.isCertifiedFresh">
           • <img class="rotten-tomatoes" alt="Certified Fresh" src="https://c.animaapp.com/2hXfPSxK/img/image-20@2x.png" />
         </template>
       </div>
+      <!-- Description -->
       <p class="div">{{ film.description }}</p>
-      <p class="director-info">
+      <!-- Director row -->
+      <p class="director-info" v-if="film.director">
         <span class="span">DIRECTOR | </span>
-        <a
-          :href="film.director.imdb"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
+        <a :href="film.director.imdb" target="_blank" rel="noopener">
           <span class="text-wrapper-2">{{ film.director.name }}</span>
         </a>
       </p>
-      <p class="writers-info">
+      <!-- Writers row -->
+      <p class="writers-info" v-if="film.writers && film.writers.length">
         <span class="span">WRITERS | </span>
         <template v-for="(writer, i) in film.writers" :key="i">
-          <a
-            :href="writer.imdb"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
+          <a :href="writer.imdb" target="_blank" rel="noopener">
             <span class="text-wrapper-2">{{ writer.name }}</span>
           </a>
           <span v-if="i < film.writers.length - 1" class="span"> • </span>
         </template>
       </p>
+      <!-- Trailer iframe -->
       <iframe
+        v-if="film.trailer"
         class="trailer-video"
         :src="film.trailer"
         title="Trailer"
@@ -52,200 +43,177 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
       ></iframe>
+      <!-- Awards label -->
       <div class="awards-accolades">{{ film.awards }}</div>
-      <KeyboardArrowDown
-        className="keyboard-arrow-down-instance"
-        keyboardArrowDown="https://c.animaapp.com/2hXfPSxK/img/keyboard-arrow-down-1.svg"
-      />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from "vue";
-import KeyboardArrowDown from "./KeyboardArrowDown.vue";
-import X from "./X.vue";
-
-export default defineComponent({
+<script>
+export default {
   name: "FilmModal",
-  components: {
-    KeyboardArrowDown,
-    X,
-  },
   props: {
-    film: { type: Object as PropType<any>, required: true },
-    close: { type: Function as PropType<() => void>, required: true }
+    film: { type: Object, required: true },
+    close: { type: Function, required: true }
   }
-});
+};
 </script>
 
 <style scoped>
 .film-modal-overlay {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.85);
-  z-index: 2000;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 3000;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
-
 .frame {
-  background-color: rgba(0, 0, 0, 0.85);
-  height: 812px;
   position: relative;
   width: 1580px;
+  height: 812px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  box-sizing: border-box;
+  max-height: 90vh;
+  overflow-y: auto;
+  font-family: "Neue Montreal-Regular", Helvetica, Arial, sans-serif;
 }
-
-.frame .image {
-  aspect-ratio: 0.68;
-  height: 400px;
-  left: 40px;
+.close-modal-button {
   position: absolute;
   top: 20px;
-  width: 272px;
-  object-fit: cover;
+  right: 20px;
+  z-index: 5;
+  background: none;
+  border: none;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: transform .15s, opacity .15s, background-color .15s;
 }
-
-.frame .text-wrapper {
-  color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica;
+.close-modal-button:hover {
+  transform: scale(1.06);
+  opacity: .85;
+  background-color: rgba(255,255,255,.06);
+}
+.image {
+  aspect-ratio: 0.68;
+  height: 400px;
+  width: 272px;
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.text-wrapper {
+  color: #fff;
   font-size: 48px;
   font-weight: 400;
-  left: 340px;
-  letter-spacing: 0;
   line-height: 52px;
   position: absolute;
   top: 20px;
-  white-space: nowrap;
-  width: 500px;
-}
-
-.frame .x-instance {
-  height: 30px !important;
-  left: 1520px !important;
-  top: 20px !important;
-  width: 30px !important;
-}
-
-.frame .element {
-  align-items: center;
-  color: #ffffff;
-  display: flex;
-  font-family: "Neue Montreal-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  height: 20px;
-  justify-content: flex-start;
   left: 340px;
-  letter-spacing: 0.08px;
-  line-height: 20px;
+  width: 500px;
+  white-space: nowrap;
+}
+.element {
   position: absolute;
   top: 80px;
+  left: 340px;
   width: 400px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0.08px;
 }
-
-.frame .rotten-tomatoes {
-  aspect-ratio: 0.95;
-  height: 18px;
-  object-fit: cover;
+.rotten-tomatoes {
   width: 17px;
+  height: 18px;
+  aspect-ratio: 0.95;
+  object-fit: cover;
   margin-left: 8px;
   vertical-align: middle;
 }
-
-.frame .div {
-  color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  left: 340px;
-  letter-spacing: 0;
-  line-height: 24px;
+.div {
   position: absolute;
   top: 120px;
-  width: 800px;
-}
-
-.frame .director-info {
-  color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
   left: 340px;
-  letter-spacing: 0;
+  width: 800px;
+  color: #fff;
+  font-size: 16px;
   line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin: 0;
+}
+.director-info {
   position: absolute;
   top: 220px;
+  left: 340px;
   width: 600px;
   margin: 0;
-}
-
-.frame .writers-info {
-  color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica;
+  color: #fff;
   font-size: 16px;
-  font-weight: 400;
-  left: 340px;
-  letter-spacing: 0;
   line-height: 24px;
+  font-weight: 400;
+}
+.writers-info {
   position: absolute;
   top: 250px;
+  left: 340px;
   width: 600px;
   margin: 0;
+  color: #fff;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
 }
-
-.frame .span {
-  color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica;
+.span,
+.text-wrapper-2 {
+  color: #fff;
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0;
 }
-
-.frame .text-wrapper-2 {
-  color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-decoration: none;
-}
-
-.frame .trailer-video {
-  height: 400px;
-  left: 340px;
+.text-wrapper-2 { text-decoration: none; }
+.trailer-video {
   position: absolute;
   top: 290px;
+  left: 340px;
   width: 800px;
+  height: 400px;
   border: none;
   border-radius: 8px;
 }
-
-.frame .awards-accolades {
-  align-items: center;
-  color: #ffffff;
-  display: flex;
-  font-family: "Neue Montreal-Medium", Helvetica;
-  font-size: 14px;
-  font-weight: 500;
-  height: 39px;
-  justify-content: center;
-  left: 650px;
-  letter-spacing: 0.10px;
-  line-height: 20px;
+.awards-accolades {
   position: absolute;
-  text-align: center;
   top: 700px;
+  left: 650px;
   width: 181px;
-}
-
-.frame .keyboard-arrow-down-instance {
-  left: 740px !important;
-  top: 720px !important;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
 }
 </style>
