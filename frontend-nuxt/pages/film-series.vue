@@ -246,7 +246,7 @@ export default defineComponent({
 .film-series-title {
   margin: 0 auto;
   color: #fff;
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-family: "Impact", Helvetica, Arial, sans-serif;
   font-size: 48px;
   font-weight: 900;
   line-height: 1.1;

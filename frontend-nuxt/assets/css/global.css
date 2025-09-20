@@ -70,3 +70,53 @@ h1,
     font-weight: 400;
     font-style: normal;
 }
+
+
+/* Titles, h1, h2, and bold headings */
+
+h1,
+h2,
+h3,
+.dev-title,
+.poster-title-neue,
+.modal-title,
+.section-heading {
+    font-family: Impact, "Arial Black", Arial, sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+
+/* Thinner body text, summaries, labels, etc. */
+
+body,
+p,
+.projects-text,
+.poster-type-neue,
+.modal-summary,
+.modal-type,
+.modal-release_date,
+.label-title,
+.label-link {
+    font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.08px;
+}
+
+
+/* Example for distinguishable styles */
+
+.poster-type-neue,
+.modal-type,
+.modal-release_date {
+    font-size: 20px;
+    color: #C9C7F0;
+}
+
+.projects-text,
+.modal-summary,
+.label-link {
+    font-size: 18px;
+    color: #e0e0e0;
+}

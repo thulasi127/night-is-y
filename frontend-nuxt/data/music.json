@@ -1,0 +1,39 @@
+{
+    "music_videos": [{
+            "id": 1,
+            "title": "All The Girls With Boys Names",
+            "subheading": "feat. Maxera",
+            "youtube_url": "https://www.youtube.com/embed/iPBU3PpDa38?si=5sL-LYB9odFW697g"
+        },
+        {
+            "id": 2,
+            "title": "Just Yet",
+            "subheading": "For Esmé",
+            "youtube_url": "https://www.youtube.com/embed/0zW6n6IbDDw?si=c8Zvfusg5rGTCFS9"
+        },
+        {
+            "id": 3,
+            "title": "Metro",
+            "subheading": "Princess Century",
+            "youtube_url": "https://www.youtube.com/embed/kkiFATjoMJg?si=RnOU8tVVR2Fhj_3N"
+        },
+        {
+            "id": 4,
+            "title": "Bubble",
+            "subheading": "feat Sydanie",
+            "youtube_url": "https://www.youtube.com/embed/HIdevj6e3uw?si=3gVJsRrSPZtb3ShN"
+        },
+        {
+            "id": 5,
+            "title": "Bang",
+            "subheading": "FEATURETTE",
+            "youtube_url": "https://www.youtube.com/embed/4wcuajh0-24?si=QOgc5B6EIRrw061w"
+        },
+        {
+            "id": 6,
+            "title": "Azur / Shelter (Live in Toronto 2016)",
+            "subheading": "Superpoze",
+            "youtube_url": "https://www.youtube.com/embed/gcHOQhXGElo?si=GYflPDkEE0z6rosS"
+        }
+    ]
+}

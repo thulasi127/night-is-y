@@ -182,7 +182,7 @@ export default defineComponent({
 .the-team-heading {
   width: 100%;
   height: 106px;
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-family: "Impact", Helvetica, Arial, sans-serif;
   font-size: 100px;
   font-weight: 900;
   line-height: 30px;
@@ -228,7 +228,7 @@ export default defineComponent({
 
 .devery-jacobs,
 .devery-jacobs.overline {
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-family: "Impact", Helvetica, Arial, sans-serif;
   font-size: 48px;
   font-weight: 900;
   line-height: 45px;
@@ -253,7 +253,7 @@ export default defineComponent({
 
 .dw-waterson,
 .dw-waterson.overline {
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-family: "Impact", Helvetica, Arial, sans-serif;
   font-size: 48px;
   font-weight: 900;
   line-height: 45px;
@@ -270,7 +270,7 @@ export default defineComponent({
 }
 
 .devery-meta, .span {
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-family: "Impact", Helvetica, Arial, sans-serif;
   font-size: 24px;
   font-weight: 500;
   color: #fff;
@@ -312,7 +312,7 @@ export default defineComponent({
 }
 
 .notable-works-list a {
-  font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
+  font-family: "Impact", Helvetica, Arial, sans-serif;
   color: #d90ec1ba;
   font-weight: 600;
   text-decoration: underline;

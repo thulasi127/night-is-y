@@ -70,7 +70,7 @@ const goToDevelopment = () => {
 
 .projects {
   color: #ffffff;
-  font-family: "Right Grotesk-SpatialBlack", Helvetica;
+  font-family: "Impact", Helvetica;
   font-size: 80px;
   font-weight: 900;
   margin-left: 42px;
