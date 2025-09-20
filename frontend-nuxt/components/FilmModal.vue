@@ -80,7 +80,56 @@
             allowfullscreen
           ></iframe>
 
-          <div class="awards-accolades">{{ film.awards }}</div>
+          <div
+            v-if="film.awardsAndNominations && film.awardsAndNominations.length"
+            class="awards-section"
+          >
+            <h2 class="awards-title">
+              AWARDS <span class="dot">&#183;</span> {{ film.awardsAndNominations.length }} NOMINATIONS
+            </h2>
+            <transition-group name="fade-stagger" tag="div" class="awards-list">
+              <div
+                v-for="(award, i) in film.awardsAndNominations"
+                :key="i"
+                class="award-row"
+                :class="{ winner: award.status === 'Winner' }"
+              >
+                <div class="award-row-main">
+                  <div class="award-left">
+                    <span class="award-year-status">
+                      {{ award.year }} {{ award.status.toUpperCase() }}
+                    </span>
+                  </div>
+                  <div class="award-middle">
+                    <span
+                      class="award-name"
+                      :class="{ clickable: award.link }"
+                      v-if="award.link"
+                    >
+                      <a :href="award.link" target="_blank" rel="noopener">{{ award.award }}</a>
+                    </span>
+                    <span v-else class="award-name">{{ award.award }}</span>
+                    <div class="award-category">{{ award.category }}</div>
+                  </div>
+                </div>
+                <div v-if="award.festival || award.notes" class="award-extra">
+                  <span v-if="award.festival">{{ award.festival }}</span>
+                  <span v-if="award.notes">{{ award.notes }}</span>
+                </div>
+                <div class="award-divider"></div>
+              </div>
+            </transition-group>
+          </div>
+
+          <div v-if="film.articles && film.articles.length" class="article-list-section">
+            <h2 class="section-heading">ARTICLES</h2>
+            <ul class="article-list">
+              <li v-for="(article, i) in film.articles" :key="i">
+                <span class="bullet">&#8226;</span>
+                <span class="article-title">{{ article.title.toUpperCase() }}</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -147,6 +196,8 @@ export default {
   flex-direction: column;
   gap: 18px;
   padding-top: 32px;
+  padding-right: 40px; /* ensures right margin matches left */
+  /* Optional: use padding-inline: 40px; for both sides if needed */
 }
 .text-wrapper {
   font-family: 'Neue Montreal', Helvetica, Arial, sans-serif;
@@ -167,11 +218,20 @@ export default {
   line-height: 24px;
 }
 .trailer-video {
-  width: 800px;
-  height: 400px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  border: none;
+  width: 100%;
+  max-width: 950px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 0; /* or 4px for a subtle curve */
+  margin-top: 16px;
+  margin-bottom: 0;
+  display: block;
+  background: #000;
+}
+@media (max-width: 1000px) {
+  .trailer-video {
+    max-width: 100%;
+  }
 }
 .awards-accolades {
   font-size: 14px;
@@ -255,6 +315,185 @@ export default {
   text-decoration: underline;
 }
 
+.awards-section {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-family: 'Neue Montreal', Helvetica, Arial, sans-serif;
+}
+
+.awards-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.awards-title .dot {
+  margin: 0 6px;
+  font-size: 14px;
+  color: #e0e0e0;
+  vertical-align: middle;
+}
+
+.awards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.award-row {
+  padding: 12px 0 8px 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.award-divider {
+  height: 1px;
+  background: linear-gradient(90deg, #444 0%, #222 100%);
+  opacity: 0.5;
+  margin: 8px 0 0 0;
+  border: none;
+  transition: background 0.2s;
+}
+
+.award-row:hover .award-divider {
+  background: #593792; /* underline color on hover */
+  opacity: 1;
+}
+
+.award-row-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.award-left {
+  min-width: 110px;
+  font-size: 14px;
+  color: #e0e0e0;
+  font-variant: small-caps;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+}
+
+.award-year-status {
+  font-size: 14px;
+  color: #e0e0e0;
+  font-variant: small-caps;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.award-trophy {
+  margin-left: 6px;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.award-middle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.award-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.award-name.clickable a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.award-category {
+  font-size: 14px;
+  color: #e0e0e0;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.award-extra {
+  font-size: 13px;
+  color: #bdbdbd;
+  margin-top: 2px;
+  margin-left: 134px;
+}
+
+.award-divider {
+  height: 1px;
+  background: linear-gradient(90deg, #444 0%, #222 100%);
+  opacity: 0.5;
+  margin: 8px 0 0 0;
+  border: none;
+}
+
+.article-list-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 600px;
+}
+
+.section-heading {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #fff;
+  font-family: "Neue Montreal", sans-serif;
+}
+
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.article-list li {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 16px;
+  font-family: "Neue Montreal", sans-serif;
+  text-transform: uppercase;
+  line-height: 24px;
+  transition: color 0.15s, filter 0.15s;
+}
+
+.bullet {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.article-title {
+  font-style: italic;
+  transition: color 0.15s, filter 0.15s;
+}
+
+.article-title:hover,
+.article-link:hover,
+.article-link:focus {
+  filter: brightness(1) !important; /* override CTA dimming, keep full brightness */
+  color: #593792;
+  cursor: pointer;
+}
+
 /* Transition styles for modal fade */
 .modal-fade-enter-active,
 .modal-fade-leave-active {
@@ -267,6 +506,26 @@ export default {
 .modal-fade-enter-to,
 .modal-fade-leave-from {
   opacity: 1;
+}
+
+/* Fade-in stagger animation for rows */
+.fade-stagger-enter-active {
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+}
+.fade-stagger-enter-from {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.fade-stagger-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-stagger-leave-active {
+  transition: all 0.2s cubic-bezier(.4,0,.2,1);
+}
+.fade-stagger-leave-to {
+  opacity: 0;
+  transform: translateY(-12px);
 }
 
 .projects-cta-button,

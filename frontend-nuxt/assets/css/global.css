@@ -1,3 +1,6 @@
+/* Import Typekit font (place at the top of global.css) */
+
+@import url("https://use.typekit.net/lmr4fnt.css");
 html,
 body {
     margin: 0;
@@ -43,13 +46,27 @@ html {
     font-style: normal;
 }
 
+
 /* CTA hover effect for icons and text */
+
 .cta-hover,
 .cta-hover * {
-  transition: filter 0.12s;
+    transition: filter 0.12s;
 }
 
 .cta-hover:hover,
 .cta-hover:hover * {
-  filter: brightness(0.7);
+    filter: brightness(0.7);
+}
+
+
+/* Apply Impact font to all h1 and title classes */
+
+h1,
+.film-series-title,
+.modal-title,
+.poster-title-neue {
+    font-family: "impact", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
