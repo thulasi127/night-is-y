@@ -1,164 +1,29 @@
 [{
-        "id": 1,
-        "title": "Backspot",
-        "year": "2023",
-        "type": "Film",
-        "poster": "/Image/Posters/film-series/film-poster-3.jpg",
-        "duration": "1H 33M ",
-        "description": "An ambitious cheerleader faces both new adversity and the increased drive for perfection and triumph when she and her girlfriend are selected for an all-star cheer squad and its demanding head coach. With a competition looming, Riley must navigate her drive with her crippling anxiety as one wrong move will bring her crashing to the ground.",
-        "director": {
-            "name": "D.W. Waterson",
-            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
+    "id": 1,
+    "title": "The Hoof Lady",
+    "release_date": "",
+    "poster": "/Image/Posters/in-dev/dev-poster-1.jpg",
+    "type": "Visual Novel / TV Series",
+    "summary": "The Hoof Lady is a bold Indigenous-led visual novel that reimagines a chilling Mohawk legend through a contemporary, feminist, and 2SLGBTQ+ lens. Rooted in cultural storytelling and grounded in modern realities, the series follows Hawi, a naive but determined young Indigenous woman with horse hooves for feet and a warrior spirit brewing within her. Set in Kahnawà:ke and stretching into man camps and cityscapes, this supernatural thriller unpacks systemic violence, sexual abuse, MMIWG2S, intergenerational trauma, and the colonial entanglements of policing and resource extraction.",
+    "team": [{
+            "role": "CO-CREATOR",
+            "names": ["Devery Jacobs", "D.W. Waterson"]
         },
-        "writers": [{
-                "name": "Joanne Sarazen",
-                "imdb": "https://www.imdb.com/name/nm5533284/?ref_=tt_ov_2_1"
-            },
-            {
-                "name": "D.W. Waterson",
-                "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
-            }
-        ],
-        "starring": [
-            { "name": "Devery Jacobs", "imdb": "https://www.imdb.com/name/nm5533284/?ref_=tt_ov_2_1" },
-            { "name": "Shannyn Sossamon", "imdb": "https://www.imdb.com/name/nm0815370/?ref_=nv_sr_srsg_0_tt_1_nm_1_in_0_q_Shannyn%2520Sossamon" },
-            { "name": "Evan Rachel Wood", "imdb": "https://www.imdb.com/name/nm0939697/?ref_=nv_sr_srsg_0_tt_3_nm_1_in_0_q_Evan%2520Rachel%2520Wood" }
-        ],
-        "executiveProducers": [
-            { "name": "Elliot Page", "imdb": "https://www.imdb.com/name/nm0680983/?ref_=nv_sr_srsg_0_tt_3_nm_5_in_0_q_Elliot%2520Page" }
-        ],
-        "awards": "Awards & Accolades",
-        "trailer": "https://www.youtube.com/embed/d179l90jW88",
-        "isCertifiedFresh": true,
-        "awardsAndNominations": [{
-                "year": 2025,
-                "status": "Nominee",
-                "award": "GLAAD Media Award",
-                "category": "Outstanding Film - Limited Theatrical Release",
-                "festival": null,
-                "notes": null,
-                "link": ""
-            },
-            {
-                "year": 2025,
-                "status": "Nominee",
-                "award": "Canadian Screen Award",
-                "category": "Achievement in Casting",
-                "festival": null,
-                "notes": null,
-                "link": ""
-            },
-            {
-                "year": 2025,
-                "status": "Nominee",
-                "award": "Canadian Screen Award",
-                "category": "Achievement in Sound Mixing",
-                "festival": null,
-                "notes": null,
-                "link": ""
-            },
-            {
-                "year": 2024,
-                "status": "Winner",
-                "award": "Audience Award",
-                "category": "Festival Favourites",
-                "festival": "SXSW Film Festival",
-                "notes": null,
-                "link": ""
-            },
-            {
-                "year": 2023,
-                "status": "Nominee",
-                "award": "Kevin Tierney Emerging Producer Award",
-                "category": "Feature Film",
-                "festival": null,
-                "notes": null,
-                "link": ""
-            }
-        ],
-        "articles": [
-            { "title": "Precision Under Pressure", "url": "" },
-            { "title": "The Art of the Hit", "url": "" },
-            { "title": "Moments That Stuck the Landing", "url": "" },
-            { "title": "From Sidelines to Spotlight", "url": "" },
-            { "title": "Bodies in Motion, Minds at War", "url": "" },
-            { "title": "The Power of the Prep", "url": "" },
-            { "title": "Applause Between the Lines", "url": "" },
-            { "title": "No Room for Error", "url": "" },
-            { "title": "Backspot Delivers the Drama", "url": "" },
-            { "title": "What the Critics Are Cheering For", "url": "" }
-        ]
-    },
-    {
-        "id": 2,
-        "title": "That's My DJ - Season 1",
-        "year": "2014",
-        "type": "Series",
-        "poster": "/Image/Posters/film-series/film-poster-4.jpg",
-        "duration": "Season One",
-        "description": "Each season of That's My DJ follows a different character within the electronic music scene in Toronto. From heartbeat to heartbreak, chasing dreams and chasing highs, it's an unapologetic look at music, cliques and artists all trying to find their place within the new order of rave.",
-        "director": {
-            "name": "D.W. Waterson",
-            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
+        {
+            "role": "WRITER",
+            "names": ["Devery Jacobs"]
         },
-        "writers": [{
-                "name": "D.W. Waterson",
-                "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
-            },
-            { "name": "Kyle Mac", "imdb": "" }
-        ],
-        "awards": "",
-        "trailer": "https://www.youtube.com/embed/adH0eqIqlU0",
-        "isCertifiedFresh": false,
-        "awardsAndNominations": [],
-        "articles": []
-    },
-    {
-        "id": 3,
-        "title": "That's My DJ - Season 2",
-        "year": "2016",
-        "type": "Series",
-        "poster": "/Image/Posters/film-series/film-poster-1.jpg",
-        "duration": "Season Two",
-        "description": "Each season of That's My DJ follows a different character within the electronic music scene in Toronto. From heartbeat to heartbreak, chasing dreams and chasing highs, it's an unapologetic look at music, cliques and artists all trying to find their place within the new order of rave.",
-        "director": {
-            "name": "D.W. Waterson",
-            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
+        {
+            "role": "EXECUTIVE PRODUCER",
+            "names": ["Devery Jacobs", "D.W. Waterson"]
         },
-        "writers": [{
-                "name": "D.W. Waterson",
-                "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
-            },
-            { "name": "Kaveh Mohebbi", "imdb": "" }
-        ],
-        "awards": "",
-        "trailer": "https://www.youtube.com/embed/PTEDIiZZ3Hc",
-        "isCertifiedFresh": true,
-        "awardsAndNominations": [],
-        "articles": []
-    },
-    {
-        "id": 4,
-        "title": "That's My DJ - Season 3",
-        "year": "2017",
-        "type": "Series",
-        "poster": "/Image/Posters/film-series/film-poster-2.jpg",
-        "duration": "Season Three",
-        "description": "Each season of That's My DJ follows a different character within the electronic music scene in Toronto. From heartbeat to heartbreak, chasing dreams and chasing highs, it's an unapologetic look at music, cliques and artists all trying to find their place within the new order of rave.",
-        "director": {
-            "name": "D.W. Waterson",
-            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
+        {
+            "role": "LEAD ACTOR",
+            "names": ["Devery Jacobs"]
         },
-        "writers": [{
-                "name": "D.W. Waterson",
-                "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
-            },
-            { "name": "Kaveh Mohebbi", "imdb": "" }
-        ],
-        "awards": "",
-        "trailer": "https://www.youtube.com/embed/T1Kix42EXRY",
-        "isCertifiedFresh": false,
-        "awardsAndNominations": [],
-        "articles": []
-    }
-]
+        {
+            "role": "DIRECTOR",
+            "names": ["D.W. Waterson"]
+        }
+    ]
+}]

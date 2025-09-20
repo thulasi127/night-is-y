@@ -1,12 +1,12 @@
 <template>
-  <div class="projects-page-film centered-layout">
+  <div class="projects-page-dev centered-layout">
     <NavBar />
-    <div class="development-header-row">
+    <div class="dev-header-row">
       <div class="projects-cta cta-hover" @click="goToProjects">
         <ChevronLeftIcon class="chevron-left-small" />
         <span class="projects-text">PROJECTS</span>
       </div>
-      <div class="development-title">IN DEVELOPMENT</div>
+      <div class="dev-title">IN DEVELOPMENT</div>
     </div>
     <div
       class="posters-row"
@@ -19,12 +19,12 @@
       @touchend="endDrag"
     >
       <div
-        v-for="(film, idx) in visibleFilms"
-        :key="film.id"
+        v-for="(project, idx) in projects"
+        :key="project.id"
         class="poster-image-wrapper"
         @mouseenter="hovered = idx"
         @mouseleave="hovered = null"
-        @click="openModal(film, $event)"
+        @click="openModal(project, $event)"
         ref="posterRefs"
         style="cursor:pointer"
       >
@@ -32,13 +32,13 @@
           <img
             class="img"
             :class="{ 'poster-hovered': hovered === idx }"
-            :src="film.poster"
-            :alt="film.title"
+            :src="project.poster"
+            :alt="project.title"
           />
           <div v-if="hovered === idx" class="poster-overlay immediate center-overlay">
-            <div class="poster-title-neue">{{ displayTitle(film) }}</div>
+            <div class="poster-title-neue">{{ displayTitle(project) }}</div>
             <div class="poster-type-neue">
-              {{ film.type ? film.type : 'Film' }}
+              {{ project.type ? project.type : 'Film' }}
             </div>
           </div>
         </div>
@@ -63,8 +63,8 @@
       <ChevronRightIcon class="arrow-icon" />
     </button>
     <DevModal
-      v-if="modalOpen && modalFilm"
-      :film="modalFilm"
+      v-if="modalOpen && modalProject"
+      :project="modalProject"
       :close="closeModal"
       :posterRect="posterRect"
     />
@@ -76,13 +76,12 @@
 import { defineComponent, ref, computed, onMounted } from "vue";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
 import NavBar from "../components/NavBar.vue";
-import devData from "../data/dev.json";
+import devData from '~/data/dev.json';
 import { useRouter } from 'vue-router';
 import DevModal from "~/components/DevModal.vue";
 
-
 export default defineComponent({
-  name: "ProjectsPageFilm",
+  name: "ProjectsPageDev",
   components: {
     ChevronLeftIcon,
     ChevronRightIcon,
@@ -90,13 +89,13 @@ export default defineComponent({
     DevModal,
   },
   setup() {
-    const films = ref([]);
+    const projects = ref([]);
     const currentIndex = ref(0);
     const itemsPerPage = 3;
     const hovered = ref<number | null>(null);
     const router = useRouter();
     const modalOpen = ref(false);
-    const modalFilm = ref<any>(null);
+    const modalProject = ref<any>(null);
     const posterRect = ref<any>(null);
 
     // Drag/swipe state
@@ -104,21 +103,21 @@ export default defineComponent({
     const dragDelta = ref(0);
 
     onMounted(() => {
-      films.value = devData;
+      projects.value = devData;
     });
 
-    // Helper function to concatenate title and year
-    const displayTitle = (film: { title: string; year?: string }) => {
-      return film.year ? `${film.title} (${film.year})` : film.title;
+    // Helper function to concatenate title and release_date
+    const displayTitle = (project: { title: string; release_date?: string }) => {
+      return project.release_date ? `${project.title} (${project.release_date})` : project.title;
     };
 
-    const visibleFilms = computed(() =>
-      films.value.slice(currentIndex.value, currentIndex.value + itemsPerPage)
+    const visibleProjects = computed(() =>
+      projects.value.slice(currentIndex.value, currentIndex.value + itemsPerPage)
     );
 
     const canGoPrevious = computed(() => currentIndex.value > 0);
     const canGoNext = computed(
-      () => currentIndex.value + itemsPerPage < films.value.length
+      () => currentIndex.value + itemsPerPage < projects.value.length
     );
 
     const previousSlide = () => {
@@ -153,20 +152,20 @@ export default defineComponent({
       router.push('/projects');
     };
 
-    const openModal = (film: any, event: MouseEvent) => {
+    const openModal = (project: any, event: MouseEvent) => {
       const rect = event.currentTarget.getBoundingClientRect();
-      modalFilm.value = film;
+      modalProject.value = project;
       posterRect.value = rect;
       modalOpen.value = true;
     };
     const closeModal = () => {
       modalOpen.value = false;
-      modalFilm.value = null;
+      modalProject.value = null;
     };
 
     return {
-      films,
-      visibleFilms,
+      projects,
+      visibleProjects,
       currentIndex,
       previousSlide,
       nextSlide,
@@ -181,11 +180,95 @@ export default defineComponent({
       modalOpen,
       openModal,
       closeModal,
-      modalFilm,
+      modalProject,
       posterRect
     };
   }
 });
+</script>
+
+<script setup lang="ts">
+import { ref, computed, onMounted } from "vue";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
+import NavBar from "../components/NavBar.vue";
+import devData from '~/data/dev.json';
+import { useRouter } from 'vue-router';
+import DevModal from "~/components/DevModal.vue";
+
+const projects = ref([]);
+const currentIndex = ref(0);
+const itemsPerPage = 3;
+const hovered = ref<number | null>(null);
+const router = useRouter();
+const modalOpen = ref(false);
+const modalProject = ref<any>(null);
+const posterRect = ref<any>(null);
+
+// Drag/swipe state
+const dragStartX = ref<number | null>(null);
+const dragDelta = ref(0);
+
+onMounted(() => {
+  projects.value = devData;
+});
+
+// Helper function to concatenate title and release_date
+const displayTitle = (project: { title: string; release_date?: string }) => {
+  return project.release_date ? `${project.title} (${project.release_date})` : project.title;
+};
+
+const visibleProjects = computed(() =>
+  projects.value.slice(currentIndex.value, currentIndex.value + itemsPerPage)
+);
+
+const canGoPrevious = computed(() => currentIndex.value > 0);
+const canGoNext = computed(
+  () => currentIndex.value + itemsPerPage < projects.value.length
+);
+
+const previousSlide = () => {
+  if (canGoPrevious.value) currentIndex.value--;
+};
+const nextSlide = () => {
+  if (canGoNext.value) currentIndex.value++;
+};
+
+// Drag/swipe handlers
+const startDrag = (e: MouseEvent | TouchEvent) => {
+  dragStartX.value = 'touches' in e ? e.touches[0].clientX : e.clientX;
+  dragDelta.value = 0;
+};
+const onDrag = (e: MouseEvent | TouchEvent) => {
+  if (dragStartX.value === null) return;
+  const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+  dragDelta.value = clientX - dragStartX.value;
+};
+const endDrag = (e: MouseEvent | TouchEvent) => {
+  if (dragStartX.value === null) return;
+  const clientX = 'changedTouches' in e ? e.changedTouches[0].clientX : (e as MouseEvent).clientX;
+  const delta = clientX - dragStartX.value;
+  if (delta > 80 && canGoPrevious.value) previousSlide();
+  else if (delta < -80 && canGoNext.value) nextSlide();
+  dragStartX.value = null;
+  dragDelta.value = 0;
+};
+
+// Ensure CTA leads to /projects page
+const goToProjects = () => {
+  router.push('/projects');
+  
+};
+
+const openModal = (project: any, event: MouseEvent) => {
+  const rect = event.currentTarget.getBoundingClientRect();
+  modalProject.value = project;
+  posterRect.value = rect;
+  modalOpen.value = true;
+};
+const closeModal = () => {
+  modalOpen.value = false;
+  modalProject.value = null;
+};
 </script>
 
 <style>
@@ -201,7 +284,7 @@ export default defineComponent({
   overflow: hidden;
 }
 
-.development-header-row {
+.dev-header-row {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -243,7 +326,7 @@ export default defineComponent({
   filter: brightness(0.7);
 }
 
-.development-title {
+.dev-title {
   margin: 0 auto;
   color: #fff;
   font-family: "Right Grotesk", Helvetica, Arial, sans-serif;
@@ -274,13 +357,15 @@ export default defineComponent({
 }
 
 .posters-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 48px;
+  padding-left: 100px;   /* Increased padding for arrow space */
+  padding-right: 100px;  /* Increased padding for arrow space */
   width: 100%;
   max-width: 1728px;
   height: 670px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 48px;
   user-select: none;
   touch-action: pan-y;
   transition: transform 0.5s cubic-bezier(.77,0,.18,1);
@@ -293,6 +378,18 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 48px; /* Add this line to shift the poster right */
+}
+
+.poster-image-wrapper:first-child {
+  margin-left: 67px; /* Same as your arrow's left offset */
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .poster-image-wrapper:first-child {
+    margin-left: 24px;
+  }
 }
 
 .image {
@@ -412,7 +509,7 @@ button.arrow:disabled {
   box-shadow: 0 8px 32px rgba(0,0,0,0.4);
 }
 
-.modal-film-details {
+.modal-project-details {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -433,14 +530,14 @@ button.arrow:disabled {
   margin: 0 0 8px 0;
 }
 
-.modal-description {
+.modal-summary {
   font-size: 18px;
   font-weight: 400;
   margin: 0 0 16px 0;
   text-align: center;
 }
 
-.modal-type, .modal-year {
+.modal-type, .modal-release_date {
   font-size: 16px;
   font-weight: 500;
   margin: 0;
