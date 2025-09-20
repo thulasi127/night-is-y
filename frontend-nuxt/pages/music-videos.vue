@@ -47,11 +47,11 @@ useHead({
 
 .fixed-label {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-weight: 900;
+  font-weight: 400;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   padding: 80px 0 160px;
-  text-size: 30px;
+  font-size: 30px;
   position: fixed;
   top: var(--nav-h);
   left: 120px; 

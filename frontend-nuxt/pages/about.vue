@@ -73,7 +73,7 @@ useHead({
 .meet-the-team-link {
   color: rgba(255, 255, 255, 0.75);
   font-size: 48px;
-  font-family: "Impact", Helvetica, Arial, sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-weight: 900;
   text-transform: uppercase;
   line-height: 45px;
