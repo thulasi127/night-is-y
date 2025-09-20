@@ -20,8 +20,8 @@
           </div>
           <div class="devery-meta">
             <span class="span">
-              KAWENNAHERE DEVERY JACOBS<br />
-              PRODUCER &amp; ACTOR (She/Her)
+              KAWENNAHERE DEVERY JACOBS (She/Her)<br />
+              PRODUCER &amp; ACTOR
             </span>
           </div>
           <span class="text-wrapper-4">
