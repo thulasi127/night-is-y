@@ -1,0 +1,36 @@
+{
+    "people": [{
+            "name": "Devery Jacobs",
+            "entries": [{
+                    "role": "Manager — Entertainment 360",
+                    "name": "Dylan Conklin",
+                    "email": "dconklin@ent360.com"
+                },
+                {
+                    "role": "Publicist — ID Public Relations",
+                    "name": "Amanda Pelletier",
+                    "email": "apelletier@id-pr.com"
+                },
+                {
+                    "role": "Literary Agent — Creative Artists Agency",
+                    "name": "Albert Lee",
+                    "email": "albert.lee@caa.com"
+                }
+            ]
+        },
+        {
+            "name": "D.W. Waterson",
+            "entries": [{
+                    "role": "Manager — Linden Entertainment",
+                    "name": "Trent Hubbard",
+                    "email": "thubbard@lindenentertainment.com"
+                },
+                {
+                    "role": "Publicist — 42 West Publicity",
+                    "name": "Britney Ross",
+                    "email": "britney.ross@42west.com"
+                }
+            ]
+        }
+    ]
+}
