@@ -1,0 +1,19 @@
+[{
+        "id": 1,
+        "title": "Project Aurora",
+        "year": "2025",
+        "type": "Feature",
+        "poster": "/image/project-covers/in-dev/in-dev-cover-1.jpg",
+        "duration": "TBD",
+        "description": "A visually striking drama exploring the intersection of technology and human emotion in a near-future city.",
+        "director": { "name": "TBD", "imdb": "" },
+        "writers": [],
+        "starring": [],
+        "executiveProducers": [],
+        "awardsAndNominations": [],
+        "articles": [],
+        "trailer": "",
+        "isCertifiedFresh": false
+    }
+    // Add more projects as needed
+]
