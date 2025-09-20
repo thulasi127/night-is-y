@@ -22,7 +22,7 @@
           <div class="img-overlay"></div>
           <div class="row-label music-videos">MUSIC VIDEOS</div>
         </div>
-        <div class="img-container">
+        <div class="img-container clickable" @click="goToDevelopment">
           <img
             class="img"
             alt="In development"
@@ -40,6 +40,10 @@
 const router = useRouter();
 const goToFilmSeries = () => {
   router.push('/film-series');
+};
+
+const goToDevelopment = () => {
+  router.push('/development');
 };
 
 </script>
