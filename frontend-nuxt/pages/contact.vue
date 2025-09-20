@@ -31,14 +31,22 @@
 <script setup lang="ts">
 import NavBar from '@/components/NavBar.vue'
 import data from '~/data/contact.json'
+import { onMounted } from 'vue'
 
 type Entry = { role: string; name: string; email: string }
 type Person = { name: string; entries: Entry[] }
-
-// Devery first, then D.W. (already in JSON order)
 const people = (data.people as Person[])
 
 useHead({ title: 'Contact | NIGHT is Y' })
+
+onMounted(() => {
+  const logo = document.querySelector('.bg-logo')
+  if (logo) {
+    setTimeout(() => {
+      logo.classList.add('visible')
+    }, 1200) // Optional: increase delay for a slower start
+  }
+})
 </script>
 
 <style scoped>
@@ -75,6 +83,12 @@ useHead({ title: 'Contact | NIGHT is Y' })
   max-width: 90vw;
   height: auto;
   object-fit: contain;
+  opacity: 0;
+  transition: opacity 8s cubic-bezier(0.4, 0, 0.2, 1); /* Very slow fade-in */
+}
+
+.bg-logo.visible {
+  opacity: 1;
 }
 
 /* ---------------------------------------------------
