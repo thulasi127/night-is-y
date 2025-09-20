@@ -5,7 +5,7 @@
         "type": "Film",
         "poster": "/image/Posters/film-series/film-poster-3.jpg",
         "subtitle": "2023 • 1H 33M",
-        "description": "An ambitious cheerleader faces both new adversity and the increased drive for perfection and triumph when she and her girlfriend are selected for an all-star cheer squad and its demanding head coach (Evan Rachel Wood). With a competition looming, Riley must navigate her drive with her crippling anxiety as one wrong move will bring her crashing to the ground. An ambitious cheerleader faces both new adversity and the increased drive for perfection and triumph when she and her girlfri",
+        "description": "Bring it the F%*# ON\n\nAn ambitious cheerleader faces both new adversity and the increased drive for perfection and triumph when she and her girlfriend are selected for an all-star cheer squad and its demanding head coach. With a competition looming, Riley must navigate her drive with her crippling anxiety as one wrong move will bring her crashing to the ground.",
         "director": {
             "name": "D.W. Waterson",
             "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
@@ -19,23 +19,14 @@
                 "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
             }
         ],
-        "starring": [{
-                "name": "Devery Jacobs",
-                "imdb": ""
-            },
-            {
-                "name": "Shannyn Sossamon",
-                "imdb": ""
-            },
-            {
-                "name": "Evan Rachel Wood",
-                "imdb": ""
-            }
+        "starring": [
+            { "name": "Devery Jacobs", "imdb": "" },
+            { "name": "Shannyn Sossamon", "imdb": "" },
+            { "name": "Evan Rachel Wood", "imdb": "" }
         ],
-        "executiveProducers": [{
-            "name": "Elliot Page",
-            "imdb": ""
-        }],
+        "executiveProducers": [
+            { "name": "Elliot Page", "imdb": "" }
+        ],
         "awards": "Awards & Accolades",
         "trailer": "https://www.youtube.com/embed/d179l90jW88",
         "isCertifiedFresh": true,
@@ -105,15 +96,17 @@
         "type": "Series",
         "poster": "/image/Posters/film-series/film-poster-4.jpg",
         "subtitle": "2014 • Season One",
-        "description": "A series exploring the lives, loves, and losses of young people in the Toronto electronic music scene.",
+        "description": "Each season of That's My DJ follows a different character within the electronic music scene in Toronto. From heartbeat to heartbreak, chasing dreams and chasing highs, it's an unapologetic look at music, cliques and artists all trying to find their place within the new order of rave.",
         "director": {
             "name": "D.W. Waterson",
             "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
         },
         "writers": [{
-            "name": "D.W. Waterson",
-            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
-        }],
+                "name": "D.W. Waterson",
+                "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
+            },
+            { "name": "Kyle Mac", "imdb": "" }
+        ],
         "awards": "",
         "trailer": "https://www.youtube.com/embed/adH0eqIqlU0",
         "isCertifiedFresh": false,
@@ -127,15 +120,17 @@
         "type": "Series",
         "poster": "/image/Posters/film-series/film-poster-1.jpg",
         "subtitle": "2016 • Season Two",
-        "description": "The second season continues to follow the Toronto music scene, focusing on new characters and deeper stories.",
+        "description": "Each season of That's My DJ follows a different character within the electronic music scene in Toronto. From heartbeat to heartbreak, chasing dreams and chasing highs, it's an unapologetic look at music, cliques and artists all trying to find their place within the new order of rave.",
         "director": {
             "name": "D.W. Waterson",
             "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
         },
         "writers": [{
-            "name": "D.W. Waterson",
-            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
-        }],
+                "name": "D.W. Waterson",
+                "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
+            },
+            { "name": "Kaveh Mohebbi", "imdb": "" }
+        ],
         "awards": "",
         "trailer": "https://www.youtube.com/embed/PTEDIiZZ3Hc",
         "isCertifiedFresh": true,
@@ -149,15 +144,17 @@
         "type": "Series",
         "poster": "/image/Posters/film-series/film-poster-2.jpg",
         "subtitle": "2017 • Season Three",
-        "description": "The third season brings new challenges and relationships to the forefront in the Toronto music scene.",
+        "description": "Each season of That's My DJ follows a different character within the electronic music scene in Toronto. From heartbeat to heartbreak, chasing dreams and chasing highs, it's an unapologetic look at music, cliques and artists all trying to find their place within the new order of rave.",
         "director": {
             "name": "D.W. Waterson",
             "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
         },
         "writers": [{
-            "name": "D.W. Waterson",
-            "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
-        }],
+                "name": "D.W. Waterson",
+                "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
+            },
+            { "name": "Kaveh Mohebbi", "imdb": "" }
+        ],
         "awards": "",
         "trailer": "https://www.youtube.com/embed/T1Kix42EXRY",
         "isCertifiedFresh": false,

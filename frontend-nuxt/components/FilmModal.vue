@@ -3,51 +3,80 @@
     <div class="frame">
       <!-- Close button -->
       <button class="close-modal-button" @click="close" aria-label="Close">×</button>
+
       <!-- Poster image -->
       <img v-if="film.poster" class="image" :alt="film.title" :src="film.poster" />
-      <!-- Title -->
-      <div class="text-wrapper">{{ film.title }}</div>
-      <!-- Subtitle / year / duration / badge row -->
-      <div class="element">
-        {{ film.subtitle || (film.year ? film.year : '') }}
-        <template v-if="film.isCertifiedFresh">
-          • <img class="rotten-tomatoes" alt="Certified Fresh" src="https://c.animaapp.com/2hXfPSxK/img/image-20@2x.png" />
-        </template>
-      </div>
-      <!-- Description -->
-      <p class="div">{{ film.description }}</p>
-      <!-- Director row -->
-      <p class="director-info" v-if="film.director">
-        <span class="span">DIRECTOR | </span>
-        <a :href="film.director.imdb" target="_blank" rel="noopener">
-          <span class="text-wrapper-2">{{ film.director.name }}</span>
-        </a>
-      </p>
-      <!-- Writers row -->
-      <p class="writers-info" v-if="film.writers && film.writers.length">
-        <span class="span">WRITERS | </span>
-        <template v-for="(writer, i) in film.writers" :key="i">
-          <a :href="writer.imdb" target="_blank" rel="noopener">
-            <span class="text-wrapper-2">{{ writer.name }}</span>
+
+      <!-- Scrollable right-side content -->
+      <div class="modal-scrollable-content">
+        <div class="text-wrapper">{{ film.title }}</div>
+
+        <div class="element">
+          {{ film.subtitle || (film.year ? film.year : '') }}
+          <template v-if="film.isCertifiedFresh">
+            • <img class="rotten-tomatoes" alt="Certified Fresh" src="https://c.animaapp.com/2hXfPSxK/img/image-20@2x.png" />
+          </template>
+        </div>
+
+        <p class="div">{{ film.description }}</p>
+
+        <p class="director-info" v-if="film.director">
+          <span class="span">DIRECTOR | </span>
+          <a :href="film.director.imdb" target="_blank" rel="noopener">
+            <span class="text-wrapper-2">{{ film.director.name }}</span>
           </a>
-          <span v-if="i < film.writers.length - 1" class="span"> • </span>
-        </template>
-      </p>
-      <!-- Trailer iframe -->
-      <iframe
-        v-if="film.trailer"
-        class="trailer-video"
-        :src="film.trailer"
-        title="Trailer"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
-      <!-- Awards label -->
-      <div class="awards-accolades">{{ film.awards }}</div>
+        </p>
+
+        <p class="writers-info" v-if="film.writers && film.writers.length">
+          <span class="span">WRITERS | </span>
+          <template v-for="(writer, i) in film.writers" :key="i">
+            <a :href="writer.imdb" target="_blank" rel="noopener">
+              <span class="text-wrapper-2">{{ writer.name }}</span>
+            </a>
+            <span v-if="i < film.writers.length - 1" class="span"> • </span>
+          </template>
+        </p>
+
+        <!-- Starring row -->
+        <p class="starring-info" v-if="film.starring?.length">
+          <span class="span">STARRING | </span>
+          <template v-for="(actor, i) in film.starring" :key="i">
+            <a v-if="actor.imdb" :href="actor.imdb" target="_blank" rel="noopener">
+              <span class="text-wrapper-2">{{ actor.name }}</span>
+            </a>
+            <span v-else class="text-wrapper-2">{{ actor.name }}</span>
+            <span v-if="i < film.starring.length - 1" class="span"> • </span>
+          </template>
+        </p>
+
+        <!-- Executive Producer row -->
+        <p class="execs-info" v-if="film.executiveProducers?.length">
+          <span class="span">EXECUTIVE PRODUCER | </span>
+          <template v-for="(ep, i) in film.executiveProducers" :key="i">
+            <a v-if="ep.imdb" :href="ep.imdb" target="_blank" rel="noopener">
+              <span class="text-wrapper-2">{{ ep.name }}</span>
+            </a>
+            <span v-else class="text-wrapper-2">{{ ep.name }}</span>
+            <span v-if="i < film.executiveProducers.length - 1" class="span"> • </span>
+          </template>
+        </p>
+
+        <iframe
+          v-if="film.trailer"
+          class="trailer-video"
+          :src="film.trailer"
+          title="Trailer"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+
+        <div class="awards-accolades">{{ film.awards }}</div>
+      </div>
     </div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -76,13 +105,74 @@ export default {
   height: 812px;
   background: rgba(0, 0, 0, 0.85);
   border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  display: flex;
+  font-family: "Neue Montreal-Regular", Helvetica, Arial, sans-serif;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* Poster stays fixed left */
+.image {
+  width: 272px;
+  height: 400px;
+  margin-top: 20px;
+  margin-left: 40px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+/* Scrollable right content */
+.modal-scrollable-content {
+  margin-left: 40px;
+  margin-top: 20px;
+  width: 1200px;
+  height: 772px;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  max-height: 90vh;
-  overflow-y: auto;
-  font-family: "Neue Montreal-Regular", Helvetica, Arial, sans-serif;
+  gap: 18px;
+}
+
+/* Remove absolute positioning from these: */
+.text-wrapper,
+.element,
+.div,
+.director-info,
+.writers-info,
+.trailer-video,
+.awards-accolades,
+.starring-info,
+.execs-info  {
+  position: static !important;
+  width: auto;
+  left: unset;
+  top: unset;
+  margin: 0;
+  color:#fff;
+  font-size:16px;
+  line-height:24px;
+  font-weight:400;
+  margin:0;
+}
+
+/* Spacing and font for each section */
+.text-wrapper { font-size: 48px; font-weight: 400; color: #fff; margin-bottom: 8px; }
+.element { font-size: 16px; color: #fff; margin-bottom: 8px; display: flex; align-items: center; }
+.div { font-size: 16px; color: #fff; margin-bottom: 8px; line-height: 24px; }
+.director-info, .writers-info { font-size: 16px; color: #fff; margin-bottom: 8px; }
+.trailer-video { width: 800px; height: 400px; border-radius: 8px; margin-bottom: 8px; border: none; }
+.awards-accolades { font-size: 14px; color: #fff; margin-bottom: 8px; text-align: center; }
+
+/* Certified Fresh icon */
+.rotten-tomatoes {
+  width: 17px;
+  height: 18px;
+  aspect-ratio: 0.95;
+  object-fit: cover;
+  margin-left: 8px;
+  vertical-align: middle;
 }
 .close-modal-button {
   position: absolute;
@@ -104,116 +194,5 @@ export default {
   transform: scale(1.06);
   opacity: .85;
   background-color: rgba(255,255,255,.06);
-}
-.image {
-  aspect-ratio: 0.68;
-  height: 400px;
-  width: 272px;
-  position: absolute;
-  top: 20px;
-  left: 40px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-.text-wrapper {
-  color: #fff;
-  font-size: 48px;
-  font-weight: 400;
-  line-height: 52px;
-  position: absolute;
-  top: 20px;
-  left: 340px;
-  width: 500px;
-  white-space: nowrap;
-}
-.element {
-  position: absolute;
-  top: 80px;
-  left: 340px;
-  width: 400px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  color: #fff;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 400;
-  letter-spacing: 0.08px;
-}
-.rotten-tomatoes {
-  width: 17px;
-  height: 18px;
-  aspect-ratio: 0.95;
-  object-fit: cover;
-  margin-left: 8px;
-  vertical-align: middle;
-}
-.div {
-  position: absolute;
-  top: 120px;
-  left: 340px;
-  width: 800px;
-  color: #fff;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-  letter-spacing: 0;
-  margin: 0;
-}
-.director-info {
-  position: absolute;
-  top: 220px;
-  left: 340px;
-  width: 600px;
-  margin: 0;
-  color: #fff;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-}
-.writers-info {
-  position: absolute;
-  top: 250px;
-  left: 340px;
-  width: 600px;
-  margin: 0;
-  color: #fff;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-}
-.span,
-.text-wrapper-2 {
-  color: #fff;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0;
-}
-.text-wrapper-2 { text-decoration: none; }
-.trailer-video {
-  position: absolute;
-  top: 290px;
-  left: 340px;
-  width: 800px;
-  height: 400px;
-  border: none;
-  border-radius: 8px;
-}
-.awards-accolades {
-  position: absolute;
-  top: 700px;
-  left: 650px;
-  width: 181px;
-  height: 39px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  text-align: center;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 500;
-  letter-spacing: 0.1px;
 }
 </style>
