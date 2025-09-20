@@ -25,13 +25,7 @@
             </span>
           </div>
           <span class="text-wrapper-4">
-            Kawennahere Devery Jacobs is a filmmaker, actor, and writer
-            known for starring in award-winning projects like Rhymes for
-            Young Ghouls, The Order, and Reservation Dogs. As a co-founder
-            of Night is Y, Devery brings a sharp, personal lens to stories
-            centering identity, resilience, and queer perspectives. She’s
-            a TIFF rising star and a powerful voice in Canada’s creative
-            scene, both in front of and behind the camera.
+            Kawennáhere Devery Jacobs is an award-winning actor, filmmaker and one of Hollywood’s most exciting rising stars. As a socially conscious voice from Kahnawà:ke Mohawk Territory, they use their platform to advocate for Indigenous and LGBTQ2S+ rights.
           </span>
           <br /><br />
           <span class="text-wrapper-5">
@@ -219,7 +213,7 @@ export default defineComponent({
   width: 626px;
   height: 708px;
   object-fit: cover;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

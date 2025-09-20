@@ -87,6 +87,16 @@ h3,
     text-transform: uppercase;
 }
 
+.overline,
+.person-fullname,
+.the-team-heading,
+.devery-jacobs,
+.dw-waterson {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
 
 /* Thinner body text, summaries, labels, etc. */
 
@@ -102,6 +112,11 @@ p,
     font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
     font-weight: 400;
     letter-spacing: 0.08px;
+}
+
+.about-niy-text {
+    font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+    font-weight: 400;
 }
 
 

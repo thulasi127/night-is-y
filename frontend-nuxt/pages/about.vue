@@ -4,12 +4,8 @@
     <div class="centered-content">
       <div class="content">
         <p class="NIY-is-a-film">
-          NIY IS A FILM PRODUCTION COMPANY LED BY DIRECTOR D.W. WATERSON AND
-          FILMMAKER DEVERY JACOBS.
-          <br /> WE CREATE BOLD, EMOTIONALLY DRIVEN WORK THAT REFLECTS REAL
-          PEOPLE AND REAL STORIES.
-          <br /> FROM FILMS TO SERIES AND MUSIC VIDEOS, NIY IS A HOME FOR
-          STORYTELLING THAT MOVES, QUESTIONS, AND CONNECTS.
+          Night is Y is an LGBTQ2S+ and Indigenous-owned production company based out of Toronto, Canada. Producers Devery Jacobs and D.W. Waterson specialize in the hands-on creative development and production of compelling, character-driven series and films. With a focus on uplifting queer and BIPOC stories, Night is Y is driven by the common goal of creating visually stunning, dynamic stories with artistic risk and rigor.
+
           </p>
           <NuxtLink to="/about-devery" class="meet-the-team-link">
             Meet the Team
@@ -53,21 +49,25 @@ useHead({
   align-items: center;
   width: 100%;
   max-width: 1400px;
-  gap: 96px;
+  gap: 64px; /* Slightly reduced gap for balance */
+  text-align: center; /* Center all content */
 }
 
 .NIY-is-a-film {
   color: white;
-  font-size: 50px;
-  font-family: "Impact", Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  text-transform: uppercase;
-  line-height: 45px;
+  font-size: 28px; /* Smaller text size */
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  text-transform: none;
+  line-height: 38px;
   word-wrap: break-word;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
   margin-bottom: 0;
   letter-spacing: 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .meet-the-team-link {

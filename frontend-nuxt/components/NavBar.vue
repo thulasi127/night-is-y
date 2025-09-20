@@ -92,7 +92,7 @@ export default defineComponent({
 }
 
 .nav-link:hover {
-  color: #cccccc;
+  color: #593792 !important;
 }
 
 .nav-link::after {
@@ -108,6 +108,37 @@ export default defineComponent({
 
 .nav-link:hover::after {
   width: 100%;
+}
+
+/* Add to your NavBar.vue or global CSS */
+.navbar-cta,
+.navbar-cta-link {
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 22px; /* Match your current size */
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-transform: none;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.navbar-cta-link:hover {
+  color: #593792;
+}
+
+/* If you have other hover styles globally, add: */
+a:hover,
+button:hover,
+.nav-link:hover,
+.navbar-cta-link:hover,
+.overline:hover {
+  color: #593792 !important;
+  /* If you use backgrounds on hover, add: */
+  background-color: transparent;
 }
 
 /* Mobile adjustments */

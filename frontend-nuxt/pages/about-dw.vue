@@ -9,8 +9,8 @@
           <h1 class="the-team-heading">THE TEAM</h1>
           <img
             class="image"
-            alt="D.W. Waterson Headshot"
-            src="/Image/Headshots/headshot-2.jpg"
+            :alt="bio.name + ' Headshot'"
+            :src="bio.headshot"
           />
         </div>
         <div class="main-text-block">
@@ -20,59 +20,42 @@
           </div>
           <div class="devery-meta">
             <span class="span">
-              D.W. WATERSON<br />
-              DIRECTOR (They/Them)
+              {{ bio.title }} ({{ bio.pronouns }})
+            </span>
+            <br>
+            <span class="span">
+              {{ bio.role }}
             </span>
           </div>
-          <span class="text-wrapper-4">
-            D.W. Waterson is an award-winning director and creator behind That’s My DJ, a cult digital series that earned them Best Director at NYTVF, TO Webfest, and Vancouver WebFest. A CFC alum signed to The Gersh Agency and Meridian Artists, D.W. has directed music videos for artists like Caveboy, For Esmé, and Featurette. They blend cinematic vision with sound and motion to tell bold, emotional, and unforgettable stories.
-          </span>
+          <span class="text-wrapper-4" v-html="bio.bio ? bio.bio.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>') : ''"></span>
           <br /><br />
-          <span class="text-wrapper-5">
-            PAST NOTABLE WORK:
-          </span>
+          <span class="text-wrapper-5">PAST NOTABLE WORK:</span>
           <div class="notable-works-horizontal">
-            <template v-for="(work, idx) in sortedWorks" :key="work.title">
+            <template v-for="(work, idx) in bio.notable_works" :key="work.title">
               <a :href="work.url" target="_blank" rel="noopener noreferrer">
                 {{ work.title }}
               </a>
-              <span v-if="idx < sortedWorks.length - 1" class="dot">•</span>
+              <span v-if="idx < bio.notable_works.length - 1" class="dot">•</span>
             </template>
           </div>
           <div class="frame">
-            <a
-              href="https://www.imdb.com/name/nm3585842/?ref_=nv_sr_srsg_7_tt_0_nm_8_in_0_q_dw%2520"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                class="imdb-logo"
-                alt="Imdb logo"
-                src="https://c.animaapp.com/Wqg9SAYU/img/imdb-logo@2x.png"
-              />
-            </a>
-            <a
-              href="https://www.instagram.com/dw_waterson/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Instagram
-                class="instagram-instance"
-                img="https://c.animaapp.com/Wqg9SAYU/img/instagram.svg"
-                size="forty-eight"
-              />
-            </a>
-            <a
-              href="https://www.youtube.com/@DWWaterson24"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Youtube
-                class="youtube-instance"
-                img="https://c.animaapp.com/Wqg9SAYU/img/youtube.svg"
-                size="forty-eight"
-              />
-            </a>
+            <template v-for="link in bio.links" :key="link.type">
+              <a :href="link.url" target="_blank" rel="noopener noreferrer">
+                <img
+                  v-if="link.type === 'imdb'"
+                  class="imdb-logo"
+                  :alt="link.type + ' logo'"
+                  :src="link.img"
+                />
+                <img
+                  v-else
+                  :class="link.type + '-instance'"
+                  :alt="link.type + ' logo'"
+                  :src="link.img"
+                  style="height:48px;width:48px;"
+                />
+              </a>
+            </template>
           </div>
         </div>
       </div>
@@ -83,52 +66,11 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed, ref, onMounted } from "vue";
+<script lang="ts" setup>
 import NavBar from "../components/NavBar.vue";
-import Instagram from "../components/Instagram.vue";
-import Youtube from "../components/Youtube.vue";
+import bioData from '~/data/bio.json';
 
-const works = [
-
-  {
-    title: "Priyanka – No New Friends",
-    url: "https://www.youtube.com/watch?v=9zGMgmApAYM&feature=youtu.be",
-  },
-  {
-    title: "Turn Up Charlie",
-    url: "https://www.youtube.com/watch?v=IOsU1RoI6CM&feature=youtu.be",
-  },
-];
-
-export default defineComponent({
-  name: "AboutDWPage",
-  components: {
-    NavBar,
-    Instagram,
-    Youtube,
-  },
-  setup() {
-    const sortedWorks = computed(() =>
-      [...works].sort((a, b) => a.title.localeCompare(b.title))
-    );
-    const imgLoaded = ref(false);
-    onMounted(() => {
-      const img = document.querySelector('.image');
-      if (img) {
-        img.addEventListener('load', () => {
-          img.classList.add('loaded');
-        });
-      }
-    });
-    return { sortedWorks, imgLoaded };
-  },
-});
-
-useHead({
-  title: 'About | NIGHT is Y',
-  meta: [{ name: 'description', content: 'About NIGHT is Y.' }]
-})
+const bio = bioData.dw_waterson;
 </script>
 
 <style scoped>
@@ -205,7 +147,7 @@ useHead({
   width: 626px;
   height: 708px;
   object-fit: cover;
-  opacity: 0;
+  opacity: 1; /* Ensure image is always visible */
   transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

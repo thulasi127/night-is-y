@@ -1,0 +1,35 @@
+{
+    "dw_waterson": {
+        "title": "D.W. WATERSON",
+        "name": "D.W. Waterson",
+        "pronouns": "They/Them",
+        "role": "Producer, Director",
+        "headshot": "/Image/Headshots/headshot-2.jpg",
+        "bio": "D.W. Waterson (they/them) is an award-winning, non-binary/queer filmmaker and world-touring electronic music artist. D.W. recently premiered their critically-acclaimed debut feature film BACKSPOT at the 2023 Toronto International Film Festival, and the 2024 SXSW Film & TV Festival, which the Hollywood Reporter called, “sensitive and stylish” and Letterboxd named, “a visceral debut.” The film stars Evan Rachel Wood and was exec-produced by Elliot Page.",
+        "notable_works": [{
+                "title": "Priyanka – No New Friends",
+                "url": "https://www.youtube.com/watch?v=9zGMgmApAYM&feature=youtu.be"
+            },
+            {
+                "title": "Turn Up Charlie",
+                "url": "https://www.youtube.com/watch?v=IOsU1RoI6CM&feature=youtu.be"
+            }
+        ],
+        "links": [{
+                "type": "imdb",
+                "url": "https://www.imdb.com/name/nm3585842/?ref_=nv_sr_srsg_7_tt_0_nm_8_in_0_q_dw%2520",
+                "img": "https://c.animaapp.com/Wqg9SAYU/img/imdb-logo@2x.png"
+            },
+            {
+                "type": "instagram",
+                "url": "https://www.instagram.com/dw_waterson/",
+                "img": "https://c.animaapp.com/Wqg9SAYU/img/instagram.svg"
+            },
+            {
+                "type": "youtube",
+                "url": "https://www.youtube.com/@DWWaterson24",
+                "img": "https://c.animaapp.com/Wqg9SAYU/img/youtube.svg"
+            }
+        ]
+    }
+}
