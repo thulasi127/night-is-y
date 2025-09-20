@@ -13,15 +13,15 @@
           <div class="img-overlay"></div>
           <div class="row-label film-series">FILM &amp; SERIES</div>
         </div>
-        <div class="img-container">
-          <img
-            class="in-development"
-            alt="Music Videos"
-            src="/Image/project-covers/music-videos/music-video-cover-1.jpg"
-          />
-          <div class="img-overlay"></div>
-          <div class="row-label music-videos">MUSIC VIDEOS</div>
-        </div>
+        <div class="img-container clickable" @click="goToMusicVideos">
+        <img
+          class="in-development"
+          alt="Music Videos"
+          src="/Image/project-covers/music-videos/music-video-cover-1.jpg"
+        />
+        <div class="img-overlay"></div>
+        <div class="row-label music-videos">MUSIC VIDEOS</div>
+      </div>
         <div class="img-container clickable" @click="goToDevelopment">
           <img
             class="img"
@@ -45,6 +45,8 @@ const goToFilmSeries = () => {
 const goToDevelopment = () => {
   router.push('/development');
 };
+
+const goToMusicVideos = () => router.push('/music-videos');
 
 </script>
 
