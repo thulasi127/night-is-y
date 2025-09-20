@@ -42,3 +42,14 @@ html {
     font-weight: 400;
     font-style: normal;
 }
+
+/* CTA hover effect for icons and text */
+.cta-hover,
+.cta-hover * {
+  transition: filter 0.12s;
+}
+
+.cta-hover:hover,
+.cta-hover:hover * {
+  filter: brightness(0.7);
+}

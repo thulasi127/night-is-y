@@ -229,7 +229,11 @@ export default {
 .close-modal-button:hover {
   transform: scale(1.06);
   opacity: .85;
-  background-color: rgba(255,255,255,.06);
+  background-color: transparent;
+}
+.close-modal-button:hover svg {
+  filter: brightness(0.7); /* icon dims on hover */
+  transition: filter 0.15s;
 }
 .info-labels {
   display: flex;
@@ -263,5 +267,15 @@ export default {
 .modal-fade-enter-to,
 .modal-fade-leave-from {
   opacity: 1;
+}
+
+.projects-cta-button,
+.projects-cta-button * {
+  transition: filter 0.15s;
+}
+
+.projects-cta-button:hover,
+.projects-cta-button:hover * {
+  filter: brightness(0.7); /* dims text and icon together on hover */
 }
 </style>

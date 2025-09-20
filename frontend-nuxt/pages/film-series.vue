@@ -2,7 +2,7 @@
   <div class="projects-page-film centered-layout">
     <NavBar />
     <div class="film-series-header-row">
-      <div class="projects-cta" @click="goToProjects">
+      <div class="projects-cta cta-hover" @click="goToProjects">
         <ChevronLeftIcon class="chevron-left-small" />
         <span class="projects-text">PROJECTS</span>
       </div>
@@ -45,7 +45,7 @@
       </div>
     </div>
     <button
-      class="arrow arrow-left"
+      class="arrow arrow-left cta-hover"
       :disabled="!canGoPrevious"
       :style="{ opacity: canGoPrevious ? 1 : 0.3 }"
       @click="previousSlide"
@@ -222,6 +222,25 @@ export default defineComponent({
   cursor: pointer;
   z-index: 10; /* Ensure it's above other elements */
   pointer-events: auto;
+}
+
+.projects-cta-button {
+  /* Add any additional styles for the button here */
+}
+
+.projects-cta-button,
+.projects-cta-button *,
+.arrow:enabled .arrow-icon,
+.arrow:enabled:hover .arrow-icon,
+.close-modal-button svg {
+  transition: filter 0.12s; /* fast transition for instant revert */
+}
+
+.projects-cta-button:hover,
+.projects-cta-button:hover *,
+.arrow:enabled:hover .arrow-icon,
+.close-modal-button:hover svg {
+  filter: brightness(0.7);
 }
 
 .film-series-title {
@@ -451,4 +470,12 @@ button.arrow:disabled {
   vertical-align: middle;
 }
 
+.arrow:enabled .arrow-icon,
+.arrow:enabled:hover .arrow-icon {
+  transition: filter 0.15s;
+}
+
+.arrow:enabled:hover .arrow-icon {
+  filter: brightness(0.7); /* dims arrow icon on hover */
+}
 </style>
