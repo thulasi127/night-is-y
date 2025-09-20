@@ -1,7 +1,15 @@
 <template>
   <div class="music-videos-page">
     <NavBar />
-    <MusicContainer />
+    <!-- Fixed page label under the navbar -->
+    <div class="fixed-label">
+      <MusicLabel />
+    </div>
+
+    <!-- Only this area scrolls -->
+    <div class="scroll-area">
+      <MusicContainer />
+    </div>
   </div>
 </template>
 
@@ -17,22 +25,50 @@ useHead({
 
 <style scoped>
 .music-videos-page {
-  --nav-h: 72px;          /* <— tweak if your navbar is taller/shorter */
+  /* adjust to your real navbar height (e.g., 80/88px) */
+  --nav-h: 88px;
+
+  position: relative;
   background: #000;
+
+  /* let this wrapper create vertical scroll */
   min-height: 100vh;
-  padding-top: var(--nav-h);  /* moves everything below the fixed NavBar */
+  overflow-y: auto;
+
+  /* push content below the fixed NavBar */
+  padding-top: var(--nav-h);
 }
 
 .music-container {
-  margin-top: 80px; /* Adjust this value to match your navbar height */
+  margin-top: 70px;
+  background: transparent; /* Ensures the music videos container has a transparent background */
 }
-.music-video-card {
-  /* Add your styles here */
+
+
+.fixed-label {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 80px 0 160px;
+  text-size: 30px;
+  position: fixed;
+  top: var(--nav-h);
+  left: 120px; 
+  right: 0;
+  height: var(--label-h);
+  z-index: 1; /* Lower z-index so scroll-area content appears above */
+  background: transparent;
 }
-.subheading {
-  /* Add your styles here */
+
+/* The ONLY scrollable region */
+.scroll-area{
+  position: relative;
+  height: calc(100vh - var(--nav-h) - var(--label-h));
+  margin-top: calc(var(--nav-h) + var(--label-h));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  z-index: 2; /* Higher z-index so it scrolls over the label */
 }
-.music-title {
-  /* Add your styles here */
-}
+
 </style>

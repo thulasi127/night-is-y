@@ -66,6 +66,11 @@
 </template>
 
 <script lang="ts">
+
+useHead({
+  title: 'About | NIGHT is Y',
+  meta: [{ name: 'description', content: 'About NIGHT is Y.' }]
+})
 import { defineComponent } from "vue";
 import NavBar from "../components/NavBar.vue";
 import Instagram from "../components/Instagram.vue";

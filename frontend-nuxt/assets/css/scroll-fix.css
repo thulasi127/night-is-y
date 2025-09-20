@@ -1,0 +1,17 @@
+/* Ensure the document can always scroll vertically */
+
+html,
+body,
+#__nuxt {
+    height: auto;
+    min-height: 100%;
+    overflow-y: auto;
+}
+
+
+/* Safety: never lock the page accidentally */
+
+body {
+    overflow-x: hidden;
+    /* avoid horizontal jiggle */
+}

@@ -124,6 +124,11 @@ export default defineComponent({
     return { sortedWorks, imgLoaded };
   },
 });
+
+useHead({
+  title: 'About | NIGHT is Y',
+  meta: [{ name: 'description', content: 'About NIGHT is Y.' }]
+})
 </script>
 
 <style scoped>

@@ -73,6 +73,11 @@
 </template>
 
 <script lang="ts">
+
+useHead({
+  title: 'Film & Series | NIGHT is Y',
+  meta: [{ name: 'description', content: 'Film & Series NIGHT is Y.' }]
+})
 import { defineComponent, ref, computed, onMounted } from "vue";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
 import NavBar from "../components/NavBar.vue";

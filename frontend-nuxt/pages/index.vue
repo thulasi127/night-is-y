@@ -7,6 +7,11 @@ definePageMeta({
 const goHome = () => {
   navigateTo('/home')
 }
+
+useHead({
+  title: 'Home | NIGHT is Y',
+  meta: [{ name: 'description', content: 'Welcome to NIGHT is Y.' }]
+})
 </script>
 
 <template>

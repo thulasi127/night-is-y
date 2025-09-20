@@ -37,6 +37,12 @@
 </template>
 
 <script setup>
+
+useHead({
+  title: 'Projects | NIGHT is Y',
+  meta: [{ name: 'description', content: 'Projects by NIGHT is Y.' }]
+})
+
 const router = useRouter();
 const goToFilmSeries = () => {
   router.push('/film-series');
