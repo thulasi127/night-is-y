@@ -3,7 +3,7 @@
         "title": "Backspot",
         "year": "2023",
         "type": "Film",
-        "poster": "/image/Posters/film-series/film-poster-3.jpg",
+        "poster": "/Image/Posters/film-series/film-poster-3.jpg",
         "duration": "1H 33M ",
         "description": "An ambitious cheerleader faces both new adversity and the increased drive for perfection and triumph when she and her girlfriend are selected for an all-star cheer squad and its demanding head coach. With a competition looming, Riley must navigate her drive with her crippling anxiety as one wrong move will bring her crashing to the ground.",
         "director": {
@@ -94,7 +94,7 @@
         "title": "That's My DJ - Season 1",
         "year": "2014",
         "type": "Series",
-        "poster": "/image/Posters/film-series/film-poster-4.jpg",
+        "poster": "/Image/Posters/film-series/film-poster-4.jpg",
         "duration": "Season One",
         "description": "Each season of That's My DJ follows a different character within the electronic music scene in Toronto. From heartbeat to heartbreak, chasing dreams and chasing highs, it's an unapologetic look at music, cliques and artists all trying to find their place within the new order of rave.",
         "director": {
@@ -118,7 +118,7 @@
         "title": "That's My DJ - Season 2",
         "year": "2016",
         "type": "Series",
-        "poster": "/image/Posters/film-series/film-poster-1.jpg",
+        "poster": "/Image/Posters/film-series/film-poster-1.jpg",
         "duration": "Season Two",
         "description": "Each season of That's My DJ follows a different character within the electronic music scene in Toronto. From heartbeat to heartbreak, chasing dreams and chasing highs, it's an unapologetic look at music, cliques and artists all trying to find their place within the new order of rave.",
         "director": {
@@ -142,7 +142,7 @@
         "title": "That's My DJ - Season 3",
         "year": "2017",
         "type": "Series",
-        "poster": "/image/Posters/film-series/film-poster-2.jpg",
+        "poster": "/Image/Posters/film-series/film-poster-2.jpg",
         "duration": "Season Three",
         "description": "Each season of That's My DJ follows a different character within the electronic music scene in Toronto. From heartbeat to heartbreak, chasing dreams and chasing highs, it's an unapologetic look at music, cliques and artists all trying to find their place within the new order of rave.",
         "director": {

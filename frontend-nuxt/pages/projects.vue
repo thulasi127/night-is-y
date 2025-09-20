@@ -8,7 +8,7 @@
           <img
             class="released-projects"
             alt="Released projects"
-            src="/image/project-covers/film-series/film-cover-1.jpg"
+            src="/Image/project-covers/film-series/film-cover-1.jpg"
           />
           <div class="img-overlay"></div>
           <div class="row-label film-series">FILM &amp; SERIES</div>
@@ -17,7 +17,7 @@
           <img
             class="in-development"
             alt="Music Videos"
-            src="/image/project-covers/music-videos/music-video-cover-1.jpg"
+            src="/Image/project-covers/music-videos/music-video-cover-1.jpg"
           />
           <div class="img-overlay"></div>
           <div class="row-label music-videos">MUSIC VIDEOS</div>
@@ -26,7 +26,7 @@
           <img
             class="img"
             alt="In development"
-            src="/image/project-covers/in-dev/in-dev-cover-1.jpg"
+            src="/Image/project-covers/in-dev/in-dev-cover-1.jpg"
           />
           <div class="img-overlay"></div>
           <div class="row-label text-wrapper">IN DEVELOPMENT</div>

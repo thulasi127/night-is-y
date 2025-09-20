@@ -10,7 +10,7 @@
           <img
             class="image"
             alt="D.W. Waterson Headshot"
-            src="/image/Headshots/headshot-2.jpg"
+            src="/Image/Headshots/headshot-2.jpg"
           />
         </div>
         <div class="main-text-block">

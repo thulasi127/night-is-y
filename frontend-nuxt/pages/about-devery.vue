@@ -10,7 +10,7 @@
           <img
             class="image"
             alt="Devery Jacobs Headshot"
-            src="/image/Headshots/headshot-1.jpg"
+            src="/Image/Headshots/headshot-1.jpg"
           />
         </div>
         <div class="main-text-block">
