@@ -274,16 +274,16 @@ export default defineComponent({
 }
 
 .posters-row {
-  width: 100%;
-  max-width: 1728px;
-  height: 670px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center;      /* Center posters horizontally */
+  align-items: center;          /* Center posters vertically */
   gap: 48px;
-  user-select: none;
-  touch-action: pan-y;
-  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+  padding-left: 100px;          /* Space for left arrow */
+  padding-right: 100px;         /* Space for right arrow */
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 670px;
+  overflow: hidden;
 }
 
 .poster-image-wrapper {
@@ -293,6 +293,8 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  /* No margin-left or margin-right unless needed for edge cases */
 }
 
 .image {
@@ -377,10 +379,16 @@ export default defineComponent({
   transition: opacity 0.2s;
 }
 .arrow-left {
+  position: absolute;
   left: 67px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .arrow-right {
+  position: absolute;
   right: 67px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .arrow-icon {

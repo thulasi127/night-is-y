@@ -358,31 +358,23 @@ const closeModal = () => {
 
 .posters-row {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;      /* Center posters horizontally */
+  align-items: center;          /* Center posters vertically */
   gap: 48px;
-  padding-left: 100px;   /* Increased padding for arrow space */
-  padding-right: 100px;  /* Increased padding for arrow space */
+  padding: 0 100px;             /* Padding for arrows */
   width: 100%;
   max-width: 1728px;
   height: 670px;
-  user-select: none;
-  touch-action: pan-y;
-  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .poster-image-wrapper {
-  position: relative;
-  width: 455px;
-  height: 670px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 48px; /* Add this line to shift the poster right */
+  margin-left: 0;               /* No extra margin */
 }
 
 .poster-image-wrapper:first-child {
-  margin-left: 67px; /* Same as your arrow's left offset */
+  margin-left: 0;               /* No extra margin for first poster */
 }
 
 /* Responsive adjustment */
