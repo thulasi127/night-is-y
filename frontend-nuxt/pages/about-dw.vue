@@ -32,7 +32,7 @@
           <span class="text-wrapper-5">PAST NOTABLE WORK:</span>
           <div class="notable-works-horizontal">
             <template v-for="(work, idx) in bio.notable_works" :key="work.title">
-              <a :href="work.url" target="_blank" rel="noopener noreferrer">
+              <a href="#" @click.prevent="openVideo(work.url)">
                 {{ work.title }}
               </a>
               <span v-if="idx < bio.notable_works.length - 1" class="dot">•</span>
@@ -63,12 +63,47 @@
     <transition name="fade" mode="out-in">
       <NuxtPage />
     </transition>
+
+    <transition name="fade">
+    <div v-if="showVideo" class="video-modal">
+      <div class="video-wrapper">
+        <button class="close-modal-button" @click="closeVideo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
+        <iframe
+          v-if="videoUrl"
+          :src="videoUrl + '?autoplay=1'"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </transition>
+
   </div>
 </template>
 
 <script lang="ts" setup>
 import NavBar from "../components/NavBar.vue";
 import bioData from '~/data/bio.json';
+import { ref } from "vue";
+
+const showVideo = ref(false);
+const videoUrl = ref("");
+
+function openVideo(url: string) {
+  // Convert YouTube watch link → embed link
+  videoUrl.value = url.replace("watch?v=", "embed/").split("&")[0];
+  showVideo.value = true;
+}
+
+function closeVideo() {
+  videoUrl.value = "";
+  showVideo.value = false;
+}
 
 const bio = bioData.dw_waterson;
 </script>
@@ -295,6 +330,7 @@ const bio = bioData.dw_waterson;
   width: auto;
   gap: 16px;
   margin-top: 20px;
+  background: transparent;
 }
 
 .imdb-logo {
@@ -318,10 +354,6 @@ const bio = bioData.dw_waterson;
   width: 36px !important;
 }
 
-/* Optional: responsive tweaks for the 626px column can go here */
-</style>
-
-<style>
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -330,5 +362,63 @@ const bio = bioData.dw_waterson;
 }
 .fade-enter-to, .fade-leave-from {
   opacity: 1;
+}
+
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 90vw;      /* increased from 100vw for padding */
+  height: 90vh;     /* increased from 100vh for padding */
+  max-width: 1200px;
+  max-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-wrapper iframe {
+  width: 90vw;      /* increased from 100vw */
+  height: 90vh;     /* increased from 100vh */
+  max-width: 1200px;
+  max-height: 700px;
+  border: none;
+}
+
+.close-modal-button {
+  position: absolute;
+  top: -48px;
+  right: -48px;
+  z-index: 5;
+  background: none;
+  border: none;
+  color: #fff;
+  width: 28px;      /* reduced from 40px */
+  height: 28px;     /* reduced from 40px */
+  font-size: 20px;  /* reduced from 28px */
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: transform .15s, opacity .15s, background-color .15s;
+}
+.close-modal-button:hover {
+  transform: scale(1.06);
+  opacity: .85;
+  background-color: transparent;
+}
+.close-modal-button:hover svg {
+  filter: brightness(0.7);
+  transition: filter 0.15s;
 }
 </style>

@@ -357,6 +357,7 @@ export default defineComponent({
   width: auto;
   gap: 16px;
   margin-top: 20px;
+  background: transparent;
 }
 
 .imdb-logo {
