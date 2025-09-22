@@ -20,11 +20,11 @@
           </div>
           <div class="devery-meta">
             <span class="span">
-              {{ bio.title }} ({{ bio.pronouns }})
+              {{ bio.name.toUpperCase() }} ({{ bio.pronouns.toUpperCase() }})
             </span>
             <br>
             <span class="span">
-              {{ bio.role }}
+              {{ bio.role.toUpperCase() }}
             </span>
           </div>
           <span class="text-wrapper-4" v-html="bio.bio ? bio.bio.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>') : ''"></span>
@@ -434,32 +434,6 @@ const bio = bioData.dw_waterson;
   max-width: 1200px;
   max-height: 700px;
   border: none;
-}
-
-.close-modal-button {
-  position: absolute;
-  top: -48px;
-  right: -48px;
-  z-index: 5;
-  background: none;
-  border: none;
-  color: #fff;
-  width: 28px;      /* reduced from 40px */
-  height: 28px;     /* reduced from 40px */
-  font-size: 20px;  /* reduced from 28px */
-  line-height: 1;
-  cursor: pointer;
-  border-radius: 999px;
-  transition: transform .15s, opacity .15s, background-color .15s;
-}
-.close-modal-button:hover {
-  transform: scale(1.06);
-  opacity: .85;
-  background-color: transparent;
-}
-.close-modal-button:hover svg {
-  filter: brightness(0.7);
-  transition: filter 0.15s;
 }
 
 .video-return {

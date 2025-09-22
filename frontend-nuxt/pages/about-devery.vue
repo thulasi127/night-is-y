@@ -7,11 +7,7 @@
       <div class="main-content-row">
         <div class="image-heading-container">
           <h1 class="the-team-heading">THE TEAM</h1>
-          <img
-            class="image"
-            alt="Devery Jacobs Headshot"
-            src="/Image/Headshots/headshot-1.jpg"
-          />
+          <img class="image" :alt="bio.name + ' Headshot'" :src="bio.headshot" />
         </div>
         <div class="main-text-block">
           <div class="names-row">
@@ -19,120 +15,126 @@
             <NuxtLink to="/about-dw" class="dw-waterson overline">D.W. WATERSON</NuxtLink>
           </div>
           <div class="devery-meta">
-            <span class="span">
-              KAWENNAHERE DEVERY JACOBS (She/Her)<br />
-              PRODUCER &amp; ACTOR
-            </span>
+            <span class="span">{{ bio.name.toUpperCase() }} ({{ bio.pronouns.toUpperCase() }})</span>
+            <br>
+            <span class="span">{{ bio.role.toUpperCase() }}</span>
           </div>
-          <span class="text-wrapper-4">
-            Kawennáhere Devery Jacobs is an award-winning actor, filmmaker and one of Hollywood’s most exciting rising stars. As a socially conscious voice from Kahnawà:ke Mohawk Territory, they use their platform to advocate for Indigenous and LGBTQ2S+ rights.
-          </span>
+          <span class="text-wrapper-4" v-html="bio.bio ? bio.bio.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>') : ''"></span>
           <br /><br />
-          <span class="text-wrapper-5">
-            PAST NOTABLE WORK:
-          </span>
+          <span class="text-wrapper-5">PAST NOTABLE WORK:</span>
           <div class="notable-works-horizontal">
-            <template v-for="(work, idx) in sortedWorks" :key="work.title">
-              <a :href="work.url" target="_blank" rel="noopener noreferrer">
+            <template v-for="(work, idx) in bio.notable_works" :key="work.title">
+              <a href="#" @click.prevent="openVideo(work.url)">
                 {{ work.title }}
               </a>
-              <span v-if="idx < sortedWorks.length - 1" class="dot">•</span>
+              <span v-if="idx < bio.notable_works.length - 1" class="dot">•</span>
             </template>
           </div>
           <div class="frame">
-            <a
-              href="https://www.imdb.com/name/nm2711203/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                class="imdb-logo"
-                alt="Imdb logo"
-                src="https://c.animaapp.com/Wqg9SAYU/img/imdb-logo@2x.png"
-              />
-            </a>
-            <a
-              href="https://www.instagram.com/deveryjacobs/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Instagram
-                class="instagram-instance"
-                img="https://c.animaapp.com/Wqg9SAYU/img/instagram.svg"
-                size="forty-eight"
-              />
-            </a>
-            <a
-              href="https://www.youtube.com/watch?v=50tELFkt6RM"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-            </a>
+            <template v-for="link in bio.links" :key="link.type">
+              <a v-if="link.url" :href="link.url" target="_blank" rel="noopener noreferrer">
+                <img
+                  v-if="link.type === 'imdb'"
+                  class="imdb-logo"
+                  :alt="link.type + ' logo'"
+                  :src="link.img"
+                />
+                <img
+                  v-else
+                  :class="link.type + '-instance'"
+                  :alt="link.type + ' logo'"
+                  :src="link.img"
+                  style="height:48px;width:48px;"
+                />
+              </a>
+            </template>
           </div>
         </div>
       </div>
     </div>
+    <transition name="fade">
+   <div v-if="showVideo" class="video-modal" @click.self="closeVideo">
+      <div class="video-wrapper">
+
+        <iframe
+          v-if="videoUrl"
+          id="ytplayer"
+          :src="videoUrl + '?autoplay=1&enablejsapi=1'"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+        ></iframe>
+
+        <div class="video-return" @click="closeVideo">
+  <span>Return</span>
+  <div class="return-line"></div>
+</div>
+      </div>
+    </div>
+  </transition>
   </div>
 </template>
 
-<script lang="ts">
-
-useHead({
-  title: 'About | NIGHT is Y',
-  meta: [{ name: 'description', content: 'About NIGHT is Y.' }]
-})
-import { defineComponent, computed, ref, onMounted } from "vue";
+<script lang="ts" setup>
 import NavBar from "../components/NavBar.vue";
-import Instagram from "../components/Instagram.vue";
-import Youtube from "../components/Youtube.vue";
+import bioData from '~/data/bio.json';
+import { ref, onMounted, watch } from "vue";
 
-const works = [
-  {
-    title: "Marvel Studios' Echo",
-    url: "https://www.youtube.com/watch?v=AFUKnherhuw&feature=youtu.be",
-  },
-  {
-    title: "Reservation Dogs Season 1",
-    url: "https://www.youtube.com/watch?v=YWYVTyhFAOU&feature=youtu.be",
-  },
-  {
-    title: "Reservation Dogs Season 2",
-    url: "https://www.youtube.com/watch?v=PInqPhN5YjQ&feature=youtu.be",
-  },
-  {
-    title: "Reservation Dogs Season 3",
-    url: "https://www.youtube.com/watch?v=rGz501EhVJs&feature=youtu.be",
-  },
-  {
-    title: "Rhymes for Young Ghouls",
-    url: "https://www.youtube.com/watch?v=-kk7IxWINLQ&feature=youtu.be",
-  },
-];
+const showVideo = ref(false);
+const videoUrl = ref("");
 
-export default defineComponent({
-  name: "AboutTeamPage",
-  components: {
-    NavBar,
-    Instagram,
-    Youtube,
-  },
-  setup() {
-    const sortedWorks = computed(() =>
-      [...works].sort((a, b) => a.title.localeCompare(b.title))
-    );
-    const imgLoaded = ref(false);
-    onMounted(() => {
-      const img = document.querySelector('.image');
-      if (img) {
-        img.addEventListener('load', () => {
-          img.classList.add('loaded');
+function openVideo(url: string) {
+  // Convert YouTube watch link → embed link
+  videoUrl.value = url.replace("watch?v=", "embed/").split("&")[0];
+  showVideo.value = true;
+}
+
+function closeVideo() {
+  videoUrl.value = "";
+  showVideo.value = false;
+}
+
+// Load YouTube API and listen for video end
+watch(showVideo, (val) => {
+  if (val) {
+    // Wait for iframe to mount
+    setTimeout(() => {
+      // Load YouTube API if not loaded
+      if (!window.YT) {
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(tag);
+      }
+      window.onYouTubeIframeAPIReady = () => {
+        const player = new window.YT.Player('ytplayer', {
+          events: {
+            'onStateChange': (event: any) => {
+              if (event.data === window.YT.PlayerState.ENDED) {
+                closeVideo();
+              }
+            }
+          }
+        });
+      };
+      // If API already loaded
+      if (window.YT && window.YT.Player) {
+        const player = new window.YT.Player('ytplayer', {
+          events: {
+            'onStateChange': (event: any) => {
+              if (event.data === window.YT.PlayerState.ENDED) {
+                closeVideo();
+              }
+            }
+          }
         });
       }
-    });
-    return { sortedWorks };
-  },
+    }, 500);
+  }
 });
+
+const bio = bioData.devery_jacobs;
 </script>
+
 
 <style scoped>
 /* --- Base page (from Layout 2) --- */
@@ -357,7 +359,7 @@ export default defineComponent({
   width: auto;
   gap: 16px;
   margin-top: 20px;
-  background: transparent;
+  background: tr;
 }
 
 .imdb-logo {
@@ -393,4 +395,87 @@ export default defineComponent({
     align-items: center;
   }
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1); /* slower fade */
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
+}
+
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7); /* more transparent */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 90vw;      /* increased from 100vw for padding */
+  height: 90vh;     /* increased from 100vh for padding */
+  max-width: 1200px;
+  max-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-wrapper iframe {
+  width: 90vw;      /* increased from 100vw */
+  height: 90vh;     /* increased from 100vh */
+  max-width: 1200px;
+  max-height: 700px;
+  border: none;
+}
+
+.video-return {
+  position: absolute;
+  bottom: -48px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  cursor: pointer;
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  color: #fff;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.video-return:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.video-return span {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.return-line {
+  width: 48px;
+  height: 1px;
+  background: #fff;
+  opacity: 0.5;
+  transition: width 0.3s ease, opacity 0.2s ease;
+}
+
+.video-return:hover .return-line {
+  width: 64px;
+  opacity: 1;
+}
+
 </style>
