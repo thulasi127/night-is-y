@@ -118,37 +118,21 @@ const bio = bioData.dw_waterson;
 
 /* New container for heading and image */
 .image-heading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end; /* Align heading and image to the right */
-  width: 626px;
-  margin-right: 64px;
-  position: relative;
+  width: 480px; /* reduced from 626px */
+  margin-right: 40px;
 }
 
 .the-team-heading {
-  width: 100%;
-  height: 106px;
-  font-family: "anton", sans-serif;
-  font-size: 100px;
-  font-weight: 300;
-  line-height: 30px;
-  color: white;
-  letter-spacing: 0;
-  word-wrap: break-word;
-  text-transform: uppercase;
-  margin-bottom: 0;
-  text-align: right;
-  margin-top: 144px; /* Increased from 128px */
-  margin-bottom: 0;
+  font-size: clamp(48px, 6vw, 72px); /* smaller, responsive */
+  margin-top: 100px; /* reduced from 144px */
+  margin-bottom: 20px;
+  line-height: 1;
 }
 
 .image {
-  width: 626px;
-  height: 708px;
+  width: 480px;
+  height: 540px;
   object-fit: cover;
-  opacity: 1; /* Ensure image is always visible */
-  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .image.loaded {
@@ -156,29 +140,28 @@ const bio = bioData.dw_waterson;
 }
 
 .main-text-block {
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 240px; /* Increased from 220px */
+  max-width: 600px; /* reduced from 800px */
+  margin-top: 160px; /* reduced from 240px */
 }
 
 .names-row {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  gap: 48px;
-  margin-bottom: 16px;
   width: 100%;
   white-space: nowrap;
+  gap: 32px;
+  margin-bottom: 12px;
 }
 
 .devery-jacobs,
 .devery-jacobs.overline {
   font-family: "anton", sans-serif;
-  font-size: 48px;
+  /* font-size: 48px; */
   font-weight: 300;
-  line-height: 45px;
+  font-size: clamp(28px, 3vw, 36px); /* reduced from 48px */
+  line-height: 1.2;
+  /* line-height: 45px; */
   color: rgba(255, 255, 255, 0.5);
   letter-spacing: 0;
   word-wrap: break-word;
@@ -201,9 +184,10 @@ const bio = bioData.dw_waterson;
 .dw-waterson,
 .dw-waterson.overline {
   font-family: "anton", sans-serif;
-  font-size: 48px;
+  /* font-size: 48px; */
   font-weight: 300;
-  line-height: 45px;
+  font-size: clamp(28px, 3vw, 36px); /* reduced from 48px */
+  line-height: 1.2;
   color: white;
   letter-spacing: 0;
   word-wrap: break-word;
@@ -218,19 +202,17 @@ const bio = bioData.dw_waterson;
 
 .devery-meta, .span {
   font-family: "anton", sans-serif;
-  font-size: 24px;
-  font-weight: 300;
-  color: #fff;
-  margin-bottom: 32px;
-  margin-top: 24px;
+  font-size: clamp(16px, 1.8vw, 20px);
+  margin-bottom: 20px;
+  margin-top: 12px;
 }
 
 .text-wrapper-4 {
   font-family: "proxima-nova", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 24px;
-  line-height: 30px;
+  font-size: clamp(16px, 1.8vw, 18px);
+  line-height: 1.5;
   letter-spacing: 0px;
   color: #fff;
   text-transform: none;
@@ -238,12 +220,12 @@ const bio = bioData.dw_waterson;
 
 .text-wrapper-5 {
   font-family: "proxima-nova", sans-serif;
-  font-size: 16px;
+  font-size: clamp(12px, 1.2vw, 14px);
+  margin-top: 16px;
   font-weight: 700;
   line-height: 30px;
   letter-spacing: 0px;
   color: #fff;
-  margin-top: 24px;
   text-transform: uppercase;
 }
 
@@ -282,7 +264,6 @@ const bio = bioData.dw_waterson;
 
 .notable-works-horizontal a {
   font-family: "proxima-nova", sans-serif;
-  font-size: 16px;
   font-weight: 400;
   color: #fff;
   text-decoration: underline;
@@ -291,6 +272,7 @@ const bio = bioData.dw_waterson;
   line-height: 30px;
   transition: color 0.2s;
   white-space: nowrap;
+  font-size: clamp(12px, 1.2vw, 14px);
 }
 
 .notable-works-horizontal a:hover {
@@ -308,31 +290,47 @@ const bio = bioData.dw_waterson;
 
 .frame {
   height: 99px;
-  width: 256px;
   display: flex;
   align-items: center;
-  gap: 24px;
-  margin-top: 32px;
+  width: auto;
+  gap: 16px;
+  margin-top: 20px;
 }
 
 .imdb-logo {
   aspect-ratio: 1;
-  height: 48px;
-  width: 48px;
+  height: 36px !important;
+  width: 36px !important;
   object-fit: cover;
 }
 
 .instagram-instance,
 .youtube-instance {
-  height: 48px !important;
-  width: 48px !important;
+  height: 36px !important;
+  width: 36px !important;
   position: static !important;
 }
 
-/* Optional: responsive tweaks for the 626px column can go here */
-</style>
+/* --- Responsive Layout --- */
+@media (max-width: 768px) {
+  .main-content-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
-<style>
+  .image-heading-container {
+    width: 100%;
+    margin-right: 0;
+    align-items: center;
+  }
+
+  .main-text-block {
+    margin-top: 40px;
+    align-items: center;
+  }
+}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -342,4 +340,5 @@ const bio = bioData.dw_waterson;
 .fade-enter-to, .fade-leave-from {
   opacity: 1;
 }
+
 </style>
