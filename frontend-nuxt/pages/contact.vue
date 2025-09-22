@@ -57,7 +57,7 @@ onMounted(() => {
   --nav-h: 88px;
   --veil-hold: 120vh;
   --veil-alpha: 0.90;
-  --veil-color: 89, 55, 146;            /* #593792 */
+  --veil-color: 0, 0, 0;  /* black background */   /* #593792 */
   --gap: 48px;                          /* space between columns */
   --logo-size: clamp(220px, 30vmin, 380px);   /* MUST match bg logo size */
   --col-min: 420px;                     /* min width per text column */
@@ -166,18 +166,22 @@ onMounted(() => {
   text-transform: uppercase;
   font-weight: 400;
   color: #fff;
-
-  /* Show the full line — no truncation or ellipsis */
   white-space: nowrap;
   overflow: visible;
   text-overflow: clip;
 }
 
+/* Overrides */
+.role,
+.name { font-style: italic; }
+
 .email {
-  display: inline-block;
+  font-style: normal;
   text-decoration: underline;
+  display: inline-block;
   word-break: normal;
 }
+
 
 /* Tail after veil releases */
 .below {
