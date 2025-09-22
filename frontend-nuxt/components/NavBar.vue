@@ -1,25 +1,24 @@
 <template>
   <header class="navbar">
     <div class="navbar-content">
+      <!-- Left logo -->
       <NuxtLink to="/home">
         <img
           class="logo"
           alt="Night IS y"
-          src="https://c.animaapp.com/2lD2yyWL/img/image-6@2x.png"
+          src="/Image/NIY-logos/niy-logo-3.png"
         />
       </NuxtLink>
-      
-      <img
-        class="nav-brand"
-        alt="Night IS y"
-        src="https://c.animaapp.com/2lD2yyWL/img/night-is-y.png"
-      />
-      
+
+      <!-- Middle brand text instead of PNG -->
+      <div class="nav-brand-text">NIGHT IS Y</div>
+
+      <!-- Right nav links -->
       <nav class="nav">
-        <NuxtLink to="/about" class="nav-link">About</NuxtLink>
-        <NuxtLink to="/projects" class="nav-link">Work</NuxtLink>
-        <NuxtLink to="/press" class="nav-link">Press</NuxtLink>
-        <NuxtLink to="/contact" class="nav-link">Contact</NuxtLink>
+        <NuxtLink to="/about" class="nav-link">ABOUT</NuxtLink>
+        <NuxtLink to="/projects" class="nav-link">WORK</NuxtLink>
+        <NuxtLink to="/press" class="nav-link">PRESS</NuxtLink>
+        <NuxtLink to="/contact" class="nav-link">CONTACT</NuxtLink>
       </nav>
     </div>
   </header>
@@ -61,18 +60,41 @@ export default defineComponent({
   transition: opacity 0.3s ease;
   justify-self: start;
 }
-
 .logo:hover {
   opacity: 0.8;
 }
 
-.nav-brand {
-  height: 28px;
-  width: auto;
-  object-fit: contain;
+/* Middle brand text (replaces PNG) */
+.nav-brand-text {
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 300; /* Light */
+  font-style: normal;
+  font-size: clamp(18px, 2vw, 24px); /* responsive min–max */
+  letter-spacing: 0.41em; /* Kerning = 410 */
+  color: #fff;
+  text-transform: none;
   justify-self: center;
 }
 
+
+.nav-brand-text {
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: clamp(18px, 2vw, 24px); /* responsive min–max */
+  letter-spacing: 0.41em;
+  color: #fff;
+  text-transform: none;
+  justify-self: center;
+
+  /* Subtle glow */
+  text-shadow: 
+    0 0 4px rgba(255, 0, 255, 0.5),   /* magenta glow */
+    0 0 8px rgba(104, 8, 171, 0.4);  /* purple glow */
+}
+
+
+/* Right nav links */
 .nav {
   display: flex;
   gap: 2rem;
@@ -82,19 +104,18 @@ export default defineComponent({
 
 .nav-link {
   color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica;
+  font-family: "Neue Montreal-Regular", Helvetica, sans-serif;
   font-size: 1rem;
   font-weight: 400;
   text-decoration: none;
+  text-transform: uppercase; /* ensure all caps */
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
   position: relative;
 }
-
 .nav-link:hover {
   color: #593792 !important;
 }
-
 .nav-link::after {
   content: '';
   position: absolute;
@@ -105,102 +126,7 @@ export default defineComponent({
   background-color: #ffffff;
   transition: width 0.3s ease;
 }
-
 .nav-link:hover::after {
   width: 100%;
-}
-
-/* Add to your NavBar.vue or global CSS */
-.navbar-cta,
-.navbar-cta-link {
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 22px; /* Match your current size */
-  letter-spacing: 0.02em;
-  color: #fff;
-  text-transform: none;
-  background: none;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.navbar-cta-link:hover {
-  color: #593792;
-}
-
-/* If you have other hover styles globally, add: */
-a:hover,
-button:hover,
-.nav-link:hover,
-.navbar-cta-link:hover,
-.overline:hover {
-  color: #593792 !important;
-  /* If you use backgrounds on hover, add: */
-  background-color: transparent;
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .navbar {
-    height: 80px;
-  }
-  
-  .navbar-content {
-    padding: 0 1rem;
-    grid-template-columns: auto 1fr auto;
-    gap: 1rem;
-  }
-  
-  .logo {
-    height: clamp(40px, 8vh, 50px);
-  }
-  
-  .nav {
-    gap: clamp(0.5rem, 2vw, 1rem);
-  }
-  
-  .nav-link {
-    font-size: clamp(0.8rem, 2.2vw, 0.9rem);
-  }
-  
-  .nav-brand {
-    height: clamp(16px, 4vh, 20px);
-  }
-}
-
-/* Very small screens (landscape phones) */
-@media (max-height: 500px) {
-  .navbar {
-    height: 60px;
-  }
-  
-  .logo {
-    height: clamp(30px, 6vh, 40px);
-  }
-  
-  .nav-brand {
-    height: clamp(12px, 3vh, 16px);
-  }
-  
-  .nav-link {
-    font-size: clamp(0.7rem, 2vw, 0.8rem);
-  }
-}
-
-/* Tablet landscape */
-@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
-  .navbar {
-    height: clamp(80px, 10vh, 100px);
-  }
-  
-  .logo {
-    height: clamp(50px, 8vh, 70px);
-  }
-  
-  .nav-brand {
-    height: clamp(20px, 4vh, 25px);
-  }
 }
 </style>
