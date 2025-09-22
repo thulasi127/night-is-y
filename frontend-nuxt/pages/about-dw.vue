@@ -65,13 +65,9 @@
     </transition>
 
     <transition name="fade">
-    <div v-if="showVideo" class="video-modal">
+   <div v-if="showVideo" class="video-modal" @click.self="closeVideo">
       <div class="video-wrapper">
-        <button class="close-modal-button" @click="closeVideo">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 6 6 18M6 6l12 12"/>
-          </svg>
-        </button>
+
         <iframe
           v-if="videoUrl"
           id="ytplayer"
@@ -80,6 +76,11 @@
           allow="autoplay; encrypted-media"
           allowfullscreen
         ></iframe>
+
+        <div class="video-return" @click="closeVideo">
+  <span>Return</span>
+  <div class="return-line"></div>
+</div>
       </div>
     </div>
   </transition>
@@ -460,4 +461,45 @@ const bio = bioData.dw_waterson;
   filter: brightness(0.7);
   transition: filter 0.15s;
 }
+
+.video-return {
+  position: absolute;
+  bottom: -48px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  cursor: pointer;
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  color: #fff;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.video-return:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.video-return span {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.return-line {
+  width: 48px;
+  height: 1px;
+  background: #fff;
+  opacity: 0.5;
+  transition: width 0.3s ease, opacity 0.2s ease;
+}
+
+.video-return:hover .return-line {
+  width: 64px;
+  opacity: 1;
+}
+
 </style>

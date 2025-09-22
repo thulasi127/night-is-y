@@ -93,40 +93,55 @@ export default defineComponent({
     0 0 8px rgba(104, 8, 171, 0.4);  /* purple glow */
 }
 
-
-/* Right nav links */
 .nav {
   display: flex;
   gap: 2rem;
   align-items: center;
   justify-self: end;
+  position: relative;
 }
 
+/* Base style */
 .nav-link {
   color: #ffffff;
   font-family: "proxima-nova", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   text-decoration: none;
-  text-transform: uppercase; /* ensure all caps */
+  text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: all 0.3s ease;
   position: relative;
+  transition: color 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
 }
-.nav-link:hover {
-  color: #593792 !important;
-}
+
+/* Hover underline effect */
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -4px;
-  left: 0;
+  bottom: -6px;
+  right: 0;
   width: 0;
   height: 1px;
-  background-color: #ffffff;
-  transition: width 0.3s ease;
+  background: #ffffff;
+  opacity: 0.5;
+  transition: width 0.3s ease, opacity 0.3s ease;
 }
+
 .nav-link:hover::after {
   width: 100%;
+  opacity: 1;
 }
+
+/* Dim only the non-hovered links */
+.nav:hover .nav-link {
+  opacity: 0.3;  /* all links dim when hovering any */
+}
+
+/* Keep hovered link bright */
+.nav-link:hover {
+  opacity: 1 !important;  /* stays full opacity */
+  color: #ffffff;
+}
+
 </style>
