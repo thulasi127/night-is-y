@@ -74,7 +74,8 @@
         </button>
         <iframe
           v-if="videoUrl"
-          :src="videoUrl + '?autoplay=1'"
+          id="ytplayer"
+          :src="videoUrl + '?autoplay=1&enablejsapi=1'"
           frameborder="0"
           allow="autoplay; encrypted-media"
           allowfullscreen
@@ -89,7 +90,7 @@
 <script lang="ts" setup>
 import NavBar from "../components/NavBar.vue";
 import bioData from '~/data/bio.json';
-import { ref } from "vue";
+import { ref, onMounted, watch } from "vue";
 
 const showVideo = ref(false);
 const videoUrl = ref("");
@@ -104,6 +105,44 @@ function closeVideo() {
   videoUrl.value = "";
   showVideo.value = false;
 }
+
+// Load YouTube API and listen for video end
+watch(showVideo, (val) => {
+  if (val) {
+    // Wait for iframe to mount
+    setTimeout(() => {
+      // Load YouTube API if not loaded
+      if (!window.YT) {
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(tag);
+      }
+      window.onYouTubeIframeAPIReady = () => {
+        const player = new window.YT.Player('ytplayer', {
+          events: {
+            'onStateChange': (event: any) => {
+              if (event.data === window.YT.PlayerState.ENDED) {
+                closeVideo();
+              }
+            }
+          }
+        });
+      };
+      // If API already loaded
+      if (window.YT && window.YT.Player) {
+        const player = new window.YT.Player('ytplayer', {
+          events: {
+            'onStateChange': (event: any) => {
+              if (event.data === window.YT.PlayerState.ENDED) {
+                closeVideo();
+              }
+            }
+          }
+        });
+      }
+    }, 500);
+  }
+});
 
 const bio = bioData.dw_waterson;
 </script>
@@ -355,7 +394,7 @@ const bio = bioData.dw_waterson;
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1); /* slower fade */
 }
 .fade-enter-from, .fade-leave-to {
   opacity: 0;
@@ -370,7 +409,7 @@ const bio = bioData.dw_waterson;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.7); /* more transparent */
   display: flex;
   align-items: center;
   justify-content: center;
