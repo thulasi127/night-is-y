@@ -3,10 +3,7 @@
     <NavBar />
     <div class="centered-content">
       <div class="content">
-        <p class="NIY-is-a-film">
-          Night is Y is an LGBTQ2S+ and Indigenous-owned production company based out of Toronto, Canada. Producers Devery Jacobs and D.W. Waterson specialize in the hands-on creative development and production of compelling, character-driven series and films. With a focus on uplifting queer and BIPOC stories, Night is Y is driven by the common goal of creating visually stunning, dynamic stories with artistic risk and rigor.
-
-          </p>
+        <p class="about-text"> Night is Y is an LGBTQ2S+ and Indigenous-owned production company<br /> rooted in Toronto, Canada.<br /> Producers Devery Jacobs and D.W. Waterson craft character-driven films<br /> and series that uplift queer and BIPOC stories.<br /> With every project, Night is Y creates dynamic, visually stunning stories<br /> driven by risk, rigor, and a vision for authentic representation. </p>
           <NuxtLink to="/about-devery" class="meet-the-team-link">
             Meet the Team
           </NuxtLink>
@@ -53,28 +50,23 @@ useHead({
   text-align: center; /* Center all content */
 }
 
-.NIY-is-a-film {
-  color: white;
-  font-size: 28px; /* Smaller text size */
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  text-transform: none;
-  line-height: 38px;
-  word-wrap: break-word;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  text-align: center;
-  margin-bottom: 0;
-  letter-spacing: 0;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+.about-text {
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);  /* larger, responsive */
+  font-weight: 300;
+  color: #f5f5f5;
+
+  /* force text to break into fewer lines */
+  max-width: 900px;
+  margin: 0 auto;
+  letter-spacing: 0.5px;
+  text-transform: none; /* keep natural casing */
 }
 
 .meet-the-team-link {
   color: rgba(255, 255, 255, 0.75);
   font-size: 48px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-weight: 900;
+  font-family: "anton", sans-serif;
+  font-weight: 300;
   text-transform: uppercase;
   line-height: 45px;
   word-wrap: break-word;

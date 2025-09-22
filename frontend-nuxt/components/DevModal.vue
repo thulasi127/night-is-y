@@ -55,8 +55,7 @@ export default {
 
 <style scoped>
 @font-face {
-  font-family: 'Neue Montreal';
-  src: url('/fonts/NeueMontreal-Regular.otf') format('opentype');
+  font-family: "proxima-nova", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -84,7 +83,7 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   overflow: hidden;
 }
 .image {
@@ -110,9 +109,9 @@ export default {
   overflow-y: auto;
 }
 .text-wrapper {
-  font-family: 'Neue Montreal', Helvetica, Arial, sans-serif;
+  font-family: "anton", sans-serif;
   font-size: 64px;
-  font-weight: 400;
+  font-weight: 300;
   color: #fff;
   text-transform: uppercase;
   line-height: 70px;
@@ -153,7 +152,7 @@ export default {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  font-family: 'Neue Montreal', Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-size: 15px;
   line-height: 22px;
   color: #e0e0e0;
@@ -212,13 +211,13 @@ export default {
   margin-bottom: 12px;
 }
 .label-title {
-  font-family: 'Neue Montreal', Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: #fff;
 }
 .label-link {
-  font-family: 'Neue Montreal', Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: #fff;
@@ -230,7 +229,7 @@ export default {
   font-weight: 400;
   letter-spacing: 1px;
   color: #fff;
-  font-family: "Neue Montreal", sans-serif;
+  font-family: "proxima-nova", sans-serif;
 }
 
 .article-list {
@@ -247,7 +246,7 @@ export default {
   align-items: center;
   color: #fff;
   font-size: 16px;
-  font-family: "Neue Montreal", sans-serif;
+  font-family: "proxima-nova", sans-serif;
   text-transform: uppercase;
   line-height: 24px;
   transition: color 0.15s, filter 0.15s;

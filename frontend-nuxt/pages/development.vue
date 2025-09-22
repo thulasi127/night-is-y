@@ -335,9 +335,9 @@ const closeModal = () => {
 .dev-title {
   margin: 0 auto;
   color: #fff;
-  font-family: "Impact", Helvetica, Arial, sans-serif;
+  font-family: "anton", sans-serif;
   font-size: 48px;
-  font-weight: 900;
+  font-weight: 300;
   line-height: 1.1;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -355,7 +355,7 @@ const closeModal = () => {
 
 .projects-text {
   color: #fff;
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-size: 20px;
   font-weight: 400;
   letter-spacing: 0.08px;
@@ -436,7 +436,7 @@ const closeModal = () => {
   text-align: center;
   color: white;
   font-size: 28px;
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-weight: 400;
   text-transform: uppercase;
   line-height: 30px;
@@ -449,7 +449,7 @@ const closeModal = () => {
   text-align: center;
   color: white;
   font-size: 22px;
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-weight: 400;
   text-transform: uppercase;
   line-height: 26px;

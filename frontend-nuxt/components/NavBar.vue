@@ -104,7 +104,7 @@ export default defineComponent({
 
 .nav-link {
   color: #ffffff;
-  font-family: "Neue Montreal-Regular", Helvetica, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   text-decoration: none;

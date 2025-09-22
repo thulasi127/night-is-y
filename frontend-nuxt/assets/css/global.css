@@ -1,48 +1,77 @@
-/* Import Typekit font (place at the top of global.css) */
+/* Import Typekit fonts */
 
 @import url("https://use.typekit.net/lmr4fnt.css");
 html,
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    background: black;
-}
-
-.fullscreen-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -1;
-}
-
-
-/* if you already have this file, just make sure body is black */
-
-html,
-body {
     height: 100%;
-}
-
-body {
-    margin: 0;
     background: #000;
+    font-family: "proxima-nova", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: normal;
+    /* Kerning = 410 for body/small text */
+    color: #fff;
 }
 
-@font-face {
-    font-family: 'Neue Montreal';
-    src: url('/fonts/NeueMontreal-Regular.otf') format('opentype');
+
+/* Large headings & titles */
+
+h1,
+h2,
+h3,
+.film-series-title,
+.modal-title,
+.poster-title-neue,
+.dev-title,
+.section-heading,
+.the-team-heading,
+.projects,
+.press-title,
+.row-label {
+    font-family: "anton", sans-serif;
     font-weight: 400;
-    font-style: normal;
+    letter-spacing: -0.01em;
+    /* -10 tracking */
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0;
 }
+
+
+/* Body, paragraphs, metadata, labels */
 
 body,
-html {
-    font-family: 'Neue Montreal', Helvetica, Arial, sans-serif;
-    font-weight: 400;
+p,
+.projects-text,
+.poster-type-neue,
+.modal-summary,
+.modal-type,
+.modal-release_date,
+.label-title,
+.label-link,
+.about-niy-text,
+.quote-text,
+.person-fullname,
+.role,
+.name,
+.email,
+.text-wrapper-4,
+.text-wrapper-5 {
+    font-family: "proxima-nova", sans-serif;
+    font-weight: 300;
+    /* Light */
+    font-style: normal;
+    letter-spacing: normal;
+    color: #fff;
+}
+
+
+/* Override italics when needed (quotes etc.) */
+
+.quote-text {
+    font-weight: 300;
     font-style: normal;
 }
 
@@ -57,81 +86,4 @@ html {
 .cta-hover:hover,
 .cta-hover:hover * {
     filter: brightness(0.7);
-}
-
-
-/* Apply Impact font to all h1 and title classes */
-
-h1,
-.film-series-title,
-.modal-title,
-.poster-title-neue {
-    font-family: "impact", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-
-/* Titles, h1, h2, and bold headings */
-
-h1,
-h2,
-h3,
-.dev-title,
-.poster-title-neue,
-.modal-title,
-.section-heading {
-    font-family: Impact, "Arial Black", Arial, sans-serif;
-    font-weight: 900;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-}
-
-.overline,
-.person-fullname,
-.the-team-heading,
-.devery-jacobs,
-.dw-waterson {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-weight: 900;
-    letter-spacing: 0.5px;
-}
-
-
-/* Thinner body text, summaries, labels, etc. */
-
-body,
-p,
-.projects-text,
-.poster-type-neue,
-.modal-summary,
-.modal-type,
-.modal-release_date,
-.label-title,
-.label-link {
-    font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    letter-spacing: 0.08px;
-}
-
-.about-niy-text {
-    font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-}
-
-
-/* Example for distinguishable styles */
-
-.poster-type-neue,
-.modal-type,
-.modal-release_date {
-    font-size: 20px;
-    color: #C9C7F0;
-}
-
-.projects-text,
-.modal-summary,
-.label-link {
-    font-size: 18px;
-    color: #e0e0e0;
 }

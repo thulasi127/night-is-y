@@ -193,9 +193,9 @@ export default defineComponent({
 }
 
 .the-team-heading {
-  font-family: "Impact", Helvetica, Arial, sans-serif;
+  font-family: "anton", sans-serif;
   font-size: 100px;
-  font-weight: 900;
+  font-weight: 300;
   text-transform: uppercase;
   color: white;
   width: 100%;
@@ -243,7 +243,7 @@ export default defineComponent({
 .devery-jacobs.overline,
 .dw-waterson,
 .dw-waterson.overline {
-  font-family: "Impact", Helvetica, Arial, sans-serif;
+  font-family: "anton", sans-serif;
   font-size: 48px;
   font-weight: 900;
   line-height: 45px;
@@ -279,8 +279,8 @@ export default defineComponent({
 .devery-meta, .span,
 .text-wrapper-4,
 .notable-works-horizontal a {
-  font-family: "Impact", Helvetica, Arial, sans-serif;
-  font-weight: 400;
+  font-family: "anton", sans-serif;
+  font-weight: 300;
   font-size: 16px;
   color: #fff;
   line-height: 30px;
@@ -289,7 +289,7 @@ export default defineComponent({
 }
 
 .text-wrapper-5 {
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 30px;
@@ -307,7 +307,7 @@ export default defineComponent({
 }
 
 .text-wrapper-4 {
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-weight: 400; /* thinner than 500 */
   font-style: normal;
   font-size: 24px;
@@ -329,7 +329,7 @@ export default defineComponent({
 }
 
 .notable-works-list a {
-  font-family: "Impact", Helvetica, Arial, sans-serif;
+  font-family: "anton", sans-serif;
   color: #d90ec1ba;
   font-weight: 600;
   text-decoration: underline;
@@ -351,7 +351,7 @@ export default defineComponent({
 }
 
 .notable-works-horizontal a {
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: #fff;

@@ -124,7 +124,7 @@ onMounted(() => {
   max-width: calc(var(--col-max) + var(--logo-size) + var(--col-max) + (2 * var(--gap)));
   width: 100%;
   margin: 0 auto;
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
 }
 
 /* THREE-COLUMN GRID:

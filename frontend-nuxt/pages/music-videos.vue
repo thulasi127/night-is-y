@@ -46,8 +46,8 @@ useHead({
 
 
 .fixed-label {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-weight: 400;
+  font-family: "anton", sans-serif;
+  font-weight: 300;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   padding: 80px 0 160px;

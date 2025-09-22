@@ -59,7 +59,7 @@ import pressData from "@/data/press.json"
   background: black;
   color: white;
   padding: 4rem 2rem;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   overflow-x: hidden; 
 }
 

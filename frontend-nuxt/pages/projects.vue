@@ -78,9 +78,9 @@ const goToMusicVideos = () => router.push('/music-videos');
 
 .projects {
   color: #ffffff;
-  font-family: "Impact", Helvetica;
+  font-family: "anton", sans-serif;
   font-size: 80px;
-  font-weight: 900;
+  font-weight: 300;
   margin-left: 42px;
   margin-bottom: 8px;
   letter-spacing: 0;
@@ -145,7 +145,7 @@ const goToMusicVideos = () => router.push('/music-videos');
   right: 42px;
   bottom: 32px;
   color: #fff;
-  font-family: "Neue Montreal-Regular", Helvetica;
+  font-family: "proxima-nova", sans-serif;
   font-size: 2rem;
   font-weight: 400;
   letter-spacing: 0.05em;
@@ -160,7 +160,7 @@ const goToMusicVideos = () => router.push('/music-videos');
 .film-series,
 .music-videos,
 .text-wrapper {
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-weight: 400;
   font-style: normal;
   letter-spacing: 0.05em;

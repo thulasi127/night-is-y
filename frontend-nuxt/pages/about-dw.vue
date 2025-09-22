@@ -129,9 +129,9 @@ const bio = bioData.dw_waterson;
 .the-team-heading {
   width: 100%;
   height: 106px;
-  font-family: "Impact", Helvetica, Arial, sans-serif;
+  font-family: "anton", sans-serif;
   font-size: 100px;
-  font-weight: 900;
+  font-weight: 300;
   line-height: 30px;
   color: white;
   letter-spacing: 0;
@@ -175,9 +175,9 @@ const bio = bioData.dw_waterson;
 
 .devery-jacobs,
 .devery-jacobs.overline {
-  font-family: "Impact", Helvetica, Arial, sans-serif;
+  font-family: "anton", sans-serif;
   font-size: 48px;
-  font-weight: 900;
+  font-weight: 300;
   line-height: 45px;
   color: rgba(255, 255, 255, 0.5);
   letter-spacing: 0;
@@ -200,9 +200,9 @@ const bio = bioData.dw_waterson;
 
 .dw-waterson,
 .dw-waterson.overline {
-  font-family: "Impact", Helvetica, Arial, sans-serif;
+  font-family: "anton", sans-serif;
   font-size: 48px;
-  font-weight: 900;
+  font-weight: 300;
   line-height: 45px;
   color: white;
   letter-spacing: 0;
@@ -217,16 +217,16 @@ const bio = bioData.dw_waterson;
 }
 
 .devery-meta, .span {
-  font-family: "Impact", Helvetica, Arial, sans-serif;
+  font-family: "anton", sans-serif;
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 300;
   color: #fff;
   margin-bottom: 32px;
   margin-top: 24px;
 }
 
 .text-wrapper-4 {
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 24px;
@@ -237,7 +237,7 @@ const bio = bioData.dw_waterson;
 }
 
 .text-wrapper-5 {
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 30px;
@@ -259,9 +259,9 @@ const bio = bioData.dw_waterson;
 }
 
 .notable-works-list a {
-  font-family: "Impact", Helvetica, Arial, sans-serif;
+  font-family: "anton", sans-serif;
   color: #d90ec1ba;
-  font-weight: 600;
+  font-weight: 300;
   text-decoration: underline;
   font-size: 16px;
   transition: color 0.2s;
@@ -281,7 +281,7 @@ const bio = bioData.dw_waterson;
 }
 
 .notable-works-horizontal a {
-  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: #fff;
