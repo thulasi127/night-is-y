@@ -51,50 +51,42 @@ useHead({
 }
 
 .about-text {
-  font-size: clamp(1.2rem, 2.2vw, 1.6rem);  /* larger, responsive */
+  /* Slightly bigger again: Min 1.2rem, preferred 2vw, max 1.5rem */
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  /* line-height: 1.7; */
   font-weight: 300;
   color: #f5f5f5;
-
-  /* force text to break into fewer lines */
   max-width: 900px;
   margin: 0 auto;
   letter-spacing: 0.5px;
-  text-transform: none; /* keep natural casing */
+  text-transform: none;
 }
 
 .meet-the-team-link {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 48px;
+  /* Slightly bigger again: Min 1.8rem, preferred 2.9vw, max 2.4rem */
+  font-size: clamp(1.8rem, 2.9vw, 2.4rem);
   font-family: "anton", sans-serif;
   font-weight: 300;
   text-transform: uppercase;
-  line-height: 45px;
-  word-wrap: break-word;
-  text-align: center;
-  margin-top: 0;
-  letter-spacing: 0;
-  padding: 18px 48px;
+  /* line-height: 1.2; */
+  padding: 16px 40px;
   border-radius: 40px;
-  cursor: pointer;
   text-decoration: none;
-  border: none;
-  outline: none;
-  display: inline-block;
+  cursor: pointer;
   background: linear-gradient(270deg, #6808AB, #D90EC1, #83A780, #fff, #6808AB);
   background-size: 600% 600%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
   animation: gradientMove 3s ease infinite;
-  transition: transform 0.2s, color 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s;
 }
 
 .meet-the-team-link:hover {
   transform: scale(1.08);
   -webkit-text-fill-color: #593792;
-  color: #593792;
   background: none;
 }
+
 
 @keyframes gradientMove {
   0% {
