@@ -1,5 +1,5 @@
 <template>
-    <NavBar />
+  <NavBar />
   <div class="press-page">
     <!-- Hero Heading -->
     <header class="press-header">
@@ -30,14 +30,14 @@
           <div v-if="quote.text" class="quote-wrapper">
             <blockquote class="quote-text">“{{ quote.text }}”</blockquote>
             <div class="logo-container">
-              <span class="dash">—</span>
-              <img
-                :src="quote.logo"
-                :alt="quote.source || 'Laurel Logo'"
-                class="source-logo"
-                :class="quote.class"
-              />
-            </div>
+                <span class="dash">—</span>
+                <img
+                    :src="quote.logo"
+                    :alt="quote.source || 'Laurel Logo'"
+                    class="source-logo"
+                    :class="quote.class"
+                />
+                </div>
           </div>
 
           <!-- LAURELS (logo only, no text) -->
@@ -60,12 +60,12 @@ import pressData from "@/data/press.json"
   color: white;
   padding: 4rem 2rem;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  overflow-x: hidden; /* ✅ no horizontal scroll */
+  overflow-x: hidden; 
 }
 
 .press-header {
   text-align: center;
-  margin-bottom: 5rem;
+  margin: 6rem 0 5rem; 
 }
 
 .press-title {
@@ -73,6 +73,31 @@ import pressData from "@/data/press.json"
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 2px;
+  background: linear-gradient(
+    270deg,
+    #6808AB,
+    #D90EC1,
+    #83A780,
+    #ffffff,
+    #6808AB
+  );
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientMove 6s ease infinite; /* slowed down for headline effect */
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .press-project {
@@ -128,15 +153,15 @@ import pressData from "@/data/press.json"
 
 .logo-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   margin-top: 0.75rem;
 }
 
 .dash {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: #aaa;
-  margin-bottom: 0.25rem;
 }
 
 .source-logo {
