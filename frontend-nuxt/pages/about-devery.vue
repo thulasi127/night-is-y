@@ -67,11 +67,6 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Youtube
-                class="youtube-instance"
-                img="https://c.animaapp.com/Wqg9SAYU/img/youtube.svg"
-                size="forty-eight"
-              />
             </a>
           </div>
         </div>

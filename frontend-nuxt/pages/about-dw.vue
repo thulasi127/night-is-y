@@ -311,26 +311,17 @@ const bio = bioData.dw_waterson;
   position: static !important;
 }
 
-/* --- Responsive Layout --- */
-@media (max-width: 768px) {
-  .main-content-row {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .image-heading-container {
-    width: 100%;
-    margin-right: 0;
-    align-items: center;
-  }
-
-  .main-text-block {
-    margin-top: 40px;
-    align-items: center;
-  }
+.imdb-logo,
+.instagram-instance,
+.youtube-instance {
+  height: 36px !important;
+  width: 36px !important;
 }
 
+/* Optional: responsive tweaks for the 626px column can go here */
+</style>
+
+<style>
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -340,5 +331,4 @@ const bio = bioData.dw_waterson;
 .fade-enter-to, .fade-leave-from {
   opacity: 1;
 }
-
 </style>
