@@ -156,6 +156,16 @@ const goToMusicVideos = () => router.push('/music-videos');
   pointer-events: none;
 }
 
+.row-label,
+.film-series,
+.music-videos,
+.text-wrapper {
+  font-family: "Neue Montreal", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.05em;
+}
+
 @media (max-width: 900px) {
   .projects-content {
     justify-content: center;

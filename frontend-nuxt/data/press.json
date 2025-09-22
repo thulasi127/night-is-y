@@ -1,0 +1,146 @@
+[{
+        "project": "Backspot",
+        "category": "Backspot Film",
+        "quotes": [{
+                "text": "Waterson's visual technique matches Jacobs' fierce performance perfectly [...] Jacobs and Waterson are in the same perfect lockstep as the film's cheer squad itself.",
+                "source": "Roger Ebert",
+                "logo": "/Image/press-logos/Roger_Ebert.svg",
+                "class": "invert-dark-logo"
+            },
+            {
+                "text": "Backspot sticks its landing",
+                "source": "New York Times",
+                "logo": "/Image/press-logos/The New York Times.svg",
+                "class": "invert-dark-logo"
+            },
+            {
+                "text": "A sensitive and stylish coming-of-age journey",
+                "source": "The Hollywood Reporter",
+                "logo": "/Image/press-logos/The Hollywood Reporter.svg"
+            },
+            {
+                "text": "A visceral debut feature",
+                "source": "Letterboxd",
+                "logo": "/Image/press-logos/Letterboxd.svg",
+                "class": "invert-dark-logo"
+
+            },
+            {
+                "text": "",
+                "source": "",
+                "logo": "/Image/press-logos/press-cover-logo-2.png"
+            },
+            {
+                "text": "",
+                "source": "",
+                "logo": "/Image/press-logos/press-cover-logo-4.png"
+            }
+        ]
+    },
+    {
+        "project": "Backspot",
+        "category": "Devery as Riley",
+        "quotes": [{
+                "text": "Jacobs gives a magnetic performance",
+                "source": "The Hollywood Reporter",
+                "logo": "/Image/press-logos/The Hollywood Reporter.svg"
+            },
+            {
+                "text": "It is Jacobs' performance that makes 'Backspot' such an exciting watch",
+                "source": "Variety",
+                "logo": "/Image/press-logos/Variety.svg"
+            },
+            {
+                "text": "Jacobs is a revelation.",
+                "source": "Rotten Tomatoes",
+                "logo": "/Image/press-logos/Rotten Tomatoes.svg"
+            },
+            {
+                "text": "A bold showcase for Devery Jacobs",
+                "source": "Los Angeles Times",
+                "logo": "Image/press-logos/Los Angeles Times.svg",
+                "class": "invert-dark-logo"
+            },
+            {
+                "text": "Devery Jacobs delivers a spectacular performance in Backspot [...] There is an understated yet still arresting authenticity to the way Jacobs carries a scene",
+                "source": "Collider",
+                "logo": "/Image/press-logos/Collider.svg"
+            }
+        ]
+    },
+    {
+        "project": "Backspot",
+        "category": "D.W. Waterson’s Direction",
+        "quotes": [{
+                "text": "Waterson has a really good eye for capturing details for these characters.",
+                "source": "NPR Los Angeles",
+                "logo": "/Image/press-logos/NPR Logo_Color_RGB.svg"
+            },
+            {
+                "text": "Backspot is a promising debut from Waterson that will leave audiences cheering.",
+                "source": "Globe and Mail",
+                "logo": "/Image/press-logos/The Globe and Mail.png"
+            },
+            {
+                "text": "Waterson excels at immersing the audience.",
+                "source": "IndieWire",
+                "logo": "/Image/press-logos/IndieWire.svg",
+                "class": "invert-dark-logo"
+            },
+            {
+                "text": "Masterful direction from D.W Waterson",
+                "source": "In the Seats",
+                "logo": "/Image/press-logos/IntheSeats.png"
+            },
+            {
+                "text": "From the onset Waterson puts their distinctive style on full display",
+                "source": "Live for Films",
+                "logo": "/Image/press-logos/LiveforFilms.png"
+            },
+            {
+                "text": "Waterson's directorial debut delivers a strong new voice and clear vision in storytelling",
+                "source": "Reel News Daily",
+                "logo": "/Image/press-logos/RND.png"
+            }
+        ]
+    },
+    {
+        "project": "That’s My DJ (Season 1–3)",
+        "category": "Series Reviews",
+        "quotes": [{
+                "text": "A hypnotic glimpse into lives, loves, work and never-ending parties.",
+                "source": "Paste Magazine",
+                "logo": "/Image/press-logos/PasteMagazine.svg",
+                "class": "invert-dark-logo"
+            },
+            {
+                "text": "Funny, exciting, inventive, occasionally maddening, always beautiful.",
+                "source": "Talk Nerdy With Us",
+                "logo": "/Image/press-logos/TalkNerdyWithUs.png",
+                "class": "invert-dark-logo"
+            },
+            {
+                "text": "Offers a much-needed visibility...",
+                "source": "Teen Vogue",
+                "logo": "/Image/press-logos/TeenVogue.svg",
+                "class": "invert-dark-logo"
+            },
+            {
+                "text": "A television pilot to put on your radar.",
+                "source": "NBC",
+                "logo": "/Image/press-logos/NBC.svg"
+            },
+            {
+                "text": "A vibrant love letter to Toronto’s EDM scene.",
+                "source": "Talk Nerdy With Us",
+                "logo": "/Image/press-logos/TalkNerdyWithUs.png",
+                "class": "invert-dark-logo"
+            },
+            {
+                "text": "A queer series you should be binge-watching right now.",
+                "source": "Buzzfeed",
+                "logo": "/Image/press-logos/Buzzfeed.svg"
+            }
+        ]
+    }
+]
