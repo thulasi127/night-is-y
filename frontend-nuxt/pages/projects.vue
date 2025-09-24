@@ -2,13 +2,13 @@
   <div class="projects-page-menu">
     <NavBar />
     <div class="projects-content">
-      <div class="projects">PROJECTS</div>
+      <h1 class="projects-heading">PROJECTS</h1>
       <div class="project-rows">
         <div class="img-container clickable" @click="goToFilmSeries">
           <img
             class="released-projects"
             alt="Released projects"
-            src="/Image/project-covers/film-series/film-cover-3.jpg"
+            src="/Image/project-covers/film-series/film-cover-1.jpg"
           />
           <div class="img-overlay"></div>
           <div class="row-label film-series">FILM &amp; SERIES</div>
@@ -17,7 +17,7 @@
         <img
           class="in-development"
           alt="Music Videos"
-          src="/Image/project-covers/music-videos/music-video-cover-1.jpg"
+          src="/Image/project-covers/music-videos/music-cover-1.png"
         />
         <div class="img-overlay"></div>
         <div class="row-label music-videos">MUSIC VIDEOS</div>
@@ -26,7 +26,7 @@
           <img
             class="img"
             alt="In development"
-            src="/Image/project-covers/in-dev/in-dev-cover-1.jpg"
+            src="/Image/project-covers/in-dev/dev-cover-1.png"
           />
           <div class="img-overlay"></div>
           <div class="row-label text-wrapper">IN DEVELOPMENT</div>
@@ -126,38 +126,54 @@ NavBar {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(0.7);
+  filter: brightness(0.9); /* Brighter by default */
   transition: filter 0.3s, box-shadow 0.3s;
 }
 
 .img-container:hover img {
-  filter: brightness(1);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  filter: brightness(1.05); /* Slightly brighter on hover */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 
+/* Default overlay for all rows */
 .img-overlay {
   position: absolute;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(30,30,30,0.25);
-  transition: background 0.3s;
+  background: rgba(0, 0, 0, 0.15); /* Light tint for contrast */
   z-index: 2;
   pointer-events: none;
+  transition: background 0.3s ease;
 }
 
 .img-container:hover .img-overlay {
-  background: rgba(30,30,30,0);
+  background: rgba(0, 0, 0, 0); /* Remove tint on hover */
+}
+
+/* Left → Right Fade */
+.fade-left .img-overlay {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+}
+
+/* Right → Left Fade */
+.fade-right .img-overlay {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+}
+
+/* Hover removes the overlay completely */
+.img-container:hover .img-overlay {
+  background: rgba(30, 30, 30, 0);
 }
 
 .row-label {
   position: absolute;
-  right: 42px;
+  right: calc(100px + 5vw); /* Equal to projects-heading's left margin */
   bottom: 32px;
   color: #fff;
   font-family: "proxima-nova", sans-serif;
-  font-size: 1.5rem; /* reduced from 2rem */
+  font-size: 1.5rem;
   font-weight: 400;
   letter-spacing: 0.05em;
   text-shadow: 0 2px 8px rgba(0,0,0,0.7);
@@ -165,6 +181,11 @@ NavBar {
   border-radius: 4px;
   z-index: 3;
   pointer-events: none;
+  max-width: 60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
 }
 
 .row-label,
@@ -189,13 +210,28 @@ NavBar {
   }
   .row-label {
     font-size: 1rem;
-    right: 12px;
+    right: 16px; /* Match projects-heading's left margin on mobile */
     bottom: 12px;
     padding: 4px 10px;
+    max-width: 80%;
   }
   .img-container {
     min-height: 120px;
     max-height: 220px;
   }
 }
+
+.projects-heading {
+  font-size: clamp(48px, 6vw, 72px);
+  margin-bottom: 20px;
+  line-height: 1;
+  font-family: "anton", sans-serif;
+  color: #fff;
+  letter-spacing: -0.01em;
+  display: flex;
+  justify-content: flex-start; /* Default left alignment */
+  margin-left: calc(100px + 5vw); /* Push it to align between logo + text */
+  transition: margin-left 0.3s ease;
+}
+
 </style>
