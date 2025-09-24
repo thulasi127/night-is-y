@@ -8,7 +8,7 @@
           <img
             class="released-projects"
             alt="Released projects"
-            src="/Image/project-covers/film-series/film-cover-1.jpg"
+            src="/Image/project-covers/film-series/film-cover-3.jpg"
           />
           <div class="img-overlay"></div>
           <div class="row-label film-series">FILM &amp; SERIES</div>
@@ -65,15 +65,26 @@ const goToMusicVideos = () => router.push('/music-videos');
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center everything vertically */
+  justify-content: center;
 }
 
+/* Make NavBar fixed at the top */
+NavBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 1001;
+}
+
+/* Add top padding so "PROJECTS" header never overlaps NavBar */
 .projects-content {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   width: 100%;
-  justify-content: center; /* Center group vertically */
+  justify-content: center;
+  padding-top: 120px; /* ensures space under navbar */
 }
 
 .projects {
@@ -146,7 +157,7 @@ const goToMusicVideos = () => router.push('/music-videos');
   bottom: 32px;
   color: #fff;
   font-family: "proxima-nova", sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem; /* reduced from 2rem */
   font-weight: 400;
   letter-spacing: 0.05em;
   text-shadow: 0 2px 8px rgba(0,0,0,0.7);
@@ -168,7 +179,7 @@ const goToMusicVideos = () => router.push('/music-videos');
 
 @media (max-width: 900px) {
   .projects-content {
-    justify-content: center;
+    padding-top: 80px;
   }
   .projects {
     font-size: 2.5rem;
