@@ -27,35 +27,39 @@
               {{ bio.role.toUpperCase() }}
             </span>
           </div>
-          <span class="text-wrapper-4" v-html="bio.bio ? bio.bio.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>') : ''"></span>
-          <br /><br />
-          <span class="text-wrapper-5">PAST NOTABLE WORK:</span>
-          <div class="notable-works-horizontal">
-            <template v-for="(work, idx) in bio.notable_works" :key="work.title">
-              <a href="#" @click.prevent="openVideo(work.url)">
-                {{ work.title }}
-              </a>
-              <span v-if="idx < bio.notable_works.length - 1" class="dot">•</span>
-            </template>
-          </div>
-          <div class="frame">
-            <template v-for="link in bio.links" :key="link.type">
-              <a :href="link.url" target="_blank" rel="noopener noreferrer">
-                <img
-                  v-if="link.type === 'imdb'"
-                  class="imdb-logo"
-                  :alt="link.type + ' logo'"
-                  :src="link.img"
-                />
-                <img
-                  v-else
-                  :class="link.type + '-instance'"
-                  :alt="link.type + ' logo'"
-                  :src="link.img"
-                  style="height:48px;width:48px;"
-                />
-              </a>
-            </template>
+
+          <div class="bio-container">
+            <!-- Left: Bio text -->
+            <div class="bio-text" v-html="bio.bio ? bio.bio.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>') : ''"></div>
+
+            <!-- Right: Past works sidebar -->
+            <div class="works-sidebar">
+              <span class="sidebar-heading">PAST NOTABLE WORK:</span>
+              <div class="works-list">
+                <template v-for="(work, idx) in bio.notable_works" :key="work.title">
+                  <a href="#" @click.prevent="openVideo(work.url)">{{ work.title }}</a>
+                </template>
+              </div>
+              <div class="frame">
+                <template v-for="link in bio.links" :key="link.type">
+                  <a v-if="link.url" :href="link.url" target="_blank" rel="noopener noreferrer">
+                    <img
+                      v-if="link.type === 'imdb'"
+                      class="imdb-logo"
+                      :alt="link.type + ' logo'"
+                      :src="link.img"
+                    />
+                    <img
+                      v-else
+                      :class="link.type + '-instance'"
+                      :alt="link.type + ' logo'"
+                      :src="link.img"
+                      style="height:36px;width:36px;"
+                    />
+                  </a>
+                </template>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -215,41 +219,30 @@ const bio = bioData.dw_waterson;
 }
 
 .main-text-block {
-  max-width: 600px; /* reduced from 800px */
-  margin-top: 160px; /* reduced from 240px */
+  max-width: 600px;
+  margin-top: 120px;
 }
 
 .names-row {
   display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  width: 100%;
-  white-space: nowrap;
   gap: 32px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .devery-jacobs,
 .devery-jacobs.overline {
   font-family: "anton", sans-serif;
-  /* font-size: 48px; */
-  font-weight: 300;
-  font-size: clamp(28px, 3vw, 36px); /* reduced from 48px */
-  line-height: 1.2;
-  /* line-height: 45px; */
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 0;
-  word-wrap: break-word;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-transform: none;
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 900;
   text-decoration: overline;
   text-decoration-thickness: 3px;
-  text-decoration-color: rgba(255, 255, 255, 0.5); /* switched to faded white */
-  transition: color 0.2s;
+  line-height: 1.1;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  text-decoration-color: rgba(255,255,255,0.5);
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+  cursor: pointer;
 }
-
 .devery-jacobs:hover,
 .devery-jacobs.overline:hover {
   color: rgba(255, 255, 255, 0.75);
@@ -259,141 +252,121 @@ const bio = bioData.dw_waterson;
 .dw-waterson,
 .dw-waterson.overline {
   font-family: "anton", sans-serif;
-  /* font-size: 48px; */
-  font-weight: 300;
-  font-size: clamp(28px, 3vw, 36px); /* reduced from 48px */
-  line-height: 1.2;
-  color: white;
-  letter-spacing: 0;
-  word-wrap: break-word;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-transform: uppercase;
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 900;
   text-decoration: overline;
   text-decoration-thickness: 3px;
-  text-decoration-color: #d90ec1ba; /* switched to magenta */
+  text-decoration-color: #d90ec1ba; /* switched to magenta */;
+  line-height: 1.1;
 }
 
 .devery-meta, .span {
-  font-family: "anton", sans-serif;
-  font-size: clamp(16px, 1.8vw, 20px);
-  margin-bottom: 20px;
-  margin-top: 12px;
-}
-
-.text-wrapper-4 {
   font-family: "proxima-nova", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(16px, 1.8vw, 18px);
-  line-height: 1.5;
-  letter-spacing: 0px;
-  color: #fff;
-  text-transform: none;
-}
-
-.text-wrapper-5 {
-  font-family: "proxima-nova", sans-serif;
-  font-size: clamp(12px, 1.2vw, 14px);
-  margin-top: 16px;
-  font-weight: 700;
-  line-height: 30px;
-  letter-spacing: 0px;
+  font-size: clamp(15px, 1.6vw, 18px);
+  margin-bottom: 14px;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
   color: #fff;
   text-transform: uppercase;
 }
 
-.notable-works-list {
-  margin-top: 8px;
-  margin-bottom: 8px;
-  padding-left: 0;
-  list-style: none;
+.bio-container {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 32px;
+  margin-top: 12px;
+  align-items: flex-start;
+  max-width: 900px;
 }
 
-.notable-works-list li {
-  margin-bottom: 6px;
-}
-
-.notable-works-list a {
-  font-family: "anton", sans-serif;
-  color: #d90ec1ba;
-  font-weight: 300;
-  text-decoration: underline;
-  font-size: 16px;
-  transition: color 0.2s;
-}
-
-.notable-works-list a:hover {
-  color: #fff;
-}
-
-.notable-works-horizontal {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.notable-works-horizontal a {
+.bio-text {
   font-family: "proxima-nova", sans-serif;
-  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #e6e6e6;
+  text-align: left;
+  column-count: 2;
+  column-gap: 32px;
+  margin-bottom: 20px;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+}
+.bio-text p {
+  margin-bottom: 0.5em;
+}
+
+/* --- Past Notable Work Sidebar --- */
+.works-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.sidebar-heading {
+  font-size: 13px;
   color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.works-list a {
+  display: block;
+  margin-bottom: 4px;
   text-decoration: underline;
-  text-transform: none;
-  letter-spacing: 0px;
-  line-height: 30px;
+  color: #fff;                /* White by default */
   transition: color 0.2s;
-  white-space: nowrap;
-  font-size: clamp(12px, 1.2vw, 14px);
 }
 
-.notable-works-horizontal a:hover {
-  color: #d90ec1ba;
+.works-list a:hover {
+  color: #d90ec1ba;           /* Magenta hover to match name-row */
 }
 
-.notable-works-horizontal .dot {
+/* Keep dots white and subtle */
+.works-list .dot {
   color: #fff;
-  font-size: 10px;
   margin: 0 6px;
   user-select: none;
   font-weight: bold;
-  line-height: 1;
 }
+
 
 .frame {
-  height: 99px;
   display: flex;
-  align-items: center;
-  width: auto;
-  gap: 16px;
-  margin-top: 20px;
-  background: transparent;
+  gap: 14px;
+  margin-top: 12px;
 }
-
-.imdb-logo {
-  aspect-ratio: 1;
+.frame img {
   height: 36px !important;
   width: 36px !important;
-  object-fit: cover;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 2px #fff2);
+  transition: opacity 0.2s, filter 0.2s;
+}
+.frame img:hover {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px #fff6);
 }
 
-.instagram-instance,
-.youtube-instance {
-  height: 36px !important;
-  width: 36px !important;
-  position: static !important;
+@media (max-width: 1024px) {
+  .bio-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100vw;
+  }
+  .bio-text {
+    column-count: 1;
+  }
+  .works-sidebar {
+    margin-top: 18px;
+  }
 }
-
-.imdb-logo,
-.instagram-instance,
-.youtube-instance {
-  height: 36px !important;
-  width: 36px !important;
-}
-
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1); /* slower fade */
 }
