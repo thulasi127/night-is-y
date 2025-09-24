@@ -329,19 +329,21 @@ const bio = bioData.devery_jacobs;
 /* --- Social Icons: Smaller & Closer --- */
 .frame {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   margin-top: 12px;
 }
 
 .frame img {
-  height: 28px !important;
-  width: 28px !important;
-  opacity: 0.8;
-  transition: opacity 0.2s;
+  height: 36px !important;   /* increased from 28px */
+  width: 36px !important;    /* increased from 28px */
+  opacity: 0.95;             /* brighter by default */
+  filter: drop-shadow(0 0 2px #fff2); /* subtle glow for visibility */
+  transition: opacity 0.2s, filter 0.2s;
 }
 
 .frame img:hover {
   opacity: 1;
+  filter: drop-shadow(0 0 6px #fff6); /* stronger glow on hover */
 }
 
 /* --- Responsive Layout --- */
