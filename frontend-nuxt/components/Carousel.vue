@@ -40,11 +40,15 @@ const emit = defineEmits(["onPosterClick"]);
 
 const centerIndex = ref(0);
 const hovered = ref(null);
+let hoverTimeout = null;
 
 function handleHover(idx) {
   hovered.value = idx;
   if (idx !== centerIndex.value) {
-    centerIndex.value = idx; // Trigger smooth recenter on hover
+    clearTimeout(hoverTimeout);
+    hoverTimeout = setTimeout(() => {
+      centerIndex.value = idx; // Only recenter after 150ms
+    }, 100);
   }
 }
 
@@ -76,10 +80,9 @@ const trackStyle = computed(() => {
 
   return {
     transform: `translateX(${translateX}px)`,
-    transition: "transform 0.6s cubic-bezier(.77,0,.18,1)"
+    transition: "transform 0.9s cubic-bezier(.77,0,.18,1)" // Slower and smoother
   };
 });
-
 </script>
 
 <style scoped>
@@ -97,9 +100,9 @@ const trackStyle = computed(() => {
 .carousel-track {
   display: flex;
   align-items: center;
-  justify-content: left; /* This centers the cards horizontally */
+  justify-content: left;
   width: 100%;
-  transition: transform 0.6s cubic-bezier(.77,0,.18,1);
+  transition: transform 0.9s cubic-bezier(.77,0,.18,1); /* Smoother transition */
   will-change: transform;
 }
 
