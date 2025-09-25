@@ -78,9 +78,23 @@ function closeModal() {
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 32px;
-  margin-bottom: 40px;
+  margin-top: 24px;    /* reduced from 32px */
+  margin-bottom: 24px; /* reduced from 40px */
   position: relative;
+}
+
+.film-series-title {
+  margin: 0 auto;
+  margin-top: 40px;    /* reduced from 80px */
+  color: #fff;
+  font-family: "anton", sans-serif;
+  font-size: 40px;     /* reduced from 48px */
+  font-weight: 300;
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 2;
+  white-space: nowrap;
 }
 
 .projects-cta {

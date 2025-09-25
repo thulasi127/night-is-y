@@ -200,19 +200,21 @@ onUnmounted(() => {
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-top: 48px;
+  margin-top: 72px;
 }
 .line {
-  width: 40px;
-  height: 4px;
+  width: 24px;   /* shorter length */
+  height: 2px;   /* thinner height */
   background: #333;
-  border-radius: 2px;
+  border-radius: 1px;
   transition: background 0.3s;
   cursor: pointer;
   opacity: 0.5;
 }
+
 .line.active {
   background: #fff;
   opacity: 1;
 }
+
 </style>

@@ -331,6 +331,7 @@ const bio = bioData.devery_jacobs;
   display: flex;
   gap: 14px;
   margin-top: 12px;
+  background: transparent;
 }
 
 .frame img {

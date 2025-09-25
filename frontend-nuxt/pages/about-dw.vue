@@ -341,6 +341,7 @@ const bio = bioData.dw_waterson;
   display: flex;
   gap: 14px;
   margin-top: 12px;
+  background: transparent;
 }
 .frame img {
   height: 36px !important;
