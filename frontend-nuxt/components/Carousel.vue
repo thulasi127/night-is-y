@@ -1,7 +1,6 @@
 <template>
   <div class="carousel-root">
     <button class="carousel-arrow left" @click="prev" :disabled="!canGoPrev">‹</button>
-    
     <div class="carousel-track" :style="trackStyle">
       <div
         v-for="(item, idx) in items"
@@ -11,17 +10,14 @@
           center: idx === centerIndex,
           hovered: hovered === idx
         }"
-        @mouseenter="hovered = idx"
+        @mouseenter="handleHover(idx)"
         @mouseleave="hovered = null"
         @click="emitPosterClick(item, $event)"
       >
         <img :src="item.poster" :alt="item.title" />
       </div>
     </div>
-    
     <button class="carousel-arrow right" @click="next" :disabled="!canGoNext">›</button>
-
-    <!-- Horizontal lines only -->
     <div class="carousel-lines">
       <span
         v-for="(_, idx) in items"
@@ -45,6 +41,13 @@ const emit = defineEmits(["onPosterClick"]);
 const centerIndex = ref(0);
 const hovered = ref(null);
 
+function handleHover(idx) {
+  hovered.value = idx;
+  if (idx !== centerIndex.value) {
+    centerIndex.value = idx; // Trigger smooth recenter on hover
+  }
+}
+
 const canGoPrev = computed(() => centerIndex.value > 0);
 const canGoNext = computed(() => centerIndex.value < props.items.length - 1);
 
@@ -65,10 +68,8 @@ function emitPosterClick(item, event) {
   emit("onPosterClick", item, event);
 }
 
-// Always center the active card
 const trackStyle = computed(() => {
-  const cardWidth = 360; // Card width including margin
-  const totalWidth = props.items.length * cardWidth;
+  const cardWidth = 360;
   const viewportCenter = window.innerWidth / 2;
   const activeCardCenter = centerIndex.value * cardWidth + cardWidth / 2;
   const translateX = viewportCenter - activeCardCenter;
@@ -78,7 +79,6 @@ const trackStyle = computed(() => {
     transition: "transform 0.6s cubic-bezier(.77,0,.18,1)"
   };
 });
-
 
 </script>
 
