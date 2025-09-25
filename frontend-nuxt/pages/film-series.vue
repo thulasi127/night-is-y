@@ -8,191 +8,56 @@
       </div>
       <div class="film-series-title">FILM &amp; SERIES</div>
     </div>
-    <div
-      class="posters-row"
-      @mousedown="startDrag"
-      @mousemove="onDrag"
-      @mouseup="endDrag"
-      @mouseleave="endDrag"
-      @touchstart="startDrag"
-      @touchmove="onDrag"
-      @touchend="endDrag"
-    >
-      <div
-        v-for="(film, idx) in visibleFilms"
-        :key="film.id"
-        class="poster-image-wrapper"
-        @mouseenter="hovered = idx"
-        @mouseleave="hovered = null"
-        @click="openModal(film, $event)"
-        ref="posterRefs"
-        style="cursor:pointer"
-      >
-        <div class="image">
-          <img
-            class="img"
-            :class="{ 'poster-hovered': hovered === idx }"
-            :src="film.poster"
-            :alt="film.title"
-          />
-          <div v-if="hovered === idx" class="poster-overlay immediate center-overlay">
-            <div class="poster-title-neue">{{ displayTitle(film) }}</div>
-            <div class="poster-type-neue">
-              {{ film.type ? film.type : 'Film' }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button
-      class="arrow arrow-left cta-hover"
-      :disabled="!canGoPrevious"
-      :style="{ opacity: canGoPrevious ? 1 : 0.3 }"
-      @click="previousSlide"
-      aria-label="Previous"
-    >
-      <ChevronLeftIcon class="arrow-icon" />
-    </button>
-    <button
-      class="arrow arrow-right"
-      :disabled="!canGoNext"
-      :style="{ opacity: canGoNext ? 1 : 0.3 }"
-      @click="nextSlide"
-      aria-label="Next"
-    >
-      <ChevronRightIcon class="arrow-icon" />
-    </button>
+
+    <!-- Carousel integration -->
+    <Carousel
+      v-if="films.length > 0"
+      :items="films"
+      @onPosterClick="openModal"
+    />
+
     <FilmModal
       v-if="modalOpen && modalFilm"
       :film="modalFilm"
       :close="closeModal"
-      :posterRect="posterRect"
     />
-
   </div>
 </template>
 
-<script lang="ts">
-
-useHead({
-  title: 'Film & Series | NIGHT is Y',
-  meta: [{ name: 'description', content: 'Film & Series NIGHT is Y.' }]
-})
-import { defineComponent, ref, computed, onMounted } from "vue";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
+<script setup>
+import { ref, onMounted } from "vue";
 import NavBar from "../components/NavBar.vue";
+import Carousel from "../components/Carousel.vue";
+import FilmModal from "../components/FilmModal.vue";
 import filmsData from "../data/films.json";
-import { useRouter } from 'vue-router';
-import FilmModal from "~/components/FilmModal.vue";
+import { useRouter } from "vue-router";
+import { ChevronLeftIcon } from "@heroicons/vue/24/solid";
 
+const films = ref([]);
+const modalOpen = ref(false);
+const modalFilm = ref(null);
+const router = useRouter();
 
-export default defineComponent({
-  name: "ProjectsPageFilm",
-  components: {
-    ChevronLeftIcon,
-    ChevronRightIcon,
-    NavBar,
-    FilmModal,
-  },
-  setup() {
-    const films = ref([]);
-    const currentIndex = ref(0);
-    const itemsPerPage = 3;
-    const hovered = ref<number | null>(null);
-    const router = useRouter();
-    const modalOpen = ref(false);
-    const modalFilm = ref<any>(null);
-    const posterRect = ref<any>(null);
-
-    // Drag/swipe state
-    const dragStartX = ref<number | null>(null);
-    const dragDelta = ref(0);
-
-    onMounted(() => {
-      // Sort films by year, newest first
-      films.value = filmsData.sort((a, b) => b.year - a.year);
-    });
-
-    // Helper function to concatenate title and year
-    const displayTitle = (film: { title: string; year?: string }) => {
-      return film.year ? `${film.title} (${film.year})` : film.title;
-    };
-
-    const visibleFilms = computed(() =>
-      films.value.slice(currentIndex.value, currentIndex.value + itemsPerPage)
-    );
-
-    const canGoPrevious = computed(() => currentIndex.value > 0);
-    const canGoNext = computed(
-      () => currentIndex.value + itemsPerPage < films.value.length
-    );
-
-    const previousSlide = () => {
-      if (canGoPrevious.value) currentIndex.value--;
-    };
-    const nextSlide = () => {
-      if (canGoNext.value) currentIndex.value++;
-    };
-
-    // Drag/swipe handlers
-    const startDrag = (e: MouseEvent | TouchEvent) => {
-      dragStartX.value = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      dragDelta.value = 0;
-    };
-    const onDrag = (e: MouseEvent | TouchEvent) => {
-      if (dragStartX.value === null) return;
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      dragDelta.value = clientX - dragStartX.value;
-    };
-    const endDrag = (e: MouseEvent | TouchEvent) => {
-      if (dragStartX.value === null) return;
-      const clientX = 'changedTouches' in e ? e.changedTouches[0].clientX : (e as MouseEvent).clientX;
-      const delta = clientX - dragStartX.value;
-      if (delta > 80 && canGoPrevious.value) previousSlide();
-      else if (delta < -80 && canGoNext.value) nextSlide();
-      dragStartX.value = null;
-      dragDelta.value = 0;
-    };
-
-    // Ensure CTA leads to /projects page
-    const goToProjects = () => {
-      router.push('/projects');
-    };
-
-    const openModal = (film: any, event: MouseEvent) => {
-      const rect = event.currentTarget.getBoundingClientRect();
-      modalFilm.value = film;
-      posterRect.value = rect;
-      modalOpen.value = true;
-    };
-    const closeModal = () => {
-      modalOpen.value = false;
-      modalFilm.value = null;
-    };
-
-    return {
-      films,
-      visibleFilms,
-      currentIndex,
-      previousSlide,
-      nextSlide,
-      canGoPrevious,
-      canGoNext,
-      hovered,
-      startDrag,
-      onDrag,
-      endDrag,
-      goToProjects,
-      displayTitle,
-      modalOpen,
-      openModal,
-      closeModal,
-      modalFilm,
-      posterRect
-    };
-  }
+onMounted(() => {
+  films.value = filmsData.sort((a, b) => b.year - a.year);
 });
+
+function goToProjects() {
+  router.push("/projects");
+}
+
+function openModal(film, event) {
+  modalFilm.value = film;
+  modalOpen.value = true;
+}
+
+function closeModal() {
+  modalOpen.value = false;
+  modalFilm.value = null;
+}
 </script>
+
+
 
 <style>
 .centered-layout {

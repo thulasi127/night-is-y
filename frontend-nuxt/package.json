@@ -12,8 +12,11 @@
   "dependencies": {
     "@heroicons/vue": "^2.2.0",
     "@sanity/client": "^7.9.0",
+    "@splidejs/splide": "^4.1.4",
+    "@splidejs/vue-splide": "^0.6.12",
     "normalize-path": "^3.0.0",
     "nuxt": "^3.18.1",
+    "swiper": "^12.0.2",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
   },
