@@ -1,15 +1,15 @@
 <template>
   <div class="carousel-root">
+    <!-- Left Arrow -->
     <button class="carousel-arrow left" @click="prev" :disabled="!canGoPrev">‹</button>
+
+    <!-- Carousel Track -->
     <div class="carousel-track" :style="trackStyle">
       <div
         v-for="(item, idx) in items"
         :key="item.id || idx"
         class="carousel-card"
-        :class="{
-          center: idx === centerIndex,
-          hovered: hovered === idx
-        }"
+        :class="{ center: idx === centerIndex, hovered: hovered === idx }"
         @mouseenter="handleHover(idx)"
         @mouseleave="hovered = null"
         @click="emitPosterClick(item, $event)"
@@ -17,7 +17,11 @@
         <img :src="item.poster" :alt="item.title" />
       </div>
     </div>
+
+    <!-- Right Arrow -->
     <button class="carousel-arrow right" @click="next" :disabled="!canGoNext">›</button>
+
+    <!-- Pagination Lines -->
     <div class="carousel-lines">
       <span
         v-for="(_, idx) in items"
@@ -31,39 +35,48 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 
 const props = defineProps({
-  items: { type: Array, required: true }
+  items: { type: Array, required: true },
+  autoSlide: { type: Boolean, default: false }, // Optional auto-slide toggle
+  slideInterval: { type: Number, default: 10000 } // 10s per slide if enabled
 });
 const emit = defineEmits(["onPosterClick"]);
 
 const centerIndex = ref(0);
 const hovered = ref(null);
-let hoverTimeout = null;
+const lastHoveredIndex = ref(null);
+let allowHover = true; // Controls whether hover recentering is allowed
+let autoSlideTimer = null;
 
+// Mouse movement resets hover allowance
+function enableHoverOnMove() {
+  allowHover = true;
+}
+window.addEventListener("mousemove", enableHoverOnMove);
+
+// Hover handler: Only recenter when mouse moves + new poster
 function handleHover(idx) {
+  if (!allowHover || idx === lastHoveredIndex.value) return;
+
   hovered.value = idx;
-  if (idx !== centerIndex.value) {
-    clearTimeout(hoverTimeout);
-    hoverTimeout = setTimeout(() => {
-      centerIndex.value = idx; // Only recenter after 150ms
-    }, 100);
-  }
+  centerIndex.value = idx;
+  lastHoveredIndex.value = idx;
+  allowHover = false; // Prevent re-firing until mouse moves again
 }
 
+// Navigation
 const canGoPrev = computed(() => centerIndex.value > 0);
 const canGoNext = computed(() => centerIndex.value < props.items.length - 1);
 
 function prev() {
-  if (centerIndex.value > 0) {
-    centerIndex.value--;
-  }
+  if (canGoPrev.value) centerIndex.value--;
+  else centerIndex.value = props.items.length - 1; // Loop to last
 }
 function next() {
-  if (centerIndex.value < props.items.length - 1) {
-    centerIndex.value++;
-  }
+  if (canGoNext.value) centerIndex.value++;
+  else centerIndex.value = 0; // Loop back to first
 }
 function goTo(idx) {
   centerIndex.value = idx;
@@ -72,6 +85,7 @@ function emitPosterClick(item, event) {
   emit("onPosterClick", item, event);
 }
 
+// Track style: Always center the active card
 const trackStyle = computed(() => {
   const cardWidth = 360;
   const viewportCenter = window.innerWidth / 2;
@@ -80,8 +94,26 @@ const trackStyle = computed(() => {
 
   return {
     transform: `translateX(${translateX}px)`,
-    transition: "transform 0.9s cubic-bezier(.77,0,.18,1)" // Slower and smoother
+    transition: "transform 0.9s cubic-bezier(.77,0,.18,1)" // smooth & consistent
   };
+});
+
+// Optional auto-slide
+function startAutoSlide() {
+  if (!props.autoSlide) return;
+  stopAutoSlide();
+  autoSlideTimer = setInterval(() => {
+    next();
+  }, props.slideInterval);
+}
+function stopAutoSlide() {
+  if (autoSlideTimer) clearInterval(autoSlideTimer);
+}
+
+onMounted(() => startAutoSlide());
+onUnmounted(() => {
+  stopAutoSlide();
+  window.removeEventListener("mousemove", enableHoverOnMove);
 });
 </script>
 
@@ -94,7 +126,7 @@ const trackStyle = computed(() => {
   flex-direction: column;
   align-items: center;
   padding: 60px 0 40px;
-  padding-top: 40px; /* adjust until perfect */
+  padding-top: 40px;
 }
 
 .carousel-track {
@@ -102,7 +134,7 @@ const trackStyle = computed(() => {
   align-items: center;
   justify-content: left;
   width: 100%;
-  transition: transform 0.9s cubic-bezier(.77,0,.18,1); /* Smoother transition */
+  transition: transform 0.9s cubic-bezier(.77,0,.18,1);
   will-change: transform;
 }
 
@@ -128,17 +160,20 @@ const trackStyle = computed(() => {
   border-radius: 24px;
 }
 
+/* Centered or hovered card enlarges */
 .carousel-card.center,
 .carousel-card.hovered {
   transform: scale(1.1);
   box-shadow: 0 16px 48px rgba(0,0,0,0.35);
   z-index: 2;
 }
+/* Others shrink & fade slightly */
 .carousel-card:not(.center):not(.hovered) {
   transform: scale(0.9);
   opacity: 0.6;
 }
 
+/* Arrows */
 .carousel-arrow {
   position: absolute;
   top: 50%;
@@ -160,11 +195,12 @@ const trackStyle = computed(() => {
 .carousel-arrow.right { right: 24px; }
 .carousel-arrow:disabled { opacity: 0.3; cursor: default; }
 
+/* Pagination lines */
 .carousel-lines {
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-top: 48px; /* Pushes lines further down */
+  margin-top: 48px;
 }
 .line {
   width: 40px;
