@@ -109,7 +109,8 @@ export default defineComponent({
     const dragDelta = ref(0);
 
     onMounted(() => {
-      films.value = filmsData;
+      // Sort films by year, newest first
+      films.value = filmsData.sort((a, b) => b.year - a.year);
     });
 
     // Helper function to concatenate title and year
@@ -219,14 +220,15 @@ export default defineComponent({
 
 .projects-cta {
   position: absolute;
-  left: 192px; /* Shift right by 4 tabs (approx 4 x 48px) */
+  left: 192px;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  z-index: 10; /* Ensure it's above other elements */
+  z-index: 10;
   pointer-events: auto;
+  margin-top: 80px; /* Same spacing as FILM & SERIES title */
 }
 
 .projects-cta-button {
@@ -261,6 +263,17 @@ export default defineComponent({
   z-index: 2;
   white-space: nowrap;
   flex: 1;
+  margin-top: 80px; /* Pushes it down on desktop */
+}
+
+@media (max-width: 1024px) {
+  .film-series-title {
+    margin-top: 120px; /* More space on smaller screens to prevent overlap */
+  }
+
+  .projects-cta {
+    margin-top: 120px; /* More space for smaller screens */
+  }
 }
 
 .chevron-left-small {
