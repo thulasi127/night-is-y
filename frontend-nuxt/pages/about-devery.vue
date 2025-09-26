@@ -292,30 +292,43 @@ const bio = bioData.devery_jacobs;
 .works-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  align-items: flex-start;
-  justify-content: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03); /* subtle tinted background */
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* faint border for structure */
+  max-width: 280px;
+
 }
 
 .sidebar-heading {
   font-size: 13px;
   color: #fff;
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   letter-spacing: 1px;
-  opacity: 0.8;
+  opacity: 0.9;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
+}
+
+.works-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .works-list a {
   display: block;
   margin-bottom: 4px;
-  text-decoration: underline;
-  color: #fff;                /* White by default */
-  transition: color 0.2s;
+  font-size: 14px;
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .works-list a:hover {
-  color: #d90ec1ba;           /* Magenta hover to match name-row */
+  color: #d90ec1ba;          /* Magenta hover to match name-row */
 }
 
 /* Keep dots white and subtle */
@@ -330,21 +343,21 @@ const bio = bioData.devery_jacobs;
 .frame {
   display: flex;
   gap: 14px;
-  margin-top: 12px;
+  margin-top: 10px;
   background: transparent;
 }
 
 .frame img {
-  height: 36px !important;   /* increased from 28px */
-  width: 36px !important;    /* increased from 28px */
-  opacity: 0.95;             /* brighter by default */
+  height: 32px;
+  width: 32px;
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.2s;
   filter: drop-shadow(0 0 2px #fff2); /* subtle glow for visibility */
-  transition: opacity 0.2s, filter 0.2s;
 }
 
 .frame img:hover {
   opacity: 1;
-  filter: drop-shadow(0 0 6px #fff6); /* stronger glow on hover */
+  transform: scale(1.05);
 }
 
 /* --- Responsive Layout --- */
@@ -367,18 +380,22 @@ const bio = bioData.devery_jacobs;
   }
 }
 
-/* --- Responsive: Single Column on Small Screens --- */
+/* --- Responsive adjustments --- */
 @media (max-width: 1024px) {
   .bio-container {
     grid-template-columns: 1fr;
     gap: 20px;
-    max-width: 100vw;
   }
+
   .bio-text {
     column-count: 1;
   }
+
   .works-sidebar {
-    margin-top: 18px;
+    max-width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
 }
 
