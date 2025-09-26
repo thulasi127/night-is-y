@@ -35,7 +35,9 @@
             <span>{{ film.duration }}</span>
           </div>
 
-          <p class="div">{{ film.description }}</p>
+          <div class="div">
+            <p v-for="(para, i) in film.description.split('\n\n')" :key="i">{{ para }}</p>
+          </div>
 
           <!-- Grouped info rows -->
           <div class="info-labels">
@@ -197,12 +199,13 @@ export default {
 .image {
   width: 272px;
   height: 400px;
-  margin-top: 0;         /* Remove excess top margin */
+  margin-top: 0;
   margin-left: 40px;
   object-fit: cover;
   border-radius: 8px;
   flex-shrink: 0;
-  align-self: center;    /* Ensure vertical centering */
+  align-self: center;
+  /* Poster remains fixed size regardless of content */
 }
 
 .modal-scrollable-content {
@@ -213,9 +216,37 @@ export default {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 14px;             /* Slightly tighter vertical spacing */
-  padding-top: 24px;     /* Reduced top padding for better hierarchy */
-  padding-right: 40px;
+  gap: 10px;
+  padding-top: 24px;
+  padding-right: 24px;
+  /* Text flows naturally next to fixed poster */
+}
+
+/* Section titles: consistent margin below */
+.section-heading,
+.awards-title {
+  margin-bottom: 12px;    /* Consistent margin below section titles */
+}
+
+/* Reduce gaps between description, credits, trailer */
+.div {
+  margin-bottom: 10px;    /* Slightly tighter spacing below description */
+}
+
+.info-labels {
+  margin-bottom: 10px;    /* Tighter spacing below credits */
+}
+
+.trailer-video {
+  margin-top: 10px;
+  margin-bottom: 10px;    /* Add margin below trailer for separation */
+}
+
+/* Awards and articles sections: reduce vertical gap */
+.awards-section,
+.article-list-section {
+  margin-top: 18px;       /* Slightly reduced top margin */
+  margin-bottom: 10px;    /* Consistent bottom margin */
 }
 
 .film-title-row {
@@ -226,15 +257,16 @@ export default {
 }
 
 .text-wrapper {
-  font-family: "anton", sans-serif;
-  font-size: 54px;       /* Reduced for better hierarchy */
-  font-weight: 300;
+  font-family: "Anton", sans-serif;
+  font-size: 44px;
+  font-weight: 700;           /* Boldest for title */
   color: #fff;
   text-transform: uppercase;
-  line-height: 1.1;
+  letter-spacing: 1.2px;
+  line-height: 1.08;
   max-width: 100%;
   word-break: break-word;
-  overflow: visible;
+  margin-bottom: 2px;
 }
 
 .laurel-img {
@@ -250,43 +282,61 @@ export default {
   margin-top: 2px; /* subtle alignment tweak */
 }
 
+/* Tablet screens */
+@media (max-width: 1024px) {
+  .laurel-img {
+    height: 32px; /* slightly smaller for tablets */
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 640px) {
+  .laurel-img {
+    height: 26px; /* smaller for mobile */
+    margin-bottom: 4px; /* give some breathing room if wrapped */
+  }
+  .laurels-row {
+    justify-content: flex-start; /* align to left if wrapping */
+  }
+}
+
 .film-subtitle-row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   font-family: "proxima-nova", sans-serif;
-  font-size: 14px;       /* Slightly smaller */
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 1.5;
   color: #e0e0e0;
   font-weight: 400;
-  margin-bottom: 8px;    /* Tighter spacing */
+  margin-bottom: 8px;
 }
 
 .div {
   font-size: 15px;       /* Slightly smaller */
   color: #fff;
-  margin-bottom: 6px;
+  margin-bottom: 10px;    /* Slightly tighter spacing below description */
   line-height: 22px;
 }
 
 .section-heading,
 .awards-title {
   font-size: 15px;       /* Tighter heading size */
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.5px;
   color: #fff;
   font-family: "proxima-nova", sans-serif;
-  margin-bottom: 8px;
+  margin-bottom: 12px;    /* Consistent margin below section titles */
 }
 
 .trailer-video {
   width: 100%;
-  max-width: 600px;       /* was 800px */
+  max-width: 520px;           /* Slightly smaller trailer */
   aspect-ratio: 16 / 9;
   height: auto;
-  border-radius: 6px;     /* a touch more polish */
-  margin-top: 10px;       /* slightly tighter */
-  margin-bottom: 0;
+  border-radius: 6px;
+  margin-top: 10px;
+  margin-bottom: 10px;    /* Add margin below trailer for separation */
   background: #000;
   align-self: flex-start; /* keeps it aligned with text column */
 }
@@ -364,25 +414,33 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 2px; /* minimal vertical spacing between rows */
-  margin-bottom: 12px;
+  margin-bottom: 10px;    /* Tighter spacing below credits */
 }
 .label-title {
   font-family: "proxima-nova", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 15px;
+  font-variant: small-caps;
+  font-weight: 500;           /* Medium for labels */
   color: #fff;
+  letter-spacing: 0.5px;
 }
 .label-link {
   font-family: "proxima-nova", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 400;           /* Regular for content */
   color: #fff;
+  text-decoration: none;
+  transition: color 0.15s, text-decoration 0.15s;
+}
+.label-link:hover,
+.label-link:focus {
   text-decoration: underline;
+  color: #593792;
 }
 
 .awards-section {
   margin-top: 24px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;    /* Consistent bottom margin */
   font-family: "proxima-nova", sans-serif;
 }
 
@@ -406,11 +464,12 @@ export default {
 .awards-list {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 0; /* Minimal spacing for a cleaner stack */
+  margin-bottom: 0; /* Remove extra space below awards */
 }
 
 .award-row {
-  padding: 12px 0 8px 0;
+  padding: 8px 0 4px 0; /* Reduce vertical padding for tighter stack */
   display: flex;
   flex-direction: column;
   border-radius: 4px;
@@ -472,15 +531,22 @@ export default {
 
 .award-name {
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;           /* Medium for award names */
   color: #fff;
   letter-spacing: 0.5px;
   margin-bottom: 2px;
+  text-decoration: none;
+  transition: color 0.15s, text-decoration 0.15s;
 }
-
 .award-name.clickable a {
   color: #fff;
+  text-decoration: none;
+  transition: color 0.15s, text-decoration 0.15s;
+}
+.award-name.clickable a:hover,
+.award-name.clickable a:focus {
   text-decoration: underline;
+  color: #593792;
 }
 
 .award-category {
