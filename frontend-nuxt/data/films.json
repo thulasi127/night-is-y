@@ -1,7 +1,7 @@
 [{
     "id": 1,
     "title": "Backspot",
-    "year": "2023",
+    "year": "2024",
     "type": "Film",
     "poster": "/Image/Posters/film-series/film-poster-3.jpg",
     "duration": "1H 33M ",
@@ -29,7 +29,6 @@
     ],
     "awards": "Awards & Accolades",
     "trailer": "https://www.youtube.com/embed/d179l90jW88",
-    "isCertifiedFresh": true,
     "awardsAndNominations": [{
         "year": null,
         "status": "Nominee",
@@ -63,7 +62,6 @@
     ],
     "awards": "",
     "trailer": "https://www.youtube.com/embed/adH0eqIqlU0",
-    "isCertifiedFresh": false,
     "awardsAndNominations": [{
             "year": null,
             "status": "Winner",
@@ -140,7 +138,6 @@
     ],
     "awards": "",
     "trailer": "https://www.youtube.com/embed/PTEDIiZZ3Hc",
-    "isCertifiedFresh": true,
     "awardsAndNominations": [{
             "year": null,
             "status": "Winner",
@@ -217,7 +214,6 @@
     ],
     "awards": "",
     "trailer": "https://www.youtube.com/embed/T1Kix42EXRY",
-    "isCertifiedFresh": false,
     "awardsAndNominations": [{
             "year": null,
             "status": "Winner",

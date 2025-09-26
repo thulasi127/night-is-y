@@ -24,7 +24,12 @@
             <span>{{ film.duration }}</span>
             <template v-if="film.isCertifiedFresh">
               <span class="dot">&#183;</span>
-              <img class="rotten-tomatoes" alt="Certified Fresh" src="https://c.animaapp.com/2hXfPSxK/img/image-20@2x.png" />
+              <img
+                v-if="film.laurels && film.laurels.length"
+                class="rotten-tomatoes"
+                alt="Certified Fresh"
+                :src="film.laurels[0]"
+              />
             </template>
           </div>
 
@@ -174,17 +179,20 @@ export default {
   display: flex;
   font-family: "proxima-nova", sans-serif;
   overflow: hidden;
+  align-items: center; /* Vertically center poster and content */
 }
+
 .image {
   width: 272px;
   height: 400px;
-  margin-top: 20px;
+  margin-top: 0;         /* Remove excess top margin */
   margin-left: 40px;
   object-fit: cover;
   border-radius: 8px;
   flex-shrink: 0;
-  align-self: flex-start;
+  align-self: center;    /* Ensure vertical centering */
 }
+
 .modal-scrollable-content {
   margin-left: 40px;
   margin-top: 0;
@@ -193,70 +201,97 @@ export default {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding-top: 32px;
-  padding-right: 40px; /* ensures right margin matches left */
-  /* Optional: use padding-inline: 40px; for both sides if needed */
+  gap: 14px;             /* Slightly tighter vertical spacing */
+  padding-top: 24px;     /* Reduced top padding for better hierarchy */
+  padding-right: 40px;
 }
+
 .text-wrapper {
   font-family: "anton", sans-serif;
-  font-size: 64px;
+  font-size: 54px;       /* Reduced for better hierarchy */
   font-weight: 300;
   color: #fff;
   text-transform: uppercase;
-  line-height: 70px;
+  line-height: 1.1;
   margin-bottom: 2px;
   max-width: 100%;
   word-break: break-word;
   overflow: visible;
 }
-.div {
-  font-size: 16px;
-  color: #fff;
-  margin-bottom: 8px;
-  line-height: 24px;
-}
-.trailer-video {
-  width: 100%;
-  max-width: 950px;
-  aspect-ratio: 16 / 9;
-  height: auto;
-  border-radius: 0; /* or 4px for a subtle curve */
-  margin-top: 16px;
-  margin-bottom: 0;
-  display: block;
-  background: #000;
-}
-@media (max-width: 1000px) {
-  .trailer-video {
-    max-width: 100%;
-  }
-}
-.awards-accolades {
-  font-size: 14px;
-  color: #fff;
-  margin-bottom: 8px;
-  text-align: center;
-}
+
 .film-subtitle-row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   font-family: "proxima-nova", sans-serif;
-  font-size: 15px;
-  line-height: 22px;
+  font-size: 14px;       /* Slightly smaller */
+  line-height: 20px;
   color: #e0e0e0;
   font-weight: 400;
-  margin-bottom: 10px;
+  margin-bottom: 8px;    /* Tighter spacing */
 }
 
-.dot {
+.div {
+  font-size: 15px;       /* Slightly smaller */
+  color: #fff;
+  margin-bottom: 6px;
+  line-height: 22px;
+}
+
+.section-heading,
+.awards-title {
+  font-size: 15px;       /* Tighter heading size */
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #fff;
+  font-family: "proxima-nova", sans-serif;
+  margin-bottom: 8px;
+}
+
+.trailer-video {
+  width: 100%;
+  max-width: 800px;      /* Cap max width */
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 4px;
+  margin-top: 12px;
+  margin-bottom: 0;
+  display: block;
+  background: #000;
+}
+
+@media (max-width: 1000px) {
+  .frame {
+    width: 98vw;
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .image {
+    margin-left: 0;
+    margin-top: 24px;
+    align-self: flex-start;
+  }
+  .modal-scrollable-content {
+    margin-left: 0;
+    width: 100%;
+    padding-right: 0;
+    padding-top: 16px;
+  }
+  .trailer-video {
+    max-width: 100%;
+    margin-top: 8px;
+  }
+  .text-wrapper {
+    font-size: 32px;
+  }
+}
+
+.awards-title .dot {
   margin: 0 6px;
-  font-size: 16px;
+  font-size: 14px;
   color: #e0e0e0;
-  font-weight: 400;
-  line-height: 1;
-  display: inline-block;
+  vertical-align: middle;
 }
 
 .rotten-tomatoes {
@@ -480,33 +515,6 @@ export default {
   font-size: 18px;
 }
 
-.article-title {
-  font-style: italic;
-  transition: color 0.15s, filter 0.15s;
-}
-
-.article-title:hover,
-.article-link:hover,
-.article-link:focus {
-  filter: brightness(1) !important; /* override CTA dimming, keep full brightness */
-  color: #593792;
-  cursor: pointer;
-}
-
-/* Transition styles for modal fade */
-.modal-fade-enter-active,
-.modal-fade-leave-active {
-  transition: opacity 1.3s cubic-bezier(.4,0,.2,1);
-}
-.modal-fade-enter-from,
-.modal-fade-leave-to {
-  opacity: 0;
-}
-.modal-fade-enter-to,
-.modal-fade-leave-from {
-  opacity: 1;
-}
-
 /* Fade-in stagger animation for rows */
 .fade-stagger-enter-active {
   transition: all 0.3s cubic-bezier(.4,0,.2,1);
@@ -527,13 +535,15 @@ export default {
   transform: translateY(-12px);
 }
 
-.projects-cta-button,
-.projects-cta-button * {
-  transition: filter 0.15s;
+/* Article title styles */
+.article-title {
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 16px;
+  transition: color 0.15s, filter 0.15s;
 }
-
-.projects-cta-button:hover,
-.projects-cta-button:hover * {
-  filter: brightness(0.7); /* dims text and icon together on hover */
+.article-title:hover {
+  filter: brightness(1) !important;
 }
 </style>
