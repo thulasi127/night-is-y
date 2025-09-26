@@ -368,11 +368,14 @@ export default {
   }
 }
 
+.film-subtitle-row .dot,
 .awards-title .dot {
-  margin: 0 6px;
-  font-size: 14px;
-  color: #e0e0e0;
-  vertical-align: middle;
+  margin: 0 8px;          /* equal horizontal spacing */
+  font-size: 14px;        /* keep dot size consistent */
+  color: #e0e0e0;         /* same gray tone */
+  vertical-align: middle; /* keeps it centered vertically */
+  display: inline-block;  /* prevents collapsing on small screens */
+  line-height: 1; 
 }
 
 .rotten-tomatoes {
@@ -452,13 +455,6 @@ export default {
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-}
-
-.awards-title .dot {
-  margin: 0 6px;
-  font-size: 14px;
-  color: #e0e0e0;
-  vertical-align: middle;
 }
 
 .awards-list {
