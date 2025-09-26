@@ -15,22 +15,24 @@
 
         <!-- Scrollable right-side content -->
         <div class="modal-scrollable-content">
-          <div class="text-wrapper">{{ film.title }}</div>
+          <div class="film-title-row">
+            <div class="text-wrapper">{{ film.title }}</div>
+            <div v-if="film.laurels && film.laurels.length" class="laurels-row">
+              <img
+                v-for="laurel in orderedLaurels"
+                :key="laurel.name"
+                :src="laurel.img"
+                :alt="laurel.name"
+                class="laurel-img"
+              />
+            </div>
+          </div>
 
           <!-- Subtitle row: balanced spacing using flex and consistent dot margins -->
           <div class="film-subtitle-row">
             <span>{{ film.year }}</span>
             <span class="dot">&#183;</span>
             <span>{{ film.duration }}</span>
-            <template v-if="film.isCertifiedFresh">
-              <span class="dot">&#183;</span>
-              <img
-                v-if="film.laurels && film.laurels.length"
-                class="rotten-tomatoes"
-                alt="Certified Fresh"
-                :src="film.laurels[0]"
-              />
-            </template>
           </div>
 
           <p class="div">{{ film.description }}</p>
@@ -148,6 +150,16 @@ export default {
   props: {
     film: { type: Object, required: true },
     close: { type: Function, required: true }
+  },
+  computed: {
+    orderedLaurels() {
+      if (!this.film.laurels) return [];
+      const order = ["tiff", "SXSW", "Rotten Tomatoes"];
+      // Map to ordered laurels, filter out undefined
+      return order
+        .map(name => this.film.laurels.find(l => l.name && l.name.toLowerCase() === name.toLowerCase()))
+        .filter(l => l && l.shouldDisplay);
+    }
   }
 };
 </script>
@@ -206,6 +218,13 @@ export default {
   padding-right: 40px;
 }
 
+.film-title-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 2px;
+}
+
 .text-wrapper {
   font-family: "anton", sans-serif;
   font-size: 54px;       /* Reduced for better hierarchy */
@@ -213,10 +232,22 @@ export default {
   color: #fff;
   text-transform: uppercase;
   line-height: 1.1;
-  margin-bottom: 2px;
   max-width: 100%;
   word-break: break-word;
   overflow: visible;
+}
+
+.laurel-img {
+  height: 44px; /* Increased from 32px for better visibility */
+  width: auto;
+  object-fit: contain;
+}
+
+.laurels-row {
+  display: flex;
+  gap: 16px; /* slightly bigger gap for breathing room */
+  align-items: center;
+  margin-top: 2px; /* subtle alignment tweak */
 }
 
 .film-subtitle-row {
@@ -250,14 +281,14 @@ export default {
 
 .trailer-video {
   width: 100%;
-  max-width: 800px;      /* Cap max width */
+  max-width: 600px;       /* was 800px */
   aspect-ratio: 16 / 9;
   height: auto;
-  border-radius: 4px;
-  margin-top: 12px;
+  border-radius: 6px;     /* a touch more polish */
+  margin-top: 10px;       /* slightly tighter */
   margin-bottom: 0;
-  display: block;
   background: #000;
+  align-self: flex-start; /* keeps it aligned with text column */
 }
 
 @media (max-width: 1000px) {
@@ -515,6 +546,33 @@ export default {
   font-size: 18px;
 }
 
+.article-title {
+  font-style: italic;
+  transition: color 0.15s, filter 0.15s;
+}
+
+.article-title:hover,
+.article-link:hover,
+.article-link:focus {
+  filter: brightness(1) !important; /* override CTA dimming, keep full brightness */
+  color: #593792;
+  cursor: pointer;
+}
+
+/* Transition styles for modal fade */
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 1.3s cubic-bezier(.4,0,.2,1);
+}
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+.modal-fade-enter-to,
+.modal-fade-leave-from {
+  opacity: 1;
+}
+
 /* Fade-in stagger animation for rows */
 .fade-stagger-enter-active {
   transition: all 0.3s cubic-bezier(.4,0,.2,1);
@@ -535,15 +593,13 @@ export default {
   transform: translateY(-12px);
 }
 
-/* Article title styles */
-.article-title {
-  color: #fff;
-  font-weight: 500;
-  letter-spacing: 1px;
-  font-size: 16px;
-  transition: color 0.15s, filter 0.15s;
+.projects-cta-button,
+.projects-cta-button * {
+  transition: filter 0.15s;
 }
-.article-title:hover {
-  filter: brightness(1) !important;
+
+.projects-cta-button:hover,
+.projects-cta-button:hover * {
+  filter: brightness(0.7); /* dims text and icon together on hover */
 }
 </style>

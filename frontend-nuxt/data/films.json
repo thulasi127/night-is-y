@@ -38,10 +38,23 @@
         "notes": null,
         "link": ""
     }],
-    "articles": [
-        { "title": "Precision Under Pressure", "url": "" },
-        { "title": "The Art of the Hit", "url": "" }
-    ]
+    "laurels": [{
+            "name": "TIFF",
+            "img": "/Image/laurels/tiff-white.png",
+            "shouldDisplay": true
+        },
+        {
+            "name": "SXSW",
+            "img": "/Image/laurels/SXSW-White.png",
+            "shouldDisplay": true
+        },
+        {
+            "name": "Rotten Tomatoes",
+            "img": "/Image/laurels/Certified_Fresh_2018.png",
+            "shouldDisplay": true
+        }
+    ],
+    "articles": []
 }, {
     "id": 2,
     "title": "That's My DJ - Season 1",
