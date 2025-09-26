@@ -14,7 +14,7 @@
         <img v-if="film.poster" class="image" :alt="film.title" :src="film.poster" />
 
         <!-- Scrollable right-side content -->
-        <div class="modal-scrollable-content">
+        <div class="modal-scrollable-content" ref="scrollableContent">
           <div class="film-title-row">
             <div class="text-wrapper">{{ film.title }}</div>
             <div v-if="film.laurels && film.laurels.length" class="laurels-row">
@@ -94,7 +94,9 @@
             class="awards-section"
           >
             <h2 class="awards-title">
-              AWARDS <span class="dot">&#183;</span> {{ film.awardsAndNominations.length }} NOMINATIONS
+              AWARDS <span class="dot">&#183;</span> 
+              {{ film.awardsAndNominations.length }} 
+              {{ film.awardsAndNominations.length === 1 ? 'NOMINATION' : 'NOMINATIONS' }}
             </h2>
             <transition-group name="fade-stagger" tag="div" class="awards-list">
               <div
@@ -139,6 +141,16 @@
               </li>
             </ul>
           </div>
+
+          <!-- Scroll Indicator -->
+          <div
+            v-if="showScrollIndicator"
+            class="scroll-indicator"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -153,11 +165,33 @@ export default {
     film: { type: Object, required: true },
     close: { type: Function, required: true }
   },
+  data() {
+    return {
+      showScrollIndicator: false
+    };
+  },
+  mounted() {
+    this.$nextTick(() => {
+      const content = this.$refs.scrollableContent;
+      if (content && content.scrollHeight > content.clientHeight) {
+        this.showScrollIndicator = true;
+        content.addEventListener("scroll", this.handleScroll);
+      }
+    });
+  },
+  beforeUnmount() {
+    const content = this.$refs.scrollableContent;
+    if (content) content.removeEventListener("scroll", this.handleScroll);
+  },
+  methods: {
+    handleScroll(e) {
+      if (e.target.scrollTop > 10) this.showScrollIndicator = false;
+    }
+  },
   computed: {
     orderedLaurels() {
       if (!this.film.laurels) return [];
       const order = ["tiff", "SXSW", "Rotten Tomatoes"];
-      // Map to ordered laurels, filter out undefined
       return order
         .map(name => this.film.laurels.find(l => l.name && l.name.toLowerCase() === name.toLowerCase()))
         .filter(l => l && l.shouldDisplay);
@@ -367,9 +401,9 @@ export default {
     font-size: 32px;
   }
 }
-
 .film-subtitle-row .dot,
-.awards-title .dot {
+.awards-title .dot,
+.info-labels .dot {
   margin: 0 8px;          /* equal horizontal spacing */
   font-size: 14px;        /* keep dot size consistent */
   color: #e0e0e0;         /* same gray tone */
@@ -624,7 +658,7 @@ export default {
 /* Transition styles for modal fade */
 .modal-fade-enter-active,
 .modal-fade-leave-active {
-  transition: opacity 1.3s cubic-bezier(.4,0,.2,1);
+  transition: opacity 0.3s ease;
 }
 .modal-fade-enter-from,
 .modal-fade-leave-to {
@@ -635,33 +669,57 @@ export default {
   opacity: 1;
 }
 
-/* Fade-in stagger animation for rows */
-.fade-stagger-enter-active {
-  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+/* Frame: subtle scale + fade */
+.modal-fade-enter-active .frame,
+.modal-fade-leave-active .frame {
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
-.fade-stagger-enter-from {
+
+.modal-fade-enter-from .frame {
+  transform: scale(0.97);
   opacity: 0;
-  transform: translateY(12px);
 }
-.fade-stagger-enter-to {
+
+.modal-fade-enter-to .frame {
+  transform: scale(1);
   opacity: 1;
-  transform: translateY(0);
 }
-.fade-stagger-leave-active {
-  transition: all 0.2s cubic-bezier(.4,0,.2,1);
-}
-.fade-stagger-leave-to {
+
+.modal-fade-leave-to .frame {
+  transform: scale(0.97);
   opacity: 0;
-  transform: translateY(-12px);
+}
+.scroll-indicator {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 1.5s infinite;
+  opacity: 0.7;
+  pointer-events: none;
 }
 
-.projects-cta-button,
-.projects-cta-button * {
-  transition: filter 0.15s;
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(6px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(3px);
+  }
 }
 
-.projects-cta-button:hover,
-.projects-cta-button:hover * {
-  filter: brightness(0.7); /* dims text and icon together on hover */
+.info-labels a,
+.info-labels a:visited {
+  color: #fff;                /* White text always */
+  text-decoration: none;      /* Remove default underline */
+}
+
+.info-labels a:hover,
+.info-labels a:focus {
+  color: #593792;             /* Your hover color */
+  text-decoration: underline; /* Add custom underline on hover */
 }
 </style>

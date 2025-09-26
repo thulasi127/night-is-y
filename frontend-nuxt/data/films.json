@@ -30,7 +30,7 @@
     "awards": "Awards & Accolades",
     "trailer": "https://www.youtube.com/embed/d179l90jW88",
     "awardsAndNominations": [{
-        "year": null,
+        "year": 2025,
         "status": "Nominee",
         "award": "GLAAD Media Award",
         "category": "Outstanding Film, Limited Release",
@@ -148,7 +148,7 @@
             "name": "D.W. Waterson",
             "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_2_2"
         },
-        { "name": "Kaveh Mohebbi", "imdb": "" }
+        { "name": "Kaveh Mohebbi", "imdb": "https://www.imdb.com/name/nm5320013/?ref_=ext_shr_lnk" }
     ],
     "awards": "",
     "trailer": "https://www.youtube.com/embed/PTEDIiZZ3Hc",
