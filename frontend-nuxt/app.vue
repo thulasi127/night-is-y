@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <NavBar />
     <NuxtPage />
     <Footer v-if="showFooter" />  <!-- Only renders on selected pages -->
   </div>
