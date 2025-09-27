@@ -55,6 +55,11 @@ function closeModal() {
   modalOpen.value = false;
   modalFilm.value = null;
 }
+
+useHead({
+  title: 'Film & Series | NIGHT is Y',
+  meta: [{ name: 'description', content: 'Film and series by NIGHT is Y.' }]
+})
 </script>
 
 
@@ -170,29 +175,6 @@ function closeModal() {
   line-height: 15px;
 }
 
-.posters-row {
-  display: flex;
-  justify-content: center;      /* Center posters horizontally */
-  align-items: center;          /* Center posters vertically */
-  gap: 48px;
-  padding-left: 100px;          /* Space for left arrow */
-  padding-right: 100px;         /* Space for right arrow */
-  width: 100%;
-  box-sizing: border-box;
-  min-height: 670px;
-  overflow: hidden;
-}
-
-.poster-image-wrapper {
-  position: relative;
-  width: 455px;
-  height: 670px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  /* No margin-left or margin-right unless needed for edge cases */
-}
 
 .image {
   height: 662px;
@@ -211,53 +193,6 @@ function closeModal() {
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   transition: filter 0.15s;
-}
-
-.poster-hovered {
-  filter: brightness(0.5);
-}
-
-.poster-overlay.immediate.center-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #fff;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 1;
-  transition: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.poster-title-neue {
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: 28px;
-  font-family: "proxima-nova", sans-serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 30px;
-  word-wrap: break-word;
-  margin-bottom: 8px;
-}
-
-.poster-type-neue {
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: 22px;
-  font-family: "proxima-nova", sans-serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 26px;
-  word-wrap: break-word;
 }
 
 .arrow {

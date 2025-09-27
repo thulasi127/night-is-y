@@ -9,6 +9,7 @@
           :youtube_url="v.youtube_url"
           :variant="variantFor(i)"
         />
+        <img :src="getCoverImage(v)" :alt="v.title" />
       </div>
     </div>
   </div>
@@ -64,6 +65,17 @@ onBeforeUnmount(() => {
   const ro: ResizeObserver | undefined = (gridEl.value as any)?.__ro
   ro?.disconnect()
 })
+
+function getCoverImage(video) {
+  if (video.cover_image) return video.cover_image;
+  if (video.youtube_url) {
+    const match = video.youtube_url.match(/embed\/([^?]+)/);
+    if (match && match[1]) {
+      return `https://img.youtube.com/vi/${match[1]}/maxresdefault.jpg`;
+    }
+  }
+  return null;
+}
 </script>
 
 <style scoped>

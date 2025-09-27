@@ -54,7 +54,8 @@
             "shouldDisplay": true
         }
     ],
-    "articles": []
+    "articles": [],
+    "cover_image": null
 }, {
     "id": 2,
     "title": "That's My DJ - Season 1",
@@ -131,7 +132,8 @@
         }
     ],
     "laurels": [],
-    "articles": []
+    "articles": [],
+    "cover_image": null
 }, {
     "id": 3,
     "title": "That's My DJ - Season 2",
@@ -208,7 +210,8 @@
         }
     ],
     "laurels": [],
-    "articles": []
+    "articles": [],
+    "cover_image": null
 }, {
     "id": 4,
     "title": "That's My DJ - Season 3",
@@ -285,5 +288,6 @@
         }
     ],
     "laurels": [],
-    "articles": []
+    "articles": [],
+    "cover_image": null
 }]

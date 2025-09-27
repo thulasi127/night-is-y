@@ -138,26 +138,21 @@ onUnmounted(() => {
   will-change: transform;
 }
 
-.carousel-card {
-  width: 320px;
-  height: 480px;
-  margin: 0 20px;
-  background: #111;
-  border-radius: 24px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+.carousel-card,
+.poster-image-wrapper {
+  width: 360px;
+  height: 540px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: transform 0.4s cubic-bezier(.77,0,.18,1), box-shadow 0.3s;
-  position: relative;
-  z-index: 1;
 }
+
 .carousel-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 24px;
+  border-radius: 16px;
 }
 
 /* Centered or hovered card enlarges */
@@ -215,6 +210,51 @@ onUnmounted(() => {
 .line.active {
   background: #fff;
   opacity: 1;
+}
+
+.poster-overlay.immediate.center-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 1;
+  transition: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.poster-title-neue {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 28px;
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 30px;
+  word-wrap: break-word;
+  margin-bottom: 8px;
+}
+
+.poster-hovered {
+  filter: brightness(0.5);
+}
+.poster-image-wrapper {
+  position: relative;
+  width: 455px;
+  height: 670px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  /* No margin-left or margin-right unless needed for edge cases */
 }
 
 </style>
