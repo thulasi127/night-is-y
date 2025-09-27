@@ -444,171 +444,156 @@ const bio = bioData.devery_jacobs;
   opacity: 1;
 }
 
-/* ------------------------------
-   1) Scaled-down Desktop Layout
-   ------------------------------ */
-@media (max-width: 1024px) and (min-width: 431px) {
+/* ---------- Large Laptops & Small Desktops (≤1440px) ---------- */
+@media (max-width: 1440px) {
   .main-content-row {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 24px;
-    padding: 0 24px;
-    width: 100%;
-    max-width: 960px;
-    margin: 0 auto;
+    max-width: 1100px;
+    gap: 32px;
   }
 
   .image-heading-container {
-    max-width: 360px;
-    text-align: left;
-    margin: 0;
+    width: 400px;
   }
 
   .image-heading-container .image {
-    width: 100%;
+    width: 400px;
     height: auto;
   }
 
   .main-text-block {
-    max-width: 540px;
-    text-align: left;
-  }
-
-  .names-row {
-    justify-content: flex-start;
-    gap: 16px;
-    margin: 8px 0;
+    max-width: 560px;
   }
 
   .bio-text {
-    text-align: left;
-    max-width: 540px;
+    column-gap: 28px;
+  }
+}
+
+/* ---------- Tablets Landscape & Small Laptops (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .main-content-row {
+    gap: 24px;
+    padding: 0 24px;
+  }
+
+  .image-heading-container {
+    width: 360px;
+    margin-right: 20px;
+  }
+
+  .image-heading-container .image {
+    width: 360px;
+    height: auto;
+  }
+
+  .main-text-block {
+    max-width: 520px;
+  }
+
+  .bio-text {
     column-count: 2;
     column-gap: 24px;
   }
 
   .works-sidebar {
-    max-width: 280px;
-    margin: 16px 0 0;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
+    max-width: 260px;
   }
 }
 
-/* ------------------------------
-   2) Fully Centered Mobile Layout
-   ------------------------------ */
-@media (max-width: 430px) {
-  
+/* ---------- Tablets Portrait & Large Phones (≤768px) ---------- */
+@media (max-width: 768px) {
   .main-content-row {
-    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
-    gap: 16px;
-    padding: 0 16px;
-    width: 100%;
+    gap: 20px;
+    padding: 0 20px;
   }
 
   .image-heading-container {
-    display: flex;
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .image-heading-container .image {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  .main-text-block {
+    max-width: 90%;
+    margin-top: 40px;
+  }
+
+  .bio-text {
+    max-width: 100%;
+    column-count: 1;
+    text-align: center;
+  }
+
+  .works-sidebar {
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+/* ---------- Small Phones (≤430px) ---------- */
+@media (max-width: 430px) {
+  .main-content-row {
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
+    text-align: center;
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  .image-heading-container {
     width: 100%;
     text-align: center;
   }
 
   .image-heading-container .image {
     width: 80%;
-    max-width: 280px;
-    height: auto;
-    margin: 0 auto;
+    max-width: 260px;
   }
 
   .names-row {
-    display: flex;
     justify-content: center;
     gap: 10px;
-    margin: 8px 0;
-    width: 100%;
-    text-align: center;
-  }
-
-  .names-row span,
-  .names-row a {
-    font-size: clamp(14px, 4vw, 18px);
-    white-space: nowrap;
-    text-align: center;
-  }
-
-  .devery-meta {
-    text-align: center;
-    margin-bottom: 12px;
   }
 
   .bio-container {
-    display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    width: 100%;
     gap: 12px;
+    width: 100%;
   }
 
   .bio-text {
-    text-align: center;
     max-width: 360px;
-    line-height: 1.4;
-    margin: 0 auto;
-    column-count: 1;
+    text-align: center;
   }
 
   .works-sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 16px auto 0;
-    text-align: center;
-    width: 100%;
     max-width: 360px;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
+    width: 100%;
+    margin: 16px auto 0;
   }
 
   .works-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
     align-items: center;
-    width: 100%;
+    gap: 4px;
   }
 
   .frame {
-    display: flex;
     justify-content: center;
     gap: 12px;
-    margin-top: 10px;
-  }
-
-  .video-wrapper {
-    max-width: 100%;
-    aspect-ratio: 16 / 9;
-    padding: 0;
-  }
-
-  .video-wrapper iframe {
-    width: 100%;
-    height: 100%;
   }
 }
+
 
 
 </style>

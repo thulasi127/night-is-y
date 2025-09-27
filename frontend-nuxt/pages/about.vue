@@ -99,4 +99,44 @@ useHead({
     background-position: 0% 50%;
   }
 }
+
+/* ---------- Large Laptops (≤1440px) ---------- */
+@media (max-width: 1440px) {
+  .about-text { max-width: 750px; }
+  .content { gap: 48px; }
+}
+
+/* ---------- Tablets & Small Laptops (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .about-text {
+    font-size: 1.2rem;
+    max-width: 600px;
+  }
+  .meet-the-team-link {
+    font-size: 2rem;
+    padding: 14px 32px;
+  }
+}
+
+/* ---------- Tablets Portrait & Large Phones (≤768px) ---------- */
+@media (max-width: 768px) {
+  .content { gap: 40px; padding: 0 20px; }
+  .about-text { font-size: 1.1rem; max-width: 500px; }
+  .meet-the-team-link { font-size: 1.6rem; padding: 12px 28px; }
+}
+
+/* ---------- Small Phones (≤430px) ---------- */
+@media (max-width: 430px) {
+  .content { gap: 32px; }
+  .about-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 90%;
+  }
+  .meet-the-team-link {
+    font-size: 1.4rem;
+    padding: 10px 24px;
+  }
+}
+
 </style>

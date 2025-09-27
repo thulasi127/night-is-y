@@ -52,4 +52,41 @@ useHead({
   /* let clicks pass to the navbar */
   pointer-events: none;
 }
+
+/* ---------- Large Laptops (≤1440px) ---------- */
+@media (max-width: 1440px) {
+  .bgVideo {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+}
+
+/* ---------- Tablets & Small Laptops (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .bgVideo {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+}
+
+/* ---------- Tablets Portrait & Large Phones (≤768px) ---------- */
+@media (max-width: 768px) {
+  .bgVideo {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* force full page even if it crops a bit */
+  }
+}
+
+/* ---------- Small Phones (≤430px) ---------- */
+@media (max-width: 430px) {
+  .bgVideo {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+}
+
 </style>

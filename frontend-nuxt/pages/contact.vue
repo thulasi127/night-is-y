@@ -237,4 +237,107 @@ onMounted(() => {
   padding-left: 64px;           /* Shift text to the right by two tab widths */
   transform: translateY(-16px); /* Shift up by about half a tab */
 }
+
+/* ---------- Large Laptops & Small Desktops (≤1440px) ---------- */
+@media (max-width: 1440px) {
+  .contact-page {
+    --col-min: 380px;
+    --col-max: 520px;
+    --gap: 40px;
+  }
+
+  .contacts {
+    grid-template-columns:
+      minmax(260px, 340px)
+      var(--logo-size)
+      minmax(260px, 340px);
+  }
+
+  .person-fullname,
+  .person-name {
+    font-size: 20px;
+  }
+
+  .role,
+  .name,
+  .email {
+    font-size: 15px;
+  }
+
+  .bg-video {
+    width: 50vw;
+    height: auto;
+    max-width: 600px;
+  }
+}
+
+/* ---------- Tablets Landscape & Small Laptops (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .contact-page {
+    --col-min: 320px;
+    --col-max: 420px;
+    --gap: 32px;
+  }
+
+  .contacts {
+    grid-template-columns:
+      minmax(240px, 320px)
+      var(--logo-size)
+      minmax(240px, 320px);
+  }
+
+  .person {
+    padding-left: 48px;
+  }
+
+  .person-fullname,
+  .person-name {
+    font-size: 18px;
+  }
+
+  .role,
+  .name,
+  .email {
+    font-size: 14px;
+  }
+
+  .bg-video {
+    width: 60vw;
+    height: auto;
+    max-width: 500px;
+  }
+}
+
+/* ---------- Small Phones (≤430px) ---------- */
+@media (max-width: 430px) {
+  .contact-page {
+    --gap: 20px;
+    --logo-size: 200px;
+  }
+
+  .contacts {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+  }
+
+  .person-fullname,
+  .person-name {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .role,
+  .name,
+  .email {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .bg-video {
+    width: 80vw;
+    height: auto;
+    max-width: 360px;
+  }
+}
+
 </style>
