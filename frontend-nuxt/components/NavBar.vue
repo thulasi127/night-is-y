@@ -1,6 +1,7 @@
 <template>
   <header class="navbar">
     <div class="navbar-content">
+
       <!-- Left logo -->
       <NuxtLink to="/home">
         <img
@@ -10,20 +11,14 @@
         />
       </NuxtLink>
 
-      <!-- Middle brand text -->
+      <!-- Center brand text -->
       <div class="nav-brand-text">NIGHT IS Y</div>
 
-      <!-- Right nav links -->
-      <nav class="nav">
+      <!-- Desktop Nav (only when screen is large) -->
+      <nav class="nav desktop-nav" v-if="!isMobile">
         <NuxtLink to="/about" class="nav-link">ABOUT</NuxtLink>
-
-        <!-- Work dropdown -->
-        <div
-          class="dropdown"
-          @mouseenter="open = true"
-          @mouseleave="open = false"
-        >
-            <NuxtLink to="/projects" class="nav-link">WORK</NuxtLink>
+        <div class="dropdown" @mouseenter="open = true" @mouseleave="open = false">
+          <div class="nav-link">WORK</div>
           <transition name="fade-slide">
             <div v-if="open" class="dropdown-list">
               <div class="dropdown-line"></div>
@@ -33,28 +28,66 @@
             </div>
           </transition>
         </div>
-
         <NuxtLink to="/press" class="nav-link">PRESS</NuxtLink>
         <NuxtLink to="/contact" class="nav-link">CONTACT</NuxtLink>
       </nav>
+
+      <!-- Hamburger Icon (only when screen is small) -->
+      <button v-if="isMobile" class="hamburger" @click="toggleMobileMenu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+
+    <!-- Mobile Menu (slide in from right) -->
+    <transition name="slide">
+      <nav v-if="isMobile && mobileOpen" class="mobile-nav">
+        <NuxtLink to="/about" class="mobile-link" @click="closeMobileMenu">ABOUT</NuxtLink>
+        <NuxtLink to="/projects" class="mobile-link" @click="closeMobileMenu">WORK</NuxtLink>
+        <NuxtLink to="/press" class="mobile-link" @click="closeMobileMenu">PRESS</NuxtLink>
+        <NuxtLink to="/contact" class="mobile-link" @click="closeMobileMenu">CONTACT</NuxtLink>
+      </nav>
+    </transition>
   </header>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted, onUnmounted } from "vue";
 
 export default defineComponent({
   name: "NavBar",
   setup() {
     const open = ref(false);
-    return { open };
+    const mobileOpen = ref(false);
+    const isMobile = ref(false);
+
+    const toggleMobileMenu = () => {
+      mobileOpen.value = !mobileOpen.value;
+    };
+    const closeMobileMenu = () => {
+      mobileOpen.value = false;
+    };
+
+    // Track screen size for responsive switching
+    const checkScreenSize = () => {
+      isMobile.value = window.innerWidth <= 1024;
+    };
+
+    onMounted(() => {
+      checkScreenSize();
+      window.addEventListener("resize", checkScreenSize);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener("resize", checkScreenSize);
+    });
+
+    return { open, mobileOpen, isMobile, toggleMobileMenu, closeMobileMenu };
   },
 });
 </script>
 
 <style>
-/* Base Navbar Styles */
+/* Base Navbar */
 .navbar {
   background-color: transparent;
   position: fixed;
@@ -80,30 +113,25 @@ export default defineComponent({
   object-fit: contain;
   transition: opacity 0.3s ease;
 }
-.logo:hover {
-  opacity: 0.8;
-}
+.logo:hover { opacity: 0.8; }
 
-/* Brand text */
+/* Center Text */
 .nav-brand-text {
   font-family: "proxima-nova", sans-serif;
   font-weight: 300;
-  font-style: normal;
   font-size: clamp(18px, 2vw, 24px);
   letter-spacing: 0.41em;
   color: #fff;
   justify-self: center;
 }
 
-/* Nav links */
+/* Desktop Nav Links */
 .nav {
   display: flex;
   gap: 2rem;
   align-items: center;
   justify-self: end;
-  position: relative;
 }
-
 .nav-link {
   color: #ffffff;
   font-family: "proxima-nova", sans-serif;
@@ -114,7 +142,6 @@ export default defineComponent({
   position: relative;
   transition: color 0.3s ease, opacity 0.3s ease;
 }
-
 .nav-link::after {
   content: '';
   position: absolute;
@@ -126,43 +153,16 @@ export default defineComponent({
   opacity: 0.5;
   transition: width 0.3s ease;
 }
-.nav-link:hover::after {
-  width: 100%;
-  opacity: 1;
-}
+.nav-link:hover::after { width: 100%; opacity: 1; }
+.nav:hover .nav-link { opacity: 0.3; }
+.nav-link:hover { opacity: 1 !important; }
 
-/* Hover dim effect */
-.nav:hover .nav-link {
-  opacity: 0.3;
-}
-.nav-link:hover {
-  opacity: 1 !important;
-}
-
-/* Dropdown Styles */
-.dropdown {
-  position: relative;
-}
-
+/* Dropdown Menu */
+.dropdown { position: relative; }
 .dropdown-list {
   position: absolute;
-  top: calc(100% + 1px); /* starts right below WORK underline */
+  top: 100%;
   left: 0;
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 1rem 2rem;
-  gap: 0.5rem;
-  min-width: 180px;
-}
-
-/* Dropdown container */
-.dropdown-list {
-  position: absolute;
-  top: 100%; /* start exactly under WORK underline */
-  left: 0;
-  margin-left: -10px; /* shift text slightly left */
   background: transparent;
   display: flex;
   flex-direction: column;
@@ -171,19 +171,15 @@ export default defineComponent({
   gap: 0.5rem;
   min-width: 180px;
 }
-
-/* Vertical line starts at bottom-left corner of WORK underline */
 .dropdown-line {
   position: absolute;
-  top: 0;  /* starts right at WORK underline */
+  top: 0;
   left: 0;
-  transform: translateY(1px); /* moves line slightly down so it doesn’t intersect */
+  transform: translateY(1px);
   width: 1px;
   height: 100%;
   background: #ffffff33;
 }
-
-/* Dropdown item styles */
 .dropdown-item {
   color: #ffffff;
   font-family: "proxima-nova", sans-serif;
@@ -192,17 +188,81 @@ export default defineComponent({
   text-decoration: none;
   font-size: 0.9rem;
   letter-spacing: 0.5px;
-  padding: 0.2rem 0;
   transition: opacity 0.3s ease, color 0.3s ease;
-  opacity: 1;
+}
+.dropdown-list:hover .dropdown-item { opacity: 0.7; }
+.dropdown-item:hover { opacity: 1 !important; color: #ffffff; }
+
+/* Hamburger Icon (only mobile) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2001;
+  justify-self: end;
+  margin-left: auto;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: #fff;
+  border-radius: 1px;
 }
 
-/* Hover effect: hovered item stays white, others fade */
-.dropdown-list:hover .dropdown-item {
-  opacity: 0.7;
+/* Mobile Nav */
+/* Mobile Nav Links */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60vw;
+  max-width: 260px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 120px 24px 40px 24px;
+  gap: 20px;
+  z-index: 2000;
 }
-.dropdown-item:hover {
+
+/* Mobile Links - Default */
+.mobile-link {
+  font-family: "proxima-nova", sans-serif;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hover dim effect like desktop nav */
+.mobile-nav:hover .mobile-link {
+  opacity: 0.3;
+}
+.mobile-link:hover {
   opacity: 1 !important;
-  color: #ffffff;
+  color: #fff !important; /* keep text white */
+}
+
+
+/* Slide Transition */
+.slide-enter-from,
+.slide-leave-to { transform: translateX(100%); opacity: 0; }
+.slide-enter-active,
+.slide-leave-active { transition: transform 0.3s ease, opacity 0.3s ease; }
+.slide-enter-to,
+.slide-leave-from { transform: translateX(0%); opacity: 1; }
+
+/* Hide desktop nav on small screens */
+@media (max-width: 1024px) {
+  .desktop-nav { display: none; }
+  .hamburger { display: flex; }
 }
 </style>

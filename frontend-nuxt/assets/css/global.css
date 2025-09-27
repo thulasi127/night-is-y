@@ -1,102 +1,212 @@
-        /* Import Typekit fonts */
-        
-        @import url("https://use.typekit.net/lmr4fnt.css");
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background: #000;
-            font-family: "proxima-nova", sans-serif;
-            font-weight: 300;
-            font-style: normal;
-            letter-spacing: normal;
-            /* Kerning = 410 for body/small text */
-            color: #fff;
-        }
-        /* Large headings & titles */
-        
-        h1,
-        h2,
-        h3,
-        .film-series-title,
-        .modal-title,
-        .poster-title-neue,
-        .dev-title,
-        .section-heading,
-        .the-team-heading,
-        .projects,
-        .press-title,
-        .row-label {
-            font-family: "anton", sans-serif;
-            font-weight: 400;
-            letter-spacing: -0.01em;
-            /* -10 tracking */
-            text-transform: uppercase;
-            color: #fff;
-            margin: 0;
-        }
-        /* Body, paragraphs, metadata, labels */
-        
-        body,
-        p,
-        .projects-text,
-        .poster-type-neue,
-        .modal-summary,
-        .modal-type,
-        .modal-release_date,
-        .label-title,
-        .label-link,
-        .about-niy-text,
-        .quote-text,
-        .person-fullname,
-        .role,
-        .name,
-        .email,
-        .text-wrapper-4,
-        .text-wrapper-5 {
-            font-family: "proxima-nova", sans-serif;
-            font-weight: 300;
-            /* Light */
-            font-style: normal;
-            letter-spacing: normal;
-            color: #fff;
-        }
-        /* Override italics when needed (quotes etc.) */
-        
-        .quote-text {
-            font-weight: 300;
-            font-style: normal;
-        }
-        /* CTA hover effect for icons and text */
-        
-        .cta-hover,
-        .cta-hover * {
-            transition: filter 0.12s;
-        }
-        
-        .cta-hover:hover,
-        .cta-hover:hover * {
-            filter: brightness(0.7);
-        }
-        
-        .page-title {
-            font-family: "anton", sans-serif;
-            font-weight: 300;
-            font-size: clamp(1.8rem, 2.9vw, 2.4rem);
-            line-height: 1.1;
-            text-transform: uppercase;
-            text-align: center;
-            color: #fff;
-            margin: 0 auto;
-            white-space: nowrap;
-            flex: 1;
-            margin-top: 80px;
-        }
-        
-        @media (max-width: 1024px) {
-            .page-title {
-                margin-top: 120px;
-                /* More space on smaller screens to prevent overlap */
-            }
-        }
+/* Import Typekit fonts */
+
+@import url("https://use.typekit.net/lmr4fnt.css");
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #000;
+    font-family: "proxima-nova", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: normal;
+    /* Kerning = 410 for body/small text */
+    color: #fff;
+}
+
+
+/* Large headings & titles */
+
+h1,
+h2,
+h3,
+.film-series-title,
+.modal-title,
+.poster-title-neue,
+.dev-title,
+.section-heading,
+.the-team-heading,
+.projects,
+.press-title,
+.row-label {
+    font-family: "anton", sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    /* -10 tracking */
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0;
+}
+
+
+/* Body, paragraphs, metadata, labels */
+
+body,
+p,
+.projects-text,
+.poster-type-neue,
+.modal-summary,
+.modal-type,
+.modal-release_date,
+.label-title,
+.label-link,
+.about-niy-text,
+.quote-text,
+.person-fullname,
+.role,
+.name,
+.email,
+.text-wrapper-4,
+.text-wrapper-5 {
+    font-family: "proxima-nova", sans-serif;
+    font-weight: 300;
+    /* Light */
+    font-style: normal;
+    letter-spacing: normal;
+    color: #fff;
+}
+
+
+/* Override italics when needed (quotes etc.) */
+
+.quote-text {
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+/* CTA hover effect for icons and text */
+
+.cta-hover,
+.cta-hover * {
+    transition: filter 0.12s;
+}
+
+.cta-hover:hover,
+.cta-hover:hover * {
+    filter: brightness(0.7);
+}
+
+.page-title {
+    font-family: "anton", sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 2.9vw, 2.4rem);
+    line-height: 1.1;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    margin: 0 auto;
+    white-space: nowrap;
+    flex: 1;
+    margin-top: 80px;
+}
+
+@media (max-width: 1024px) {
+    .page-title {
+        margin-top: 120px;
+        /* More space on smaller screens to prevent overlap */
+    }
+}
+
+
+/* Responsive breakpoints */
+
+:root {
+    --bp-desktop: 1200px;
+    --bp-tablet: 900px;
+    --bp-mobile: 600px;
+    --scale: 0.92;
+    --container-max: 1728px;
+    --pad-x: clamp(12px, 3vw, 24px);
+    --gap: clamp(12px, 2vw, 24px);
+}
+
+
+/* Typography utilities */
+
+.h1-title {
+    font-family: "anton", sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    text-align: center;
+    color: #fff;
+    margin: 0 auto;
+}
+
+.h2-title {
+    font-family: "anton", sans-serif;
+    font-size: clamp(1.8rem, 2.9vw, 2.4rem);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    text-align: center;
+    color: #fff;
+    margin: 0 auto;
+}
+
+.body-text {
+    font-family: "proxima-nova", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1rem;
+    color: #e6e6e6;
+}
+
+.thin-text {
+    font-family: "proxima-nova", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #f5f5f5;
+}
+
+
+/* Responsive container utility */
+
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding-inline: var(--pad-x);
+}
+
+
+/* Fluid media */
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* Simple grid utility */
+
+.grid {
+    display: grid;
+    gap: var(--gap);
+}
+
+@media (min-width: 768px) {
+    .grid.cols-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid.cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* Text utilities for quick fixes */
+
+.center {
+    text-align: center;
+}
