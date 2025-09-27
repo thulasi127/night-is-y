@@ -1,13 +1,17 @@
-<!-- /app.vue -->
 <template>
-  <NuxtPage />
+  <div id="app">
+    <NavBar />
+    <NuxtPage />
+    <Footer v-if="showFooter" />  <!-- Only renders on selected pages -->
+  </div>
 </template>
 
-<style>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .4s ease;
-}
-.fade-enter-from, .fade-leave-to {
-  opacity: 0;
-}
-</style>
+<script setup>
+import { useRoute } from "vue-router"
+import Footer from "@/components/Footer.vue"
+
+const route = useRoute()
+const showFooter = computed(() =>
+  ["/home", "/about", "/projects","/press", "/contact"].includes(route.path)
+)
+</script>
