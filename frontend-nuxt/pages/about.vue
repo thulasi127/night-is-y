@@ -51,10 +51,10 @@ useHead({
 }
 
 .about-text {
-  /* Slightly bigger again: Min 1.2rem, preferred 2vw, max 1.5rem */
   font-size: clamp(1.2rem, 2vw, 1.5rem);
-  /* line-height: 1.7; */
-  font-weight: 300;
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 100; /* Thin */
+  font-style: italic; /* Italics */
   color: #f5f5f5;
   max-width: 900px;
   margin: 0 auto;

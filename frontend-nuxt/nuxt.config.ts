@@ -9,6 +9,10 @@ export default defineNuxtConfig({
           rel: 'icon',
           type: 'image/png',
           href: '/Image/NIY-logos/niy-logo-1.png'
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://use.typekit.net/lmr4fnt.css'
         }
       ]
     }

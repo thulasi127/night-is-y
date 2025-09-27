@@ -249,7 +249,7 @@ const bio = bioData.devery_jacobs;
 
 .devery-meta, .span {
   font-family: "proxima-nova", sans-serif;
-  font-weight: 400;
+  font-weight: 400; /* Regular */
   font-style: normal;
   font-size: clamp(15px, 1.6vw, 18px);
   margin-bottom: 14px;
