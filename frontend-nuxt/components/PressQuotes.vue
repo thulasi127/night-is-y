@@ -81,5 +81,66 @@ onMounted(async () => {
   .quotes-grid {
     gap: 1.5rem;
   }
+
 }
+
+/* ---------- Large Laptops (≤1440px) ---------- */
+@media (max-width: 1440px) {
+  .headline {
+    font-size: 3rem;
+  }
+  .project-title {
+    font-size: 1.8rem;
+  }
+  .quotes-grid {
+    gap: 2rem;
+  }
+}
+
+/* ---------- Tablets & Small Laptops (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .headline {
+    font-size: 2.6rem;
+  }
+  .project-title {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+  .quotes-grid {
+    gap: 1.8rem;
+  }
+}
+
+/* ---------- Tablets Portrait & Large Phones (≤768px) ---------- */
+@media (max-width: 768px) {
+  .headline {
+    font-size: 2.4rem;
+    margin-bottom: 1.2rem;
+  }
+  .project-title {
+    font-size: 1.4rem;
+    margin-bottom: 1.6rem;
+    text-align: center;
+  }
+  .quotes-grid {
+    gap: 1.6rem;
+    padding: 0 1rem;
+  }
+}
+
+/* ---------- Small Phones (≤430px) ---------- */
+@media (max-width: 430px) {
+  .headline {
+    font-size: 2rem;
+  }
+  .project-title {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .quotes-grid {
+    gap: 1.2rem;
+    padding: 0 0.5rem;
+  }
+}
+
 </style>

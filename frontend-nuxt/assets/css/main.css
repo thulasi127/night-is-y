@@ -1,0 +1,48 @@
+/* === Global Breakpoints === */
+
+:root {
+    --bp-mobile-sm: 430px;
+    /* Small phones */
+    --bp-tablet: 768px;
+    /* Tablets / large phones */
+    --bp-laptop-sm: 1024px;
+    /* Small laptops */
+    --bp-desktop: 1440px;
+    /* Standard desktops */
+}
+
+
+/* Mobile (small phones) */
+
+@media (max-width: 430px) {
+    .mobile-sm {
+        /* Optional class if needed */
+    }
+}
+
+
+/* Tablets & large phones */
+
+@media (max-width: 768px) {
+    .tablet {
+        /* Optional class if needed */
+    }
+}
+
+
+/* Small laptops */
+
+@media (max-width: 1024px) {
+    .laptop-sm {
+        /* Optional class if needed */
+    }
+}
+
+
+/* Desktops */
+
+@media (max-width: 1440px) {
+    .desktop {
+        /* Optional class if needed */
+    }
+}

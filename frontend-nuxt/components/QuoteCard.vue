@@ -89,4 +89,58 @@ const quoteClass = !$props.quote.text ? 'laurel-card' : '';
   box-shadow: none;
   padding: 1.5rem 0;
 }
+
+/* ---------- Large Laptops (≤1440px) ---------- */
+@media (max-width: 1440px) {
+  .quote-card {
+    padding: 2rem 1.6rem 1.6rem 1.6rem;
+    margin-bottom: 2rem;
+    gap: 1rem;
+  }
+  .major-quote { font-size: 1.8rem; }
+  .emphasis-quote { font-size: 1.5rem; }
+  .variation-quote { font-size: 1.3rem; }
+  .quote-logo { max-height: 50px; max-width: 160px; }
+}
+
+/* ---------- Tablets & Small Laptops (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .quote-card {
+    padding: 1.8rem 1.4rem;
+    margin-bottom: 1.8rem;
+    gap: 0.9rem;
+  }
+  .major-quote { font-size: 1.6rem; }
+  .emphasis-quote { font-size: 1.3rem; }
+  .variation-quote { font-size: 1.1rem; }
+  .quote-logo { max-height: 46px; max-width: 140px; }
+}
+
+/* ---------- Tablets Portrait & Large Phones (≤768px) ---------- */
+@media (max-width: 768px) {
+  .quote-card {
+    padding: 1.5rem 1rem;
+    margin-bottom: 1.5rem;
+    gap: 0.8rem;
+  }
+  .major-quote { font-size: 1.4rem; }
+  .emphasis-quote { font-size: 1.2rem; }
+  .variation-quote { font-size: 1rem; }
+  .quote-logo { max-height: 40px; max-width: 120px; }
+}
+
+/* ---------- Small Phones (≤430px) ---------- */
+@media (max-width: 430px) {
+  .quote-card {
+    padding: 1.2rem 0.8rem;
+    margin-bottom: 1.2rem;
+    gap: 0.6rem;
+    border-radius: 1rem;
+  }
+  .major-quote { font-size: 1.2rem; }
+  .emphasis-quote { font-size: 1rem; }
+  .variation-quote { font-size: 0.9rem; }
+  .quote-logo { max-height: 36px; max-width: 100px; }
+}
+
 </style>

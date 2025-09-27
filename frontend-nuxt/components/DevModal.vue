@@ -313,4 +313,141 @@ export default {
 .projects-cta-button:hover * {
   filter: brightness(0.7); /* dims text and icon together on hover */
 }
+
+/* --- Fullscreen modal by default --- */
+.dev-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 3000;
+  display: flex;
+  align-items: center;      /* vertical center */
+  justify-content: center;  /* horizontal center */
+  overflow: hidden;
+  min-height: 100vh;        /* covers entire viewport */
+}
+
+.frame {
+  position: relative;
+  width: 1580px;
+  height: 620px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: "proxima-nova", sans-serif;
+  overflow: hidden;
+}
+
+/* ---------- Large Laptops (≤1440px) ---------- */
+@media (max-width: 1440px) {
+  .frame {
+    width: 1200px;
+    height: 520px;
+  }
+
+  .image {
+    width: 220px;
+    height: 320px;
+  }
+
+  .text-wrapper {
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  .modal-scrollable-content {
+    width: 900px;
+    height: 460px;
+  }
+}
+
+/* ---------- Tablets & Small Laptops (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .frame {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .image {
+    margin: 0 auto 16px auto;
+    width: 200px;
+    height: auto;
+  }
+
+  .modal-scrollable-content {
+    width: 100%;
+    height: auto;
+    padding: 0 20px;
+    margin-left: 0;
+    overflow-y: auto;
+  }
+
+  .text-wrapper {
+    font-size: 36px;
+    line-height: 42px;
+    text-align: center;
+  }
+}
+
+/* ---------- Tablets Portrait & Large Phones (≤768px) ---------- */
+@media (max-width: 768px) {
+  .frame {
+    width: 95%;
+    padding: 16px;
+  }
+
+  .image {
+    width: 180px;
+  }
+
+  .text-wrapper {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .modal-scrollable-content {
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+/* ---------- Small Phones (≤430px) ---------- */
+@media (max-width: 430px) {
+  .frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    margin: 0;
+    flex-direction: column;
+    padding: 12px;
+  }
+
+  .image {
+    width: 140px;
+    height: auto;
+  }
+
+  .text-wrapper {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 4px;
+  }
+
+  .modal-scrollable-content {
+    padding: 0 12px;
+    overflow-y: auto;
+  }
+
+  .section-heading,
+  .label-title,
+  .label-link {
+    font-size: 12px;
+  }
+}
+
 </style>

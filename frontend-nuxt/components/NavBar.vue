@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, onUnmounted } from "vue";
+import { defineComponent, ref, onMounted, onUnmounted, nextTick } from "vue";
 
 export default defineComponent({
   name: "NavBar",
@@ -62,9 +62,24 @@ export default defineComponent({
 
     const toggleMobileMenu = () => {
       mobileOpen.value = !mobileOpen.value;
+      if (mobileOpen.value) {
+        nextTick(() => document.addEventListener("click", handleClickOutside));
+      } else {
+        document.removeEventListener("click", handleClickOutside);
+      }
     };
+
     const closeMobileMenu = () => {
       mobileOpen.value = false;
+      document.removeEventListener("click", handleClickOutside);
+    };
+
+    // Close menu if clicking outside
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest(".mobile-nav") && !target.closest(".hamburger")) {
+        closeMobileMenu();
+      }
     };
 
     // Track screen size for responsive switching
@@ -79,12 +94,14 @@ export default defineComponent({
 
     onUnmounted(() => {
       window.removeEventListener("resize", checkScreenSize);
+      document.removeEventListener("click", handleClickOutside);
     });
 
     return { open, mobileOpen, isMobile, toggleMobileMenu, closeMobileMenu };
   },
 });
 </script>
+
 
 <style>
 /* Base Navbar */
@@ -109,9 +126,22 @@ export default defineComponent({
 }
 
 .logo {
-  height: 80px;
+  height: clamp(40px, 8vw, 80px);  /* Scales between 40px and 80px depending on screen size */
+  width: auto;                     /* Keeps aspect ratio */
+  max-width: 200px;                 /* Prevents it from growing too large on huge screens */
   object-fit: contain;
-  transition: opacity 0.3s ease;
+  transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    height: clamp(30px, 10vw, 60px); /* Even smaller on mobile */
+    max-width: 150px;
+  }
+  .mobile-link {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    letter-spacing: 0.1em;
+  }
 }
 .logo:hover { opacity: 0.8; }
 
@@ -260,9 +290,79 @@ export default defineComponent({
 .slide-enter-to,
 .slide-leave-from { transform: translateX(0%); opacity: 1; }
 
-/* Hide desktop nav on small screens */
-@media (max-width: 1024px) {
-  .desktop-nav { display: none; }
-  .hamburger { display: flex; }
+/* ---------- Desktop/Large Laptops ---------- */
+@media (max-width: 1440px) {
+  .nav-link {
+    font-size: 0.9rem; /* slightly smaller text */
+    gap: 1.5rem;
+  }
+
+  .logo {
+    max-width: 160px; /* smaller logo */
+  }
 }
+
+/* ---------- Tablets & Small Laptops ---------- */
+@media (max-width: 1024px) {
+  .desktop-nav {
+    display: none; /* hide desktop menu */
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .logo {
+    max-width: 140px;
+  }
+
+  .nav-brand-text {
+    font-size: clamp(16px, 2vw, 20px);
+  }
+}
+
+/* ---------- Tablets Portrait Mode ---------- */
+@media (max-width: 768px) {
+  .mobile-nav {
+    width: 60vw;
+    max-width: 240px;
+    padding: 80px 20px;
+    gap: 16px;
+  }
+
+  .mobile-link {
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    padding: 6px 0;
+  }
+
+  .logo {
+    max-width: 120px;
+  }
+}
+
+/* ---------- Small Phones ---------- */
+@media (max-width: 430px) {
+  .mobile-nav {
+    width: 70vw;
+    max-width: 200px;
+    padding: 60px 16px;
+    gap: 12px;
+  }
+
+  .mobile-link {
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+  }
+
+  .logo {
+    max-width: 100px;
+  }
+
+  .nav-brand-text {
+    font-size: 14px;
+    letter-spacing: 0.3em;
+  }
+}
+
 </style>

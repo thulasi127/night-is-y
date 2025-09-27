@@ -227,6 +227,7 @@ const bio = bioData.dw_waterson;
   display: flex;
   gap: 32px;
   margin-bottom: 10px;
+  text-align: left;
 }
 
 .devery-jacobs,
@@ -270,6 +271,7 @@ const bio = bioData.dw_waterson;
   letter-spacing: 0.5px;
   color: #fff;
   text-transform: uppercase;
+  text-align: left;
 }
 
 .bio-container {
@@ -366,25 +368,6 @@ const bio = bioData.dw_waterson;
   transform: scale(1.05);
 }
 
-/* --- Responsive adjustments --- */
-@media (max-width: 1024px) {
-  .bio-container {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .bio-text {
-    column-count: 1;
-  }
-
-  .works-sidebar {
-    max-width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-}
-
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1); /* slower fade */
 }
@@ -466,5 +449,172 @@ const bio = bioData.dw_waterson;
   width: 64px;
   opacity: 1;
 }
+
+/* ------------------------------
+   1) Scaled-down Desktop Layout
+   ------------------------------ */
+@media (max-width: 1024px) and (min-width: 431px) {
+  .main-content-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 24px;
+    padding: 0 24px;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .image-heading-container {
+    max-width: 360px;
+    text-align: left;
+    margin: 0;
+  }
+
+  .image-heading-container .image {
+    width: 100%;
+    height: auto;
+  }
+
+  .main-text-block {
+    max-width: 540px;
+    text-align: left;
+  }
+
+  .names-row {
+    justify-content: flex-start;
+    gap: 16px;
+    margin: 8px 0;
+  }
+
+  .bio-text {
+    text-align: left;
+    max-width: 540px;
+    column-count: 2;
+    column-gap: 24px;
+  }
+
+  .works-sidebar {
+    max-width: 280px;
+    margin: 16px 0 0;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+  }
+}
+
+/* ------------------------------
+   2) Fully Centered Mobile Layout
+   ------------------------------ */
+@media (max-width: 430px) {
+  
+  .main-content-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+    padding: 0 16px;
+    width: 100%;
+  }
+
+  .image-heading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .image-heading-container .image {
+    width: 80%;
+    max-width: 280px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .names-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 8px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .names-row span,
+  .names-row a {
+    font-size: clamp(14px, 4vw, 18px);
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .devery-meta {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .bio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .bio-text {
+    text-align: center;
+    max-width: 360px;
+    line-height: 1.4;
+    margin: 0 auto;
+    column-count: 1;
+  }
+
+  .works-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 16px auto 0;
+    text-align: center;
+    width: 100%;
+    max-width: 360px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+  }
+
+  .works-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .frame {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .video-wrapper {
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    padding: 0;
+  }
+
+  .video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 
 </style>

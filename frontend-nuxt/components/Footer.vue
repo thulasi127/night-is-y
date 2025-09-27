@@ -28,4 +28,37 @@
 .site-footer p {
   margin: 0;
 }
+
+/* ---------- Large Laptops (≤1440px) ---------- */
+@media (max-width: 1440px) {
+  .site-footer {
+    font-size: 13px;
+    padding: 18px 0;
+  }
+}
+
+/* ---------- Tablets & Small Laptops (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .site-footer {
+    font-size: 12px;
+    padding: 16px 0;
+  }
+}
+
+/* ---------- Tablets Portrait & Large Phones (≤768px) ---------- */
+@media (max-width: 768px) {
+  .site-footer {
+    font-size: 11px;
+    padding: 14px 0;
+  }
+}
+
+/* ---------- Small Phones (≤430px) ---------- */
+@media (max-width: 430px) {
+  .site-footer {
+    font-size: 10px;
+    padding: 12px 0;
+    letter-spacing: 0.3px;
+  }
+}
 </style>

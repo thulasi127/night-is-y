@@ -162,4 +162,85 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
 }
 .fade-enter-from, .fade-leave-to { opacity: 0; }
 .fade-enter-to, .fade-leave-from { opacity: 1; }
+
+/* ---------- Large Laptops (≤1440px) ---------- */
+@media (max-width: 1440px) {
+  .video-wrapper iframe {
+    max-width: 1000px;
+    max-height: 600px;
+  }
+  .video-title-artist {
+    font-size: 1rem;
+  }
+}
+
+/* ---------- Tablets & Small Laptops (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .video-wrapper {
+    width: 90vw;
+    height: auto;
+    padding-bottom: 48px;
+  }
+
+  .video-wrapper iframe {
+    width: 90vw;
+    height: 50vh;
+    max-height: 420px;
+  }
+
+  .video-title-artist {
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* ---------- Tablets Portrait & Large Phones (≤768px) ---------- */
+@media (max-width: 768px) {
+  .video-wrapper iframe {
+    width: 95vw;
+    height: 40vh;
+    max-height: 360px;
+  }
+
+  .video-title-artist {
+    font-size: 0.9rem;
+  }
+
+  .video-return span {
+    font-size: 12px;
+  }
+}
+
+/* ---------- Small Phones (≤430px) ---------- */
+@media (max-width: 430px) {
+  .video-wrapper {
+    width: 100vw;
+    height: auto;
+    padding-bottom: 32px;
+  }
+
+  .video-wrapper iframe {
+    width: 100vw;
+    height: 38vh;
+    max-height: 260px;
+  }
+
+  .video-title-artist {
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+
+  .video-return span {
+    font-size: 11px;
+  }
+
+  .return-line {
+    width: 36px;
+  }
+
+  .video-return:hover .return-line {
+    width: 48px;
+  }
+}
+
 </style>

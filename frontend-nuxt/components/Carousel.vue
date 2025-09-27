@@ -268,4 +268,103 @@ onUnmounted(() => {
   /* No margin-left or margin-right unless needed for edge cases */
 }
 
+/* ---------- Large Laptops (≤1440px) ---------- */
+@media (max-width: 1440px) {
+  .carousel-card,
+  .poster-image-wrapper {
+    width: 300px;
+    height: 450px;
+  }
+
+  .poster-title-neue {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .carousel-lines {
+    margin-top: 48px;
+  }
+}
+
+/* ---------- Small Laptops & Tablets (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .carousel-card,
+  .poster-image-wrapper {
+    width: 240px;
+    height: 360px;
+  }
+
+  .poster-title-neue {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+  }
+}
+
+/* ---------- Tablets & Large Phones (≤768px) ---------- */
+@media (max-width: 768px) {
+  .carousel-root {
+    padding: 40px 0 24px;
+  }
+
+  .carousel-card,
+  .poster-image-wrapper {
+    width: 180px;
+    height: 270px;
+  }
+
+  .poster-title-neue {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .carousel-lines {
+    gap: 8px;
+    margin-top: 32px;
+  }
+
+  .line {
+    width: 16px;
+  }
+}
+
+/* ---------- Small Phones (≤430px) ---------- */
+@media (max-width: 430px) {
+  .carousel-root {
+    padding: 24px 0 16px;
+  }
+
+  .carousel-card,
+  .poster-image-wrapper {
+    width: 140px;
+    height: 210px;
+  }
+
+  .poster-title-neue {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .carousel-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 1.5rem;
+  }
+
+  .carousel-lines {
+    margin-top: 24px;
+    gap: 6px;
+  }
+
+  .line {
+    width: 12px;
+  }
+}
+
+
 </style>

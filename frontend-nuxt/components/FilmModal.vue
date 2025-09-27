@@ -722,4 +722,103 @@ export default {
   color: #593792;             /* Your hover color */
   text-decoration: underline; /* Add custom underline on hover */
 }
+
+/* --- Tablet (≤1024px) --- */
+@media (max-width: 1024px) {
+  .frame {
+    width: 90vw;
+    height: 80vh;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .image {
+    width: 200px;
+    height: 300px;
+    margin-left: 20px;
+  }
+
+  .modal-scrollable-content {
+    width: calc(100% - 240px);
+    height: 100%;
+    margin-left: 20px;
+    padding: 16px;
+    overflow-y: auto;
+  }
+
+  .text-wrapper {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .trailer-video {
+    max-width: 100%;
+    border-radius: 4px;
+  }
+
+  .awards-title,
+  .section-heading {
+    font-size: 14px;
+  }
+}
+
+/* --- Mobile (≤640px) --- */
+@media (max-width: 640px) {
+  .frame {
+    flex-direction: column;
+    width: 95vw;
+    height: 90vh;
+    padding: 10px;
+  }
+
+  .image {
+    width: 160px;
+    height: 240px;
+    margin: 0 auto 16px auto;
+  }
+
+  .modal-scrollable-content {
+    width: 100%;
+    height: calc(90vh - 260px);
+    margin: 0;
+    padding: 12px;
+    overflow-y: auto;
+  }
+
+  .text-wrapper {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .film-subtitle-row,
+  .info-labels {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .trailer-video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    margin: 12px 0;
+    border-radius: 4px;
+  }
+
+  .awards-title,
+  .section-heading {
+    font-size: 13px;
+  }
+
+  .award-name,
+  .award-year-status {
+    font-size: 13px;
+  }
+
+  .article-title {
+    font-size: 13px;
+  }
+}
+
+
 </style>
