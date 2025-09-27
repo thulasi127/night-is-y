@@ -215,25 +215,6 @@ button.arrow:disabled {
   cursor: not-allowed;
 }
 
-/* Add these styles at the end of your style block */
-.test-modal-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.test-modal-content {
-  background: #222;
-  color: #fff;
-  padding: 48px 32px;
-  border-radius: 16px;
-  font-size: 2rem;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-}
-
 .modal-film-details {
   display: flex;
   flex-direction: column;

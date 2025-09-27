@@ -3,27 +3,10 @@
     "title": "The Hoof Lady",
     "release_date": "",
     "poster": "/Image/Posters/in-dev/dev-poster-1.jpg",
-    "type": "Graphic novel",
-    "summary": "The Hoof Lady is a bold Indigenous-led visual novel that reimagines a chilling Mohawk legend through a contemporary, feminist, and 2SLGBTQ+ lens. Rooted in cultural storytelling and grounded in modern realities, the series follows Hawi, a naive but determined young Indigenous woman with horse hooves for feet and a warrior spirit brewing within her. Set in Kahnawà:ke and stretching into man camps and cityscapes, this supernatural thriller unpacks systemic violence, sexual abuse, MMIWG2S, intergenerational trauma, and the colonial entanglements of policing and resource extraction.",
+    "type": "Graphic novel, sci-fi/fantasy",
+    "summary": "When Hawi, a vigilante spirit, is sent back to the earth realm adorned with horns, hooves and a mission to “right the wrong” that was done to her, she must uncover her identity and avenge her death in order to pass onto the skyworld.",
     "team": [{
-            "role": "CO-CREATOR",
-            "names": ["Devery Jacobs", "D.W. Waterson"]
-        },
-        {
-            "role": "WRITER",
-            "names": ["Devery Jacobs"]
-        },
-        {
-            "role": "EXECUTIVE PRODUCER",
-            "names": ["Devery Jacobs", "D.W. Waterson"]
-        },
-        {
-            "role": "LEAD ACTOR",
-            "names": ["Devery Jacobs"]
-        },
-        {
-            "role": "DIRECTOR",
-            "names": ["D.W. Waterson"]
-        }
-    ]
+        "role": "AUTHORS",
+        "names": ["Kawennáhere Devery Jacobs", "D.W. Waterson"]
+    }]
 }]
