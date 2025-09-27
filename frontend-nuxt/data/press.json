@@ -16,14 +16,12 @@
             {
                 "text": "A sensitive and stylish coming-of-age journey",
                 "source": "The Hollywood Reporter",
-                "logo": "/Image/press-logos/The Hollywood Reporter.svg"
+                "logo": "/Image/press-logos/the-hollywood-reporter-seeklogo.svg"
             },
             {
                 "text": "A visceral debut feature",
                 "source": "Letterboxd",
-                "logo": "/Image/press-logos/Letterboxd.svg",
-                "class": "invert-dark-logo"
-
+                "logo": "/Image/press-logos/letterboxd-logo-h-neg-rgb.svg"
             }
         ]
     },
@@ -33,7 +31,7 @@
         "quotes": [{
                 "text": "Jacobs gives a magnetic performance",
                 "source": "The Hollywood Reporter",
-                "logo": "/Image/press-logos/The Hollywood Reporter.svg"
+                "logo": "/Image/press-logos/the-hollywood-reporter-seeklogo.svg"
             },
             {
                 "text": "It is Jacobs' performance that makes 'Backspot' such an exciting watch",
@@ -74,8 +72,7 @@
             {
                 "text": "Waterson excels at immersing the audience.",
                 "source": "IndieWire",
-                "logo": "/Image/press-logos/IndieWire.svg",
-                "class": "invert-dark-logo"
+                "logo": "/Image/press-logos/indie-wire-seeklogo.png"
             },
             {
                 "text": "Masterful direction from D.W Waterson",

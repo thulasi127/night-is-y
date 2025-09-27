@@ -6,23 +6,16 @@
       <h1 class="press-title">THEY SAID IT BEST.</h1>
     </header>
 
-    <!-- Loop through projects -->
+    <!-- Group by project, ignore category -->
     <section
-      v-for="(project, pIdx) in pressData"
+      v-for="(project, pIdx) in groupedProjects"
       :key="pIdx"
       class="press-project"
     >
       <h2 class="project-title">{{ project.project }}</h2>
-
-      <!-- Category -->
-      <div v-if="project.category" class="category-title">
-        {{ project.category }}
-      </div>
-
-      <!-- Quotes & Laurels -->
       <div class="press-grid">
         <div
-          v-for="(quote, qIdx) in project.quotes.filter(q => q && q.logo !== undefined)"
+          v-for="(quote, qIdx) in project.allQuotes"
           :key="qIdx"
           class="press-card"
         >
@@ -30,16 +23,14 @@
           <div v-if="quote.text" class="quote-wrapper">
             <blockquote class="quote-text">“{{ quote.text }}”</blockquote>
             <div class="logo-container">
-                <span class="dash">—</span>
-                <img
-                    :src="quote.logo"
-                    :alt="quote.source || 'Laurel Logo'"
-                    class="source-logo"
-                    :class="quote.class"
-                />
-                </div>
+              <img
+                :src="quote.logo"
+                :alt="quote.source || 'Laurel Logo'"
+                class="source-logo"
+                :class="quote.class"
+              />
+            </div>
           </div>
-
           <!-- LAURELS (logo only, no text) -->
           <div v-else class="laurel-wrapper">
             <img :src="quote.logo" alt="Laurel logo" class="laurel-logo" />
@@ -51,7 +42,27 @@
 </template>
 
 <script setup lang="ts">
-import pressData from "@/data/press.json"
+import pressDataRaw from "@/data/press.json"
+import { useHead } from '#imports'
+
+// Group all quotes by project, ignoring category
+const groupedProjects = [];
+const projectMap = new Map();
+
+for (const entry of pressDataRaw) {
+  if (!projectMap.has(entry.project)) {
+    projectMap.set(entry.project, { project: entry.project, allQuotes: [] });
+  }
+  projectMap.get(entry.project).allQuotes.push(...(entry.quotes || []));
+}
+
+groupedProjects.push(...projectMap.values());
+
+// Set the browser tab title and meta description
+useHead({
+  title: 'Press | Night Is Y',
+  meta: [{ name: 'description', content: 'Press coverage for Night Is Y projects.' }]
+});
 </script>
 
 <style scoped>
@@ -145,7 +156,9 @@ import pressData from "@/data/press.json"
 
 .quote-text {
   font-size: 1.6rem;
-  font-weight: 300; /* thin font */
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 100;      /* Thin */
+  font-style: italic;    /* Italics */
   line-height: 1.6;
   margin-bottom: 1.25rem;
   color: #f5f5f5;
@@ -159,13 +172,9 @@ import pressData from "@/data/press.json"
   margin-top: 0.75rem;
 }
 
-.dash {
-  font-size: 1.5rem;
-  color: #aaa;
-}
-
 .source-logo {
-  max-height: 80px;
+  max-height: 70px;
+  width: auto;
   object-fit: contain;
 }
 
@@ -186,3 +195,4 @@ import pressData from "@/data/press.json"
   filter: brightness(0) invert(1) contrast(100%);
 }
 </style>
+
