@@ -480,4 +480,13 @@ const bio = bioData.devery_jacobs;
   width: 64px;
   opacity: 1;
 }
+
+/* New styles for title sections */
+.h2-title, .film-series-title, .music-videos-title, .development-title, .project-title, .press-title {
+  font-size: clamp(1.8rem, 2.9vw, 2.4rem);
+  font-family: "anton", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 </style>

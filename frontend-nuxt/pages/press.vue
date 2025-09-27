@@ -31,10 +31,6 @@
               />
             </div>
           </div>
-          <!-- LAURELS (logo only, no text) -->
-          <div v-else class="laurel-wrapper">
-            <img :src="quote.logo" alt="Laurel logo" class="laurel-logo" />
-          </div>
         </div>
       </div>
     </section>
@@ -80,9 +76,12 @@ useHead({
 }
 
 .press-title {
-  font-size: 3rem;
-  font-weight: 900;
-  text-transform: uppercase;
+  font-family: "anton", sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 2.9vw, 2.4rem);
+    line-height: 1.1;
+    text-transform: uppercase;
+    text-align: center;
   letter-spacing: 2px;
   background: linear-gradient(
     270deg,
@@ -98,6 +97,13 @@ useHead({
   background-clip: text;
   animation: gradientMove 6s ease infinite; /* slowed down for headline effect */
 }
+
+@media (max-width: 1024px) {
+            .press-title {
+                margin-top: 120px;
+                /* More space on smaller screens to prevent overlap */
+            }
+        }
 
 @keyframes gradientMove {
   0% {
@@ -178,17 +184,6 @@ useHead({
   object-fit: contain;
 }
 
-/* Laurels */
-.laurel-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.laurel-logo {
-  max-height: 150px;
-  object-fit: contain;
-}
 
 /* Dark logos override */
 .invert-dark-logo {

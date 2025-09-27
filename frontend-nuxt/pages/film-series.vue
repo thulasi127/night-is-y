@@ -6,7 +6,7 @@
         <ChevronLeftIcon class="chevron-left-small" />
         <span class="projects-text">PROJECTS</span>
       </div>
-      <div class="film-series-title">FILM &amp; SERIES</div>
+      <div class="page-title">FILM &amp; SERIES</div>
     </div>
 
     <!-- Carousel integration -->
@@ -88,18 +88,25 @@ useHead({
   position: relative;
 }
 
-.film-series-title {
+.page-title {
+  font-size: clamp(1.8rem, 2.9vw, 2.4rem);
+  font-family: "anton", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0px;
   margin: 0 auto;
-  margin-top: 40px;    /* reduced from 80px */
   color: #fff;
   font-family: "anton", sans-serif;
-  font-size: 40px;     /* reduced from 48px */
-  font-weight: 300;
+  /* font-size: 48px; */
+  /* font-weight: 300; */
   line-height: 1.1;
+  /* letter-spacing: 0; */
   text-transform: uppercase;
   text-align: center;
   z-index: 2;
   white-space: nowrap;
+  flex: 1;
+  margin-top: 80px; /* Pushes it down on desktop */
 }
 
 .projects-cta {
@@ -134,26 +141,8 @@ useHead({
   filter: brightness(0.7);
 }
 
-.film-series-title {
-  margin: 0 auto;
-  color: #fff;
-  font-family: "anton", sans-serif;
-  font-size: 48px;
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  text-align: center;
-  z-index: 2;
-  white-space: nowrap;
-  flex: 1;
-  margin-top: 80px; /* Pushes it down on desktop */
-}
 
 @media (max-width: 1024px) {
-  .film-series-title {
-    margin-top: 120px; /* More space on smaller screens to prevent overlap */
-  }
 
   .projects-cta {
     margin-top: 120px; /* More space for smaller screens */

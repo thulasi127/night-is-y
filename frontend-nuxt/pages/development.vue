@@ -6,7 +6,7 @@
         <ChevronLeftIcon class="chevron-left-small" />
         <span class="projects-text">PROJECTS</span>
       </div>
-      <div class="dev-title">IN DEVELOPMENT</div>
+      <div class="page-title">IN DEVELOPMENT</div>
     </div>
 
     <!-- Reusable Carousel -->
@@ -114,27 +114,7 @@ function closeModal() {
   filter: brightness(0.7);
 }
 
-.dev-title {
-  margin: 0 auto;
-  color: #fff;
-  font-family: "anton", sans-serif;
-  font-size: 48px;
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  text-align: center;
-  z-index: 2;
-  white-space: nowrap;
-  flex: 1;
-  margin-top: 80px; /* Pushes it down on desktop */
-}
-
 @media (max-width: 1024px) {
-  .dev-title {
-    margin-top: 120px; /* More space on smaller screens to prevent overlap */
-  }
-
   .projects-cta {
     margin-top: 120px; /* More space for smaller screens */
   }
@@ -259,4 +239,5 @@ button.arrow:disabled {
 .arrow:enabled:hover .arrow-icon {
   filter: brightness(0.7); /* dims arrow icon on hover */
 }
+
 </style>

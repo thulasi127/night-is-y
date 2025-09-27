@@ -6,7 +6,7 @@
         <ChevronLeftIcon class="chevron-left-small" />
         <span class="projects-text">PROJECTS</span>
       </div>
-      <div class="music-videos-title">MUSIC VIDEOS</div>
+      <div class="page-title">MUSIC VIDEOS</div>
     </div>
 
     <!-- Carousel integration -->
@@ -90,20 +90,6 @@ useHead({
   position: relative;
 }
 
-.music-videos-title {
-  margin: 0 auto;
-  margin-top: 40px;    /* reduced from 80px */
-  color: #fff;
-  font-family: "anton", sans-serif;
-  font-size: 40px;     /* reduced from 48px */
-  font-weight: 300;
-  line-height: 1.1;
-  text-transform: uppercase;
-  text-align: center;
-  z-index: 2;
-  white-space: nowrap;
-}
-
 .projects-cta {
   position: absolute;
   left: 192px;
@@ -136,27 +122,7 @@ useHead({
   filter: brightness(0.7);
 }
 
-.music-videos-title {
-  margin: 0 auto;
-  color: #fff;
-  font-family: "anton", sans-serif;
-  font-size: 48px;
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  text-align: center;
-  z-index: 2;
-  white-space: nowrap;
-  flex: 1;
-  margin-top: 80px; /* Pushes it down on desktop */
-}
-
 @media (max-width: 1024px) {
-  .music-videos-title {
-    margin-top: 120px; /* More space on smaller screens to prevent overlap */
-  }
-
   .projects-cta {
     margin-top: 120px; /* More space for smaller screens */
   }

@@ -1,89 +1,102 @@
-/* Import Typekit fonts */
-
-@import url("https://use.typekit.net/lmr4fnt.css");
-html,
-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background: #000;
-    font-family: "proxima-nova", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    letter-spacing: normal;
-    /* Kerning = 410 for body/small text */
-    color: #fff;
-}
-
-
-/* Large headings & titles */
-
-h1,
-h2,
-h3,
-.film-series-title,
-.modal-title,
-.poster-title-neue,
-.dev-title,
-.section-heading,
-.the-team-heading,
-.projects,
-.press-title,
-.row-label {
-    font-family: "anton", sans-serif;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    /* -10 tracking */
-    text-transform: uppercase;
-    color: #fff;
-    margin: 0;
-}
-
-
-/* Body, paragraphs, metadata, labels */
-
-body,
-p,
-.projects-text,
-.poster-type-neue,
-.modal-summary,
-.modal-type,
-.modal-release_date,
-.label-title,
-.label-link,
-.about-niy-text,
-.quote-text,
-.person-fullname,
-.role,
-.name,
-.email,
-.text-wrapper-4,
-.text-wrapper-5 {
-    font-family: "proxima-nova", sans-serif;
-    font-weight: 300;
-    /* Light */
-    font-style: normal;
-    letter-spacing: normal;
-    color: #fff;
-}
-
-
-/* Override italics when needed (quotes etc.) */
-
-.quote-text {
-    font-weight: 300;
-    font-style: normal;
-}
-
-
-/* CTA hover effect for icons and text */
-
-.cta-hover,
-.cta-hover * {
-    transition: filter 0.12s;
-}
-
-.cta-hover:hover,
-.cta-hover:hover * {
-    filter: brightness(0.7);
-}
+        /* Import Typekit fonts */
+        
+        @import url("https://use.typekit.net/lmr4fnt.css");
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: #000;
+            font-family: "proxima-nova", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            letter-spacing: normal;
+            /* Kerning = 410 for body/small text */
+            color: #fff;
+        }
+        /* Large headings & titles */
+        
+        h1,
+        h2,
+        h3,
+        .film-series-title,
+        .modal-title,
+        .poster-title-neue,
+        .dev-title,
+        .section-heading,
+        .the-team-heading,
+        .projects,
+        .press-title,
+        .row-label {
+            font-family: "anton", sans-serif;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            /* -10 tracking */
+            text-transform: uppercase;
+            color: #fff;
+            margin: 0;
+        }
+        /* Body, paragraphs, metadata, labels */
+        
+        body,
+        p,
+        .projects-text,
+        .poster-type-neue,
+        .modal-summary,
+        .modal-type,
+        .modal-release_date,
+        .label-title,
+        .label-link,
+        .about-niy-text,
+        .quote-text,
+        .person-fullname,
+        .role,
+        .name,
+        .email,
+        .text-wrapper-4,
+        .text-wrapper-5 {
+            font-family: "proxima-nova", sans-serif;
+            font-weight: 300;
+            /* Light */
+            font-style: normal;
+            letter-spacing: normal;
+            color: #fff;
+        }
+        /* Override italics when needed (quotes etc.) */
+        
+        .quote-text {
+            font-weight: 300;
+            font-style: normal;
+        }
+        /* CTA hover effect for icons and text */
+        
+        .cta-hover,
+        .cta-hover * {
+            transition: filter 0.12s;
+        }
+        
+        .cta-hover:hover,
+        .cta-hover:hover * {
+            filter: brightness(0.7);
+        }
+        
+        .page-title {
+            font-family: "anton", sans-serif;
+            font-weight: 300;
+            font-size: clamp(1.8rem, 2.9vw, 2.4rem);
+            line-height: 1.1;
+            text-transform: uppercase;
+            text-align: center;
+            color: #fff;
+            margin: 0 auto;
+            white-space: nowrap;
+            flex: 1;
+            margin-top: 80px;
+        }
+        
+        @media (max-width: 1024px) {
+            .page-title {
+                margin-top: 120px;
+                /* More space on smaller screens to prevent overlap */
+            }
+        }
