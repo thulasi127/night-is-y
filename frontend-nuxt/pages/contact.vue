@@ -3,7 +3,10 @@
     <NavBar/>
 
     <div class="bg">
-      <img class="bg-logo" src="/Image/NIY-logos/niy-logo-3.png" alt="NIGHT is Y" />
+      <video class="bg-video" autoplay muted loop playsinline>
+        <source src="/videos/contact.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </div>
 
     <main class="content">
@@ -40,11 +43,15 @@ const people = (data.people as Person[])
 useHead({ title: 'Contact | NIGHT is Y' })
 
 onMounted(() => {
+  const video = document.querySelector('.bg-video') as HTMLVideoElement | null;
+  if (video) {
+    video.playbackRate = 0.5; // Slow down the video even more
+  }
   const logo = document.querySelector('.bg-logo')
   if (logo) {
     setTimeout(() => {
       logo.classList.add('visible')
-    }, 1200) // Optional: increase delay for a slower start
+    }, 1200)
   }
 })
 </script>
@@ -73,9 +80,10 @@ onMounted(() => {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background: #000;
   display: grid;
-  place-items: center;              /* PERFECT vertical + horizontal center */
+  place-items: center;
+  background: #000;
+  overflow: hidden;
 }
 
 .bg-logo {
@@ -89,6 +97,20 @@ onMounted(() => {
 
 .bg-logo.visible {
   opacity: 1;
+}
+
+.bg-video {
+  width: 45vw;
+  height: 45vh;
+  max-width: 700px;
+  max-height: 400px;
+  object-fit: cover;
+  opacity: 0.6;
+  transition: opacity 2s ease;
+  display: block;
+  margin: 0 auto;
+  /* Slow down playback */
+  animation: none;
 }
 
 /* ---------------------------------------------------
@@ -105,14 +127,20 @@ onMounted(() => {
 .veil {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: calc(100vh - 40px); /* leave 40px gap at bottom */
   z-index: 200;
-  background: rgba(var(--veil-color), var(--veil-alpha));
+  background: rgba(40, 40, 48, 0.35); /* dark grey, slightly transparent */
   color: #fff;
   display: grid;
   place-items: center;
   padding: 32px 24px;
   overflow: hidden;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.3); /* subtle edge shadow */
+}
+
+.below {
+  height: 40px; /* same as gap above */
+  background: transparent;
 }
 
 /* ---------------------------------------------------
@@ -182,12 +210,6 @@ onMounted(() => {
   word-break: normal;
 }
 
-
-/* Tail after veil releases */
-.below {
-  height: 60vh;
-  background: transparent;
-}
 
 /* ------------------ Responsive ------------------ */
 @media (max-width: 1200px) {
