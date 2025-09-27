@@ -1,6 +1,8 @@
 <template>
   <footer class="site-footer">
-    <p>2025 Copyright Night is Y ©</p>
+    <p style="font-family: 'proxima-nova', sans-serif; font-weight: 100; font-style: italic;">
+      2025 Copyright Night is Y ©
+    </p>
   </footer>
 </template>
 
