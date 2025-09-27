@@ -110,7 +110,18 @@ function stopAutoSlide() {
   if (autoSlideTimer) clearInterval(autoSlideTimer);
 }
 
-onMounted(() => startAutoSlide());
+onMounted(() => {
+  centerIndex.value = 0;      // Always start at first poster
+  hovered.value = null;
+  allowHover = false;         // Disable hover initially
+
+  // Enable hover only after a short delay (e.g., 800ms)
+  setTimeout(() => {
+    allowHover = true;
+  }, 800);
+
+  startAutoSlide();
+});
 onUnmounted(() => {
   stopAutoSlide();
   window.removeEventListener("mousemove", enableHoverOnMove);

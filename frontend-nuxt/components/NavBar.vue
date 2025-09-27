@@ -23,7 +23,7 @@
           @mouseenter="open = true"
           @mouseleave="open = false"
         >
-          <div class="nav-link">WORK</div>
+            <NuxtLink to="/projects" class="nav-link">WORK</NuxtLink>
           <transition name="fade-slide">
             <div v-if="open" class="dropdown-list">
               <div class="dropdown-line"></div>
