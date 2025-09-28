@@ -1,0 +1,5 @@
+// variables.scss
+$scale-factor: 0.7; // 70% of original size everywhere
+// shrink everything sitewide by 15%
+$font-sizes: ( "xs": clamp(10px, 0.8vw, 12px), "sm": clamp(12px, 1vw, 14px), "md": clamp(14px, 1.2vw, 16px), "lg": clamp(18px, 1.5vw, 22px), "xl": clamp(24px, 2vw, 32px), "xxl": clamp(32px, 3vw, 44px));
+$spacing: ( "xs": 4px * $scale-factor, "sm": 8px * $scale-factor, "md": 12px * $scale-factor, "lg": 20px * $scale-factor, "xl": 32px * $scale-factor, "xxl": 48px * $scale-factor);

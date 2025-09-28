@@ -219,15 +219,16 @@ export default {
 }
 .frame {
   position: relative;
-  width: 1580px;
-  height: 812px;
+  width: clamp(320px, 80vw, 1200px);
+  height: clamp(400px, 80vh, 800px);
   background: rgba(0, 0, 0, 0.85);
-  border-radius: 16px;
+  border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   display: flex;
   font-family: "proxima-nova", sans-serif;
   overflow: hidden;
   align-items: center; /* Vertically center poster and content */
+  @include spacing(padding, "lg");
 }
 
 .image {
@@ -293,14 +294,12 @@ export default {
 .text-wrapper {
   font-family: "Anton", sans-serif;
   font-size: 44px;
-  font-weight: 700;           /* Boldest for title */
-  color: #fff;
+  @include font-size("xl");
+  letter-spacing: 1px;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
-  line-height: 1.08;
-  max-width: 100%;
-  word-break: break-word;
-  margin-bottom: 2px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
 }
 
 .laurel-img {
@@ -316,12 +315,6 @@ export default {
   margin-top: 2px; /* subtle alignment tweak */
 }
 
-/* Tablet screens */
-@media (max-width: 1024px) {
-  .laurel-img {
-    height: 32px; /* slightly smaller for tablets */
-  }
-}
 
 /* Mobile screens */
 @media (max-width: 640px) {

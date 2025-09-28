@@ -106,51 +106,41 @@ export default defineComponent({
 <style>
 /* Base Navbar */
 .navbar {
-  background-color: transparent;
+  background: transparent;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  height: 120px;
+  height: clamp(60px, 8vw, 100px);
 }
 
 .navbar-content {
-  max-width: 1728px;
+  max-width: 1600px;
   margin: 0 auto;
   height: 100%;
-  padding: 0 2rem;
+  padding: 0 clamp(12px, 3vw, 32px);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
 }
 
+/* Logo */
 .logo {
-  height: clamp(40px, 8vw, 80px);  /* Scales between 40px and 80px depending on screen size */
-  width: auto;                     /* Keeps aspect ratio */
-  max-width: 200px;                 /* Prevents it from growing too large on huge screens */
+  height: clamp(28px, 6vw, 60px);
+  width: auto;
+  max-width: clamp(80px, 12vw, 140px);
   object-fit: contain;
   transition: height 0.3s ease, opacity 0.3s ease;
 }
-
-@media (max-width: 768px) {
-  .logo {
-    height: clamp(30px, 10vw, 60px); /* Even smaller on mobile */
-    max-width: 150px;
-  }
-  .mobile-link {
-    font-size: clamp(1rem, 4vw, 1.2rem);
-    letter-spacing: 0.1em;
-  }
-}
 .logo:hover { opacity: 0.8; }
 
-/* Center Text */
+/* Brand Text */
 .nav-brand-text {
   font-family: "proxima-nova", sans-serif;
   font-weight: 300;
-  font-size: clamp(18px, 2vw, 24px);
-  letter-spacing: 0.41em;
+  font-size: clamp(14px, 2vw, 20px);
+  letter-spacing: 0.3em;
   color: #fff;
   justify-self: center;
 }
@@ -158,14 +148,15 @@ export default defineComponent({
 /* Desktop Nav Links */
 .nav {
   display: flex;
-  gap: 2rem;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
   align-items: center;
   justify-self: end;
 }
+
 .nav-link {
-  color: #ffffff;
+  color: #fff;
   font-family: "proxima-nova", sans-serif;
-  font-size: 1rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.95rem);
   font-weight: 400;
   text-transform: uppercase;
   text-decoration: none;
@@ -175,11 +166,11 @@ export default defineComponent({
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -6px;
+  bottom: -4px;
   right: 0;
   width: 0;
   height: 1px;
-  background: #ffffff;
+  background: #fff;
   opacity: 0.5;
   transition: width 0.3s ease;
 }
@@ -197,90 +188,76 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0.8rem 1.5rem;
-  gap: 0.5rem;
-  min-width: 180px;
+  padding: 0.5rem 1rem;
+  gap: 0.25rem;
+  min-width: 160px;
 }
 .dropdown-line {
   position: absolute;
   top: 0;
   left: 0;
-  transform: translateY(1px);
   width: 1px;
   height: 100%;
   background: #ffffff33;
 }
 .dropdown-item {
-  color: #ffffff;
+  color: #fff;
   font-family: "proxima-nova", sans-serif;
-  font-weight: 100;
+  font-weight: 300;
   text-transform: uppercase;
   text-decoration: none;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
+  font-size: clamp(0.65rem, 1.5vw, 0.85rem);
+  letter-spacing: 0.4px;
   transition: opacity 0.3s ease, color 0.3s ease;
 }
 .dropdown-list:hover .dropdown-item { opacity: 0.7; }
-.dropdown-item:hover { opacity: 1 !important; color: #ffffff; }
+.dropdown-item:hover { opacity: 1 !important; color: #fff; }
 
-/* Hamburger Icon (only mobile) */
+/* Hamburger Icon (mobile only) */
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   background: none;
   border: none;
   cursor: pointer;
   z-index: 2001;
   justify-self: end;
-  margin-left: auto;
 }
 .hamburger span {
   display: block;
-  width: 24px;
+  width: 20px;
   height: 1px;
   background: #fff;
   border-radius: 1px;
 }
 
 /* Mobile Nav */
-/* Mobile Nav Links */
 .mobile-nav {
   position: fixed;
   top: 0;
   right: 0;
-  width: 60vw;
-  max-width: 260px;
+  width: clamp(150px, 60vw, 220px);
   height: 100vh;
   background: rgba(0, 0, 0, 0.85);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 120px 24px 40px 24px;
-  gap: 20px;
+  padding: clamp(60px, 10vh, 100px) clamp(16px, 4vw, 24px);
+  gap: clamp(12px, 2vh, 20px);
   z-index: 2000;
 }
 
-/* Mobile Links - Default */
 .mobile-link {
   font-family: "proxima-nova", sans-serif;
   text-transform: uppercase;
   color: #fff;
   text-decoration: none;
-  font-size: 1.2rem;
-  letter-spacing: 1px;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  letter-spacing: 0.05em;
   transition: color 0.3s ease, opacity 0.3s ease;
 }
-
-/* Hover dim effect like desktop nav */
-.mobile-nav:hover .mobile-link {
-  opacity: 0.3;
-}
-.mobile-link:hover {
-  opacity: 1 !important;
-  color: #fff !important; /* keep text white */
-}
-
+.mobile-nav:hover .mobile-link { opacity: 0.3; }
+.mobile-link:hover { opacity: 1 !important; color: #fff !important; }
 
 /* Slide Transition */
 .slide-enter-from,
@@ -290,79 +267,9 @@ export default defineComponent({
 .slide-enter-to,
 .slide-leave-from { transform: translateX(0%); opacity: 1; }
 
-/* ---------- Desktop/Large Laptops ---------- */
-@media (max-width: 1440px) {
-  .nav-link {
-    font-size: 0.9rem; /* slightly smaller text */
-    gap: 1.5rem;
-  }
-
-  .logo {
-    max-width: 160px; /* smaller logo */
-  }
-}
-
-/* ---------- Tablets & Small Laptops ---------- */
+/* Responsive: Hide Desktop on Tablets */
 @media (max-width: 1024px) {
-  .desktop-nav {
-    display: none; /* hide desktop menu */
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  .logo {
-    max-width: 140px;
-  }
-
-  .nav-brand-text {
-    font-size: clamp(16px, 2vw, 20px);
-  }
+  .desktop-nav { display: none; }
+  .hamburger { display: flex; }
 }
-
-/* ---------- Tablets Portrait Mode ---------- */
-@media (max-width: 768px) {
-  .mobile-nav {
-    width: 60vw;
-    max-width: 240px;
-    padding: 80px 20px;
-    gap: 16px;
-  }
-
-  .mobile-link {
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-    padding: 6px 0;
-  }
-
-  .logo {
-    max-width: 120px;
-  }
-}
-
-/* ---------- Small Phones ---------- */
-@media (max-width: 430px) {
-  .mobile-nav {
-    width: 70vw;
-    max-width: 200px;
-    padding: 60px 16px;
-    gap: 12px;
-  }
-
-  .mobile-link {
-    font-size: 0.9rem;
-    letter-spacing: 0.04em;
-  }
-
-  .logo {
-    max-width: 100px;
-  }
-
-  .nav-brand-text {
-    font-size: 14px;
-    letter-spacing: 0.3em;
-  }
-}
-
 </style>

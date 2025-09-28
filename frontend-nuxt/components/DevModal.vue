@@ -73,8 +73,10 @@ export default {
 }
 .frame {
   position: relative;
-  width: 1580px;
-  height: 620px;              /* Shortened height */
+  width: clamp(320px, 65vw, 1000px);
+  height: clamp(280px, 65vh, 480px);
+  border-radius: 12px;
+  padding: clamp(8px, 1.5vw, 20px);
   margin-top: 48px;           /* Space below navbar */
   margin-bottom: 48px;        /* Equal space from bottom */
   background: rgba(0, 0, 0, 0.85);
@@ -87,12 +89,10 @@ export default {
   overflow: hidden;
 }
 .image {
-  width: 272px;
-  height: 400px;
-  margin-top: 20px;
-  margin-left: 40px;
-  object-fit: cover;
-  border-radius: 8px;
+  width: clamp(100px, 20vw, 180px);
+  height: clamp(140px, 25vw, 240px);
+  margin: 0 auto clamp(8px, 2vh, 16px) auto;
+  border-radius: 6px;
   flex-shrink: 0;
   align-self: center;          /* vertically center poster */
 }
@@ -110,8 +110,10 @@ export default {
 }
 .text-wrapper {
   font-family: "anton", sans-serif;
-  font-size: 64px;
-  font-weight: 300;
+  font-size: clamp(14px, 3vw, 28px);
+  line-height: 1.2;
+  margin-bottom: clamp(4px, 1vh, 8px);
+  text-align: left;
   color: #fff;
   text-transform: uppercase;
   line-height: 70px;
@@ -121,10 +123,10 @@ export default {
   overflow: visible;
 }
 .div {
-  font-size: 16px;
+  font-size: clamp(10px, 1.5vw, 14px);
   color: #fff;
   margin-bottom: 8px;
-  line-height: 24px;
+  line-height: 1.4;
 }
 .trailer-video {
   width: 100%;
@@ -329,8 +331,10 @@ export default {
 
 .frame {
   position: relative;
-  width: 1580px;
-  height: 620px;
+  width: clamp(320px, 65vw, 1000px);
+  height: clamp(280px, 65vh, 480px);
+  border-radius: 12px;
+  padding: clamp(8px, 1.5vw, 20px);
   background: rgba(0, 0, 0, 0.85);
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);

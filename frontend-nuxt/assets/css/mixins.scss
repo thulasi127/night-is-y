@@ -1,0 +1,9 @@
+// mixins.scss
+@use "variables" as *;
+@mixin font-size($size) {
+    font-size: map-get($font-sizes, $size);
+}
+
+@mixin spacing($property, $size) {
+    #{$property}: map-get($spacing, $size);
+}

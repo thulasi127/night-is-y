@@ -30,7 +30,9 @@
               <span class="sidebar-heading">PAST NOTABLE WORK:</span>
               <div class="works-list">
                 <template v-for="(work, idx) in bio.notable_works" :key="work.title">
-                  <a href="#" @click.prevent="openVideo(work.url)">{{ work.title }}</a>
+                  <div>
+                    <a href="#" @click.prevent="openVideo(work.url)">{{ work.title }}</a>
+                  </div>
                 </template>
               </div>
               <div class="frame">
@@ -147,11 +149,9 @@ useHead({
 
 
 <style scoped>
-/* --- Base Layout --- */
 .about-team-page {
   background: #000;
   width: 100vw;
-  height: 100%;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
@@ -162,7 +162,7 @@ useHead({
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 1000;
   background: #000;
 }
@@ -171,7 +171,7 @@ useHead({
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding-top: 64px;
+  padding-top: clamp(40px, 6vw, 64px);
   width: 100%;
 }
 
@@ -181,260 +181,261 @@ useHead({
   align-items: flex-start;
   width: 100%;
   margin-left: 0;
+  gap: clamp(20px, 3vw, 40px);
+  padding: 0 clamp(12px, 4vw, 24px);
 }
 
-/* --- Headshot + Heading --- */
+/* Headshot + Heading */
 .image-heading-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 24px;
-  width: 480px;
-  margin-right: 40px;
+  gap: clamp(8px, 2vw, 16px);
+  width: clamp(240px, 30vw, 400px);
 }
 
 .the-team-heading {
-  margin-top: 100px;
-  margin-bottom: 20px;
-  font-size: clamp(32px, 5vw, 72px);
+  margin-top: clamp(60px, 10vw, 100px);
+  margin-bottom: clamp(8px, 2vw, 20px);
+  font-size: clamp(24px, 4vw, 48px);
   line-height: 1.1;
+  text-align: left;
 }
 
 .image-heading-container .image {
   display: block;
-  width: 480px;
-  height: 540px;
+  width: 100%;
+  height: auto;
+  max-height: 480px;
   object-fit: cover;
   border-radius: 4px;
 }
 
-/* --- Names Row --- */
+/* Names Row */
 .names-row {
   display: flex;
-  gap: 32px;
-  margin: 20px 0;
-  text-align: left;
+  gap: clamp(12px, 2vw, 24px);
+  margin: clamp(8px, 2vw, 20px) 0;
   flex-wrap: wrap;
-  justify-content: flex-start;
 }
 
-.dw-waterson,
-.dw-waterson.overline {
-  font-family: "anton", sans-serif;
-  font-size: clamp(28px, 3vw, 36px);
-  font-weight: 900;
-  text-decoration: overline;
-  text-decoration-thickness: 3px;
-  line-height: 1.1;
-  color: rgba(255,255,255,0.5);
-  text-transform: uppercase;
-  text-decoration-color: rgba(255,255,255,0.5);
-  transition: color 0.3s ease, text-decoration-color 0.3s ease;
-  cursor: pointer;
-}
-.dw-waterson:hover,
-.dw-waterson.overline:hover {
-  color: rgba(255, 255, 255, 0.75);
-  text-decoration-color: rgba(255, 255, 255, 0.75);
+.devery-meta{
+  text-align: left
 }
 
 .devery-jacobs,
-.devery-jacobs.overline {
+.dw-waterson {
   font-family: "anton", sans-serif;
-  font-size: clamp(28px, 3vw, 36px);
+  font-size: clamp(20px, 2.5vw, 28px);
   font-weight: 900;
   text-decoration: overline;
-  text-decoration-thickness: 3px;
-  text-decoration-color: #d90ec1ba; /* switched to magenta */;
+  text-transform: uppercase;
   line-height: 1.1;
 }
 
-
-.dw-waterson {
-  color: rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
-  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+.devery-jacobs.overline {
+  text-decoration-color: #d90ec1ba;
 }
 
-.dw-waterson:hover {
-  color: rgba(255, 255, 255, 0.75);
-  text-decoration-color: rgba(255, 255, 255, 0.75);
+.dw-waterson.overline {
+  text-decoration-color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.5);
+  transition: color 0.3s, text-decoration-color 0.3s;
+}
+.dw-waterson.overline:hover {
+  color: rgba(255,255,255,0.75);
+  text-decoration-color: rgba(255,255,255,0.75);
 }
 
-/* --- Bio Section --- */
+/* Bio + Sidebar Container */
 .main-text-block {
-  max-width: 600px;
-  margin-top: 120px;
+  max-width: clamp(300px, 40vw, 600px);
+  margin-top: clamp(40px, 6vw, 80px);
 }
 
 .bio-container {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  gap: 32px;
-  margin-top: 12px;
+  gap: clamp(16px, 3vw, 32px);
+  margin-top: clamp(8px, 2vw, 12px);
   max-width: 900px;
-  align-items: flex-start;
 }
 
+/* Bio Text */
 .bio-text {
   font-family: "proxima-nova", sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: clamp(12px, 1.5vw, 14px);
+  line-height: 1.5;
   color: #e6e6e6;
   column-count: 2;
-  column-gap: 32px;
+  column-gap: clamp(12px, 2vw, 24px);
   hyphens: auto;
 }
 
-/* --- Past Notable Work --- */
+/* Works Sidebar */
 .works-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.03);
+  gap: clamp(6px, 1.5vw, 12px);
+  padding: clamp(8px, 1.5vw, 16px);
+  background: rgba(255,255,255,0.03);
   border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  max-width: 280px;
+  border: 1px solid rgba(255,255,255,0.1);
+  max-width: clamp(180px, 20vw, 260px);
 }
 
 .sidebar-heading {
-  font-size: 13px;
+  font-size: clamp(11px, 1.5vw, 13px);
   color: #fff;
   text-transform: uppercase;
   margin-bottom: 4px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 6px;
-}
-
-.works-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 4px;
 }
 
 .works-list a {
-  font-size: 14px;
+  font-size: clamp(12px, 1.5vw, 14px);
   color: #e0e0e0;
   text-decoration: none;
   transition: color 0.2s ease;
 }
+.works-list a:hover { color: #d90ec1ba; }
 
-.works-list a:hover {
-  color: #d90ec1ba;
-}
-
-/* --- Social Icons --- */
+/* Social Icons */
 .frame {
   display: flex;
-  gap: 14px;
-  margin-top: 10px;
-  justify-content: flex-start;
+  gap: clamp(8px, 1.5vw, 12px);
+  margin-top: 8px;
+  background: transparent;
+  align-items: flex-end;      /* Align children to the bottom */
+  height: 100%; 
 }
-
 .frame img {
-  height: 32px;
-  width: 32px;
+  height: clamp(24px, 3vw, 32px);
+  width: clamp(24px, 3vw, 32px);
   opacity: 0.85;
   transition: opacity 0.2s, transform 0.2s;
-  filter: drop-shadow(0 0 2px #fff2);
 }
+.frame img:hover { opacity: 1; transform: scale(1.05); }
 
-.frame img:hover {
-  opacity: 1;
-  transform: scale(1.05);
-}
-
-/* --- Responsive Collapse for ≤730px --- */
+/* Responsive: stack on small screens */
 @media (max-width: 730px) {
   .main-content-row {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 0 16px;
-  }
-
-  /* Container & Heading */
-  .image-heading-container {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 12px;
-    margin-top: 60px; /* <-- pushes content down below navbar */
-    position: relative;
-  }
-
-  .the-team-heading {
-    text-align: center;
-    margin: 0 auto 8px;
-    display: block;
-    font-size: clamp(28px, 6vw, 40px);
-    font-weight: 700;
-    line-height: 1.2;
-  }
-
-  /* Square Image */
-  .image-heading-container .image {
-    width: 80%;
-    aspect-ratio: 1 / 1;          /* keeps it a square */
-    max-width: 320px;
-    margin: 0 auto 12px;
-    object-fit: cover;            /* fills the square */
-    display: block;
-    border-radius: 4px;
-  }
-
-  .names-row {
-    justify-content: center;
     gap: 16px;
-    margin: 12px 0;
-    flex-wrap: wrap;
   }
 
   .bio-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
     gap: 16px;
+    align-items: center;
   }
 
   .bio-text {
     column-count: 1;
     max-width: 100%;
     text-align: left;
-    margin: 0 auto 12px;
   }
 
   .works-sidebar {
-    order: 2;
     width: 100%;
     max-width: 320px;
-    margin: 16px auto 0;
     text-align: center;
   }
 
-  .works-list {
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .works-list a {
-    font-size: 13px;
-    white-space: nowrap;
-  }
-
-  /* Social Icons Centered */
-  .frame {
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-top: 10px;
-  }
+  .frame { justify-content: center; }
 }
 
+/* --- Video Modal (Unified Scaling) --- */
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: clamp(8px, 2vw, 16px);
+}
 
+.video-wrapper {
+  position: relative;
+  width: clamp(240px, 80vw, 960px);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 2vw, 12px);
+}
 
+/* Iframe scales dynamically */
+.video-wrapper iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 4px;
+  max-height: 70vh;
+}
+
+/* Return Button */
+.video-return {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: clamp(4px, 1.5vw, 8px);
+  cursor: pointer;
+  color: #fff;
+  opacity: 0.8;
+  font-family: "proxima-nova", sans-serif;
+  font-size: clamp(11px, 1.5vw, 14px);
+  letter-spacing: 0.05em;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.video-return:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.return-line {
+  width: clamp(24px, 3vw, 36px);
+  height: 1px;
+  background: #fff;
+  opacity: 0.5;
+  transition: width 0.3s, opacity 0.3s;
+}
+.video-return:hover .return-line {
+  width: clamp(32px, 4vw, 48px);
+  opacity: 1;
+}
+
+/* Mobile: stack CTA below video if space is tight */
+@media (max-width: 480px) {
+  .video-wrapper {
+    width: 95vw;
+    gap: 8px;
+  }
+
+  .video-return {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin-top: 6px;
+  }
+
+  .return-line {
+    width: 28px;
+  }
+
+  .video-return:hover .return-line {
+    width: 36px;
+  }
+}
 
 </style>
