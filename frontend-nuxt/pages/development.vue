@@ -339,5 +339,80 @@ button.arrow:disabled {
   }
 }
 
+/* ---------- Large Laptops (≤1440px) ---------- */
+@media (max-width: 1440px) {
+  .film-series-title,
+  .music-videos-title,
+  .page-title {
+    font-size: 42px;
+  }
 
+  .projects-text {
+    font-size: 18px;
+  }
+}
+
+/* ---------- Tablets & Small Laptops (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .film-series-title,
+  .music-videos-title,
+  .page-title {
+    font-size: 36px;
+  }
+
+  /* Hide "PROJECTS" text, keep chevron only */
+  .projects-text {
+    display: none;
+  }
+
+  .projects-cta {
+    gap: 0;
+    left: 32px;
+  }
+
+  .chevron-left-small {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* ---------- Small Tablets & Large Phones (≤730px) ---------- */
+@media (max-width: 730px) {
+  .film-series-title,
+  .music-videos-title,
+  .page-title {
+    font-size: 32px;
+  }
+
+  .chevron-left-small {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* ---------- Phones (≤480px) ---------- */
+@media (max-width: 480px) {
+  .film-series-title,
+  .music-videos-title,
+  .page-title {
+    font-size: 28px;
+  }
+
+  .chevron-left-small {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Remove margin so nothing overlaps */
+  .projects-cta {
+    margin-top: 60px;
+  }
+}
+
+/* ---------- Hide left arrow below 500px ---------- */
+@media (max-width: 500px) {
+  .projects-cta {
+    display: none;
+  }
+}
 </style>
