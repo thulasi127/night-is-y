@@ -6,7 +6,7 @@
         <ChevronLeftIcon class="chevron-left-small" />
         <span class="projects-text">PROJECTS</span>
       </div>
-      <div class="film-series-title">FILM &amp; SERIES</div>
+      <div class="page-title">FILM &amp; SERIES</div>
     </div>
 
     <!-- Carousel integration -->
@@ -88,7 +88,7 @@ useHead({
   position: relative;
 }
 
-.film-series-title {
+.page-title {
   margin: 0 auto;
   margin-top: 40px;    /* reduced from 80px */
   color: #fff;
@@ -134,7 +134,7 @@ useHead({
   filter: brightness(0.7);
 }
 
-.film-series-title {
+.page-title {
   margin: 0 auto;
   color: #fff;
   font-family: "anton", sans-serif;
@@ -151,7 +151,7 @@ useHead({
 }
 
 @media (max-width: 1024px) {
-  .film-series-title {
+  .page-title {
     margin-top: 120px; /* More space on smaller screens to prevent overlap */
   }
 
@@ -321,8 +321,6 @@ button.arrow:disabled {
 
 /* ---------- Large Laptops (≤1440px) ---------- */
 @media (max-width: 1440px) {
-  .film-series-title,
-  .music-videos-title,
   .page-title {
     font-size: 42px;
   }
@@ -334,8 +332,7 @@ button.arrow:disabled {
 
 /* ---------- Tablets & Small Laptops (≤1024px) ---------- */
 @media (max-width: 1024px) {
-  .film-series-title,
-  .music-videos-title,
+
   .page-title {
     font-size: 36px;
   }
@@ -358,8 +355,7 @@ button.arrow:disabled {
 
 /* ---------- Small Tablets & Large Phones (≤730px) ---------- */
 @media (max-width: 730px) {
-  .film-series-title,
-  .music-videos-title,
+
   .page-title {
     font-size: 32px;
   }
@@ -372,8 +368,7 @@ button.arrow:disabled {
 
 /* ---------- Phones (≤480px) ---------- */
 @media (max-width: 480px) {
-  .film-series-title,
-  .music-videos-title,
+
   .page-title {
     font-size: 28px;
   }
@@ -395,4 +390,6 @@ button.arrow:disabled {
     display: none;
   }
 }
+
+
 </style>

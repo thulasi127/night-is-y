@@ -150,6 +150,11 @@ watch(showVideo, (val) => {
 });
 
 const bio = bioData.dw_waterson;
+
+useHead({
+  title: 'About D.W. | NIGHT is Y',
+  meta: [{ name: 'description', content: 'About D.W. Waterson.' }]
+})
 </script>
 
 <style scoped>

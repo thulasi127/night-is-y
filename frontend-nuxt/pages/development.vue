@@ -294,55 +294,9 @@ button.arrow:disabled {
   line-height: 15px;
 }
 
-/* ------------------------------
-   Responsive Breakpoints
------------------------------- */
 /* ---------- Large Laptops (≤1440px) ---------- */
 @media (max-width: 1440px) {
-  .page-title {
-    font-size: 44px;
-  }
-  .projects-text {
-    font-size: 18px;
-  }
-}
 
-/* ---------- Large Screens (≥1025px) ---------- */
-@media (min-width: 1025px) {
-  .page-title {
-    font-size: 44px;
-  }
-  .projects-text {
-    font-size: 18px;
-  }
-}
-
-/* ---------- Tablets & Small Screens (≤1024px) ---------- */
-@media (max-width: 1024px) {
-  .projects-text {
-   font-size: 14px;
-   display: none ;
-  }
-  .page-title {
-    font-size: 40px;
-  }
-}
-
-/* ---------- Phones (≤480px) ---------- */
-@media (max-width: 480px) {
-  .projects-text {
-   font-size: 12px;
-   display: none ;
-  }
-  .page-title {
-    font-size: 40px;
-  }
-}
-
-/* ---------- Large Laptops (≤1440px) ---------- */
-@media (max-width: 1440px) {
-  .film-series-title,
-  .music-videos-title,
   .page-title {
     font-size: 42px;
   }
@@ -354,8 +308,7 @@ button.arrow:disabled {
 
 /* ---------- Tablets & Small Laptops (≤1024px) ---------- */
 @media (max-width: 1024px) {
-  .film-series-title,
-  .music-videos-title,
+
   .page-title {
     font-size: 36px;
   }
@@ -378,8 +331,8 @@ button.arrow:disabled {
 
 /* ---------- Small Tablets & Large Phones (≤730px) ---------- */
 @media (max-width: 730px) {
-  .film-series-title,
-  .music-videos-title,
+  .page-title,
+  page-title,
   .page-title {
     font-size: 32px;
   }
@@ -392,8 +345,6 @@ button.arrow:disabled {
 
 /* ---------- Phones (≤480px) ---------- */
 @media (max-width: 480px) {
-  .film-series-title,
-  .music-videos-title,
   .page-title {
     font-size: 28px;
   }
@@ -415,4 +366,6 @@ button.arrow:disabled {
     display: none;
   }
 }
+
+
 </style>

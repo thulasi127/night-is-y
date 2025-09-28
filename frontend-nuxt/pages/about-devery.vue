@@ -138,6 +138,11 @@ watch(showVideo, (val) => {
 });
 
 const bio = bioData.devery_jacobs;
+
+useHead({
+  title: 'About Devery | NIGHT is Y',
+  meta: [{ name: 'description', content: 'About Devery Jacobs.' }]
+})
 </script>
 
 
