@@ -171,6 +171,10 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
   }
   .video-title-artist {
     font-size: 1rem;
+    letter-spacing: 0.5px;
+  }
+  .video-return span {
+    font-size: 13px;
   }
 }
 
@@ -192,18 +196,26 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
     font-size: 0.95rem;
     letter-spacing: 0.5px;
   }
+
+  .video-return span {
+    font-size: 12px;
+  }
 }
 
-/* ---------- Tablets Portrait & Large Phones (≤768px) ---------- */
+/* ---------- Tablets & Large Phones (≤768px) ---------- */
 @media (max-width: 768px) {
-  .video-wrapper iframe {
-    width: 95vw;
-    height: 40vh;
-    max-height: 360px;
+  .video-info {
+    flex-wrap: wrap; /* Now allows multi-line if too tight */
+    justify-content: center;
+    gap: 6px;
+    padding: 0 8px;
+    text-align: center;
   }
 
   .video-title-artist {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    text-align: center;
+    white-space: normal; /* Wrap title if needed */
   }
 
   .video-return span {
@@ -211,36 +223,107 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
   }
 }
 
-/* ---------- Small Phones (≤430px) ---------- */
-@media (max-width: 430px) {
-  .video-wrapper {
-    width: 100vw;
-    height: auto;
-    padding-bottom: 32px;
-  }
+/* Base styles stay as before */
+.video-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  white-space: nowrap;
+  gap: 12px;
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 100;
+  color: #fff;
+  opacity: 0.95;
+  text-align: center;
+  z-index: 10;
+  flex-wrap: nowrap;
+}
 
-  .video-wrapper iframe {
-    width: 100vw;
-    height: 38vh;
-    max-height: 260px;
+.video-title-artist {
+  font-size: 1.1rem;
+  font-weight: 100;
+  letter-spacing: 1px;
+  color: #fff;
+  flex-shrink: 1;
+  min-width: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.video-title-artist b {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.video-return {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.video-return span {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.return-line {
+  width: 36px;
+  height: 1px;
+  background: #fff;
+  opacity: 0.5;
+  transition: width 0.3s ease, opacity 0.2s ease;
+}
+
+.video-return:hover .return-line {
+  width: 48px;
+  opacity: 1;
+}
+
+/* ---------- Below 450px: stack return CTA below title ---------- */
+@media (max-width: 450px) {
+  .video-info {
+    flex-direction: column;      /* Stack vertically */
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    white-space: normal;          /* Allow wrapping if needed */
+    text-align: center;
   }
 
   .video-title-artist {
-    font-size: 0.8rem;
-    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+    text-align: center;
+    line-height: 1.4;
+    margin-bottom: 4px;           /* spacing before return CTA */
+  }
+
+  .video-return {
+    align-items: center;
+    margin-top: 4px;
   }
 
   .video-return span {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .return-line {
-    width: 36px;
+    width: 28px;
   }
 
   .video-return:hover .return-line {
-    width: 48px;
+    width: 40px;
   }
 }
+
 
 </style>
