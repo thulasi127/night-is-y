@@ -341,113 +341,152 @@ export default {
   overflow: hidden;
 }
 
-/* ---------- Large Laptops (≤1440px) ---------- */
-@media (max-width: 1440px) {
+/* --- Large screens (≤1280px) --- */
+@media (max-width: 1280px) {
   .frame {
-    width: 1200px;
-    height: 520px;
+    width: 80vw;
+    height: 600px;
   }
-
   .image {
-    width: 220px;
-    height: 320px;
+    width: 240px;
+    height: 340px;
   }
-
   .text-wrapper {
     font-size: 48px;
-    line-height: 56px;
+    line-height: 1.2;
   }
-
   .modal-scrollable-content {
-    width: 900px;
-    height: 460px;
+    width: calc(100% - 280px);
+  }
+  .div,
+  .label-title,
+  .label-link,
+  .project-subtitle-row {
+    font-size: 15px;
   }
 }
 
-/* ---------- Tablets & Small Laptops (≤1024px) ---------- */
+/* --- Tablet landscape (≤1024px) --- */
 @media (max-width: 1024px) {
   .frame {
-    flex-direction: column;
-    width: 90%;
-    height: auto;
+    width: 90vw;
+    height: 560px;
+    flex-direction: row;
+    align-items: flex-start;
     padding: 20px;
   }
-
   .image {
-    margin: 0 auto 16px auto;
     width: 200px;
-    height: auto;
+    height: 280px;
+    margin-left: 20px;
   }
-
   .modal-scrollable-content {
-    width: 100%;
-    height: auto;
-    padding: 0 20px;
-    margin-left: 0;
-    overflow-y: auto;
-  }
-
-  .text-wrapper {
-    font-size: 36px;
-    line-height: 42px;
-    text-align: center;
-  }
-}
-
-/* ---------- Tablets Portrait & Large Phones (≤768px) ---------- */
-@media (max-width: 768px) {
-  .frame {
-    width: 95%;
+    width: calc(100% - 240px);
+    height: 100%;
+    margin-left: 20px;
     padding: 16px;
   }
+  .text-wrapper {
+    font-size: 40px;
+    line-height: 1.2;
+  }
+  .div,
+  .label-title,
+  .label-link,
+  .project-subtitle-row {
+    font-size: 14px;
+  }
+}
 
+/* --- Tablet portrait (≤768px) --- */
+@media (max-width: 768px) {
+  .frame {
+    width: 92vw;
+    height: 520px;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+  }
   .image {
     width: 180px;
+    height: 240px;
+    margin: 0 0 16px 0;
   }
-
-  .text-wrapper {
-    font-size: 28px;
-    line-height: 34px;
-  }
-
   .modal-scrollable-content {
-    gap: 12px;
+    width: 100%;
+    height: calc(100% - 260px);
+    padding: 12px;
+  }
+  .text-wrapper {
+    font-size: 32px;
+    text-align: center;
+  }
+  .div,
+  .label-title,
+  .label-link,
+  .project-subtitle-row {
+    font-size: 13px;
     text-align: center;
   }
 }
 
-/* ---------- Small Phones (≤430px) ---------- */
-@media (max-width: 430px) {
+/* --- Mobile (≤640px) --- */
+@media (max-width: 640px) {
   .frame {
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-    margin: 0;
     flex-direction: column;
-    padding: 12px;
+    width: 95vw;
+    height: 520px;
+    padding: 10px;
   }
-
   .image {
-    width: 140px;
-    height: auto;
+    width: 160px;
+    height: 220px;
+    margin: 0 auto 12px auto;
   }
-
-  .text-wrapper {
-    font-size: 20px;
-    line-height: 24px;
-    margin-bottom: 4px;
-  }
-
   .modal-scrollable-content {
-    padding: 0 12px;
-    overflow-y: auto;
+    width: 100%;
+    height: calc(100% - 240px);
+    margin: 0;
+    padding: 10px;
   }
-
-  .section-heading,
+  .text-wrapper {
+    font-size: 26px;
+    line-height: 1.3;
+  }
+  .div,
   .label-title,
-  .label-link {
+  .label-link,
+  .project-subtitle-row {
     font-size: 12px;
+    text-align: center;
   }
 }
+
+/* --- Small mobile (≤480px) --- */
+@media (max-width: 480px) {
+  .frame {
+    width: 98vw;
+    height: 480px;
+    padding: 8px;
+  }
+  .image {
+    width: 140px;
+    height: 200px;
+  }
+  .modal-scrollable-content {
+    height: calc(100% - 220px);
+    padding: 8px;
+  }
+  .text-wrapper {
+    font-size: 22px;
+  }
+  .div,
+  .label-title,
+  .label-link,
+  .project-subtitle-row {
+    font-size: 11px;
+  }
+}
+
 
 </style>
