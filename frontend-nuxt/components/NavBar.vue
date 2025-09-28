@@ -18,7 +18,7 @@
       <nav class="nav desktop-nav" v-if="!isMobile">
         <NuxtLink to="/about" class="nav-link">ABOUT</NuxtLink>
         <div class="dropdown" @mouseenter="open = true" @mouseleave="open = false">
-          <div class="nav-link">WORK</div>
+          <NuxtLink to="/projects" class="nav-link">WORK</NuxtLink>
           <transition name="fade-slide">
             <div v-if="open" class="dropdown-list">
               <div class="dropdown-line"></div>

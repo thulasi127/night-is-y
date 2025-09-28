@@ -240,4 +240,104 @@ button.arrow:disabled {
   filter: brightness(0.7); /* dims arrow icon on hover */
 }
 
+/* ------------------------------
+   Base Styles (unchanged)
+------------------------------ */
+.centered-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(0deg, #000 0%, #000 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.dev-header-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.projects-cta {
+  position: absolute;
+  left: 192px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  z-index: 10;
+  pointer-events: auto;
+  margin-top: 80px;
+}
+
+.chevron-left-small {
+  width: 22px;
+  height: 22px;
+  color: #fff;
+}
+
+.projects-text {
+  color: #fff;
+  font-family: "proxima-nova", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.08px;
+  line-height: 15px;
+}
+
+/* ------------------------------
+   Responsive Breakpoints
+------------------------------ */
+/* ---------- Large Laptops (≤1440px) ---------- */
+@media (max-width: 1440px) {
+  .page-title {
+    font-size: 44px;
+  }
+  .projects-text {
+    font-size: 18px;
+  }
+}
+
+/* ---------- Large Screens (≥1025px) ---------- */
+@media (min-width: 1025px) {
+  .page-title {
+    font-size: 44px;
+  }
+  .projects-text {
+    font-size: 18px;
+  }
+}
+
+/* ---------- Tablets & Small Screens (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .projects-text {
+   font-size: 14px;
+   display: none ;
+  }
+  .page-title {
+    font-size: 40px;
+  }
+}
+
+/* ---------- Phones (≤480px) ---------- */
+@media (max-width: 480px) {
+  .projects-text {
+   font-size: 12px;
+   display: none ;
+  }
+  .page-title {
+    font-size: 40px;
+  }
+}
+
+
 </style>

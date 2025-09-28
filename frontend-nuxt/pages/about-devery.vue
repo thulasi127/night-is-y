@@ -142,16 +142,15 @@ const bio = bioData.devery_jacobs;
 
 
 <style scoped>
-/* --- Base page (from Layout 2) --- */
+/* --- Base Layout --- */
 .about-team-page {
   background: #000;
-  height: 100%; /* changed from min-height: 100vh */
   width: 100vw;
-  overflow-x: hidden;
-  overflow-y: auto;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .navbar-fixed {
@@ -167,63 +166,76 @@ const bio = bioData.devery_jacobs;
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding-top: 64px; /* Increased from 48px */
+  padding-top: 64px;
   width: 100%;
 }
-
-/* Remove .header-row styles */
-
 
 .main-content-row {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: flex-start;
   width: 100%;
-  justify-content: center;
   margin-left: 0;
 }
 
-/* New container for heading and image */
+/* --- Headshot + Heading --- */
 .image-heading-container {
-  width: 480px; /* reduced from 626px */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+  width: 480px;
   margin-right: 40px;
 }
 
 .the-team-heading {
-  font-size: clamp(48px, 6vw, 72px); /* smaller, responsive */
-  margin-top: 100px; /* reduced from 144px */
+  margin-top: 100px;
   margin-bottom: 20px;
-  line-height: 1;
+  font-size: clamp(32px, 5vw, 72px);
+  line-height: 1.1;
 }
 
-.image {
+.image-heading-container .image {
+  display: block;
   width: 480px;
   height: 540px;
   object-fit: cover;
+  border-radius: 4px;
 }
 
-.image.loaded {
-  opacity: 1;
-}
-
-/* --- Main Bio Section --- */
-.main-text-block {
-  max-width: 600px;
-  margin-top: 120px;
-}
-
+/* --- Names Row --- */
 .names-row {
   display: flex;
   gap: 32px;
-  margin-bottom: 10px;
+  margin: 20px 0;
   text-align: left;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.dw-waterson,
+.dw-waterson.overline {
+  font-family: "anton", sans-serif;
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 900;
+  text-decoration: overline;
+  text-decoration-thickness: 3px;
+  line-height: 1.1;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  text-decoration-color: rgba(255,255,255,0.5);
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+  cursor: pointer;
+}
+.dw-waterson:hover,
+.dw-waterson.overline:hover {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration-color: rgba(255, 255, 255, 0.75);
 }
 
 .devery-jacobs,
-.devery-jacobs.overline,
-.dw-waterson,
-.dw-waterson.overline {
+.devery-jacobs.overline {
   font-family: "anton", sans-serif;
   font-size: clamp(28px, 3vw, 36px);
   font-weight: 900;
@@ -233,74 +245,53 @@ const bio = bioData.devery_jacobs;
   line-height: 1.1;
 }
 
-.dw-waterson,
-.dw-waterson.overline {
+
+.dw-waterson {
   color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
-  text-decoration-color: rgba(255, 255, 255, 0.5);
   transition: color 0.3s ease, text-decoration-color 0.3s ease;
-  cursor: pointer;
 }
 
-.dw-waterson:hover,
-.dw-waterson.overline:hover {
+.dw-waterson:hover {
   color: rgba(255, 255, 255, 0.75);
   text-decoration-color: rgba(255, 255, 255, 0.75);
 }
 
-.devery-meta, .span {
-  font-family: "proxima-nova", sans-serif;
-  font-weight: 400; /* Regular */
-  font-style: normal;
-  font-size: clamp(15px, 1.6vw, 18px);
-  margin-bottom: 14px;
-  margin-top: 8px;
-  letter-spacing: 0.5px;
-  color: #fff;
-  text-transform: uppercase;
-  text-align: left;
+/* --- Bio Section --- */
+.main-text-block {
+  max-width: 600px;
+  margin-top: 120px;
 }
 
-/* --- Bio + Sidebar Two-Column Layout --- */
 .bio-container {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 32px;
   margin-top: 12px;
-  align-items: flex-start;
   max-width: 900px;
+  align-items: flex-start;
 }
 
-/* --- Bio Text: Compact Columns --- */
 .bio-text {
   font-family: "proxima-nova", sans-serif;
   font-size: 14px;
   line-height: 1.4;
   color: #e6e6e6;
-  text-align: left;
   column-count: 2;
   column-gap: 32px;
-  margin-bottom: 20px;
   hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
 }
 
-.bio-text p {
-  margin-bottom: 0.5em;
-}
-
-/* --- Past Notable Work Sidebar --- */
+/* --- Past Notable Work --- */
 .works-sidebar {
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.03); /* subtle tinted background */
+  background: rgba(255, 255, 255, 0.03);
   border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.1); /* faint border for structure */
+  border: 1px solid rgba(255, 255, 255, 0.1);
   max-width: 280px;
-
 }
 
 .sidebar-heading {
@@ -308,8 +299,6 @@ const bio = bioData.devery_jacobs;
   color: #fff;
   text-transform: uppercase;
   margin-bottom: 4px;
-  letter-spacing: 1px;
-  opacity: 0.9;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 6px;
 }
@@ -321,8 +310,6 @@ const bio = bioData.devery_jacobs;
 }
 
 .works-list a {
-  display: block;
-  margin-bottom: 4px;
   font-size: 14px;
   color: #e0e0e0;
   text-decoration: none;
@@ -330,23 +317,15 @@ const bio = bioData.devery_jacobs;
 }
 
 .works-list a:hover {
-  color: #d90ec1ba;          /* Magenta hover to match name-row */
+  color: #d90ec1ba;
 }
 
-/* Keep dots white and subtle */
-.works-list .dot {
-  color: #fff;
-  margin: 0 6px;
-  user-select: none;
-  font-weight: bold;
-}
-
-/* --- Social Icons: Smaller & Closer --- */
+/* --- Social Icons --- */
 .frame {
   display: flex;
   gap: 14px;
   margin-top: 10px;
-  background: transparent;
+  justify-content: flex-start;
 }
 
 .frame img {
@@ -354,7 +333,7 @@ const bio = bioData.devery_jacobs;
   width: 32px;
   opacity: 0.85;
   transition: opacity 0.2s, transform 0.2s;
-  filter: drop-shadow(0 0 2px #fff2); /* subtle glow for visibility */
+  filter: drop-shadow(0 0 2px #fff2);
 }
 
 .frame img:hover {
@@ -362,237 +341,94 @@ const bio = bioData.devery_jacobs;
   transform: scale(1.05);
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1); /* slower fade */
-}
-.fade-enter-from, .fade-leave-to {
-  opacity: 0;
-}
-.fade-enter-to, .fade-leave-from {
-  opacity: 1;
-}
-
-.video-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7); /* more transparent */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-.video-wrapper {
-  position: relative;
-  width: 90vw;      /* increased from 100vw for padding */
-  height: 90vh;     /* increased from 100vh for padding */
-  max-width: 1200px;
-  max-height: 700px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.video-wrapper iframe {
-  width: 90vw;      /* increased from 100vw */
-  height: 90vh;     /* increased from 100vh */
-  max-width: 1200px;
-  max-height: 700px;
-  border: none;
-}
-
-.video-return {
-  position: absolute;
-  bottom: -48px;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
-  cursor: pointer;
-  font-family: "proxima-nova", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-  color: #fff;
-  opacity: 0.7;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.video-return:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-}
-
-.video-return span {
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-.return-line {
-  width: 48px;
-  height: 1px;
-  background: #fff;
-  opacity: 0.5;
-  transition: width 0.3s ease, opacity 0.2s ease;
-}
-
-.video-return:hover .return-line {
-  width: 64px;
-  opacity: 1;
-}
-
-/* ---------- Large Laptops & Small Desktops (≤1440px) ---------- */
-@media (max-width: 1440px) {
-  .main-content-row {
-    max-width: 1100px;
-    gap: 32px;
-  }
-
-  .image-heading-container {
-    width: 400px;
-  }
-
-  .image-heading-container .image {
-    width: 400px;
-    height: auto;
-  }
-
-  .main-text-block {
-    max-width: 560px;
-  }
-
-  .bio-text {
-    column-gap: 28px;
-  }
-}
-
-/* ---------- Tablets Landscape & Small Laptops (≤1024px) ---------- */
-@media (max-width: 1024px) {
-  .main-content-row {
-    gap: 24px;
-    padding: 0 24px;
-  }
-
-  .image-heading-container {
-    width: 360px;
-    margin-right: 20px;
-  }
-
-  .image-heading-container .image {
-    width: 360px;
-    height: auto;
-  }
-
-  .main-text-block {
-    max-width: 520px;
-  }
-
-  .bio-text {
-    column-count: 2;
-    column-gap: 24px;
-  }
-
-  .works-sidebar {
-    max-width: 260px;
-  }
-}
-
-/* ---------- Tablets Portrait & Large Phones (≤768px) ---------- */
-@media (max-width: 768px) {
+/* --- Responsive Collapse for ≤730px --- */
+@media (max-width: 730px) {
   .main-content-row {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 20px;
-    padding: 0 20px;
-  }
-
-  .image-heading-container {
-    width: 80%;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  .image-heading-container .image {
-    width: 80%;
-    max-width: 300px;
-    height: auto;
-  }
-
-  .main-text-block {
-    max-width: 90%;
-    margin-top: 40px;
-  }
-
-  .bio-text {
-    max-width: 100%;
-    column-count: 1;
-    text-align: center;
-  }
-
-  .works-sidebar {
-    max-width: 100%;
-    margin: 0 auto;
-    text-align: center;
-  }
-}
-
-/* ---------- Small Phones (≤430px) ---------- */
-@media (max-width: 430px) {
-  .main-content-row {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 16px;
     padding: 0 16px;
   }
 
+  /* Container & Heading */
   .image-heading-container {
     width: 100%;
     text-align: center;
+    margin-bottom: 12px;
+    margin-top: 60px; /* <-- pushes content down below navbar */
+    position: relative;
   }
 
+  .the-team-heading {
+    text-align: center;
+    margin: 0 auto 8px;
+    display: block;
+    font-size: clamp(28px, 6vw, 40px);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  /* Square Image */
   .image-heading-container .image {
     width: 80%;
-    max-width: 260px;
+    aspect-ratio: 1 / 1;          /* keeps it a square */
+    max-width: 320px;
+    margin: 0 auto 12px;
+    object-fit: cover;            /* fills the square */
+    display: block;
+    border-radius: 4px;
   }
 
   .names-row {
     justify-content: center;
-    gap: 10px;
+    gap: 16px;
+    margin: 12px 0;
+    flex-wrap: wrap;
   }
 
   .bio-container {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
     width: 100%;
+    gap: 16px;
   }
 
   .bio-text {
-    max-width: 360px;
-    text-align: center;
+    column-count: 1;
+    max-width: 100%;
+    text-align: left;
+    margin: 0 auto 12px;
   }
 
   .works-sidebar {
-    max-width: 360px;
+    order: 2;
     width: 100%;
+    max-width: 320px;
     margin: 16px auto 0;
+    text-align: center;
   }
 
   .works-list {
+    flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
   }
 
+  .works-list a {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* Social Icons Centered */
   .frame {
     justify-content: center;
+    align-items: center;
     gap: 12px;
+    margin-top: 10px;
   }
 }
+
 
 
 
