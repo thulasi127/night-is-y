@@ -820,5 +820,87 @@ export default {
   }
 }
 
+/* --- Large screens (≤1280px) --- */
+@media (max-width: 1280px) {
+  .text-wrapper {
+    font-size: 36px;
+    line-height: 1.2;
+  }
+  .trailer-video {
+    max-width: 480px;
+  }
+}
+
+/* --- Tablet (≤1024px) --- */
+@media (max-width: 1024px) {
+  .text-wrapper {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+  .trailer-video {
+    max-width: 420px;
+  }
+}
+
+/* --- Tablet portrait (≤768px) --- */
+@media (max-width: 768px) {
+  .text-wrapper {
+    font-size: 26px;
+    text-align: center;
+  }
+  .trailer-video {
+    max-width: 100%;
+    height: auto;
+  }
+  .div,
+  .info-labels,
+  .film-subtitle-row {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+/* --- Mobile (≤640px) --- */
+@media (max-width: 640px) {
+  .text-wrapper {
+    font-size: 22px;
+    line-height: 1.3;
+  }
+  .trailer-video {
+    max-width: 100%;
+    margin: 12px 0;
+  }
+  .film-subtitle-row,
+  .info-labels {
+    font-size: 13px;
+  }
+  .award-name,
+  .award-year-status,
+  .article-title {
+    font-size: 13px;
+  }
+}
+
+/* --- Small mobile (≤480px) --- */
+@media (max-width: 480px) {
+  .text-wrapper {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+  .trailer-video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  .film-subtitle-row,
+  .info-labels {
+    font-size: 12px;
+  }
+  .award-name,
+  .award-year-status,
+  .article-title {
+    font-size: 12px;
+  }
+}
 
 </style>
