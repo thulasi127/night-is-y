@@ -59,8 +59,8 @@ function closeModal() {
 }
 
 useHead({
-  title: 'Music Videos | NIGHT is Y',
-  meta: [{ name: 'description', content: 'Music videos by NIGHT is Y.' }]
+  title: 'Music Videos | Night is Y',
+  meta: [{ name: 'description', content: 'Music videos by Night is Y.' }]
 });
 </script>
 

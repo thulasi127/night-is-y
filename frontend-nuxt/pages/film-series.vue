@@ -56,10 +56,10 @@ function closeModal() {
   modalFilm.value = null;
 }
 
-({
-  title: 'Film & Series | NIGHT is Y',
-  meta: [{ name: 'description', content: 'Film and series by NIGHT is Y.' }]
-})
+useHead({
+  title: 'Film & Series | Night is Y',
+  meta: [{ name: 'description', content: 'Film and series by Night is Y.' }]
+});
 </script>
 
 

@@ -40,7 +40,7 @@ type Entry = { role: string; name: string; email: string }
 type Person = { name: string; entries: Entry[] }
 const people = (data.people as Person[])
 
-useHead({ title: 'Contact | NIGHT is Y' })
+useHead({ title: 'Contact | Night is Y' })
 
 onMounted(() => {
   const video = document.querySelector('.bg-video') as HTMLVideoElement | null;

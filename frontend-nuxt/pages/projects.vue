@@ -39,8 +39,8 @@
 <script setup>
 
 useHead({
-  title: 'Projects | NIGHT is Y',
-  meta: [{ name: 'description', content: 'Projects by NIGHT is Y.' }]
+  title: 'Projects | Night is Y',
+  meta: [{ name: 'description', content: 'Projects by Night is Y.' }]
 })
 
 const router = useRouter();

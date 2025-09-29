@@ -16,8 +16,8 @@
 import NavBar from '~/components/NavBar.vue'
 
 useHead({
-  title: 'About | NIGHT is Y',
-  meta: [{ name: 'description', content: 'About NIGHT is Y.' }]
+  title: 'About | Night is Y',
+  meta: [{ name: 'description', content: 'About Night is Y.' }]
 })
 </script>
 

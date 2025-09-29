@@ -3,8 +3,8 @@
 import NavBar from '~/components/NavBar.vue'
 
 useHead({
-  title: 'Home | NIGHT is Y',
-  meta: [{ name: 'description', content: 'Welcome to NIGHT is Y.' }]
+  title: 'Home | Night is Y',
+  meta: [{ name: 'description', content: 'Welcome to Night is Y.' }]
 })
 </script>
 

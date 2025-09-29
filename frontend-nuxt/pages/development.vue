@@ -57,11 +57,10 @@ function closeModal() {
   modalProject.value = null;
 }
 
-({
-  title: 'Development | NIGHT is Y',
-  meta: [{ name: 'description', content: 'Development projects by NIGHT is Y.' }]
-})
-
+useHead({
+  title: 'Development | Night is Y',
+  meta: [{ name: 'description', content: 'Development projects by Night is Y.' }]
+});
 </script>
 
 <style>
