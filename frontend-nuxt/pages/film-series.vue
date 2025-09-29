@@ -56,7 +56,7 @@ function closeModal() {
   modalFilm.value = null;
 }
 
-n({
+({
   title: 'Film & Series | NIGHT is Y',
   meta: [{ name: 'description', content: 'Film and series by NIGHT is Y.' }]
 })

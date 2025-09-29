@@ -16,21 +16,40 @@
 
       <!-- Desktop Nav (only when screen is large) -->
       <nav class="nav desktop-nav" v-if="!isMobile">
-        <NuxtLink to="/about" class="nav-link">ABOUT</NuxtLink>
-        <div class="dropdown" @mouseenter="open = true" @mouseleave="open = false">
-          <NuxtLink to="/projects" class="nav-link">WORK</NuxtLink>
-          <transition name="fade-slide">
-            <div v-if="open" class="dropdown-list">
-              <div class="dropdown-line"></div>
-              <NuxtLink to="/film-series" class="dropdown-item">FILM & SERIES</NuxtLink>
-              <NuxtLink to="/music-videos" class="dropdown-item">MUSIC VIDEOS</NuxtLink>
-              <NuxtLink to="/development" class="dropdown-item">IN DEVELOPMENT</NuxtLink>
-            </div>
-          </transition>
-        </div>
-        <NuxtLink to="/press" class="nav-link">PRESS</NuxtLink>
-        <NuxtLink to="/contact" class="nav-link">CONTACT</NuxtLink>
-      </nav>
+  <NuxtLink 
+    to="/about" 
+    class="nav-link" 
+    :class="{ active: ['/about', '/about-devery', '/about-dw'].includes(route.path) }"
+  >ABOUT</NuxtLink>
+
+  <div class="dropdown" @mouseenter="open = true" @mouseleave="open = false">
+    <NuxtLink 
+      to="/projects" 
+      class="nav-link"
+      :class="{ active: ['/projects', '/film-series', '/music-videos', '/development'].includes(route.path) }"
+    >WORK</NuxtLink>
+    <transition name="fade-slide">
+      <div v-if="open" class="dropdown-list">
+        <div class="dropdown-line"></div>
+        <NuxtLink to="/film-series" class="dropdown-item">FILM & SERIES</NuxtLink>
+        <NuxtLink to="/music-videos" class="dropdown-item">MUSIC VIDEOS</NuxtLink>
+        <NuxtLink to="/development" class="dropdown-item">IN DEVELOPMENT</NuxtLink>
+      </div>
+    </transition>
+  </div>
+
+  <NuxtLink 
+    to="/press" 
+    class="nav-link" 
+    :class="{ active: route.path === '/press' }"
+  >PRESS</NuxtLink>
+
+  <NuxtLink 
+    to="/contact" 
+    class="nav-link" 
+    :class="{ active: route.path === '/contact' }"
+  >CONTACT</NuxtLink>
+</nav>
 
       <!-- Hamburger Icon (only when screen is small) -->
       <button v-if="isMobile" class="hamburger" @click="toggleMobileMenu" aria-label="Toggle menu">
@@ -52,10 +71,12 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, onUnmounted, nextTick } from "vue";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
   name: "NavBar",
   setup() {
+    const route = useRoute();
     const open = ref(false);
     const mobileOpen = ref(false);
     const isMobile = ref(false);
@@ -74,7 +95,6 @@ export default defineComponent({
       document.removeEventListener("click", handleClickOutside);
     };
 
-    // Close menu if clicking outside
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       if (!target.closest(".mobile-nav") && !target.closest(".hamburger")) {
@@ -82,7 +102,6 @@ export default defineComponent({
       }
     };
 
-    // Track screen size for responsive switching
     const checkScreenSize = () => {
       isMobile.value = window.innerWidth <= 1024;
     };
@@ -97,10 +116,11 @@ export default defineComponent({
       document.removeEventListener("click", handleClickOutside);
     });
 
-    return { open, mobileOpen, isMobile, toggleMobileMenu, closeMobileMenu };
+    return { open, mobileOpen, isMobile, toggleMobileMenu, closeMobileMenu, route };
   },
 });
 </script>
+
 
 
 <style>
@@ -271,5 +291,27 @@ export default defineComponent({
 @media (max-width: 1024px) {
   .desktop-nav { display: none; }
   .hamburger { display: flex; }
+}
+
+/* Active CTA: white text + underline */
+.nav-link.active {
+  color: #fff;
+}
+.nav-link.active::after {
+  width: 100%;
+  opacity: 1;
+}
+
+/* Hover: only hovered CTA stays white */
+.nav:hover .nav-link {
+  opacity: 0.3;
+  text-decoration: none;
+}
+.nav-link:hover {
+  opacity: 1 !important;
+}
+.nav-link:hover::after {
+  width: 100%;
+  opacity: 1;
 }
 </style>
