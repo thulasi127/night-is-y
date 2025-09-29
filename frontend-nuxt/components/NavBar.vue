@@ -188,9 +188,9 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0.5rem 1rem;
-  gap: 0.25rem;
-  min-width: 160px;
+  padding: 0.75rem 1.25rem; /* more padding */
+  gap: 1rem;                /* increased vertical spacing */
+  min-width: 180px;         /* slightly wider */
 }
 .dropdown-line {
   position: absolute;
@@ -206,7 +206,7 @@ export default defineComponent({
   font-weight: 300;
   text-transform: uppercase;
   text-decoration: none;
-  font-size: clamp(0.65rem, 1.5vw, 0.85rem);
+  font-size: clamp(0.85rem, 1.3vw, 1rem); /* a bit smaller than navbar CTAs and mobile links */
   letter-spacing: 0.4px;
   transition: opacity 0.3s ease, color 0.3s ease;
 }
@@ -252,8 +252,8 @@ export default defineComponent({
   text-transform: uppercase;
   color: #fff;
   text-decoration: none;
-  font-size: clamp(0.8rem, 2vw, 1rem);
-  letter-spacing: 0.05em;
+  font-size: clamp(0.95rem, 2vw, 1.15rem); /* matches or just under navbar CTAs */
+  letter-spacing: 0.07em;
   transition: color 0.3s ease, opacity 0.3s ease;
 }
 .mobile-nav:hover .mobile-link { opacity: 0.3; }

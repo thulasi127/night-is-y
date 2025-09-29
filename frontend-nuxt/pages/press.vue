@@ -179,9 +179,13 @@ useHead({
 }
 
 .source-logo {
-  max-height: 70px;
-  width: auto;
-  object-fit: contain;
+  max-width: 300px;      /* Set a max width */
+  max-height: 70px;      /* Already set, adjust as needed */
+  width: 100%;           /* Ensures SVGs and PNGs fill the box */
+  height: auto;
+  object-fit: contain;   /* Keeps aspect ratio, fits inside box */
+  display: block;
+  margin: 0 auto;
 }
 
 

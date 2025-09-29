@@ -16,7 +16,7 @@ export default defineNuxtConfig({
         {
           rel: 'icon',
           type: 'image/png',
-          href: '/Image/NIY-logos/niy-logo-2-white-bg.png'
+          href: '/Image/NIY-logos/niy-logo-3.png'
         },
         {
           rel: 'stylesheet',
