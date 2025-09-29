@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, onBeforeUnmount } from "vue";
+import { computed, onMounted, onBeforeUnmount, watch } from "vue";
 
 const props = defineProps({
   video: { type: Object, required: true },
@@ -39,7 +39,6 @@ const props = defineProps({
 
 const autoplayUrl = computed(() => {
   if (!props.video?.youtube_url) return "";
-  // mirror about-devery: add autoplay & enablejsapi so ESC and end-handling are doable later
   const hasQuery = props.video.youtube_url.includes("?");
   const sep = hasQuery ? "&" : "?";
   return `${props.video.youtube_url}${sep}autoplay=1&enablejsapi=1`;
@@ -49,9 +48,35 @@ function handleKeydown(e) {
   if (e.key === "Escape") props.close();
 }
 
-onMounted(() => window.addEventListener("keydown", handleKeydown));
+function initYouTubePlayer() {
+  if (!window.YT || !window.YT.Player) return;
+  new window.YT.Player("ytplayer", {
+    events: {
+      onStateChange: (event) => {
+        if (event.data === window.YT.PlayerState.ENDED) {
+          props.close();
+        }
+      }
+    }
+  });
+}
+
+onMounted(() => {
+  window.addEventListener("keydown", handleKeydown);
+
+  // Wait a bit so the iframe is mounted
+  setTimeout(() => {
+    if (window.YT && window.YT.Player) {
+      initYouTubePlayer();
+    } else {
+      window.onYouTubeIframeAPIReady = initYouTubePlayer;
+    }
+  }, 500);
+});
+
 onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
 </script>
+
 
 <style scoped>
 /* match about-devery modal overlay + frame exactly */
@@ -268,4 +293,11 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
     width: 36px;
   }
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+.fade-enter-to, .fade-leave-from { opacity: 1; }
+
 </style>
