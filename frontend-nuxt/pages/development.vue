@@ -56,6 +56,12 @@ function closeModal() {
   modalOpen.value = false;
   modalProject.value = null;
 }
+
+({
+  title: 'Development | NIGHT is Y',
+  meta: [{ name: 'description', content: 'Development projects by NIGHT is Y.' }]
+})
+
 </script>
 
 <style>
