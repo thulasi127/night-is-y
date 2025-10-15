@@ -266,8 +266,9 @@ useHead({
   font-size: clamp(12px, 1.5vw, 14px);
   line-height: 1.5;
   color: #e6e6e6;
-  column-count: 2;
-  column-gap: clamp(12px, 2vw, 24px);
+  column-count: 1;         /* Always one column */
+  max-width: 100%;         /* Use full width of container */
+  text-align: left;
   hyphens: auto;
 }
 
