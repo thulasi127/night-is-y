@@ -181,18 +181,21 @@ useHead({
   align-items: flex-start;
   width: 100%;
   margin-left: 0;
-  gap: clamp(20px, 3vw, 40px);
-  padding: 0 clamp(12px, 4vw, 24px);
+  gap: clamp(28px, 6vw, 80px); /* increased gap to spread columns */
+  padding: 0 clamp(18px, 6vw, 56px); /* more horizontal breathing room */
 }
 
-/* Headshot + Heading */
+/* Headshot: nudge left and reserve fixed space */
 .image-heading-container {
   display: flex;
   flex-direction: column;
   gap: clamp(8px, 2vw, 16px);
-  width: clamp(240px, 30vw, 400px);
+  width: clamp(220px, 24vw, 360px);
+  flex: 0 0 clamp(220px, 24vw, 360px);
+  margin-right: clamp(4px, 1.2vw, 12px); /* further reduced to bring headshot closer to bio */
 }
 
+/* Headshot + Heading */
 .the-team-heading {
   margin-top: clamp(60px, 10vw, 100px);
   margin-bottom: clamp(8px, 2vw, 20px);
@@ -248,16 +251,16 @@ useHead({
 
 /* Bio + Sidebar Container */
 .main-text-block {
-  max-width: clamp(300px, 40vw, 600px);
+  max-width: clamp(360px, 50vw, 900px); /* increased so bio can use more horizontal space */ /* increased so bio can use more horizontal space */
   margin-top: clamp(40px, 6vw, 80px);
 }
 
 .bio-container {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: clamp(16px, 3vw, 32px);
+  grid-template-columns: 3fr 1fr; /* bio wider, sidebar narrower */
+  gap: clamp(10px, 2.5vw, 20px);  /* tightened gap between columns */
   margin-top: clamp(8px, 2vw, 12px);
-  max-width: 900px;
+  max-width: 1300px;
 }
 
 /* Bio Text */
@@ -272,7 +275,7 @@ useHead({
   hyphens: auto;
 }
 
-/* Works Sidebar */
+/* Works Sidebar: nudge left so it sits closer to bio/headshot */
 .works-sidebar {
   display: flex;
   flex-direction: column;
@@ -281,7 +284,9 @@ useHead({
   background: rgba(255,255,255,0.03);
   border-radius: 6px;
   border: 1px solid rgba(255,255,255,0.1);
-  max-width: clamp(180px, 20vw, 260px);
+  max-width: clamp(220px, 22vw, 340px);
+  margin-left: clamp(4px, 1vw, 12px);  /* reduced to decrease spacing */
+  align-self: flex-start;
 }
 
 .sidebar-heading {
@@ -325,6 +330,12 @@ useHead({
     align-items: center;
     text-align: center;
     gap: 16px;
+    padding: 0 clamp(12px, 4vw, 24px);
+  }
+
+  .image-heading-container {
+    width: clamp(240px, 40vw, 320px);
+    margin-right: 0;
   }
 
   .bio-container {
@@ -332,21 +343,14 @@ useHead({
     flex-direction: column;
     gap: 16px;
     align-items: center;
-  }
-
-  .bio-text {
-    column-count: 1;
     max-width: 100%;
-    text-align: left;
   }
 
   .works-sidebar {
     width: 100%;
-    max-width: 320px;
+    margin-left: 0;
     text-align: center;
   }
-
-  .frame { justify-content: center; }
 }
 
 /* --- Video Modal (Unified Scaling) --- */

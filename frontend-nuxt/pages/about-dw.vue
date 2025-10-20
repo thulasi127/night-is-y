@@ -49,7 +49,6 @@
                       :class="link.type + '-instance'"
                       :alt="link.type + ' logo'"
                       :src="link.img"
-                      style="height:36px;width:36px;"
                     />
                   </a>
                 </template>
@@ -59,6 +58,7 @@
         </div>
       </div>
     </div>
+
     <transition name="fade">
       <div v-if="showVideo" class="video-modal" @click.self="closeVideo">
         <div class="video-wrapper">
@@ -70,6 +70,7 @@
             allow="autoplay; encrypted-media"
             allowfullscreen
           ></iframe>
+
           <div class="video-return" @click="closeVideo">
             <span>Return</span>
             <div class="return-line"></div>
@@ -83,12 +84,13 @@
 <script lang="ts" setup>
 import NavBar from "../components/NavBar.vue";
 import bioData from '~/data/bio.json';
-import { ref, onMounted, watch } from "vue";
+import { ref, watch } from "vue";
 
 const showVideo = ref(false);
 const videoUrl = ref("");
 
 function openVideo(url: string) {
+  // Convert YouTube watch link → embed link
   videoUrl.value = url.replace("watch?v=", "embed/").split("&")[0];
   showVideo.value = true;
 }
@@ -98,9 +100,12 @@ function closeVideo() {
   showVideo.value = false;
 }
 
+// Load YouTube API and listen for video end
 watch(showVideo, (val) => {
   if (val) {
+    // Wait for iframe to mount
     setTimeout(() => {
+      // Load YouTube API if not loaded
       if (!window.YT) {
         const tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
@@ -117,6 +122,7 @@ watch(showVideo, (val) => {
           }
         });
       };
+      // If API already loaded
       if (window.YT && window.YT.Player) {
         const player = new window.YT.Player('ytplayer', {
           events: {
@@ -173,16 +179,17 @@ useHead({
   align-items: flex-start;
   width: 100%;
   margin-left: 0;
-  gap: clamp(20px, 3vw, 40px);
-  padding: 0 clamp(12px, 4vw, 24px);
+  gap: clamp(28px, 6vw, 80px);
+  padding: 0 clamp(18px, 6vw, 56px);
 }
 
-/* Headshot + Heading */
 .image-heading-container {
   display: flex;
   flex-direction: column;
   gap: clamp(8px, 2vw, 16px);
-  width: clamp(240px, 30vw, 400px);
+  width: clamp(220px, 24vw, 360px);
+  flex: 0 0 clamp(220px, 24vw, 360px);
+  margin-right: clamp(4px, 1.2vw, 12px);
 }
 
 .the-team-heading {
@@ -202,16 +209,15 @@ useHead({
   border-radius: 4px;
 }
 
-.devery-meta{
-  text-align: left
-}
-
-/* Names Row */
 .names-row {
   display: flex;
   gap: clamp(12px, 2vw, 24px);
   margin: clamp(8px, 2vw, 20px) 0;
   flex-wrap: wrap;
+}
+
+.devery-meta{
+  text-align: left
 }
 
 .devery-jacobs,
@@ -237,33 +243,31 @@ useHead({
   color: rgba(255,255,255,0.75);
   text-decoration-color: rgba(255,255,255,0.75);
 }
-/* Bio + Sidebar Container */
+
 .main-text-block {
-  max-width: clamp(300px, 40vw, 600px);
+  max-width: clamp(360px, 50vw, 900px);
   margin-top: clamp(40px, 6vw, 80px);
 }
 
 .bio-container {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: clamp(16px, 3vw, 32px);
+  grid-template-columns: 3fr 1fr;
+  gap: clamp(10px, 2.5vw, 20px);
   margin-top: clamp(8px, 2vw, 12px);
-  max-width: 900px;
+  max-width: 1300px;
 }
 
-/* Bio Text */
 .bio-text {
   font-family: "proxima-nova", sans-serif;
   font-size: clamp(12px, 1.5vw, 14px);
   line-height: 1.5;
   color: #e6e6e6;
-  column-count: 1;         /* Always one column */
-  max-width: 100%;         /* Use full width of container */
+  column-count: 1;
+  max-width: 100%;
   text-align: left;
   hyphens: auto;
 }
 
-/* Works Sidebar */
 .works-sidebar {
   display: flex;
   flex-direction: column;
@@ -272,7 +276,9 @@ useHead({
   background: rgba(255,255,255,0.03);
   border-radius: 6px;
   border: 1px solid rgba(255,255,255,0.1);
-  max-width: clamp(180px, 20vw, 260px);
+  max-width: clamp(220px, 22vw, 340px);
+  margin-left: clamp(4px, 1vw, 12px);
+  align-self: flex-start;
 }
 
 .sidebar-heading {
@@ -292,7 +298,6 @@ useHead({
 }
 .works-list a:hover { color: #d90ec1ba; }
 
-/* Social Icons */
 .frame {
   display: flex;
   gap: clamp(8px, 1.5vw, 12px);
@@ -309,13 +314,18 @@ useHead({
 }
 .frame img:hover { opacity: 1; transform: scale(1.05); }
 
-/* Responsive: stack on small screens */
 @media (max-width: 730px) {
   .main-content-row {
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 16px;
+    padding: 0 clamp(12px, 4vw, 24px);
+  }
+
+  .image-heading-container {
+    width: clamp(240px, 40vw, 320px);
+    margin-right: 0;
   }
 
   .bio-container {
@@ -323,24 +333,16 @@ useHead({
     flex-direction: column;
     gap: 16px;
     align-items: center;
-  }
-
-  .bio-text {
-    column-count: 1;
     max-width: 100%;
-    text-align: left;
   }
 
   .works-sidebar {
     width: 100%;
-    max-width: 320px;
+    margin-left: 0;
     text-align: center;
   }
-
-  .frame { justify-content: center; }
 }
 
-/* --- Video Modal (Unified Scaling) --- */
 .video-modal {
   position: fixed;
   top: 0;
@@ -366,7 +368,6 @@ useHead({
   gap: clamp(6px, 2vw, 12px);
 }
 
-/* Iframe scales dynamically */
 .video-wrapper iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -375,7 +376,6 @@ useHead({
   max-height: 70vh;
 }
 
-/* Return Button */
 .video-return {
   position: absolute;
   bottom: -48px;
@@ -413,8 +413,6 @@ useHead({
   opacity: 1;
 }
 
-
-/* Mobile: stack CTA below video if space is tight */
 @media (max-width: 480px) {
   .video-wrapper {
     width: 95vw;
