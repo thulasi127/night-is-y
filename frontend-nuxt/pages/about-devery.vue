@@ -156,6 +156,8 @@ useHead({
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
+  overflow: hidden !important; /* Disable scrolling */
+  height: 100vh;
 }
 
 .navbar-fixed {
@@ -168,11 +170,14 @@ useHead({
 }
 
 .about-page-devery-content {
-  flex: 1;
+  /* Vertically center content and disable scroll */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: clamp(40px, 6vw, 64px);
-  width: 100%;
+  justify-content: center;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
 }
 
 .main-content-row {
