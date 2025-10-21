@@ -194,13 +194,10 @@ useHead({
 .image-heading-container {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Vertically center image within its column */
-  align-items: center;
   gap: clamp(8px, 2vw, 16px);
   width: clamp(220px, 24vw, 360px);
   flex: 0 0 clamp(220px, 24vw, 360px);
   margin-right: clamp(4px, 1.2vw, 12px);
-  height: 100%;
 }
 
 /* Headshot + Heading */
