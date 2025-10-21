@@ -6,7 +6,7 @@
     <div class="about-page-devery-content">
       <div class="main-content-row">
         <div class="image-heading-container">
-          <h1 class="the-team-heading">THE TEAM</h1>
+          <!-- <h1 class="the-team-heading">THE TEAM</h1> -->
           <img class="image" :alt="bio.name + ' Headshot'" :src="bio.headshot" />
         </div>
         <div class="main-text-block">
@@ -218,6 +218,7 @@ useHead({
   gap: clamp(12px, 2vw, 24px);
   margin: clamp(8px, 2vw, 20px) 0;
   flex-wrap: wrap;
+  margin-top: clamp(8px, 1vw, 12px);
 }
 
 .devery-meta{
@@ -250,7 +251,8 @@ useHead({
 
 .main-text-block {
   max-width: clamp(360px, 50vw, 900px);
-  margin-top: clamp(40px, 6vw, 80px);
+  /* margin-top: clamp(40px, 6vw, 80px); */
+  margin-top: 0;
 }
 
 .bio-container {

@@ -6,7 +6,7 @@
     <div class="about-page-devery-content">
       <div class="main-content-row">
         <div class="image-heading-container">
-          <h1 class="the-team-heading">THE TEAM</h1>
+          <!-- <h1 class="the-team-heading">THE TEAM</h1> -->
           <img class="image" :alt="bio.name + ' Headshot'" :src="bio.headshot" />
         </div>
         <div class="main-text-block">
@@ -186,18 +186,21 @@ useHead({
   align-items: flex-start;
   width: 100%;
   margin-left: 0;
-  gap: clamp(28px, 6vw, 80px); /* increased gap to spread columns */
-  padding: 0 clamp(18px, 6vw, 56px); /* more horizontal breathing room */
+  gap: clamp(28px, 6vw, 80px);
+  padding: 0 clamp(18px, 6vw, 56px);
 }
 
 /* Headshot: nudge left and reserve fixed space */
 .image-heading-container {
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Vertically center image within its column */
+  align-items: center;
   gap: clamp(8px, 2vw, 16px);
   width: clamp(220px, 24vw, 360px);
   flex: 0 0 clamp(220px, 24vw, 360px);
-  margin-right: clamp(4px, 1.2vw, 12px); /* further reduced to bring headshot closer to bio */
+  margin-right: clamp(4px, 1.2vw, 12px);
+  height: 100%;
 }
 
 /* Headshot + Heading */
@@ -224,6 +227,7 @@ useHead({
   gap: clamp(12px, 2vw, 24px);
   margin: clamp(8px, 2vw, 20px) 0;
   flex-wrap: wrap;
+  margin-top: clamp(8px, 1vw, 12px);
 }
 
 .devery-meta{
@@ -257,7 +261,8 @@ useHead({
 /* Bio + Sidebar Container */
 .main-text-block {
   max-width: clamp(360px, 50vw, 900px); /* increased so bio can use more horizontal space */ /* increased so bio can use more horizontal space */
-  margin-top: clamp(40px, 6vw, 80px);
+  /* margin-top: clamp(40px, 6vw, 80px); */
+  margin-top: 0;
 }
 
 .bio-container {
