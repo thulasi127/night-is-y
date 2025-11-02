@@ -3,7 +3,7 @@
     <div class="navbar-fixed">
       <NavBar />
     </div>
-    <div class="about-page-devery-content">
+    <div class="about-page-dw-content">
       <div class="main-content-row">
         <div class="image-heading-container">
           <!-- <h1 class="the-team-heading">THE TEAM</h1> -->
@@ -167,7 +167,7 @@ useHead({
   background: #000;
 }
 
-.about-page-devery-content {
+.about-page-dw-content {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -196,14 +196,6 @@ useHead({
   margin-right: clamp(4px, 1.2vw, 12px);
 }
 
-.the-team-heading {
-  margin-top: clamp(60px, 10vw, 100px);
-  margin-bottom: clamp(8px, 2vw, 20px);
-  font-size: clamp(24px, 4vw, 48px);
-  line-height: 1.1;
-  text-align: left;
-}
-
 .image-heading-container .image {
   display: block;
   width: 100%;
@@ -215,14 +207,14 @@ useHead({
 
 .names-row {
   display: flex;
-  gap: clamp(12px, 2vw, 24px);
+  gap: clamp(32px, 6vw, 48px); /* Increased gap */
   margin: clamp(8px, 2vw, 20px) 0;
   flex-wrap: wrap;
   margin-top: clamp(8px, 1vw, 12px);
 }
 
-.devery-meta{
-  text-align: left
+.devery-meta {
+  text-align: left;
 }
 
 .devery-jacobs,
@@ -235,10 +227,6 @@ useHead({
   line-height: 1.1;
 }
 
-.dw-waterson.overline {
-  text-decoration-color: #d90ec1ba;
-}
-
 .devery-jacobs.overline {
   text-decoration-color: rgba(255,255,255,0.5);
   color: rgba(255,255,255,0.5);
@@ -249,9 +237,12 @@ useHead({
   text-decoration-color: rgba(255,255,255,0.75);
 }
 
+.dw-waterson.overline {
+  text-decoration-color: #d90ec1ba;
+}
+
 .main-text-block {
   max-width: clamp(360px, 50vw, 900px);
-  /* margin-top: clamp(40px, 6vw, 80px); */
   margin-top: 0;
 }
 

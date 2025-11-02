@@ -221,7 +221,7 @@ useHead({
 /* Names Row */
 .names-row {
   display: flex;
-  gap: clamp(12px, 2vw, 24px);
+  gap: clamp(32px, 6vw, 48px); /* Increased gap */
   margin: clamp(8px, 2vw, 20px) 0;
   flex-wrap: wrap;
   margin-top: clamp(8px, 1vw, 12px);
