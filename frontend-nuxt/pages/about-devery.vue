@@ -5,58 +5,58 @@
     </div>
     <div class="about-page-devery-content">
       <div class="main-content-row">
-        <div class="image-heading-container">
-          <!-- <h1 class="the-team-heading">THE TEAM</h1> -->
-          <img class="image" :alt="bio.name + ' Headshot'" :src="bio.headshot" />
-        </div>
+      <div class="image-heading-container">
+  <img class="image" :alt="bio.name + ' Headshot'" :src="bio.headshot" />
+</div>
+
         <div class="main-text-block">
-          <div class="names-row">
-            <span class="devery-jacobs overline">DEVERY JACOBS</span>
-            <NuxtLink to="/about-dw" class="dw-waterson overline">D.W. WATERSON</NuxtLink>
-          </div>
-          <div class="devery-meta">
-            <span class="span">{{ bio.name.toUpperCase() }} ({{ bio.pronouns.toUpperCase() }})</span>
-            <br>
-            <span class="span">{{ bio.role.toUpperCase() }}</span>
-          </div>
+  <div class="names-row">
+    <span class="devery-jacobs overline">DEVERY JACOBS</span>
+    <NuxtLink to="/about-dw" class="dw-waterson overline">D.W. WATERSON</NuxtLink>
+  </div>
 
-          <!-- Two-column container: bio + works sidebar -->
-          <div class="bio-container">
-            <!-- Left: Bio text -->
-            <div class="bio-text" v-html="bio.bio ? bio.bio.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>') : ''"></div>
+  <!-- Removed duplicated name/pronouns -->
+  <div class="devery-meta">
+    <span class="span">{{ bio.role.toUpperCase() }}</span>
+  </div>
 
-            <!-- Right: Past works sidebar -->
-            <div class="works-sidebar">
-              <span class="sidebar-heading">PAST NOTABLE WORK:</span>
-              <div class="works-list">
-                <template v-for="(work, idx) in bio.notable_works" :key="work.title">
-                  <div>
-                    <a href="#" @click.prevent="openVideo(work.url)">{{ work.title }}</a>
-                  </div>
-                </template>
-              </div>
-              <div class="frame">
-                <template v-for="link in bio.links" :key="link.type">
-                  <a v-if="link.url" :href="link.url" target="_blank" rel="noopener noreferrer">
-                    <img
-                      v-if="link.type === 'imdb'"
-                      class="imdb-logo"
-                      :alt="link.type + ' logo'"
-                      :src="link.img"
-                    />
-                    <img
-                      v-else
-                      :class="link.type + '-instance'"
-                      :alt="link.type + ' logo'"
-                      :src="link.img"
-                      style="height:36px;width:36px;"
-                    />
-                  </a>
-                </template>
-              </div>
-            </div>
-          </div>
-        </div>
+  <!-- Two-column container: bio + works sidebar -->
+  <div class="bio-container">
+  <!-- Left Column: Bio text and social icons -->
+  <div class="bio-left">
+    <div
+      class="bio-text"
+      v-html="bio.bio ? bio.bio.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>') : ''"
+    ></div>
+
+    <!-- Social icons underneath bio text -->
+    <div class="social-icons-bio">
+      <template v-for="link in orderedLinks" :key="link.type">
+        <a
+          v-if="link.url"
+          :href="link.url"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img :src="link.img" :alt="link.type + ' logo'" class="social-icon" />
+        </a>
+      </template>
+    </div>
+  </div>
+
+  <!-- Right Column: Past Works Sidebar -->
+  <div class="works-sidebar">
+    <span class="sidebar-heading">PAST NOTABLE WORK:</span>
+    <div class="works-list">
+      <template v-for="(work, idx) in bio.notable_works" :key="work.title">
+        <div><a href="#" @click.prevent="openVideo(work.url)">{{ work.title }}</a></div>
+      </template>
+    </div>
+  </div>
+</div>
+
+</div>
+
       </div>
     </div>
     <transition name="fade">
@@ -141,6 +141,12 @@ watch(showVideo, (val) => {
 
 const bio = bioData.devery_jacobs;
 
+// Order icons manually (Instagram → IMDb)
+const orderedLinks = bio.links.sort((a, b) => {
+  const order = { instagram: 1, imdb: 2 };
+  return (order[a.type] || 99) - (order[b.type] || 99);
+});
+
 useHead({
   title: 'About Devery | Night is Y',
   meta: [{ name: 'description', content: 'About Devery Jacobs.' }]
@@ -149,6 +155,93 @@ useHead({
 
 
 <style scoped>
+
+/* --- Social Icons Under Bio --- */
+.social-icons-bio {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1vw, 14px);
+  margin-top: clamp(4px, 1vw, 10px);
+}
+
+.social-icons-bio .social-icon {
+  width: 36px;
+  height: 36px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.social-icons-bio .social-icon:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.image-heading-container {
+  position: relative;
+}
+
+.social-icons-overlay {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-heading-container:hover .social-icons-overlay {
+  opacity: 1;
+}
+
+
+.person-header {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1vw, 10px);
+}
+
+.person-name {
+  margin: 0;
+  padding: 0;
+  font-family: "anton", sans-serif;
+  font-size: clamp(18px, 2.6vw, 28px);
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 0.8vw, 10px);
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.social-icon:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+
+.image-heading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: clamp(16px, 2vw, 20px);
+  width: clamp(260px, 26vw, 380px);
+  flex-shrink: 0;
+  height: fit-content;
+  position: relative;
+}
+
 .about-team-page {
   background: #000;
   width: 100vw;
@@ -194,19 +287,25 @@ useHead({
 .image-heading-container {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 2vw, 16px);
-  width: clamp(220px, 24vw, 360px);
-  flex: 0 0 clamp(220px, 24vw, 360px);
-  margin-right: clamp(4px, 1.2vw, 12px);
+  align-items: flex-start; /* align text and image to same left edge */
+  justify-content: flex-start;
+  gap: clamp(12px, 2vw, 20px);
+  width: clamp(260px, 26vw, 380px);
+  flex-shrink: 0;
+  margin-top: 0; /* remove unnecessary vertical offset */
+  height: fit-content;
 }
 
 /* Headshot + Heading */
 .the-team-heading {
-  margin-top: clamp(60px, 10vw, 100px);
-  margin-bottom: clamp(8px, 2vw, 20px);
-  font-size: clamp(24px, 4vw, 48px);
+  margin: 0;
+  padding: 0;
+  font-family: "anton", sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
   line-height: 1.1;
-  text-align: left;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .image-heading-container .image {
@@ -264,36 +363,42 @@ useHead({
 
 .bio-container {
   display: grid;
-  grid-template-columns: 3fr 1fr; /* bio wider, sidebar narrower */
-  gap: clamp(10px, 2.5vw, 20px);  /* tightened gap between columns */
-  margin-top: clamp(8px, 2vw, 12px);
+  grid-template-columns: 3fr 1fr; /* bio on left, sidebar on right */
+  gap: clamp(24px, 3vw, 40px);
+  align-items: start;
+  margin-top: clamp(12px, 2vw, 16px);
   max-width: 1300px;
+}
+
+.bio-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(16px, 2vw, 20px);
 }
 
 /* Bio Text */
 .bio-text {
   font-family: "proxima-nova", sans-serif;
   font-size: clamp(12px, 1.5vw, 14px);
-  line-height: 1.5;
+  line-height: 1.55;
   color: #e6e6e6;
-  column-count: 1;         /* Always one column */
-  max-width: 100%;         /* Use full width of container */
   text-align: left;
   hyphens: auto;
 }
 
-/* Works Sidebar: nudge left so it sits closer to bio/headshot */
+/* --- Sidebar --- */
 .works-sidebar {
   display: flex;
   flex-direction: column;
-  gap: clamp(6px, 1.5vw, 12px);
-  padding: clamp(8px, 1.5vw, 16px);
-  background: rgba(255,255,255,0.03);
+  align-items: flex-start;
+  gap: 10px;
+  padding: clamp(10px, 1.5vw, 16px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.1);
-  max-width: clamp(220px, 22vw, 340px);
-  margin-left: clamp(4px, 1vw, 12px);  /* reduced to decrease spacing */
-  align-self: flex-start;
+  width: 100%;
+  max-width: 240px;
 }
 
 .sidebar-heading {
@@ -301,9 +406,10 @@ useHead({
   color: #fff;
   text-transform: uppercase;
   margin-bottom: 4px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 4px;
 }
+
 
 .works-list a {
   font-size: clamp(12px, 1.5vw, 14px);
@@ -311,8 +417,9 @@ useHead({
   text-decoration: none;
   transition: color 0.2s ease;
 }
-.works-list a:hover { color: #d90ec1ba; }
-
+.works-list a:hover {
+  color: #d90ec1ba;
+}
 /* Social Icons */
 .frame {
   display: flex;
@@ -329,6 +436,25 @@ useHead({
   transition: opacity 0.2s, transform 0.2s;
 }
 .frame img:hover { opacity: 1; transform: scale(1.05); }
+
+/* Responsive Stacking for Mobile */
+@media (max-width: 730px) {
+  .bio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .works-sidebar {
+    width: 100%;
+    text-align: center;
+  }
+
+  .social-icons-bio {
+    justify-content: center;
+  }
+}
 
 /* Responsive: stack on small screens */
 @media (max-width: 730px) {
