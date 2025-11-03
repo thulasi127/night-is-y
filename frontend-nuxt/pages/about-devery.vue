@@ -3,7 +3,7 @@
     <div class="navbar-fixed">
       <NavBar />
     </div>
-    <div class="about-page-devery-content">
+    <div class="about-page-content">
       <div class="main-content-row">
       <div class="image-heading-container">
   <img class="image" :alt="bio.name + ' Headshot'" :src="bio.headshot" />
@@ -21,7 +21,7 @@
   </div>
 
   <!-- Two-column container: bio + works sidebar -->
-  <div class="bio-container">
+  <div class="bio-container" ref="bioContainerRef">
   <!-- Left Column: Bio text and social icons -->
   <div class="bio-left">
     <div
@@ -141,6 +141,19 @@ watch(showVideo, (val) => {
 
 const bio = bioData.devery_jacobs;
 
+const bioContainerRef = ref<HTMLElement | null>(null);
+
+onMounted(() => {
+  if (bioContainerRef.value) {
+    const rect = bioContainerRef.value.getBoundingClientRect();
+    const containerCenterY = rect.top + rect.height / 2;
+    const viewportCenterY = window.innerHeight / 2;
+    const offset = containerCenterY - viewportCenterY;
+    localStorage.setItem('bioContainerOffset', offset.toString());
+  }
+});
+
+
 // Order icons manually (Instagram → IMDb)
 const orderedLinks = bio.links.sort((a, b) => {
   const order = { instagram: 1, imdb: 2 };
@@ -176,10 +189,6 @@ useHead({
   transform: scale(1.05);
 }
 
-.image-heading-container {
-  position: relative;
-}
-
 .social-icons-overlay {
   position: absolute;
   bottom: 12px;
@@ -190,10 +199,25 @@ useHead({
   transition: opacity 0.3s ease;
 }
 
-.image-heading-container:hover .social-icons-overlay {
-  opacity: 1;
+.image-heading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: clamp(12px, 2vw, 20px);
+  width: clamp(260px, 26vw, 380px);
+  flex-shrink: 0;
+  height: fit-content;
+  margin: 0; /* ensure consistent top origin */
 }
 
+.image-heading-container .image {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: 4px;
+}
 
 .person-header {
   display: flex;
@@ -229,19 +253,6 @@ useHead({
   transform: scale(1.05);
 }
 
-
-.image-heading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: clamp(16px, 2vw, 20px);
-  width: clamp(260px, 26vw, 380px);
-  flex-shrink: 0;
-  height: fit-content;
-  position: relative;
-}
-
 .about-team-page {
   background: #000;
   width: 100vw;
@@ -262,12 +273,12 @@ useHead({
   background: #000;
 }
 
-.about-page-devery-content {
-  /* Vertically center content and disable scroll */
-  min-height: 100vh;
+.about-page-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center;   /* vertically center */
+  align-items: center;       /* horizontally center */
+  min-height: 100vh;
   padding-top: 0;
   padding-bottom: 0;
   overflow: hidden;
@@ -275,26 +286,15 @@ useHead({
 
 .main-content-row {
   display: flex;
+  align-items: flex-start; /* lock to top of row */
   justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  margin-left: 0;
   gap: clamp(28px, 6vw, 80px);
   padding: 0 clamp(18px, 6vw, 56px);
+  width: 100%;
+  margin: 0; /* ensures no inherited top gap */
 }
 
-/* Headshot: nudge left and reserve fixed space */
-.image-heading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* align text and image to same left edge */
-  justify-content: flex-start;
-  gap: clamp(12px, 2vw, 20px);
-  width: clamp(260px, 26vw, 380px);
-  flex-shrink: 0;
-  margin-top: 0; /* remove unnecessary vertical offset */
-  height: fit-content;
-}
+
 
 /* Headshot + Heading */
 .the-team-heading {
@@ -306,15 +306,6 @@ useHead({
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-}
-
-.image-heading-container .image {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 480px;
-  object-fit: cover;
-  border-radius: 4px;
 }
 
 /* Names Row */
@@ -368,6 +359,7 @@ useHead({
   align-items: start;
   margin-top: clamp(12px, 2vw, 16px);
   max-width: 1300px;
+ transition: margin-top 0.3s ease; 
 }
 
 .bio-left {
@@ -464,11 +456,6 @@ useHead({
     text-align: center;
     gap: 16px;
     padding: 0 clamp(12px, 4vw, 24px);
-  }
-
-  .image-heading-container {
-    width: clamp(240px, 40vw, 320px);
-    margin-right: 0;
   }
 
   .bio-container {
