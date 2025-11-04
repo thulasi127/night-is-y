@@ -149,7 +149,7 @@ onMounted(() => {
     const containerCenterY = rect.top + rect.height / 2;
     const viewportCenterY = window.innerHeight / 2;
     const offset = containerCenterY - viewportCenterY;
-    localStorage.setItem('bioContainerOffset', offset.toString());
+    // localStorage.setItem('bioContainerOffset', offset.toString());
   }
 });
 
@@ -204,21 +204,16 @@ useHead({
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: clamp(12px, 2vw, 20px);
   width: clamp(260px, 26vw, 380px);
   flex-shrink: 0;
-  height: fit-content;
-  margin: 0; /* ensure consistent top origin */
 }
 
 .image-heading-container .image {
   width: 100%;
-  height: auto;
-  max-height: 480px;
+  height: clamp(400px, 45vh, 480px); /* scales smoothly with screen size */
   object-fit: cover;
   border-radius: 4px;
 }
-
 .person-header {
   display: flex;
   align-items: center;
@@ -276,25 +271,24 @@ useHead({
 .about-page-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;   /* vertically center */
-  align-items: center;       /* horizontally center */
+  justify-content: center; /* center vertically on desktop */
+  align-items: center;
   min-height: 100vh;
-  padding-top: 0;
-  padding-bottom: 0;
-  overflow: hidden;
+  padding-top: clamp(80px, 10vh, 140px); /* top offset below navbar */
+  padding-bottom: clamp(40px, 8vh, 100px);
+  box-sizing: border-box;
 }
 
 .main-content-row {
   display: flex;
-  align-items: flex-start; /* lock to top of row */
   justify-content: center;
+  align-items: flex-start; /* keep image and names-row aligned at top */
   gap: clamp(28px, 6vw, 80px);
-  padding: 0 clamp(18px, 6vw, 56px);
+  padding: 0 clamp(24px, 6vw, 64px);
   width: 100%;
-  margin: 0; /* ensures no inherited top gap */
+  max-width: 1600px;
+  margin: 0 auto;
 }
-
-
 
 /* Headshot + Heading */
 .the-team-heading {
@@ -347,9 +341,10 @@ useHead({
 
 /* Bio + Sidebar Container */
 .main-text-block {
-  max-width: clamp(360px, 50vw, 900px); /* increased so bio can use more horizontal space */ /* increased so bio can use more horizontal space */
-  /* margin-top: clamp(40px, 6vw, 80px); */
-  margin-top: 0;
+  max-width: clamp(360px, 50vw, 900px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .bio-container {
@@ -367,7 +362,11 @@ useHead({
   flex-direction: column;
   justify-content: flex-start;
   gap: clamp(16px, 2vw, 20px);
+  min-height: clamp(440px, 52vh, 540px); /* sets a consistent visual height */
+  max-height: clamp(540px, 62vh, 620px);
+  overflow: hidden;
 }
+
 
 /* Bio Text */
 .bio-text {
@@ -428,6 +427,33 @@ useHead({
   transition: opacity 0.2s, transform 0.2s;
 }
 .frame img:hover { opacity: 1; transform: scale(1.05); }
+
+@media (max-width: 1024px) {
+  .about-page-content {
+    justify-content: flex-start; /* prevents over-centering on short screens */
+    padding-top: clamp(60px, 8vh, 100px);
+  }
+}
+
+@media (max-width: 730px) {
+  .main-content-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    padding: 0 clamp(12px, 4vw, 24px);
+  }
+
+  .image-heading-container .image {
+    height: auto;
+    max-height: 400px;
+  }
+
+  .about-page-content {
+    justify-content: flex-start;
+    padding-top: clamp(80px, 12vh, 120px);
+  }
+}
 
 /* Responsive Stacking for Mobile */
 @media (max-width: 730px) {
