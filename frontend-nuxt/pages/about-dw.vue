@@ -728,6 +728,20 @@ useHead({
     overflow-y: visible !important;
     padding-bottom: clamp(80px, 12vh, 140px);
   }
+
+ /* Center names row text and links */
+  .names-row {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .main-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: clamp(8px, 1vw, 12px);
+  }  
 }
 
 </style>
