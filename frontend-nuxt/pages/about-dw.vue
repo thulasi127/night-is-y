@@ -27,9 +27,9 @@
 >
         <div class="bio-left">
           <div
-            class="bio-text"
-            v-html="bio.bio ? bio.bio.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>') : ''"
-          ></div>
+  class="bio-text"
+  v-html="formattedBio"
+></div>
 
           <div class="social-icons-bio">
             <template v-for="link in orderedLinks" :key="link.type">
@@ -144,6 +144,22 @@ watch(showVideo, (val) => {
 
 const bio = bioData.dw_waterson;
 
+const formattedBio = computed(() => {
+  if (!bio.bio) return "";
+
+  // Build the bold header (name + pronouns)
+  const header = `<strong>${bio.name} (${bio.pronouns.toLowerCase()})</strong>`;
+
+  // Replace the first instance of the name/pronouns in the bio text
+  const replacedBio = bio.bio.replace(
+    new RegExp(`${bio.name}\\s*\\(${bio.pronouns}\\)`, "i"),
+    header
+  );
+
+  // Handle line breaks
+  return replacedBio.replace(/\n\n/g, "<br><br>").replace(/\n/g, "<br>");
+});
+
 // Order icons manually (Instagram → IMDb)
 const orderedLinks = bio.links.sort((a, b) => {
   const order = { instagram: 1, imdb: 2 };
@@ -204,9 +220,10 @@ useHead({
   justify-content: center; /* center vertically on desktop */
   align-items: center;
   min-height: 100vh;
-  padding-top: clamp(80px, 10vh, 140px); /* top offset below navbar */
+  padding-top: clamp(100px, 12vh, 160px); /* increases top padding a bit more */
   padding-bottom: clamp(40px, 8vh, 100px);
   box-sizing: border-box;
+  margin-top: clamp(20px, 3vh, 40px); /* shifts entire section slightly downward */
 }
 
 .main-content-row {
@@ -311,6 +328,14 @@ useHead({
   hyphens: auto;
 }
 
+.bio-text :deep(strong) {
+  font-weight: 500;               /* slightly softer than 1000 */
+  color: #ffffff;                 /* clean white for contrast */
+  font-size: 115%;                /* only 1.2× larger than body text */
+  line-height: 1.4;               /* smoother vertical rhythm */
+  display: inline-block;
+}
+
 /* --- Sidebar --- */
 .works-sidebar {
   display: flex;
@@ -389,4 +414,320 @@ useHead({
     justify-content: center;
   }
 }
+
+/* --- Video Modal (Unified Scaling) --- */
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: clamp(8px, 2vw, 16px);
+}
+
+.video-wrapper {
+  position: relative;
+  width: clamp(240px, 80vw, 960px);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 2vw, 12px);
+}
+
+/* Iframe scales dynamically */
+.video-wrapper iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 4px;
+  max-height: 70vh;
+}
+
+/* Return Button */
+.video-return {
+  position: absolute;
+  bottom: -48px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  cursor: pointer;
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 100;
+  color: #fff;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.video-return:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+.video-return span {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+.return-line {
+  width: 48px;
+  height: 1px;
+  background: #fff;
+  opacity: 0.5;
+  transition: width 0.3s ease, opacity 0.2s ease;
+}
+
+.video-return:hover .return-line {
+  width: 64px;
+  opacity: 1;
+}
+
+
+/* Mobile: stack CTA below video if space is tight */
+@media (max-width: 480px) {
+  .video-wrapper {
+    width: 95vw;
+    gap: 8px;
+  }
+
+  .video-return {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin-top: 6px;
+  }
+
+  .return-line {
+    width: 28px;
+  }
+
+  .video-return:hover .return-line {
+    width: 36px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .video-return span { font-size: 13px; }
+  .return-line { width: 44px; }
+  .video-return:hover .return-line { width: 56px; }
+}
+
+@media (max-width: 992px) {
+  .video-return span { font-size: 12px; }
+  .return-line { width: 40px; }
+  .video-return:hover .return-line { width: 52px; }
+}
+
+@media (max-width: 768px) {
+  .video-return span { font-size: 11.5px; }
+  .return-line { width: 36px; }
+  .video-return:hover .return-line { width: 48px; }
+}
+
+@media (max-width: 480px) {
+  .video-return { align-items: center; gap: 3px; margin-top: 6px; }
+  .video-return span { font-size: 10.5px; letter-spacing: 0.5px; }
+  .return-line { width: 28px; }
+  .video-return:hover .return-line { width: 36px; }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+.fade-enter-to, .fade-leave-from { opacity: 1; }
+
+/* --- RESPONSIVE SCALING ADDITIONS --- */
+
+/* Large Tablets (≤1280px): tighten spacing slightly */
+@media (max-width: 1280px) {
+  .main-content-row {
+    gap: clamp(24px, 5vw, 60px);
+    padding: 0 clamp(24px, 4vw, 48px);
+  }
+  .bio-text {
+    font-size: clamp(12px, 1.4vw, 13px);
+  }
+  .image-heading-container .image {
+    height: clamp(360px, 40vh, 440px);
+  }
+}
+
+/* Tablets (≤1024px): stack spacing, soften proportions */
+@media (max-width: 1024px) {
+  .main-content-row {
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(20px, 4vw, 36px);
+    text-align: center;
+  }
+  .bio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 3vw, 24px);
+  }
+  .works-sidebar {
+    max-width: 100%;
+    width: 90%;
+    text-align: center;
+    margin-top: 16px;
+  }
+  .social-icons-bio {
+    justify-content: center;
+  }
+  .about-page-content {
+    justify-content: flex-start;
+    padding-top: clamp(80px, 12vh, 120px);
+  }
+}
+
+/* Small Tablets & Large Phones (≤768px) */
+@media (max-width: 768px) {
+  .about-page-content {
+    padding-top: clamp(80px, 14vh, 140px);
+  }
+  .bio-text {
+    font-size: clamp(12px, 2vw, 14px);
+    line-height: 1.6;
+  }
+  .image-heading-container .image {
+    width: 80%;
+    max-width: 360px;
+  }
+  .main-content-row {
+    gap: clamp(16px, 4vw, 28px);
+  }
+}
+
+/* Phones (≤480px): full stacking, narrower text */
+@media (max-width: 480px) {
+  .main-content-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 clamp(12px, 5vw, 24px);
+  }
+  .bio-text {
+    font-size: clamp(11px, 3vw, 13px);
+    line-height: 1.6;
+    text-align: left;
+  }
+  .works-sidebar {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .social-icons-bio {
+    justify-content: center;
+  }
+  .image-heading-container .image {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* --- MOBILE & TABLET SCROLL / SIDEBAR FIX --- */
+
+/* Apply from 1032px and below */
+@media (max-width: 1032px) {
+  /* Enable page scrolling */
+  .about-team-page {
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100vh;
+  }
+
+  /* Make the bio container stack naturally */
+  .bio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 4vw, 24px);
+  }
+
+  /* Allow the full bio to expand */
+  .bio-left {
+    min-height: unset !important;
+    max-height: unset !important;
+    overflow: visible !important;
+  }
+
+  /* Sidebar moves below bio */
+  .works-sidebar {
+    order: 2;
+    width: 100%;
+    max-width: 500px;
+    text-align: center !important;
+    align-items: center;
+    margin-top: clamp(16px, 4vw, 24px);
+  }
+
+   .sidebar-heading {
+    width: 100%;
+    text-align: center;
+    border-bottom: none;
+    margin-bottom: 8px;
+  }
+
+  .works-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .works-list a {
+    text-align: center;
+    display: inline-block;
+  }
+
+  /* Bio text keeps readable width */
+  .bio-text {
+    max-width: 90%;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Social icons centered */
+  .social-icons-bio {
+    justify-content: center;
+  }
+
+  /* Image centered */
+  .image-heading-container {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .image-heading-container .image {
+    width: 80%;
+    max-width: 360px;
+    height: auto;
+  }
+
+  /* Ensure main content doesn’t clip */
+  .main-content-row {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    gap: clamp(20px, 4vw, 32px);
+    padding-bottom: clamp(60px, 10vh, 120px);
+  }
+
+  /* Allow scrolling inside smaller screens safely */
+  .about-page-content {
+    overflow-y: visible !important;
+    padding-bottom: clamp(80px, 12vh, 140px);
+  }
+}
+
 </style>
