@@ -3,60 +3,60 @@
     <div class="navbar-fixed">
       <NavBar />
     </div>
-    <div class="about-page-devery-content">
+    <div class="about-page-content">
       <div class="main-content-row">
-        <div class="image-heading-container">
-          <h1 class="the-team-heading">THE TEAM</h1>
-          <img class="image" :alt="bio.name + ' Headshot'" :src="bio.headshot" />
-        </div>
+      <div class="image-heading-container">
+  <img class="image" :alt="bio.name + ' Headshot'" :src="bio.headshot" />
+</div>
+
         <div class="main-text-block">
-          <div class="names-row">
-            <span class="devery-jacobs overline">DEVERY JACOBS</span>
-            <NuxtLink to="/about-dw" class="dw-waterson overline">D.W. WATERSON</NuxtLink>
-          </div>
-          <div class="devery-meta">
-            <span class="span">{{ bio.name.toUpperCase() }} ({{ bio.pronouns.toUpperCase() }})</span>
-            <br>
-            <span class="span">{{ bio.role.toUpperCase() }}</span>
-          </div>
+  <div class="names-row">
+    <span class="devery-jacobs overline">DEVERY JACOBS</span>
+    <NuxtLink to="/about-dw" class="dw-waterson overline">D.W. WATERSON</NuxtLink>
+  </div>
 
-          <!-- Two-column container: bio + works sidebar -->
-          <div class="bio-container">
-            <!-- Left: Bio text -->
-            <div class="bio-text" v-html="bio.bio ? bio.bio.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>') : ''"></div>
+  <!-- Removed duplicated name/pronouns -->
+  <div class="devery-meta">
+    <span class="span">{{ bio.role.toUpperCase() }}</span>
+  </div>
 
-            <!-- Right: Past works sidebar -->
-            <div class="works-sidebar">
-              <span class="sidebar-heading">PAST NOTABLE WORK:</span>
-              <div class="works-list">
-                <template v-for="(work, idx) in bio.notable_works" :key="work.title">
-                  <div>
-                    <a href="#" @click.prevent="openVideo(work.url)">{{ work.title }}</a>
-                  </div>
-                </template>
-              </div>
-              <div class="frame">
-                <template v-for="link in bio.links" :key="link.type">
-                  <a v-if="link.url" :href="link.url" target="_blank" rel="noopener noreferrer">
-                    <img
-                      v-if="link.type === 'imdb'"
-                      class="imdb-logo"
-                      :alt="link.type + ' logo'"
-                      :src="link.img"
-                    />
-                    <img
-                      v-else
-                      :class="link.type + '-instance'"
-                      :alt="link.type + ' logo'"
-                      :src="link.img"
-                      style="height:36px;width:36px;"
-                    />
-                  </a>
-                </template>
-              </div>
-            </div>
-          </div>
-        </div>
+  <!-- Two-column container: bio + works sidebar -->
+  <div class="bio-container" ref="bioContainerRef">
+  <!-- Left Column: Bio text and social icons -->
+  <div class="bio-left">
+    <div
+  class="bio-text"
+  v-html="formattedBio"
+></div>
+
+    <!-- Social icons underneath bio text -->
+    <div class="social-icons-bio">
+      <template v-for="link in orderedLinks" :key="link.type">
+        <a
+          v-if="link.url"
+          :href="link.url"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img :src="link.img" :alt="link.type + ' logo'" class="social-icon" />
+        </a>
+      </template>
+    </div>
+  </div>
+
+  <!-- Right Column: Past Works Sidebar -->
+  <div class="works-sidebar">
+    <span class="sidebar-heading">PAST NOTABLE WORK:</span>
+    <div class="works-list">
+      <template v-for="(work, idx) in bio.notable_works" :key="work.title">
+        <div><a href="#" @click.prevent="openVideo(work.url)">{{ work.title }}</a></div>
+      </template>
+    </div>
+  </div>
+</div>
+
+</div>
+
       </div>
     </div>
     <transition name="fade">
@@ -141,6 +141,41 @@ watch(showVideo, (val) => {
 
 const bio = bioData.devery_jacobs;
 
+const formattedBio = computed(() => {
+  if (!bio.bio) return "";
+
+  // Build the bold header (name + pronouns)
+  const header = `<strong>${bio.name} (${bio.pronouns.toLowerCase()})</strong>`;
+
+  // Replace the first instance of the name/pronouns in the bio text
+  const replacedBio = bio.bio.replace(
+    new RegExp(`${bio.name}\\s*\\(${bio.pronouns}\\)`, "i"),
+    header
+  );
+
+  // Handle line breaks
+  return replacedBio.replace(/\n\n/g, "<br><br>").replace(/\n/g, "<br>");
+});
+
+const bioContainerRef = ref<HTMLElement | null>(null);
+
+onMounted(() => {
+  if (bioContainerRef.value) {
+    const rect = bioContainerRef.value.getBoundingClientRect();
+    const containerCenterY = rect.top + rect.height / 2;
+    const viewportCenterY = window.innerHeight / 2;
+    const offset = containerCenterY - viewportCenterY;
+    // localStorage.setItem('bioContainerOffset', offset.toString());
+  }
+});
+
+
+// Order icons manually (Instagram → IMDb)
+const orderedLinks = bio.links.sort((a, b) => {
+  const order = { instagram: 1, imdb: 2 };
+  return (order[a.type] || 99) - (order[b.type] || 99);
+});
+
 useHead({
   title: 'About Devery | Night is Y',
   meta: [{ name: 'description', content: 'About Devery Jacobs.' }]
@@ -149,6 +184,86 @@ useHead({
 
 
 <style scoped>
+
+/* --- Social Icons Under Bio --- */
+.social-icons-bio {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1vw, 14px);
+  margin-top: clamp(4px, 1vw, 10px);
+}
+
+.social-icons-bio .social-icon {
+  width: 36px;
+  height: 36px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.social-icons-bio .social-icon:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.social-icons-overlay {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-heading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: clamp(260px, 26vw, 380px);
+  flex-shrink: 0;
+}
+
+.image-heading-container .image {
+  width: 100%;
+  height: clamp(400px, 45vh, 480px); /* scales smoothly with screen size */
+  object-fit: cover;
+  border-radius: 4px;
+}
+.person-header {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1vw, 10px);
+}
+
+.person-name {
+  margin: 0;
+  padding: 0;
+  font-family: "anton", sans-serif;
+  font-size: clamp(18px, 2.6vw, 28px);
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 0.8vw, 10px);
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.social-icon:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
 .about-team-page {
   background: #000;
   width: 100vw;
@@ -156,6 +271,8 @@ useHead({
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
+  overflow: hidden !important; /* Disable scrolling */
+  height: 100vh;
 }
 
 .navbar-fixed {
@@ -167,55 +284,48 @@ useHead({
   background: #000;
 }
 
-.about-page-devery-content {
-  flex: 1;
+.about-page-content {
   display: flex;
   flex-direction: column;
-  padding-top: clamp(40px, 6vw, 64px);
-  width: 100%;
+  justify-content: center; /* center vertically on desktop */
+  align-items: center;
+  min-height: 100vh;
+  padding-top: clamp(100px, 12vh, 160px); /* increases top padding a bit more */
+  padding-bottom: clamp(40px, 8vh, 100px);
+  box-sizing: border-box;
+  margin-top: clamp(20px, 3vh, 40px); /* shifts entire section slightly downward */
 }
 
 .main-content-row {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: flex-start; /* keep image and names-row aligned at top */
+  gap: clamp(28px, 6vw, 80px);
+  padding: 0 clamp(24px, 6vw, 64px);
   width: 100%;
-  margin-left: 0;
-  gap: clamp(20px, 3vw, 40px);
-  padding: 0 clamp(12px, 4vw, 24px);
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 /* Headshot + Heading */
-.image-heading-container {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(8px, 2vw, 16px);
-  width: clamp(240px, 30vw, 400px);
-}
-
 .the-team-heading {
-  margin-top: clamp(60px, 10vw, 100px);
-  margin-bottom: clamp(8px, 2vw, 20px);
-  font-size: clamp(24px, 4vw, 48px);
+  margin: 0;
+  padding: 0;
+  font-family: "anton", sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
   line-height: 1.1;
-  text-align: left;
-}
-
-.image-heading-container .image {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 480px;
-  object-fit: cover;
-  border-radius: 4px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 /* Names Row */
 .names-row {
   display: flex;
-  gap: clamp(12px, 2vw, 24px);
+  gap: clamp(32px, 6vw, 48px); /* Increased gap */
   margin: clamp(8px, 2vw, 20px) 0;
   flex-wrap: wrap;
+  margin-top: clamp(8px, 1vw, 12px);
 }
 
 .devery-meta{
@@ -248,39 +358,63 @@ useHead({
 
 /* Bio + Sidebar Container */
 .main-text-block {
-  max-width: clamp(300px, 40vw, 600px);
-  margin-top: clamp(40px, 6vw, 80px);
+  max-width: clamp(360px, 50vw, 900px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .bio-container {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: clamp(16px, 3vw, 32px);
-  margin-top: clamp(8px, 2vw, 12px);
-  max-width: 900px;
+  grid-template-columns: 3fr 1fr; /* bio on left, sidebar on right */
+  gap: clamp(24px, 3vw, 40px);
+  align-items: start;
+  margin-top: clamp(12px, 2vw, 16px);
+  max-width: 1300px;
+ transition: margin-top 0.3s ease; 
 }
+
+.bio-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(16px, 2vw, 20px);
+  min-height: clamp(440px, 52vh, 540px); /* sets a consistent visual height */
+  max-height: clamp(540px, 62vh, 620px);
+  overflow: hidden;
+}
+
 
 /* Bio Text */
 .bio-text {
   font-family: "proxima-nova", sans-serif;
   font-size: clamp(12px, 1.5vw, 14px);
-  line-height: 1.5;
+  line-height: 1.55;
   color: #e6e6e6;
-  column-count: 2;
-  column-gap: clamp(12px, 2vw, 24px);
+  text-align: left;
   hyphens: auto;
 }
 
-/* Works Sidebar */
+.bio-text :deep(strong) {
+  font-weight: 500;               /* slightly softer than 1000 */
+  color: #ffffff;                 /* clean white for contrast */
+  font-size: 115%;                /* only 1.2× larger than body text */
+  line-height: 1.4;               /* smoother vertical rhythm */
+  display: inline-block;
+}
+
+/* --- Sidebar --- */
 .works-sidebar {
   display: flex;
   flex-direction: column;
-  gap: clamp(6px, 1.5vw, 12px);
-  padding: clamp(8px, 1.5vw, 16px);
-  background: rgba(255,255,255,0.03);
+  align-items: flex-start;
+  gap: 10px;
+  padding: clamp(10px, 1.5vw, 16px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.1);
-  max-width: clamp(180px, 20vw, 260px);
+  width: 100%;
+  max-width: 240px;
 }
 
 .sidebar-heading {
@@ -288,9 +422,10 @@ useHead({
   color: #fff;
   text-transform: uppercase;
   margin-bottom: 4px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 4px;
 }
+
 
 .works-list a {
   font-size: clamp(12px, 1.5vw, 14px);
@@ -298,8 +433,9 @@ useHead({
   text-decoration: none;
   transition: color 0.2s ease;
 }
-.works-list a:hover { color: #d90ec1ba; }
-
+.works-list a:hover {
+  color: #d90ec1ba;
+}
 /* Social Icons */
 .frame {
   display: flex;
@@ -317,6 +453,52 @@ useHead({
 }
 .frame img:hover { opacity: 1; transform: scale(1.05); }
 
+@media (max-width: 1024px) {
+  .about-page-content {
+    justify-content: flex-start; /* prevents over-centering on short screens */
+    padding-top: clamp(60px, 8vh, 100px);
+  }
+}
+
+@media (max-width: 730px) {
+  .main-content-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    padding: 0 clamp(12px, 4vw, 24px);
+  }
+
+  .image-heading-container .image {
+    height: auto;
+    max-height: 400px;
+  }
+
+  .about-page-content {
+    justify-content: flex-start;
+    padding-top: clamp(80px, 12vh, 120px);
+  }
+}
+
+/* Responsive Stacking for Mobile */
+@media (max-width: 730px) {
+  .bio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .works-sidebar {
+    width: 100%;
+    text-align: center;
+  }
+
+  .social-icons-bio {
+    justify-content: center;
+  }
+}
+
 /* Responsive: stack on small screens */
 @media (max-width: 730px) {
   .main-content-row {
@@ -324,6 +506,7 @@ useHead({
     align-items: center;
     text-align: center;
     gap: 16px;
+    padding: 0 clamp(12px, 4vw, 24px);
   }
 
   .bio-container {
@@ -331,21 +514,14 @@ useHead({
     flex-direction: column;
     gap: 16px;
     align-items: center;
-  }
-
-  .bio-text {
-    column-count: 1;
     max-width: 100%;
-    text-align: left;
   }
 
   .works-sidebar {
     width: 100%;
-    max-width: 320px;
+    margin-left: 0;
     text-align: center;
   }
-
-  .frame { justify-content: center; }
 }
 
 /* --- Video Modal (Unified Scaling) --- */
@@ -475,5 +651,206 @@ useHead({
 }
 .fade-enter-from, .fade-leave-to { opacity: 0; }
 .fade-enter-to, .fade-leave-from { opacity: 1; }
+
+/* --- RESPONSIVE SCALING ADDITIONS --- */
+
+/* Large Tablets (≤1280px): tighten spacing slightly */
+@media (max-width: 1280px) {
+  .main-content-row {
+    gap: clamp(24px, 5vw, 60px);
+    padding: 0 clamp(24px, 4vw, 48px);
+  }
+  .bio-text {
+    font-size: clamp(12px, 1.4vw, 13px);
+  }
+  .image-heading-container .image {
+    height: clamp(360px, 40vh, 440px);
+  }
+}
+
+/* Tablets (≤1024px): stack spacing, soften proportions */
+@media (max-width: 1024px) {
+  .main-content-row {
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(20px, 4vw, 36px);
+    text-align: center;
+  }
+  .bio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 3vw, 24px);
+  }
+  .works-sidebar {
+    max-width: 100%;
+    width: 90%;
+    text-align: center;
+    margin-top: 16px;
+  }
+  .social-icons-bio {
+    justify-content: center;
+  }
+  .about-page-content {
+    justify-content: flex-start;
+    padding-top: clamp(80px, 12vh, 120px);
+  }
+}
+
+/* Small Tablets & Large Phones (≤768px) */
+@media (max-width: 768px) {
+  .about-page-content {
+    padding-top: clamp(80px, 14vh, 140px);
+  }
+  .bio-text {
+    font-size: clamp(12px, 2vw, 14px);
+    line-height: 1.6;
+  }
+  .image-heading-container .image {
+    width: 80%;
+    max-width: 360px;
+  }
+  .main-content-row {
+    gap: clamp(16px, 4vw, 28px);
+  }
+}
+
+/* Phones (≤480px): full stacking, narrower text */
+@media (max-width: 480px) {
+  .main-content-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 clamp(12px, 5vw, 24px);
+  }
+  .bio-text {
+    font-size: clamp(11px, 3vw, 13px);
+    line-height: 1.6;
+    text-align: left;
+  }
+  .works-sidebar {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .social-icons-bio {
+    justify-content: center;
+  }
+  .image-heading-container .image {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* --- MOBILE & TABLET SCROLL / SIDEBAR FIX --- */
+
+/* Apply from 1032px and below */
+@media (max-width: 1032px) {
+  /* Enable page scrolling */
+  .about-team-page {
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100vh;
+  }
+
+  /* Make the bio container stack naturally */
+  .bio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 4vw, 24px);
+  }
+
+  /* Allow the full bio to expand */
+  .bio-left {
+    min-height: unset !important;
+    max-height: unset !important;
+    overflow: visible !important;
+  }
+
+  /* Sidebar moves below bio */
+  .works-sidebar {
+    order: 2;
+    width: 100%;
+    max-width: 500px;
+    text-align: center !important;
+    align-items: center;
+    margin-top: clamp(16px, 4vw, 24px);
+  }
+
+   .sidebar-heading {
+    width: 100%;
+    text-align: center;
+    border-bottom: none;
+    margin-bottom: 8px;
+  }
+
+  .works-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .works-list a {
+    text-align: center;
+    display: inline-block;
+  }
+
+  /* Bio text keeps readable width */
+  .bio-text {
+    max-width: 90%;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Social icons centered */
+  .social-icons-bio {
+    justify-content: center;
+  }
+
+  /* Image centered */
+  .image-heading-container {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .image-heading-container .image {
+    width: 80%;
+    max-width: 360px;
+    height: auto;
+  }
+
+  /* Ensure main content doesn’t clip */
+  .main-content-row {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    gap: clamp(20px, 4vw, 32px);
+    padding-bottom: clamp(60px, 10vh, 120px);
+  }
+
+  /* Allow scrolling inside smaller screens safely */
+  .about-page-content {
+    overflow-y: visible !important;
+    padding-bottom: clamp(80px, 12vh, 140px);
+  }
+
+  /* Center names row text and links */
+  .names-row {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .main-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: clamp(8px, 1vw, 12px);
+  }  
+}
 
 </style>

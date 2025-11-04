@@ -263,7 +263,7 @@ button.arrow:disabled {
   width: 100%;
   max-width: 300px;
   height: auto;
-  border-radius: 16px;
+  border-radius: 0 !important;
   margin-bottom: 16px;
 }
 
