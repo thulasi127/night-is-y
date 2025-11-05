@@ -90,16 +90,18 @@ useHead({
 
 .page-title {
   margin: 0 auto;
-  margin-top: 40px;    /* reduced from 80px */
   color: #fff;
   font-family: "anton", sans-serif;
-  font-size: 40px;     /* reduced from 48px */
+  font-size: clamp(1.8rem, 2.9vw, 2.4rem);
   font-weight: 300;
   line-height: 1.1;
+  letter-spacing: 0;
   text-transform: uppercase;
   text-align: center;
   z-index: 2;
   white-space: nowrap;
+  flex: 1;
+  margin-top: 80px; /* Pushes it down on desktop */
 }
 
 .projects-cta {
@@ -134,11 +136,11 @@ useHead({
   filter: brightness(0.7);
 }
 
-.page-title {
+.music-videos-title {
   margin: 0 auto;
   color: #fff;
   font-family: "anton", sans-serif;
-  font-size: 48px;
+  font-size: clamp(1.8rem, 2.9vw, 2.4rem);
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: 0;
@@ -148,16 +150,6 @@ useHead({
   white-space: nowrap;
   flex: 1;
   margin-top: 80px; /* Pushes it down on desktop */
-}
-
-@media (max-width: 1024px) {
-  .page-title {
-    margin-top: 120px; /* More space on smaller screens to prevent overlap */
-  }
-
-  .projects-cta {
-    margin-top: 120px; /* More space for smaller screens */
-  }
 }
 
 .chevron-left-small {
@@ -321,6 +313,8 @@ button.arrow:disabled {
 
 /* ---------- Large Laptops (≤1440px) ---------- */
 @media (max-width: 1440px) {
+  .film-series-title,
+  .music-videos-title,
   .page-title {
     font-size: 42px;
   }
@@ -328,16 +322,23 @@ button.arrow:disabled {
   .projects-text {
     font-size: 18px;
   }
+
+  .img {
+    height: 560px;
+    width: 380px;
+  }
 }
 
 /* ---------- Tablets & Small Laptops (≤1024px) ---------- */
 @media (max-width: 1024px) {
 
+  .film-series-title,
+  .music-videos-title,
   .page-title {
     font-size: 36px;
+    margin-top: 120px; /* Add this line */
   }
 
-  /* Hide "PROJECTS" text, keep chevron only */
   .projects-text {
     display: none;
   }
@@ -345,6 +346,7 @@ button.arrow:disabled {
   .projects-cta {
     gap: 0;
     left: 32px;
+    margin-top: 120px; /* Add this line */
   }
 
   .chevron-left-small {
@@ -355,7 +357,8 @@ button.arrow:disabled {
 
 /* ---------- Small Tablets & Large Phones (≤730px) ---------- */
 @media (max-width: 730px) {
-
+  .film-series-title,
+  .music-videos-title,
   .page-title {
     font-size: 32px;
   }
@@ -391,5 +394,28 @@ button.arrow:disabled {
   }
 }
 
+/* Large phones / small tablets */
+@media (max-width: 768px) {
+  .img {
+    height: 360px;
+    width: 240px;
+  }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+  .img {
+    height: 280px;
+    width: 190px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .img {
+    height: 230px;
+    width: 160px;
+  }
+}
 
 </style>

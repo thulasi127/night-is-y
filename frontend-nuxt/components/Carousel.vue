@@ -430,6 +430,32 @@ onUnmounted(() => {
   }
 }
 
+/* Tablet screens */
+@media (max-width: 1024px) {
+  .carousel-card,
+  .poster-image-wrapper {
+    width: 300px;
+    height: 440px;
+  }
+}
+
+/* Large mobile screens */
+@media (max-width: 768px) {
+  .carousel-card,
+  .poster-image-wrapper {
+    width: 230px;
+    height: 330px;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  .carousel-card,
+  .poster-image-wrapper {
+    width: 170px;
+    height: 250px;
+  }
+}
 
 
 </style>

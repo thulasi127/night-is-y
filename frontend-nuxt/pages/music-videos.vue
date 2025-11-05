@@ -90,20 +90,6 @@ useHead({
   position: relative;
 }
 
-.music-videos-title {
-  margin: 0 auto;
-  margin-top: 40px;    /* reduced from 80px */
-  color: #fff;
-  font-family: "anton", sans-serif;
-  font-size: 40px;     /* reduced from 48px */
-  font-weight: 300;
-  line-height: 1.1;
-  text-transform: uppercase;
-  text-align: center;
-  z-index: 2;
-  white-space: nowrap;
-}
-
 .projects-cta {
   position: absolute;
   left: 192px;
@@ -140,7 +126,7 @@ useHead({
   margin: 0 auto;
   color: #fff;
   font-family: "anton", sans-serif;
-  font-size: 48px;
+  font-size: clamp(1.8rem, 2.9vw, 2.4rem);
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: 0;

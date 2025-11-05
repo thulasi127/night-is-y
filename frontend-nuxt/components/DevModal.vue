@@ -108,6 +108,7 @@ export default {
   gap: 6px;       /* tighter grouping */
   padding-top: 0; /* keep flush with poster top */
   padding-right: 24px;
+  padding-bottom: 40px;
   /* Text flows naturally next to fixed poster */
 }
 .text-wrapper {

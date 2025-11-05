@@ -64,6 +64,23 @@ useHead({
 </script>
 
 <style>
+
+.page-title {
+  margin: 0 auto;
+  color: #fff;
+  font-family: "anton", sans-serif;
+  font-size: clamp(1.8rem, 2.9vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 2;
+  white-space: nowrap;
+  flex: 1;
+  margin-top: 80px; /* Pushes it down on desktop */
+}
+
 .centered-layout {
   display: flex;
   flex-direction: column;
@@ -117,12 +134,6 @@ useHead({
 .arrow:enabled:hover .arrow-icon,
 .close-modal-button:hover svg {
   filter: brightness(0.7);
-}
-
-@media (max-width: 1024px) {
-  .projects-cta {
-    margin-top: 120px; /* More space for smaller screens */
-  }
 }
 
 .chevron-left-small {
@@ -301,7 +312,8 @@ button.arrow:disabled {
 
 /* ---------- Large Laptops (≤1440px) ---------- */
 @media (max-width: 1440px) {
-
+  .film-series-title,
+  .music-videos-title,
   .page-title {
     font-size: 42px;
   }
@@ -313,12 +325,13 @@ button.arrow:disabled {
 
 /* ---------- Tablets & Small Laptops (≤1024px) ---------- */
 @media (max-width: 1024px) {
-
+  .film-series-title,
+  .music-videos-title,
   .page-title {
     font-size: 36px;
+    margin-top: 120px; /* Add this line */
   }
 
-  /* Hide "PROJECTS" text, keep chevron only */
   .projects-text {
     display: none;
   }
@@ -326,6 +339,7 @@ button.arrow:disabled {
   .projects-cta {
     gap: 0;
     left: 32px;
+    margin-top: 120px; /* Add this line */
   }
 
   .chevron-left-small {
@@ -336,8 +350,8 @@ button.arrow:disabled {
 
 /* ---------- Small Tablets & Large Phones (≤730px) ---------- */
 @media (max-width: 730px) {
-  .page-title,
-  page-title,
+  .film-series-title,
+  .music-videos-title,
   .page-title {
     font-size: 32px;
   }

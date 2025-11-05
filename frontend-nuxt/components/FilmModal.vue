@@ -255,6 +255,7 @@ export default {
   gap: 6px;       /* tighter grouping */
   padding-top: 0; /* keep flush with poster top */
   padding-right: 24px;
+  padding-bottom: 40px;
   /* Text flows naturally next to fixed poster */
 }
 
@@ -493,11 +494,12 @@ export default {
 }
 
 .award-row {
-  padding: 8px 0 4px 0; /* Reduce vertical padding for tighter stack */
+  padding: 8px 0 4px 0;
   display: flex;
   flex-direction: column;
   border-radius: 4px;
   transition: background 0.2s;
+  cursor: pointer; /* ensures hover trigger always works */
 }
 
 .award-divider {
@@ -894,6 +896,47 @@ export default {
   .award-year-status,
   .article-title {
     font-size: 12px;
+  }
+}
+
+/* Large laptops */
+@media (max-width: 1440px) {
+  .frame {
+    width: 90vw;
+  }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .frame {
+    flex-direction: column;
+    align-items: center;
+    width: 92vw;
+    height: auto;
+  }
+}
+
+/* Phones */
+@media (max-width: 640px) {
+  .frame {
+    flex-direction: column;
+    width: 95vw;
+    height: auto;
+    padding: 12px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .trailer-video {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .trailer-video {
+    aspect-ratio: 16 / 9;
+    width: 100%;
   }
 }
 
