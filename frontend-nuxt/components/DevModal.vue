@@ -75,12 +75,11 @@ export default {
   position: relative;
   width: clamp(320px, 65vw, 1000px);
   height: clamp(280px, 65vh, 480px);
-  border-radius: 12px;
   padding: clamp(8px, 1.5vw, 20px);
   margin-top: 48px;           /* Space below navbar */
   margin-bottom: 48px;        /* Equal space from bottom */
   background: rgba(0, 0, 0, 0.85);
-  border-radius: 16px;
+  border-radius: 0px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: row;
@@ -92,7 +91,7 @@ export default {
   width: clamp(100px, 20vw, 180px);
   height: clamp(140px, 25vw, 240px);
   margin: 0 auto clamp(8px, 2vh, 16px) auto;
-  border-radius: 6px;
+  border-radius: 0px;
   flex-shrink: 0;
   align-self: center;          /* vertically center poster */
 }
@@ -327,22 +326,6 @@ export default {
   justify-content: center;  /* horizontal center */
   overflow: hidden;
   min-height: 100vh;        /* covers entire viewport */
-}
-
-.frame {
-  position: relative;
-  width: clamp(320px, 65vw, 1000px);
-  height: clamp(280px, 65vh, 480px);
-  border-radius: 12px;
-  padding: clamp(8px, 1.5vw, 20px);
-  background: rgba(0, 0, 0, 0.85);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-family: "proxima-nova", sans-serif;
-  overflow: hidden;
 }
 
 /* --- Large screens (≤1280px) --- */

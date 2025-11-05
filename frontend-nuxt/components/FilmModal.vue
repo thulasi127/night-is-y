@@ -222,7 +222,7 @@ export default {
   width: clamp(320px, 80vw, 1200px);
   height: clamp(400px, 80vh, 800px);
   background: rgba(0, 0, 0, 0.85);
-  border-radius: 12px;
+  border-radius: 0px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   display: flex;
   font-family: "proxima-nova", sans-serif;
@@ -237,7 +237,7 @@ export default {
   margin-top: 0;
   margin-left: 40px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 0px;
   flex-shrink: 0;
   align-self: center;
   /* Poster remains fixed size regardless of content */
@@ -361,7 +361,7 @@ export default {
   max-width: 520px;           /* Slightly smaller trailer */
   aspect-ratio: 16 / 9;
   height: auto;
-  border-radius: 6px;
+  border-radius: 0px;
   margin-top: 10px;
   margin-bottom: 10px;    /* Add margin below trailer for separation */
   background: #000;
