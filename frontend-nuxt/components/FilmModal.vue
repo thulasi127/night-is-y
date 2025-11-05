@@ -245,14 +245,15 @@ export default {
 
 .modal-scrollable-content {
   margin-left: 40px;
-  margin-top: 0;
+  margin-top: 40px; /* aligns with poster top visually */
+  height: auto;
+  max-height: 772px; /* keeps modal from overflowing viewport */
   width: 1200px;
-  height: 772px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding-top: 24px;
+  gap: 6px;       /* tighter grouping */
+  padding-top: 0; /* keep flush with poster top */
   padding-right: 24px;
   /* Text flows naturally next to fixed poster */
 }
@@ -273,8 +274,8 @@ export default {
 }
 
 .trailer-video {
-  margin-top: 10px;
-  margin-bottom: 10px;    /* Add margin below trailer for separation */
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
 
 /* Awards and articles sections: reduce vertical gap */
@@ -444,7 +445,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 2px; /* minimal vertical spacing between rows */
-  margin-bottom: 10px;    /* Tighter spacing below credits */
+  margin-bottom: 6px;
 }
 .label-title {
   font-family: "proxima-nova", sans-serif;

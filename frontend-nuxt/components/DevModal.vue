@@ -98,16 +98,17 @@ export default {
   align-self: center;         /* vertically center poster */
 }
 .modal-scrollable-content {
-  width: 1200px;
-  height: 560px;              /* Adjusted for new modal height */
   margin-left: 40px;
+  margin-top: 40px; /* aligns with poster top visually */
+  height: 500px;    /* matches poster height */
+  width: 1200px;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  justify-content: center;
-  padding-top: 32px;
-  padding-right: 40px;
-  overflow-y: auto;
+  gap: 6px;       /* tighter grouping */
+  padding-top: 0; /* keep flush with poster top */
+  padding-right: 24px;
+  /* Text flows naturally next to fixed poster */
 }
 .text-wrapper {
   font-family: "anton", sans-serif;
@@ -130,15 +131,8 @@ export default {
   line-height: 1.4;
 }
 .trailer-video {
-  width: 100%;
-  max-width: 950px;
-  aspect-ratio: 16 / 9;
-  height: auto;
-  border-radius: 0; /* or 4px for a subtle curve */
-  margin-top: 16px;
-  margin-bottom: 0;
-  display: block;
-  background: #000;
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
 @media (max-width: 1000px) {
   .trailer-video {
@@ -211,7 +205,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 .label-title {
   font-family: "proxima-nova", sans-serif;
