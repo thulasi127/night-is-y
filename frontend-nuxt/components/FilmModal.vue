@@ -227,14 +227,14 @@ export default {
   display: flex;
   font-family: "proxima-nova", sans-serif;
   overflow: hidden;
-  align-items: center; /* Vertically center poster and content */
+  align-items: flex-start;
   @include spacing(padding, "lg");
 }
 
 .image {
-  width: 272px;
-  height: 400px;
-  margin-top: 0;
+  width: 340px;  /* 25% larger */
+  height: 500px;
+  margin-top: 40px;  /* creates a bit of offset from top padding */
   margin-left: 40px;
   object-fit: cover;
   border-radius: 0px;

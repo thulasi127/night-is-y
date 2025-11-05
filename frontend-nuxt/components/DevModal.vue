@@ -83,17 +83,19 @@ export default {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   font-family: "proxima-nova", sans-serif;
   overflow: hidden;
 }
 .image {
-  width: clamp(100px, 20vw, 180px);
-  height: clamp(140px, 25vw, 240px);
-  margin: 0 auto clamp(8px, 2vh, 16px) auto;
+  width: 340px;  /* 25% larger */
+  height: 500px;
+  margin-top: 40px;  /* creates a bit of offset from top padding */
+  margin-left: 40px;
+  object-fit: cover;
   border-radius: 0px;
   flex-shrink: 0;
-  align-self: center;          /* vertically center poster */
+  align-self: center;         /* vertically center poster */
 }
 .modal-scrollable-content {
   width: 1200px;
