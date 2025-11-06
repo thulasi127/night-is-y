@@ -247,7 +247,6 @@ export default {
   margin-left: 40px;
   margin-top: 40px; /* aligns with poster top visually */
   height: auto;
-  max-height: 772px; /* keeps modal from overflowing viewport */
   width: 1200px;
   overflow-y: auto;
   display: flex;
@@ -719,225 +718,134 @@ export default {
   text-decoration: underline; /* Add custom underline on hover */
 }
 
-/* --- Tablet (≤1024px) --- */
-@media (max-width: 1024px) {
+/* --- Tablet & smaller (≤1025px) --- */
+@media (max-width: 1025px) {
   .frame {
-    width: 90vw;
-    height: 80vh;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 92vw;
+    height: auto;
+    padding: 32px 24px 40px;
+    overflow-y: auto;
   }
 
+  /* Hide poster image for simplicity */
   .image {
-    width: 200px;
-    height: 300px;
-    margin-left: 20px;
+    display: none;
   }
 
   .modal-scrollable-content {
-    width: calc(100% - 240px);
-    height: 100%;
-    margin-left: 20px;
-    padding: 16px;
-    overflow-y: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    align-items: center;
   }
 
   .text-wrapper {
     font-size: 32px;
     line-height: 1.2;
+    text-transform: uppercase;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+
+  .film-subtitle-row {
+    font-size: 15px;
+    color: #ccc;
+    margin-bottom: 16px;
+    justify-content: center;
+  }
+
+  .div {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    color: #eee;
+    text-align: left;
+    max-width: 600px;
+  }
+
+  .info-labels {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    text-align: center;
   }
 
   .trailer-video {
-    max-width: 100%;
-    border-radius: 4px;
+    width: 100%;
+    border-radius: 8px;
+    aspect-ratio: 16 / 9;
+    align-self: center;  /* aligns within flex containers */
+    max-width: 700px;
+    margin: 24px auto 20px auto;
   }
 
-  .awards-title,
-  .section-heading {
+  .awards-section,
+  .article-list-section {
+    width: 100%;
+    max-width: 700px;
+    text-align: left;
+    margin: 24px auto;
+  }
+
+  .section-heading,
+  .awards-title {
     font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .close-modal-button {
+    top: 16px;
+    right: 16px;
   }
 }
 
 /* --- Mobile (≤640px) --- */
 @media (max-width: 640px) {
-  .frame {
-    flex-direction: column;
-    width: 95vw;
-    height: 90vh;
-    padding: 10px;
-  }
-
-  .image {
-    width: 160px;
-    height: 240px;
-    margin: 0 auto 16px auto;
-  }
-
-  .modal-scrollable-content {
-    width: 100%;
-    height: calc(90vh - 260px);
-    margin: 0;
-    padding: 12px;
-    overflow-y: auto;
-  }
-
   .text-wrapper {
     font-size: 24px;
-    text-align: center;
+    margin-top: 8px;
   }
 
-  .film-subtitle-row,
-  .info-labels {
-    font-size: 14px;
-    text-align: center;
-  }
-
-  .trailer-video {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    margin: 12px 0;
-    border-radius: 4px;
-  }
-
-  .awards-title,
-  .section-heading {
-    font-size: 13px;
-  }
-
-  .award-name,
-  .award-year-status {
-    font-size: 13px;
-  }
-
-  .article-title {
-    font-size: 13px;
-  }
-}
-
-/* --- Large screens (≤1280px) --- */
-@media (max-width: 1280px) {
-  .text-wrapper {
-    font-size: 36px;
-    line-height: 1.2;
-  }
-  .trailer-video {
-    max-width: 480px;
-  }
-}
-
-/* --- Tablet (≤1024px) --- */
-@media (max-width: 1024px) {
-  .text-wrapper {
-    font-size: 30px;
-    line-height: 1.2;
-  }
-  .trailer-video {
-    max-width: 420px;
-  }
-}
-
-/* --- Tablet portrait (≤768px) --- */
-@media (max-width: 768px) {
-  .text-wrapper {
-    font-size: 26px;
-    text-align: center;
-  }
-  .trailer-video {
-    max-width: 100%;
-    height: auto;
-  }
-  .div,
-  .info-labels,
   .film-subtitle-row {
-    font-size: 14px;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .div {
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 0 8px;
+  }
+
+  .info-labels {
+    font-size: 13px;
     line-height: 1.4;
   }
-}
 
-/* --- Mobile (≤640px) --- */
-@media (max-width: 640px) {
-  .text-wrapper {
-    font-size: 22px;
-    line-height: 1.3;
-  }
   .trailer-video {
     max-width: 100%;
     margin: 12px 0;
   }
-  .film-subtitle-row,
-  .info-labels {
-    font-size: 13px;
-  }
-  .award-name,
-  .award-year-status,
-  .article-title {
-    font-size: 13px;
-  }
-}
 
-/* --- Small mobile (≤480px) --- */
-@media (max-width: 480px) {
-  .text-wrapper {
-    font-size: 18px;
-    line-height: 1.3;
+  .awards-section,
+  .article-list-section {
+    max-width: 95%;
+    margin: 16px auto;
   }
-  .trailer-video {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-  }
-  .film-subtitle-row,
-  .info-labels {
-    font-size: 12px;
-  }
-  .award-name,
-  .award-year-status,
-  .article-title {
+
+  .section-heading,
+  .awards-title {
     font-size: 12px;
   }
 }
 
-/* Large laptops */
-@media (max-width: 1440px) {
-  .frame {
-    width: 90vw;
-  }
-}
 
-/* Tablets */
-@media (max-width: 1024px) {
-  .frame {
-    flex-direction: column;
-    align-items: center;
-    width: 92vw;
-    height: auto;
-  }
-}
 
-/* Phones */
-@media (max-width: 640px) {
-  .frame {
-    flex-direction: column;
-    width: 95vw;
-    height: auto;
-    padding: 12px;
-  }
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-  .trailer-video {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .trailer-video {
-    aspect-ratio: 16 / 9;
-    width: 100%;
-  }
-}
 
 </style>
