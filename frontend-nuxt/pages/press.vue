@@ -157,11 +157,12 @@ useHead({
 }
 
 .quote-wrapper {
-  max-width: 650px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .quote-text {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-family: "proxima-nova", sans-serif;
   font-weight: 100;      /* Thin */
   font-style: italic;    /* Italics */
@@ -217,6 +218,11 @@ useHead({
   .source-logo {
     max-height: 60px;
   }
+
+  .quote-text {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
 }
 
 /* ---------- Tablets & Small Laptops (≤1024px) ---------- */
@@ -243,6 +249,11 @@ useHead({
   .source-logo {
     max-height: 50px;
   }
+
+  .quote-text {
+  font-size: 1rem;
+  line-height: 1.5;
+}
 }
 
 /* ---------- Large Phones & Small Tablets (≤768px) ---------- */
@@ -268,6 +279,11 @@ useHead({
   .source-logo {
     max-height: 40px;
   }
+
+  .quote-text {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
 }
 
 /* ---------- Small Phones (≤430px) ---------- */
@@ -292,6 +308,11 @@ useHead({
   .source-logo {
     max-height: 35px;
   }
+
+  .quote-text {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
 }
 
 </style>
