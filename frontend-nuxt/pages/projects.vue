@@ -57,6 +57,20 @@ const goToMusicVideos = () => router.push('/music-videos');
 </script>
 
 <style scoped>
+
+.projects-heading {
+  font-size: clamp(40px, 5vw, 60px); /* slightly smaller globally */
+  margin-bottom: 16px;
+  line-height: 1;
+  font-family: "anton", sans-serif;
+  color: #fff;
+  letter-spacing: -0.01em;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: calc(80px + 4vw); /* aligns slightly tighter with layout */
+  transition: margin-left 0.3s ease;
+}
+
 .projects-page-menu {
   background: #000;
   min-height: 100vh;
@@ -113,12 +127,20 @@ NavBar {
 .img-container {
   position: relative;
   flex: 1 1 0;
-  min-height: 180px;   /* Increased thickness */
-  max-height: 400px;   /* Increased maximum thickness */
+  min-height: 180px;
+  max-height: 400px;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
   overflow: hidden;
+  transition: transform 0.4s ease;
+  transform-origin: center;
+  z-index: 0; /* keep baseline layer */
+}
+
+.img-container:hover {
+  transform: scale(1.05);
+  z-index: 5; /* bring above others when scaling */
 }
 
 .img-container img {
@@ -126,13 +148,16 @@ NavBar {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(0.9); /* Brighter by default */
-  transition: filter 0.3s, box-shadow 0.3s;
+  filter: brightness(0.9);
+  transition: transform 0.4s ease, filter 0.3s, box-shadow 0.3s;
+  position: relative;
+  z-index: 1; /* keeps image below overlay + text */
 }
 
 .img-container:hover img {
-  filter: brightness(1.05); /* Slightly brighter on hover */
+  filter: brightness(1.05);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  transform: scale(1.1);
 }
 
 /* Default overlay for all rows */
@@ -142,12 +167,11 @@ NavBar {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.15); /* Light tint for contrast */
-  z-index: 2;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 2; /* sits above the image */
   pointer-events: none;
   transition: background 0.3s ease;
 }
-
 .img-container:hover .img-overlay {
   background: rgba(0, 0, 0, 0); /* Remove tint on hover */
 }
@@ -168,12 +192,14 @@ NavBar {
 }
 
 .row-label {
+  z-index: 3; /* ensures label is always visible */
+transition: transform 0.4s ease, opacity 0.4s ease;
   position: absolute;
   right: calc(100px + 5vw); /* Equal to projects-heading's left margin */
   bottom: 32px;
   color: #fff;
   font-family: "proxima-nova", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 400;
   letter-spacing: 0.05em;
   text-shadow: 0 2px 8px rgba(0,0,0,0.7);
@@ -188,6 +214,11 @@ NavBar {
   text-align: right;
 }
 
+.img-container:hover .row-label {
+  transform: translateY(-4px);
+  opacity: 1;
+}
+
 .row-label,
 .film-series,
 .music-videos,
@@ -197,6 +228,7 @@ NavBar {
   font-style: normal;
   letter-spacing: 0.05em;
 }
+
 
 @media (max-width: 900px) {
   .projects-content {
@@ -237,15 +269,15 @@ NavBar {
 /* ---------- Large Laptops (≤1440px) ---------- */
 @media (max-width: 1440px) {
   .projects-heading {
-    font-size: clamp(40px, 5vw, 60px);
+    font-size: clamp(36px, 4.5vw, 54px);
     margin-left: calc(60px + 4vw);
   }
 
   .row-label {
-    font-size: 1.3rem;
-    bottom: 24px;
-    right: calc(60px + 4vw);
-  }
+  font-size: 1.1rem;
+  bottom: 24px;
+  right: calc(60px + 4vw);
+}
 
   .img-container {
     min-height: 160px;
@@ -256,16 +288,15 @@ NavBar {
 /* ---------- Tablets & Small Laptops (≤1024px) ---------- */
 @media (max-width: 1024px) {
   .projects-heading {
-    font-size: clamp(32px, 4.5vw, 48px);
+    font-size: clamp(28px, 4vw, 42px);
     margin-left: calc(40px + 3vw);
   }
 
   .row-label {
-    font-size: 1.1rem;
-    bottom: 20px;
-    right: calc(40px + 3vw);
-  }
-
+  font-size: 1rem;
+  bottom: 20px;
+  right: calc(40px + 3vw);
+}
   .img-container {
     min-height: 140px;
     max-height: 260px;
@@ -280,10 +311,10 @@ NavBar {
   }
 
   .row-label {
-    font-size: 1rem;
-    right: 20px;
-    bottom: 16px;
-  }
+  font-size: 0.9rem;
+  right: 20px;
+  bottom: 16px;
+}
 
   .img-container {
     min-height: 120px;
@@ -299,10 +330,10 @@ NavBar {
   }
 
   .row-label {
-    font-size: 0.9rem;
-    right: 16px;
-    bottom: 12px;
-  }
+  font-size: 0.8rem;
+  right: 16px;
+  bottom: 12px;
+}
 
   .img-container {
     min-height: 100px;
