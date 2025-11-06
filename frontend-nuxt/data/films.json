@@ -20,8 +20,7 @@
         }
     ],
     "starring": [
-        { "name": "Devery Jacobs", "imdb": "https://www.imdb.com/name/nm5533284/?ref_=tt_ov_2_1" },
-        { "name": "Shannyn Sossamon", "imdb": "https://www.imdb.com/name/nm0815370/?ref_=nv_sr_srsg_0_tt_1_nm_1_in_0_q_Shannyn%2520Sossamon" },
+        { "name": "Devery Jacobs", "imdb": "https://www.imdb.com/name/nm2711203/?ref_=nv_sr_srsg_5_tt_3_nm_5_in_0_q_deve" },
         { "name": "Evan Rachel Wood", "imdb": "https://www.imdb.com/name/nm0939697/?ref_=nv_sr_srsg_0_tt_3_nm_1_in_0_q_Evan%2520Rachel%2520Wood" }
     ],
     "executiveProducers": [

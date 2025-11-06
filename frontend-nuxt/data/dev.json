@@ -7,6 +7,14 @@
     "summary": "When Hawi, a vigilante spirit, is sent back to the earth realm adorned with horns, hooves and a mission to “right the wrong” that was done to her, she must uncover her identity and avenge her death in order to pass onto the skyworld.",
     "team": [{
         "role": "AUTHORS",
-        "names": ["Kawennáhere Devery Jacobs", "D.W. Waterson"]
+        "names": [{
+                "name": "Devery Jacobs",
+                "imdb": "https://www.imdb.com/name/nm2711203/?ref_=nv_sr_srsg_5_tt_3_nm_5_in_0_q_deve"
+            },
+            {
+                "name": "D.W. Waterson",
+                "imdb": "https://www.imdb.com/name/nm3585842/?ref_=tt_ov_1_1"
+            }
+        ]
     }]
 }]

@@ -26,17 +26,31 @@
           </div>
 
           <!-- Team section -->
-          <div class="info-labels">
-            <template v-for="(member, i) in project.team" :key="i">
-              <span>
-                <span class="label-title">{{ member.role.toUpperCase() }} | </span>
-                <template v-for="(name, j) in member.names" :key="j">
-                  <span class="label-link">{{ name }}</span>
-                  <span v-if="j < member.names.length - 1" class="dot">&#183;</span>
-                </template>
-              </span>
-            </template>
-          </div>
+<div class="info-labels">
+  <template v-for="(member, i) in project.team" :key="i">
+    <span>
+      <span class="label-title">{{ member.role.toUpperCase() }} | </span>
+      <template v-for="(person, j) in member.names" :key="j">
+        <template v-if="person.imdb && person.imdb.trim() !== ''">
+          <a :href="person.imdb" target="_blank" rel="noopener">
+            <span class="label-link">{{ person.name }}</span>
+          </a>
+        </template>
+        <template v-else>
+          <span class="label-link no-hover">{{ person.name }}</span>
+        </template>
+        <span v-if="j < member.names.length - 1" class="dot">&#183;</span>
+      </template>
+    </span>
+  </template>
+</div>
+
+          <div v-if="showScrollIndicator" class="scroll-indicator">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+       stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="6 9 12 15 18 9"></polyline>
+  </svg>
+</div>
         </div>
       </div>
     </div>
@@ -49,6 +63,29 @@ export default {
   props: {
     project: { type: Object, required: true },
     close: { type: Function, required: true }
+  },
+  data() {
+    return {
+      showScrollIndicator: false
+    };
+  },
+  mounted() {
+    this.$nextTick(() => {
+      const content = this.$el.querySelector('.modal-scrollable-content');
+      if (content && content.scrollHeight > content.clientHeight) {
+        this.showScrollIndicator = true;
+        content.addEventListener('scroll', this.handleScroll);
+      }
+    });
+  },
+  beforeUnmount() {
+    const content = this.$el.querySelector('.modal-scrollable-content');
+    if (content) content.removeEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    handleScroll(e) {
+      this.showScrollIndicator = e.target.scrollTop <= 10;
+    }
   }
 };
 </script>
@@ -214,14 +251,6 @@ export default {
   font-weight: 400;
   color: #fff;
 }
-.label-link {
-  font-family: "proxima-nova", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: #fff;
-  text-decoration: underline;
-}
-
 .section-heading {
   font-size: 14px;
   font-weight: 400;
@@ -470,6 +499,92 @@ export default {
   .project-subtitle-row {
     font-size: 11px;
   }
+}
+
+/* --- Scroll hint gradient --- */
+.modal-scrollable-content::after {
+  content: "";
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* --- Scroll indicator --- */
+.scroll-indicator {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 1.5s infinite;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-indicator svg {
+  stroke-width: 2.5;
+  stroke: #ffffff;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(6px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(3px);
+  }
+}
+
+.label-title {
+  font-family: "proxima-nova", sans-serif;
+  font-size: 15px;
+  font-variant: small-caps;
+  font-weight: 500;           /* Medium for labels */
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.label-link {
+  font-family: "proxima-nova", sans-serif;
+  font-size: 15px;
+  font-weight: 400;           /* Regular for content */
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.15s, text-decoration 0.15s;
+}
+
+.label-link:hover,
+.label-link:focus {
+  text-decoration: underline;
+  color: #593792;
+}
+
+.label-link.no-hover {
+  pointer-events: none;
+  color: #fff;
+  text-decoration: none;
+  cursor: default;
+}
+
+.info-labels a,
+.info-labels a:visited {
+  color: #fff;                /* White text always */
+  text-decoration: none;      /* Remove default underline */
+}
+
+.info-labels a:hover,
+.info-labels a:focus {
+  color: #593792;             /* Hover purple */
+  text-decoration: underline; /* Add underline only on hover */
 }
 
 
