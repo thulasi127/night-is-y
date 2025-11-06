@@ -20,11 +20,11 @@
         ></iframe>
 
         <!-- Artist + Title below the frame -->
-        <div class="video-info">
+        <!-- <div class="video-info">
           <span class="video-title-artist">
             <b>{{ video.title.toUpperCase() }}</b> BY {{ video.artist.toUpperCase() }}
           </span>
-        </div>
+        </div> -->
 
         <!-- Return button (same as about-devery) -->
         <!-- <div class="video-return" @click="close">
@@ -118,7 +118,7 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
 }
 
 /* Title + Return Row */
-.video-info {
+/* .video-info {
   position: absolute;
   bottom: -40px;
   left: 0;
@@ -135,9 +135,9 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
   z-index: 10;
   white-space: nowrap;
   flex-wrap: nowrap;
-}
+} */
 
-.video-title-artist {
+/* .video-title-artist {
   font-size: clamp(0.7rem, 1.5vw, 1rem);
   font-weight: 100;
   letter-spacing: 0.5px;
@@ -146,11 +146,11 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
   overflow: hidden;
   flex-shrink: 1;
   min-width: 0;
-}
+} */
 
-.video-title-artist b {
+/* .video-title-artist b {
   font-weight: 700;
-}
+} */
 
 /* Return button (old styling restored) */
 /* .video-return {
@@ -188,10 +188,10 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
   transition: width 0.3s ease, opacity 0.2s ease;
 } */
 
-.video-return:hover .return-line {
+/* .video-return:hover .return-line {
   width: 64px;
   opacity: 1;
-}
+} */
 
 /* --------- Breakpoints ---------- */
 
