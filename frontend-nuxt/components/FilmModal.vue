@@ -50,30 +50,30 @@
             <span v-if="film.writers && film.writers.length">
               <span class="label-title"> WRITERS | </span>
               <template v-for="(writer, i) in film.writers" :key="i">
-                <a v-if="writer.imdb" :href="writer.imdb" target="_blank" rel="noopener">
+                <a v-if="writer.imdb && writer.imdb.trim() !== ''" :href="writer.imdb" target="_blank" rel="noopener">
                   <span class="label-link">{{ writer.name }}</span>
                 </a>
-                <span v-else class="label-link">{{ writer.name }}</span>
+                <span v-else class="label-link no-hover">{{ writer.name }}</span>
                 <span v-if="i < film.writers.length - 1" class="dot">&#183;</span>
               </template>
             </span>
             <span v-if="film.starring && film.starring.length">
               <span class="label-title"> STARRING | </span>
               <template v-for="(actor, i) in film.starring" :key="i">
-                <a v-if="actor.imdb" :href="actor.imdb" target="_blank" rel="noopener">
+                <a v-if="actor.imdb && actor.imdb.trim() !== ''" :href="actor.imdb" target="_blank" rel="noopener">
                   <span class="label-link">{{ actor.name }}</span>
                 </a>
-                <span v-else class="label-link">{{ actor.name }}</span>
+                <span v-else class="label-link no-hover">{{ actor.name }}</span>
                 <span v-if="i < film.starring.length - 1" class="dot">&#183;</span>
               </template>
             </span>
             <span v-if="film.executiveProducers && film.executiveProducers.length">
               <span class="label-title"> EXECUTIVE PRODUCER | </span>
               <template v-for="(ep, i) in film.executiveProducers" :key="i">
-                <a v-if="ep.imdb" :href="ep.imdb" target="_blank" rel="noopener">
+                <a v-if="ep.imdb && ep.imdb.trim() !== ''" :href="ep.imdb" target="_blank" rel="noopener">
                   <span class="label-link">{{ ep.name }}</span>
                 </a>
-                <span v-else class="label-link">{{ ep.name }}</span>
+                <span v-else class="label-link no-hover">{{ ep.name }}</span>
                 <span v-if="i < film.executiveProducers.length - 1" class="dot">&#183;</span>
               </template>
             </span>
@@ -296,13 +296,12 @@ export default {
 .text-wrapper {
   font-family: "Anton", sans-serif;
   font-size: clamp(1.8rem, 2.9vw, 2.4rem);
-  font-weight: 300;
-  line-height: 1.1;
   @include font-size("xl");
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: 700;
   color: #fff;
+  line-height: 1.2;
 }
 
 .laurel-img {
@@ -343,12 +342,11 @@ export default {
 }
 
 .div {
-  font-size: 15px;       /* Slightly smaller */
+  font-size: 14px;      /* smaller text */
   color: #fff;
-  margin-bottom: 10px;    /* Slightly tighter spacing below description */
-  line-height: 22px;
+  margin-bottom: 10px;
+  line-height: 20px;    /* tighter spacing */
 }
-
 .section-heading,
 .awards-title {
   font-size: 15px;       /* Tighter heading size */
@@ -361,14 +359,12 @@ export default {
 
 .trailer-video {
   width: 100%;
-  max-width: 520px;           /* Slightly smaller trailer */
+  max-width: 600px; /* match the logline width */
   aspect-ratio: 16 / 9;
   height: auto;
-  border-radius: 0px;
-  margin-top: 10px;
-  margin-bottom: 10px;    /* Add margin below trailer for separation */
+  margin: 16px 0;
   background: #000;
-  align-self: flex-start; /* keeps it aligned with text column */
+  align-self: flex-start;
 }
 
 @media (max-width: 1000px) {
@@ -777,13 +773,12 @@ export default {
   }
 
   .trailer-video {
-    width: 100%;
-    border-radius: 8px;
-    aspect-ratio: 16 / 9;
-    align-self: center;  /* aligns within flex containers */
-    max-width: 700px;
-    margin: 24px auto 20px auto;
-  }
+  width: 100%;
+  max-width: 600px; /* align with loglines */
+  aspect-ratio: 16 / 9;
+  align-self: center;
+  margin: 20px auto 16px auto;
+}
 
   .awards-section,
   .article-list-section {
@@ -831,9 +826,12 @@ export default {
   }
 
   .trailer-video {
-    max-width: 100%;
-    margin: 12px 0;
-  }
+  width: 100%;
+  max-width: 90%; /* same left/right edge feel as text padding */
+  aspect-ratio: 16 / 9;
+  align-self: center;
+  margin: 12px auto;
+}
 
   .awards-section,
   .article-list-section {
@@ -847,7 +845,11 @@ export default {
   }
 }
 
-
-
+.label-link.no-hover {
+  pointer-events: none;
+  color: #fff;
+  text-decoration: none;
+  cursor: default;
+}
 
 </style>
