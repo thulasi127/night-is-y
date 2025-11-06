@@ -72,10 +72,14 @@
           allowfullscreen
         ></iframe>
 
-        <div class="video-return" @click="closeVideo">
-  <span>Return</span>
-  <div class="return-line"></div>
-</div>
+        <!-- Close (X) button -->
+<button class="close-modal-button" @click="closeVideo" aria-label="Close">
+  <svg width="20" height="20" viewBox="0 0 20 20" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round">
+    <line x1="5" y1="5" x2="15" y2="15" />
+    <line x1="15" y1="5" x2="5" y2="15" />
+  </svg>
+</button>
+
       </div>
     </div>
   </transition>
@@ -851,6 +855,52 @@ useHead({
     justify-content: flex-start;
     padding-top: clamp(8px, 1vw, 12px);
   }  
+}
+
+/* --- Unified Close Button (matches MusicVideoModal.vue) --- */
+.close-modal-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(40%, -40%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
+}
+
+.close-modal-button:hover {
+  transform: translate(40%, -40%) scale(1.08);
+  opacity: 0.9;
+}
+
+.close-modal-button:hover svg {
+  filter: brightness(0.7);
+  transition: filter 0.15s;
+}
+
+/* Scale button size for smaller screens */
+@media (max-width: 768px) {
+  .close-modal-button {
+    width: clamp(24px, 6vw, 32px);
+    height: clamp(24px, 6vw, 32px);
+  }
+}
+
+@media (max-width: 480px) {
+  .close-modal-button {
+    width: 28px;
+    height: 28px;
+    transform: translate(30%, -30%);
+  }
 }
 
 </style>
