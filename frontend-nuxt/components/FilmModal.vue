@@ -852,4 +852,15 @@ export default {
   cursor: default;
 }
 
+.modal-scrollable-content::after {
+  content: "";
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+  pointer-events: none;
+  z-index: 2;
+}
 </style>
