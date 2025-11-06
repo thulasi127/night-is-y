@@ -877,5 +877,51 @@ export default {
   }
 }
 
+/* Tablet landscape ≤1025px */
+@media (max-width: 1025px) {
+  .awards-title,
+  .award-name,
+  .award-year-status,
+  .award-category,
+  .award-extra {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+}
 
+/* Tablet portrait ≤768px */
+@media (max-width: 768px) {
+  .awards-title,
+  .award-name,
+  .award-year-status,
+  .award-category,
+  .award-extra {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+/* Mobile ≤640px */
+@media (max-width: 640px) {
+  .awards-title,
+  .award-name,
+  .award-year-status,
+  .award-category,
+  .award-extra {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}
+
+/* Small mobile ≤480px */
+@media (max-width: 480px) {
+  .awards-title,
+  .award-name,
+  .award-year-status,
+  .award-category,
+  .award-extra {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+}
 </style>
