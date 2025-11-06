@@ -783,9 +783,12 @@ export default {
   .awards-section,
   .article-list-section {
     width: 100%;
-    max-width: 700px;
+    max-width: 600px; /* matches trailer */
+    align-self: center;
+    margin: 16px auto 0 auto;
     text-align: left;
-    margin: 24px auto;
+    box-sizing: border-box;
+    padding: 0;
   }
 
   .section-heading,
@@ -826,17 +829,19 @@ export default {
   }
 
   .trailer-video {
-  width: 100%;
-  max-width: 90%; /* same left/right edge feel as text padding */
-  aspect-ratio: 16 / 9;
-  align-self: center;
-  margin: 12px auto;
-}
+    width: 100%;
+    max-width: 90%;
+    aspect-ratio: 16 / 9;
+    align-self: center;
+    margin: 12px auto;
+  }
 
   .awards-section,
   .article-list-section {
-    max-width: 95%;
-    margin: 16px auto;
+    max-width: 90%;
+    margin: 12px auto 0 auto;
+    text-align: left;
+    padding: 0;
   }
 
   .section-heading,
@@ -852,15 +857,25 @@ export default {
   cursor: default;
 }
 
-.modal-scrollable-content::after {
-  content: "";
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
-  pointer-events: none;
-  z-index: 2;
+@media (max-width: 768px) {
+  .trailer-video {
+    width: 100%;
+    max-width: 550px;
+    aspect-ratio: 16 / 9;
+    align-self: center;
+    margin: 16px auto 12px auto;
+  }
+
+  .awards-section,
+  .article-list-section {
+    width: 100%;
+    max-width: 550px; /* match trailer */
+    align-self: center;
+    margin: 12px auto 0 auto;
+    text-align: left;
+    padding: 0;
+  }
 }
+
+
 </style>
