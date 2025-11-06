@@ -2,6 +2,13 @@
   <transition name="fade">
     <div class="video-modal" @click.self="close" tabindex="-1">
       <div class="video-wrapper">
+        <!-- Close (X) button -->
+        <button class="close-modal-button" @click="close" aria-label="Close">
+  <svg width="20" height="20" viewBox="0 0 20 20" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round">
+    <line x1="5" y1="5" x2="15" y2="15"/>
+    <line x1="15" y1="5" x2="5" y2="15"/>
+  </svg>
+</button>
         <iframe
           v-if="video?.youtube_url"
           id="ytplayer"
@@ -20,10 +27,10 @@
         </div>
 
         <!-- Return button (same as about-devery) -->
-        <div class="video-return" @click="close">
+        <!-- <div class="video-return" @click="close">
           <span>Return</span>
           <div class="return-line"></div>
-        </div>
+        </div> -->
       </div>
     </div>
   </transition>
@@ -90,7 +97,7 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
+  z-index: 3000;
 }
 
 .video-wrapper {
@@ -146,7 +153,7 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
 }
 
 /* Return button (old styling restored) */
-.video-return {
+/* .video-return {
   position: absolute;
   bottom: -48px;
   right: 0;
@@ -161,25 +168,25 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
   color: #fff;
   opacity: 0.7;
   transition: opacity 0.2s ease, transform 0.2s ease;
-}
+} */
 
-.video-return:hover {
+/* .video-return:hover {
   opacity: 1;
   transform: translateY(-2px);
-}
+} */
 
-.video-return span {
+/* .video-return span {
   font-size: 14px;
   letter-spacing: 1px;
-}
+} */
 
-.return-line {
+/* .return-line {
   width: 48px;
   height: 1px;
   background: #fff;
   opacity: 0.5;
   transition: width 0.3s ease, opacity 0.2s ease;
-}
+} */
 
 .video-return:hover .return-line {
   width: 64px;
@@ -299,5 +306,35 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
 }
 .fade-enter-from, .fade-leave-to { opacity: 0; }
 .fade-enter-to, .fade-leave-from { opacity: 1; }
+
+.close-modal-button {
+  position: absolute;
+  top: 0;                /* Aligns with top edge of iframe */
+  right: 0;              /* Aligns with right edge of iframe */
+  transform: translate(40%, -40%); /* Moves it slightly out, so it's not covering video */
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.6);  /* Subtle backdrop for contrast */
+  border: none;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
+}
+
+.close-modal-button:hover {
+  transform: translate(40%, -40%) scale(1.08);
+  opacity: 0.9;
+}
+
+.close-modal-button:hover svg {
+  filter: brightness(0.7);
+  transition: filter 0.15s;
+}
+
 
 </style>
