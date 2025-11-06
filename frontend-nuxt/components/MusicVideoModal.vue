@@ -1,6 +1,12 @@
 <template>
   <transition name="fade">
-    <div class="video-modal" @click.self="close" tabindex="-1">
+    <div 
+  class="video-modal" 
+  :class="{ 'fade-out': isFadingOut }" 
+  @click.self="close" 
+  tabindex="-1"
+>
+
       <div class="video-wrapper">
         <!-- Close (X) button -->
         <button class="close-modal-button" @click="close" aria-label="Close">
@@ -24,12 +30,14 @@
 </template>
 
 <script setup>
-import { computed, onMounted, onBeforeUnmount, watch } from "vue";
+import { computed, onMounted, onBeforeUnmount, ref } from "vue";
 
 const props = defineProps({
   video: { type: Object, required: true },
   close: { type: Function, required: true }
 });
+
+const isFadingOut = ref(false);
 
 const autoplayUrl = computed(() => {
   if (!props.video?.youtube_url) return "";
@@ -39,37 +47,54 @@ const autoplayUrl = computed(() => {
 });
 
 function handleKeydown(e) {
-  if (e.key === "Escape") props.close();
+  if (e.key === "Escape") fadeOutAndClose();
 }
 
-function initYouTubePlayer() {
-  if (!window.YT || !window.YT.Player) return;
-  new window.YT.Player("ytplayer", {
-    events: {
-      onStateChange: (event) => {
-        if (event.data === window.YT.PlayerState.ENDED) {
-          props.close();
-        }
-      }
-    }
-  });
+function fadeOutAndClose() {
+  // start fade transition
+  isFadingOut.value = true;
+  // close after fade
+  setTimeout(() => props.close(), 250);
 }
 
+// --- YouTube Player Setup (closes when video ends) ---
 onMounted(() => {
   window.addEventListener("keydown", handleKeydown);
 
-  // Wait a bit so the iframe is mounted
   setTimeout(() => {
+    if (!window.YT) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
+    }
+
+    window.onYouTubeIframeAPIReady = () => {
+      new window.YT.Player("ytplayer", {
+        events: {
+          onStateChange: (event) => {
+            if (event.data === window.YT.PlayerState.ENDED) fadeOutAndClose();
+          }
+        }
+      });
+    };
+
     if (window.YT && window.YT.Player) {
-      initYouTubePlayer();
-    } else {
-      window.onYouTubeIframeAPIReady = initYouTubePlayer;
+      new window.YT.Player("ytplayer", {
+        events: {
+          onStateChange: (event) => {
+            if (event.data === window.YT.PlayerState.ENDED) fadeOutAndClose();
+          }
+        }
+      });
     }
   }, 500);
 });
 
-onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
+onBeforeUnmount(() => {
+  window.removeEventListener("keydown", handleKeydown);
+});
 </script>
+
 
 
 <style scoped>
@@ -84,7 +109,7 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 3000;
+  z-index: 2500;
 }
 
 .video-wrapper {
@@ -165,6 +190,13 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
 .fade-leave-from {
   opacity: 1;
 }
+
+/* Fade-out animation for when the video ends */
+.video-modal.fade-out {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
 
 .close-modal-button {
   position: absolute;
