@@ -403,34 +403,6 @@ onUnmounted(() => {
   /* No margin-left or margin-right unless needed for edge cases */
 }
 
-/* Tablet screens */
-@media (max-width: 1024px) {
-  .carousel-card,
-  .poster-image-wrapper {
-    width: 300px;
-    height: 450px;
-  }
-}
-
-/* Large mobile screens */
-@media (max-width: 768px) {
-  .carousel-card,
-  .poster-image-wrapper {
-    width: 240px;
-    height: 360px;
-  }
-}
-
-/* Small mobile screens */
-@media (max-width: 480px) {
-  .carousel-card,
-  .poster-image-wrapper {
-    width: 180px;
-    height: 270px;
-  }
-}
-
-/* Tablet screens */
 @media (max-width: 1024px) {
   .carousel-card,
   .poster-image-wrapper {
@@ -438,8 +410,6 @@ onUnmounted(() => {
     height: 440px;
   }
 }
-
-/* Large mobile screens */
 @media (max-width: 768px) {
   .carousel-card,
   .poster-image-wrapper {
@@ -447,8 +417,6 @@ onUnmounted(() => {
     height: 330px;
   }
 }
-
-/* Small mobile screens */
 @media (max-width: 480px) {
   .carousel-card,
   .poster-image-wrapper {
@@ -456,6 +424,5 @@ onUnmounted(() => {
     height: 250px;
   }
 }
-
 
 </style>

@@ -65,10 +65,12 @@ useHead({
 .press-page {
   background: black;
   color: white;
-  padding: 4rem 2rem;
+  padding: clamp(100px, 12vh, 160px) 2rem 4rem;
   font-family: "proxima-nova", sans-serif;
-  overflow-x: hidden; 
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
+
 
 .press-header {
   text-align: center;

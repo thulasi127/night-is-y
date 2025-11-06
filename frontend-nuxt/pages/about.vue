@@ -28,6 +28,7 @@ useHead({
   width: 100vw;
   display: flex;
   flex-direction: column;
+  
 }
 
 .centered-content {

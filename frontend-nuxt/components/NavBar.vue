@@ -1,6 +1,10 @@
 <template>
-  <header class="navbar">
-    <div class="navbar-content">
+<header
+  class="navbar"
+  :class="{ 'navbar-gradient': route.path !== '/home' && route.path !== '/contact' }"
+>
+
+  <div class="navbar-content">
 
       <!-- Left logo -->
       <NuxtLink to="/home">
@@ -133,6 +137,7 @@ export default defineComponent({
   right: 0;
   z-index: 1000;
   height: clamp(60px, 8vw, 100px);
+  transition: background 0.4s ease, box-shadow 0.3s ease;
 }
 
 .navbar-content {
@@ -152,6 +157,7 @@ export default defineComponent({
   max-width: clamp(80px, 12vw, 140px);
   object-fit: contain;
   transition: height 0.3s ease, opacity 0.3s ease;
+  transform: translateY(4px); 
 }
 .logo:hover { opacity: 0.8; }
 
@@ -314,4 +320,111 @@ export default defineComponent({
   width: 100%;
   opacity: 1;
 }
+
+/* Applies to all pages except home.vue */
+.navbar.navbar-gradient {
+  background: linear-gradient(to bottom, #000 80%, rgba(0, 0, 0, 0.8) 100%);
+  backdrop-filter: blur(6px);
+}
+
+@media (max-width: 768px) {
+  .navbar.navbar-gradient {
+    background: linear-gradient(to bottom, #000 90%, rgba(0, 0, 0, 1) 100%);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* ---------- Large Laptops (≤1440px) ---------- */
+@media (max-width: 1440px) {
+  .logo {
+    height: clamp(24px, 5vw, 52px);
+    transform: translateY(3px);
+  }
+
+  .nav-brand-text {
+    font-size: clamp(13px, 1.6vw, 18px);
+    letter-spacing: 0.25em;
+  }
+
+  .nav-link {
+    font-size: clamp(0.7rem, 1.3vw, 0.9rem);
+  }
+
+  .navbar-content {
+    padding: 0 clamp(16px, 2.5vw, 28px);
+  }
+}
+
+/* ---------- Tablets & Small Laptops (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .logo {
+    height: clamp(22px, 5vw, 44px);
+    transform: translateY(3px);
+  }
+
+  .nav-brand-text {
+    font-size: clamp(12px, 1.5vw, 16px);
+    letter-spacing: 0.25em;
+  }
+
+  .hamburger span {
+    width: 18px;
+    height: 1px;
+  }
+
+  .navbar-content {
+    padding: 0 clamp(12px, 3vw, 24px);
+  }
+}
+
+/* ---------- Tablets Portrait & Large Phones (≤768px) ---------- */
+@media (max-width: 768px) {
+  .logo {
+    height: clamp(20px, 5.5vw, 38px);
+    transform: translateY(2px);
+  }
+
+  .nav-brand-text {
+    font-size: clamp(11px, 1.8vw, 14px);
+    letter-spacing: 0.22em;
+  }
+
+  .hamburger span {
+    width: 16px;
+  }
+
+  .navbar {
+    height: clamp(56px, 10vw, 80px);
+  }
+
+  .navbar-content {
+    padding: 0 clamp(10px, 4vw, 20px);
+  }
+}
+
+/* ---------- Small Phones (≤430px) ---------- */
+@media (max-width: 430px) {
+  .logo {
+    height: clamp(18px, 6vw, 32px);
+    transform: translateY(2px);
+  }
+
+  .nav-brand-text {
+    font-size: clamp(10px, 2.5vw, 12px);
+    letter-spacing: 0.2em;
+  }
+
+  .navbar {
+    height: 52px;
+  }
+
+  .hamburger span {
+    width: 14px;
+  }
+
+  .mobile-link {
+    font-size: clamp(0.85rem, 3.5vw, 1rem);
+  }
+}
+
 </style>
