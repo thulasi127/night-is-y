@@ -18,19 +18,6 @@
           allowfullscreen
           title="Music Video"
         ></iframe>
-
-        <!-- Artist + Title below the frame -->
-        <!-- <div class="video-info">
-          <span class="video-title-artist">
-            <b>{{ video.title.toUpperCase() }}</b> BY {{ video.artist.toUpperCase() }}
-          </span>
-        </div> -->
-
-        <!-- Return button (same as about-devery) -->
-        <!-- <div class="video-return" @click="close">
-          <span>Return</span>
-          <div class="return-line"></div>
-        </div> -->
       </div>
     </div>
   </transition>
@@ -117,195 +104,67 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
   border-radius: 6px;
 }
 
-/* Title + Return Row */
-/* .video-info {
-  position: absolute;
-  bottom: -40px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: clamp(6px, 2vw, 12px);
-  padding: 0 clamp(8px, 3vw, 16px);
-  font-family: "proxima-nova", sans-serif;
-  font-weight: 100;
-  color: #fff;
-  opacity: 0.95;
-  z-index: 10;
-  white-space: nowrap;
-  flex-wrap: nowrap;
-} */
+/* --------- Responsive Scaling ---------- */
 
-/* .video-title-artist {
-  font-size: clamp(0.7rem, 1.5vw, 1rem);
-  font-weight: 100;
-  letter-spacing: 0.5px;
-  color: #fff;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  flex-shrink: 1;
-  min-width: 0;
-} */
-
-/* .video-title-artist b {
-  font-weight: 700;
-} */
-
-/* Return button (old styling restored) */
-/* .video-return {
-  position: absolute;
-  bottom: -48px;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
-  cursor: pointer;
-  font-family: "proxima-nova", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-  color: #fff;
-  opacity: 0.7;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-} */
-
-/* .video-return:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-} */
-
-/* .video-return span {
-  font-size: 14px;
-  letter-spacing: 1px;
-} */
-
-/* .return-line {
-  width: 48px;
-  height: 1px;
-  background: #fff;
-  opacity: 0.5;
-  transition: width 0.3s ease, opacity 0.2s ease;
-} */
-
-/* .video-return:hover .return-line {
-  width: 64px;
-  opacity: 1;
-} */
-
-/* --------- Breakpoints ---------- */
-
-/* Large screens down from 1200px */
+/* Large screens ≤ 1200px */
 @media (max-width: 1200px) {
-  .video-info {
-    bottom: -44px;
-  }
-
-  .video-title-artist {
-    font-size: 1rem;
-  }
-
-  .video-return span {
-    font-size: 13px;
-  }
-
-  .return-line {
-    width: 44px;
-  }
-
-  .video-return:hover .return-line {
-    width: 56px;
+  .video-wrapper {
+    width: 85vw;
+    max-width: 800px;
   }
 }
 
-/* Medium screens down from 992px */
+/* Medium screens ≤ 992px */
 @media (max-width: 992px) {
-  .video-info {
-    bottom: -40px;
-    font-size: 0.95rem;
-  }
-
-  .video-title-artist {
-    font-size: 0.95rem;
-  }
-
-  .video-return span {
-    font-size: 12px;
-  }
-
-  .return-line {
-    width: 40px;
-  }
-
-  .video-return:hover .return-line {
-    width: 52px;
+  .video-wrapper {
+    width: 90vw;
+    max-width: 700px;
   }
 }
 
-/* Tablets down from 768px */
+/* Tablets ≤ 768px */
 @media (max-width: 768px) {
-  .video-info {
-    bottom: -36px;
-    font-size: 0.9rem;
+  .video-wrapper {
+    width: 95vw;
+    max-width: 640px;
   }
 
-  .video-title-artist {
-    font-size: 0.9rem;
-  }
-
-  .video-return span {
-    font-size: 11.5px;
-  }
-
-  .return-line {
-    width: 36px;
-  }
-
-  .video-return:hover .return-line {
-    width: 48px;
+  .close-modal-button {
+    width: clamp(24px, 6vw, 32px);
+    height: clamp(24px, 6vw, 32px);
   }
 }
 
-/* Mobile down from 480px */
+/* Small phones ≤ 480px */
 @media (max-width: 480px) {
-  .video-info {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    text-align: center;
-    bottom: -32px;
+  .video-wrapper {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 16 / 9;
   }
 
-  .video-title-artist {
-    font-size: 0.8rem;
-    line-height: 1.3;
-  }
-
-  .video-return {
-    align-items: center;
-    gap: 3px;
-  }
-
-  .video-return span {
-    font-size: 10.5px;
-    letter-spacing: 0.5px;
-  }
-
-  .return-line {
+  .close-modal-button {
     width: 28px;
-  }
-
-  .video-return:hover .return-line {
-    width: 36px;
+    height: 28px;
+    transform: translate(30%, -30%);
   }
 }
 
-.fade-enter-active, .fade-leave-active {
+/* --------- Smooth Fade Transition ---------- */
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.fade-enter-from, .fade-leave-to { opacity: 0; }
-.fade-enter-to, .fade-leave-from { opacity: 1; }
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
 
 .close-modal-button {
   position: absolute;
