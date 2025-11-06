@@ -215,7 +215,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: auto;
 }
 .frame {
   position: relative;
@@ -226,7 +226,7 @@ export default {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   display: flex;
   font-family: "proxima-nova", sans-serif;
-  overflow: hidden;
+  overflow: visible;
   align-items: flex-start;
   @include spacing(padding, "lg");
 }
@@ -254,7 +254,8 @@ export default {
   gap: 6px;       /* tighter grouping */
   padding-top: 0; /* keep flush with poster top */
   padding-right: 24px;
-  padding-bottom: 40px;
+  padding-bottom: 80px;
+  max-height: calc(80vh - 80px);
   /* Text flows naturally next to fixed poster */
 }
 
@@ -294,13 +295,14 @@ export default {
 
 .text-wrapper {
   font-family: "Anton", sans-serif;
-  font-size: 44px;
+  font-size: clamp(1.8rem, 2.9vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.1;
   @include font-size("xl");
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: 700;
   color: #fff;
-  line-height: 1.2;
 }
 
 .laurel-img {
