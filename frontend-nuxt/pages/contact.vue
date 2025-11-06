@@ -340,4 +340,121 @@ onMounted(() => {
   }
 }
 
+
+/* ---------------- 1440px and below ---------------- */
+@media (max-width: 1440px) {
+  .person-fullname,
+  .person-name {
+    font-size: clamp(18px, 1.5vw, 20px);
+    line-height: 1.3;
+  }
+
+  .role,
+  .name,
+  .email {
+    font-size: clamp(13.5px, 1.1vw, 15px);
+    line-height: 1.4;
+  }
+}
+
+/* ---------------- 1024px (Tablets Landscape / Small Laptops) ---------------- */
+@media (max-width: 1024px) {
+  .person-fullname,
+  .person-name {
+    font-size: clamp(16px, 1.4vw, 18px);
+    line-height: 1.35;
+  }
+
+  .role,
+  .name,
+  .email {
+    font-size: clamp(13px, 1.1vw, 14px);
+    line-height: 1.35;
+  }
+
+  .person {
+    padding-left: 48px;
+  }
+}
+
+/* ---------------- 768px (Tablets Portrait) ---------------- */
+@media (max-width: 768px) {
+  .person-fullname,
+  .person-name {
+    font-size: clamp(15px, 1.4vw, 17px);
+    line-height: 1.35;
+  }
+
+  .role,
+  .name,
+  .email {
+    font-size: clamp(12.5px, 1.1vw, 13.5px);
+    line-height: 1.35;
+  }
+
+  .person {
+    padding-left: 32px;
+  }
+}
+
+/* ---------------- 600px (Large Phones) ---------------- */
+@media (max-width: 600px) {
+  .person-fullname,
+  .person-name {
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  .role,
+  .name,
+  .email {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .person {
+    padding-left: 24px;
+  }
+}
+
+/* ---------------- 430px (Small Phones) ---------------- */
+@media (max-width: 430px) {
+  .person-fullname,
+  .person-name {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .role,
+  .name,
+  .email {
+    font-size: 12.5px;
+    line-height: 18px;
+  }
+
+  .contacts {
+    row-gap: 16px;
+  }
+
+  .person {
+    padding-left: 16px;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------- 360px (Extra Small Phones) ---------------- */
+@media (max-width: 360px) {
+  .person-fullname,
+  .person-name {
+    font-size: 13.5px;
+    line-height: 18px;
+  }
+
+  .role,
+  .name,
+  .email {
+    font-size: 12px;
+    line-height: 17px;
+  }
+}
 </style>
