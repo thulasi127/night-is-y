@@ -5,8 +5,9 @@
       <div class="content">
         <p class="about-text"> Night is Y is an LGBTQ2S+ and Indigenous-owned production company rooted in Toronto, Canada.<br /> Producers Devery Jacobs and D.W. Waterson craft character-driven films and series that uplift queer and BIPOC stories.<br /> With every project, Night is Y creates dynamic, visually stunning stories driven by risk, rigor, and a vision for authentic representation. </p>
           <NuxtLink to="/about-devery" class="meet-the-team-link">
-            Meet the Team
-          </NuxtLink>
+  <VideoText text="Meet the Team" videoSrc="/videos/text-bg.mp4" />
+</NuxtLink>
+
       </div>
     </div>
   </div>
@@ -14,6 +15,7 @@
 
 <script setup lang="ts">
 import NavBar from '~/components/NavBar.vue'
+import VideoText from '~/components/VideoText.vue'
 
 useHead({
   title: 'About | Night is Y',
@@ -28,7 +30,6 @@ useHead({
   width: 100vw;
   display: flex;
   flex-direction: column;
-  
 }
 
 .centered-content {
@@ -81,13 +82,6 @@ useHead({
   animation: gradientMove 3s ease infinite;
   transition: transform 0.2s;
 }
-
-.meet-the-team-link:hover {
-  transform: scale(1.08);
-  -webkit-text-fill-color: #593792;
-  background: none;
-}
-
 
 @keyframes gradientMove {
   0% {
