@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import NavBar from '~/components/NavBar.vue'
-import MeetTheTeamText from '~/components/MeetTheTeamText.vue'
+import MeetTheTeamText from '~/components/AboutText.vue'
 
 useHead({
   title: 'About | Night is Y',

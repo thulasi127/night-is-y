@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import pressDataRaw from "@/data/press.json"
 import { useHead } from '#imports'
-import TheySaidItBestText from '~/components/TheySaidItBestText.vue'
+import TheySaidItBestText from '~/components/PressText.vue'
 
 // Group all quotes by project, ignoring category
 const groupedProjects = [];
