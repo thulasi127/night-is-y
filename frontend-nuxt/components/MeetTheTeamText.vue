@@ -17,18 +17,19 @@
         <mask id="textMask" x="0" y="0" width="100%" height="100%">
           <rect width="100%" height="100%" fill="white" />
           <text
-            x="50%"
-            y="50%"
-            text-anchor="middle"
-            dominant-baseline="middle"
-            fill="black"
-            font-family="anton, sans-serif"
-            font-weight="700"
-            font-size="200"
-            text-transform="uppercase"
-          >
-            {{ text }}
-          </text>
+  x="50%"
+  y="50%"
+  text-anchor="middle"
+  dominant-baseline="middle"
+  fill="black"
+  font-family="anton, sans-serif"
+  font-weight="700"
+  :font-size="fontSize"
+  text-transform="uppercase"
+>
+  {{ text }}
+</text>
+
         </mask>
       </defs>
       <rect width="100%" height="100%" fill="black" :mask="'url(#textMask)'" />
@@ -44,9 +45,15 @@ const props = defineProps({
   videoSrc: String,
   speed: {
     type: Number,
-    default: 0.5 // slow motion (1 = normal speed)
+    default: 0.5
+  },
+  fontSize: {
+    type: [Number, String],
+    default: 200
   }
 })
+
+
 
 const videoEl = ref<HTMLVideoElement | null>(null)
 
@@ -70,13 +77,13 @@ onMounted(() => {
 
 /* video behind the SVG mask */
 .mask-video {
+  width: 1800%;
+  height: 1800%;
+  object-fit: cover;
+  transform: translate(-50%, -50%) scale(2);
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 5600%;
-  height: 5600%;
-  object-fit: cover;
-  transform: translate(-50%, -50%) scale(2.5);
   z-index: 0;
   filter: brightness(1.2) saturate(1.3);
 }
@@ -89,4 +96,5 @@ onMounted(() => {
   z-index: 1;
   display: block;
 }
+
 </style>

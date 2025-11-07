@@ -3,8 +3,10 @@
   <div class="press-page">
     <!-- Hero Heading -->
     <header class="press-header">
-      <h1 class="press-title">THEY SAID IT BEST.</h1>
-    </header>
+  <div class="video-text-wrapper">
+    <TheySaidItBestText text="THEY SAID IT BEST." videoSrc="/videos/text-bg.mp4"/>
+  </div>
+</header>
 
     <!-- Group by project, ignore category -->
     <section
@@ -40,6 +42,7 @@
 <script setup lang="ts">
 import pressDataRaw from "@/data/press.json"
 import { useHead } from '#imports'
+import TheySaidItBestText from '~/components/TheySaidItBestText.vue'
 
 // Group all quotes by project, ignoring category
 const groupedProjects = [];
@@ -72,10 +75,6 @@ useHead({
 }
 
 
-.press-header {
-  text-align: center;
-  margin: 6rem 0 5rem; 
-}
 
 .press-title {
   font-family: "anton", sans-serif;
@@ -316,6 +315,32 @@ useHead({
   line-height: 1.4;
 }
 }
+
+.press-header {
+  text-align: center;
+  margin: 2rem auto 1.5rem; /* tighten spacing above and below */
+  padding: 0; /* remove any padding that adds vertical height */
+  max-width: 1400px;
+  line-height: 1; /* prevent extra spacing from text line height */
+}
+
+ /* .video-text-wrapper {
+  display: inline-block;
+  transform: scale(0.32); 
+  transform-origin: center;
+  margin: 0;
+  padding: 0;
+}  */
+
+.press-header :deep(.mask-svg text) {
+  font-size: clamp(1.8rem, 2.9vw, 2.4rem) !important;
+}
+
+.press-header :deep(.mask-svg) {
+  height: 120px !important; /* matches the height of 'Meet the Team' */
+  overflow: hidden;
+}
+
 
 </style>
 
