@@ -1,15 +1,24 @@
 <template>
   <div class="video-mask-container">
     <!-- The video layer -->
-    <video
-      ref="videoEl"
-      class="mask-video"
-      :src="videoSrc"
-      autoplay
-      muted
-      loop
-      playsinline
-    ></video>
+   <video
+  ref="videoEl"
+  class="mask-video"
+  :src="videoSrc"
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+  crossorigin="anonymous"
+  aria-hidden="true"
+>
+  <source :src="videoSrc" type="video/mp4" />
+  <source :src="videoSrc.replace('.mp4', '.webm')" type="video/webm" />
+  <source :src="videoSrc.replace('.mp4', '.ogg')" type="video/ogg" />
+  <p>Your browser does not support HTML5 video.</p>
+</video>
+
 
     <!-- SVG text mask -->
     <svg class="mask-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 400" preserveAspectRatio="xMidYMid meet">
@@ -96,5 +105,51 @@ onMounted(() => {
   z-index: 1;
   display: block;
 }
+/* ---------- Large Laptops (≤1440px) ---------- */
+@media (max-width: 1440px) {
+  .mask-video {
+    width: 1500%;
+    height: 1500%;
+    transform: translate(-50%, -50%) scale(1.8);
+  }
+  .mask-svg text {
+    font-size: 190px; /* ~95% of default 200px */
+  }
+}
 
+/* ---------- Tablets & Small Laptops (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .mask-video {
+    width: 1200%;
+    height: 1200%;
+    transform: translate(-50%, -50%) scale(1.6);
+  }
+  .mask-svg text {
+    font-size: 180px; /* ~90% of default */
+  }
+}
+
+/* ---------- Tablets Portrait & Large Phones (≤768px) ---------- */
+@media (max-width: 768px) {
+  .mask-video {
+    width: 1000%;
+    height: 1000%;
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+  .mask-svg text {
+    font-size: 170px; /* ~85% of default */
+  }
+}
+
+/* ---------- Small Phones (≤430px) ---------- */
+@media (max-width: 430px) {
+  .mask-video {
+    width: 800%;
+    height: 800%;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  .mask-svg text {
+    font-size: 160px; /* ~80% of default */
+  }
+}
 </style>
