@@ -88,8 +88,8 @@ onMounted(() => {
 
 /* video behind the SVG mask */
 .mask-video {
-  width: 1800%;
-  height: 1800%;
+  width: 50000%;
+  height: 50000%;
   object-fit: cover;
   transform: translate(-50%, -50%) scale(2);
   position: absolute;
@@ -113,8 +113,8 @@ onMounted(() => {
 /* ---------- Large Laptops (≤1440px) ---------- */
 @media (max-width: 1440px) {
   .mask-video {
-    width: 1500%;
-    height: 1500%;
+    width: 30000%;
+    height: 30000%;
     transform: translate(-50%, -50%) scale(1.8);
   }
 }
@@ -122,8 +122,8 @@ onMounted(() => {
 /* ---------- Tablets (≤1024px) ---------- */
 @media (max-width: 1024px) {
   .mask-video {
-    width: 1200%;
-    height: 1200%;
+    width: 20000%;
+    height: 20000%;
     transform: translate(-50%, -50%) scale(1.6);
   }
   .mask-svg text {
@@ -134,8 +134,8 @@ onMounted(() => {
 /* ---------- Small Tablets (≤768px) ---------- */
 @media (max-width: 768px) {
   .mask-video {
-    width: 1000%;
-    height: 1000%;
+    width: 15000%;
+    height: 15000%;
     transform: translate(-50%, -50%) scale(1.4);
   }
   .mask-svg text {
@@ -146,8 +146,8 @@ onMounted(() => {
 /* ---------- Small Phones (≤480px) ---------- */
 @media (max-width: 480px) {
   .mask-video {
-    width: 800%;
-    height: 800%;
+    width: 12000%;
+    height: 12000%;
     transform: translate(-50%, -50%) scale(1.2);
   }
   .mask-svg text {

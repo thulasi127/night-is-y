@@ -4,7 +4,7 @@
     <!-- Hero Heading -->
     <header class="press-header">
   <div class="video-text-wrapper">
-    <TheySaidItBestText text="THEY SAID IT BEST." videoSrc="/videos/text-bg.mp4"/>
+    <TheySaidItBestText text="THEY SAID IT BEST." videoSrc="/videos/cutout.mp4"/>
   </div>
 </header>
 
