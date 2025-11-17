@@ -1,10 +1,20 @@
 {
     "home_video": {
-        "src": "/videos/default.mp4",
-        "alt": "Night is Y homepage background video"
+        "src": "/videos/default.mp4"
     },
     "landing_video": {
-        "src": "/videos/landing.mp4",
-        "alt": "Night is Y intro landing video"
+        "src": "/videos/landing.mp4"
+    },
+    "logo": "/Image/NIY-logos/niy-logo-3.png",
+    "brand": "NIGHT IS Y",
+    "footerText": "Copyright Night is Y ©",
+    "labels": {
+        "summary": "SUMMARY",
+        "articles": "ARTICLES",
+        "awards": "AWARDS",
+        "director": "DIRECTOR",
+        "writers": "WRITERS",
+        "starring": "STARRING",
+        "executiveProducer": "EXECUTIVE PRODUCER"
     }
 }

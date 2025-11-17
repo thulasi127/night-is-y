@@ -9,10 +9,10 @@
       <!-- Left logo -->
       <NuxtLink to="/home">
         <img
-          class="logo"
-          alt="Night IS y"
-          src="/Image/NIY-logos/niy-logo-3.png"
-        />
+  class="logo"
+  alt="Night is Y"
+  src="/Image/NIY-logos/niy-logo-3.png"
+/>
       </NuxtLink>
 
       <!-- Center brand text -->
