@@ -6,7 +6,12 @@
       :key="item.id"
       @click="$emit('onItemClick', item)"
     >
-      <img class="grid-thumb" :src="item.poster" :alt="item.title" />
+      <img
+  class="grid-thumb"
+  :src="urlFor(item.poster).auto('format').url()"
+  :style="{ objectPosition: item.poster.hotspot ? 
+    `${item.poster.hotspot.x * 100}% ${item.poster.hotspot.y * 100}%` : 'center' }"
+/>
       <div class="img-overlay"></div>
       <div class="row-label">{{ item.title }}</div>
     </div>
@@ -41,8 +46,8 @@ defineEmits(['onItemClick']);
   min-height: 180px;
   max-height: 400px;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
+  align-items: center;      /* center vertically */
+  justify-content: center;  /* center horizontally */
   overflow: hidden;
   transition: transform 0.4s ease;
   transform-origin: center;
@@ -58,7 +63,8 @@ defineEmits(['onItemClick']);
 .grid-thumb {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;        /* ensures perfect cropping */
+  object-position: center;  /* ensures perfect centering */
   filter: brightness(0.9);
   transition: transform 0.4s ease, filter 0.3s, box-shadow 0.3s;
   z-index: 1;
