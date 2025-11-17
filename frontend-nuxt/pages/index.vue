@@ -1,12 +1,14 @@
 <!-- /pages/index.vue -->
 <script setup lang="ts">
+import siteData from '~/data/site.json'
+
+const landingVideo = siteData.landing_video
+
 definePageMeta({
   pageTransition: { name: 'fade', mode: 'out-in' }
 })
 
-const goHome = () => {
-  navigateTo('/home')
-}
+const goHome = () => navigateTo('/home')
 
 useHead({
   title: 'Night is Y',
@@ -18,13 +20,15 @@ useHead({
   <div class="wrap">
     <video
       class="bgVideo"
-      src="/videos/landing.mp4"
+      :src="landingVideo.src"
       autoplay
       muted
       playsinline
       preload="auto"
       @ended="goHome"
     />
+
+    <p v-if="landingVideo.alt" class="sr-only">{{ landingVideo.alt }}</p>
   </div>
 </template>
 

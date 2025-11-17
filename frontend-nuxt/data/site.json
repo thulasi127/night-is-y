@@ -1,0 +1,10 @@
+{
+    "home_video": {
+        "src": "/videos/default.mp4",
+        "alt": "Night is Y homepage background video"
+    },
+    "landing_video": {
+        "src": "/videos/landing.mp4",
+        "alt": "Night is Y intro landing video"
+    }
+}

@@ -1,6 +1,9 @@
 <!-- /pages/home.vue -->
 <script setup lang="ts">
 import NavBar from '~/components/NavBar.vue'
+import siteData from '~/data/site.json'
+
+const homeVideo = siteData.home_video
 
 useHead({
   title: 'Home | Night is Y',
@@ -10,7 +13,6 @@ useHead({
 
 <template>
   <div class="wrap">
-    <!-- Full-viewport background video -->
     <video
       class="bgVideo"
       autoplay
@@ -18,12 +20,14 @@ useHead({
       loop
       playsinline
       preload="auto"
-      @error="console.warn('Could not load /videos/default.mp4')"
+      @error="console.warn(`Could not load ${homeVideo.src}`)"
     >
-      <source src="/videos/default.mp4" type="video/mp4" />
+      <source :src="homeVideo.src" type="video/mp4" />
     </video>
 
-    <!-- Transparent navbar on top -->
+    <!-- optional accessibility text -->
+    <p v-if="homeVideo.alt" class="sr-only">{{ homeVideo.alt }}</p>
+
     <NavBar />
   </div>
 </template>
