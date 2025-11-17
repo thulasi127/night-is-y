@@ -26,7 +26,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import NavBar from "../components/NavBar.vue";
-import Carousel from "../components/Carousel.vue";
 import MusicVideoModal from "../components/MusicVideoModal.vue";
 import musicVideosData from "../data/music.json";
 import { useRouter } from "vue-router";
@@ -187,64 +186,6 @@ useHead({
 
 button.arrow:disabled {
   cursor: not-allowed;
-}
-
-.modal-film-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.modal-poster {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  border-radius: 16px;
-  margin-bottom: 16px;
-}
-
-.modal-title {
-  font-size: 28px;
-  font-weight: 700;
-  margin: 0 0 8px 0;
-}
-
-.modal-description {
-  font-size: 18px;
-  font-weight: 400;
-  margin: 0 0 16px 0;
-  text-align: center;
-}
-
-.modal-type, .modal-year {
-  font-size: 16px;
-  font-weight: 500;
-  margin: 0;
-}
-
-
-
-.frame {
-  position: relative;
-  width: 80%;
-  max-width: 1200px;
-  background: #111;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-
-/* New styles for MusicVideoModal */
-
-.frame .rotten-tomatoes {
-  aspect-ratio: 0.95;
-  height: 18px;
-  object-fit: cover;
-  width: 17px;
-  margin-left: 8px;
-  vertical-align: middle;
 }
 
 .arrow:enabled .arrow-icon,
