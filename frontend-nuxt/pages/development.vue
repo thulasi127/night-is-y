@@ -1,6 +1,7 @@
 <template>
   <div class="projects-page-dev centered-layout">
     <NavBar />
+
     <div class="dev-header-row">
       <div class="projects-cta cta-hover" @click="goToProjects">
         <ChevronLeftIcon class="chevron-left-small" />
@@ -9,14 +10,12 @@
       <div class="page-title">IN DEVELOPMENT</div>
     </div>
 
-    <!-- Reusable Carousel -->
     <Carousel
-      v-if="projects.length > 0"
+      v-if="projects.length"
       :items="projects"
       @onPosterClick="openModal"
     />
 
-    <!-- Dev Modal -->
     <DevModal
       v-if="modalOpen && modalProject"
       :project="modalProject"
@@ -27,20 +26,22 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { ChevronLeftIcon } from "@heroicons/vue/24/solid";
-import NavBar from "../components/NavBar.vue";
-import Carousel from "../components/Carousel.vue"; // ✅ Import your reusable Carousel
-import DevModal from "../components/DevModal.vue";
-import devData from "~/data/dev.json";
 import { useRouter } from "vue-router";
+import { ChevronLeftIcon } from "@heroicons/vue/24/solid";
 
+import NavBar from "@/components/NavBar.vue";
+import Carousel from "@/components/Carousel.vue";
+import DevModal from "@/components/DevModal.vue";
+
+import devData from "~/data/dev.json";
+
+const router = useRouter();
 const projects = ref([]);
 const modalOpen = ref(false);
 const modalProject = ref(null);
-const router = useRouter();
 
 onMounted(() => {
-  projects.value = devData; // Load dev projects
+  projects.value = devData;
 });
 
 function goToProjects() {
@@ -58,11 +59,10 @@ function closeModal() {
 }
 
 useHead({
-  title: 'Development | Night is Y',
-  meta: [{ name: 'description', content: 'Development projects by Night is Y.' }]
+  title: "Development | Night is Y",
+  meta: [{ name: "description", content: "Development projects by Night is Y." }]
 });
 </script>
-
 <style>
 
 .page-title {
