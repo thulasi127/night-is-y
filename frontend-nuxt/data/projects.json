@@ -1,0 +1,21 @@
+{
+    "projects": [{
+            "id": 1,
+            "title": "FILM & SERIES",
+            "slug": "film-series",
+            "poster": "/Image/project-covers/film-series/film-cover-1.jpg"
+        },
+        {
+            "id": 2,
+            "title": "MUSIC VIDEOS",
+            "slug": "music-videos",
+            "poster": "/Image/project-covers/music-videos/music-cover-1.png"
+        },
+        {
+            "id": 3,
+            "title": "IN DEVELOPMENT",
+            "slug": "development",
+            "poster": "/Image/project-covers/in-dev/dev-cover-1.png"
+        }
+    ]
+}

@@ -4,56 +4,41 @@
     <div class="projects-content">
       <h1 class="projects-heading">PROJECTS</h1>
       <div class="project-rows">
-        <div class="img-container clickable" @click="goToFilmSeries">
-          <img
-            class="released-projects"
-            alt="Released projects"
-            src="/Image/project-covers/film-series/film-cover-1.jpg"
-          />
-          <div class="img-overlay"></div>
-          <div class="row-label film-series">FILM &amp; SERIES</div>
-        </div>
-        <div class="img-container clickable" @click="goToMusicVideos">
-        <img
-          class="in-development"
-          alt="Music Videos"
-          src="/Image/project-covers/music-videos/music-cover-1.png"
-        />
-        <div class="img-overlay"></div>
-        <div class="row-label music-videos">MUSIC VIDEOS</div>
-      </div>
-        <div class="img-container clickable" @click="goToDevelopment">
-          <img
-            class="img"
-            alt="In development"
-            src="/Image/project-covers/in-dev/dev-cover-1.png"
-          />
-          <div class="img-overlay"></div>
-          <div class="row-label text-wrapper">IN DEVELOPMENT</div>
-        </div>
+<div class="project-rows">
+  <div
+    v-for="project in projects"
+    :key="project.id"
+    class="img-container clickable"
+    @click="goTo(project.slug)"
+  >
+    <img :src="project.poster" :alt="project.title" />
+    <div class="img-overlay"></div>
+    <div class="row-label">{{ project.title }}</div>
+  </div>
+</div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-
-useHead({
-  title: 'Projects | Night is Y',
-  meta: [{ name: 'description', content: 'Projects by Night is Y.' }]
-})
+import projectsData from "~/data/projects.json";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
-const goToFilmSeries = () => {
-  router.push('/film-series');
-};
+const projects = projectsData.projects;
 
-const goToDevelopment = () => {
-  router.push('/development');
-};
+// generic dynamic navigation
+function goTo(slug) {
+  router.push(`/${slug}`);
+}
 
-const goToMusicVideos = () => router.push('/music-videos');
-
+useHead({
+  title: "Projects | Night is Y",
+  meta: [
+    { name: "description", content: "Projects by Night is Y." }
+  ]
+});
 </script>
 
 <style scoped>
