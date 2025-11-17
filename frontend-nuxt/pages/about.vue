@@ -1,12 +1,19 @@
 <template>
   <div class="about-page-NIY">
     <NavBar />
+
     <div class="centered-content">
       <div class="content">
-        <p class="about-text"> Night is Y is an LGBTQ2S+ and Indigenous-owned production company rooted in Toronto, Canada.<br /> Producers Devery Jacobs and D.W. Waterson craft character-driven films and series that uplift queer and BIPOC stories.<br /> With every project, Night is Y creates dynamic, visually stunning stories driven by risk, rigor, and a vision for authentic representation. </p>
-          <NuxtLink to="/about-devery" class="meet-the-team-link">
-        <MeetTheTeamText text="Meet the Team" videoSrc="/videos/cutout-final.mp4" />
-      </NuxtLink>
+
+        <p class="about-text" v-html="about.text"></p>
+
+        <NuxtLink to="/about-devery" class="meet-the-team-link">
+          <MeetTheTeamText
+            :text="about.meetTheTeamLabel"
+            :videoSrc="about.meetTheTeamVideo"
+          />
+        </NuxtLink>
+
       </div>
     </div>
   </div>
@@ -15,6 +22,9 @@
 <script setup lang="ts">
 import NavBar from '~/components/NavBar.vue'
 import MeetTheTeamText from '~/components/AboutText.vue'
+import bioData from '~/data/bio.json'
+
+const about = bioData.about
 
 useHead({
   title: 'About | Night is Y',
