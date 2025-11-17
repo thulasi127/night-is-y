@@ -4,7 +4,7 @@
 
     <div class="bg">
       <video class="bg-video" autoplay muted loop playsinline>
-        <source src="/videos/contact.mp4" type="video/mp4" />
+        <source :src="data.backgroundVideo" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
@@ -36,9 +36,18 @@ import NavBar from '@/components/NavBar.vue'
 import data from '~/data/contact.json'
 import { onMounted } from 'vue'
 
-type Entry = { role: string; name: string; email: string }
-type Person = { name: string; entries: Entry[] }
-const people = (data.people as Person[])
+type Entry = {
+  role: string
+  name: string
+  email: string
+}
+
+type Person = {
+  name: string
+  entries: Entry[]
+}
+
+const people = data.people as Person[]
 
 useHead({ title: 'Contact | Night is Y' })
 
