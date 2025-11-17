@@ -83,8 +83,8 @@ useHead({
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 24px;    /* reduced from 32px */
-  margin-bottom: 24px; /* reduced from 40px */
+  margin-top: 24px;
+  margin-bottom: 24px;
   position: relative;
 }
 
@@ -133,17 +133,7 @@ useHead({
   z-index: 2;
   white-space: nowrap;
   flex: 1;
-  margin-top: 80px; /* Pushes it down on desktop */
-}
-
-@media (max-width: 1024px) {
-  .music-videos-title {
-    margin-top: 120px; /* More space on smaller screens to prevent overlap */
-  }
-
-  .projects-cta {
-    margin-top: 120px; /* More space for smaller screens */
-  }
+  margin-top: 80px; /* EXACT match to Film Series */
 }
 
 .chevron-left-small {
@@ -281,9 +271,8 @@ button.arrow:disabled {
 
 /* ---------- Tablets & Small Laptops (≤1024px) ---------- */
 @media (max-width: 1024px) {
-  .film-series-title,
-  .music-videos-title,
-  .page-title {
+  .music-videos-title {
+    margin-top: 120px; /* matches Film Series exactly */
     font-size: 36px;
   }
 
@@ -295,6 +284,7 @@ button.arrow:disabled {
   .projects-cta {
     gap: 0;
     left: 32px;
+    margin-top: 120px; /* proportional upgrade from 65px */
   }
 
   .chevron-left-small {
@@ -305,9 +295,7 @@ button.arrow:disabled {
 
 /* ---------- Small Tablets & Large Phones (≤730px) ---------- */
 @media (max-width: 730px) {
-  .film-series-title,
-  .music-videos-title,
-  .page-title {
+  .music-videos-title {
     font-size: 32px;
   }
 
@@ -319,9 +307,7 @@ button.arrow:disabled {
 
 /* ---------- Phones (≤480px) ---------- */
 @media (max-width: 480px) {
-  .film-series-title,
-  .music-videos-title,
-  .page-title {
+  .music-videos-title {
     font-size: 28px;
   }
 
@@ -332,7 +318,7 @@ button.arrow:disabled {
 
   /* Remove margin so nothing overlaps */
   .projects-cta {
-    margin-top: 60px;
+    margin-top: 60px; /* matches Film Series */
   }
 }
 
@@ -343,4 +329,8 @@ button.arrow:disabled {
   }
 }
 
+.music-videos-page.centered-layout {
+  justify-content: flex-start !important; /* identical to film series */
+  padding-top: 65px !important;           /* identical to film series */
+}
 </style>
