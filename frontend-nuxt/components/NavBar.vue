@@ -76,6 +76,7 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted, onUnmounted, nextTick } from "vue";
 import { useRoute } from "vue-router";
+import navData from "~/data/navigation.json"
 
 export default defineComponent({
   name: "NavBar",

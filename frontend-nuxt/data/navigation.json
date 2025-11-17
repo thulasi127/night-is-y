@@ -1,0 +1,8 @@
+{
+    "main": [
+        { "label": "ABOUT", "route": "/about" },
+        { "label": "WORK", "route": "/projects" },
+        { "label": "PRESS", "route": "/press" },
+        { "label": "CONTACT", "route": "/contact" }
+    ]
+}
