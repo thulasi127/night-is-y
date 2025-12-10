@@ -1,53 +1,33 @@
 <!-- /pages/index.vue -->
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { useRouter, navigateTo } from '#app'
 import siteData from '~/data/site.json'
 
 const landingVideo = siteData.landing_video
-const videoRef = ref<HTMLVideoElement | null>(null)
 
-const router = useRouter()
-
-const goHome = () => {
-  console.log('ENDING VIDEO')
-  navigateTo('/home')
-}
-
-onMounted(() => {
-  // Prefetch /home route in background
-  navigateTo('/home', { prefetch: true })
-
-  if (videoRef.value) {
-    console.log('🎬 videoRef mounted successfully')
-    videoRef.value.addEventListener('ended', () => {
-      console.log('🎬 Ending video — goHome() triggered')
-      goHome()
-    })
-  }
+definePageMeta({
+  pageTransition: { name: 'fade', mode: 'out-in' }
 })
+
+const goHome = () => navigateTo('/home')
 
 useHead({
   title: 'Night is Y',
   meta: [{ name: 'description', content: 'Welcome to Night is Y.' }]
-})
-
-definePageMeta({
-  pageTransition: { name: 'fade', mode: 'out-in' }
 })
 </script>
 
 <template>
   <div class="wrap">
     <video
-      ref="videoRef"
       class="bgVideo"
       :src="landingVideo.src"
       autoplay
       muted
       playsinline
       preload="auto"
+      @ended="goHome"
     />
+
     <p v-if="landingVideo.alt" class="sr-only">{{ landingVideo.alt }}</p>
   </div>
 </template>

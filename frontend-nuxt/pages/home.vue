@@ -1,18 +1,9 @@
 <!-- /pages/home.vue -->
 <script setup lang="ts">
 import NavBar from '~/components/NavBar.vue'
-import sanity from '~/lib/sanity'
-import { HOMEPAGE_QUERY } from '~/lib/queries/homepage'
+import siteData from '~/data/site.json'
 
-// const { data: homepage } = await useAsyncData('homepage', async () => {
-//   return await sanity.fetch(HOMEPAGE_QUERY)
-// })
-const { data: homepage } = await useAsyncData('homepage', async () => {
-  const res = await sanity.fetch(HOMEPAGE_QUERY)
-  console.log('🧪 homepage data:', res) // <— ADD THIS
-  return res
-})
-
+const homeVideo = siteData.home_video
 
 useHead({
   title: 'Home | Night is Y',
@@ -23,19 +14,19 @@ useHead({
 <template>
   <div class="wrap">
     <video
-  class="bgVideo"
-  autoplay
-  muted
-  loop
-  playsinline
-  preload="auto"
-  @error="console.warn(`Could not load ${homepage?.src}`)"
->
-  <source :src="homepage?.src || '/videos/default.mp4'" type="video/mp4" />
-</video>
+      class="bgVideo"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      @error="console.warn(`Could not load ${homeVideo.src}`)"
+    >
+      <source :src="homeVideo.src" type="video/mp4" />
+    </video>
 
-<!-- optional accessibility text -->
-<p v-if="homepage?.alt" class="sr-only">{{ homepage.alt }}</p>
+    <!-- optional accessibility text -->
+    <p v-if="homeVideo.alt" class="sr-only">{{ homeVideo.alt }}</p>
 
     <NavBar />
   </div>
