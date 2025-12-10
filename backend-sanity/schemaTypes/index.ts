@@ -1,4 +1,2 @@
-// ./schemas/index.ts
-import homepage from './homepage'
-
-export const schemaTypes = [homepage]
+import home from './home'
+export const schemaTypes = [home]

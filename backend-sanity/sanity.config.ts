@@ -1,16 +1,17 @@
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemaTypes'
+// sanity.config.ts
+import { defineConfig } from 'sanity'
+import { deskTool } from 'sanity/desk'
+import { schemaTypes } from './schemaTypes'
+import { deskStructure } from './sanity/deskStructure'
 
 export default defineConfig({
   name: 'default',
-  title: 'niy-portfolio',
+  title: 'Night is Y CMS',
 
-  projectId: 'qbh5z1zl',
-  dataset: 'production',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
+  dataset: process.env.SANITY_STUDIO_DATASET!,
 
-  plugins: [structureTool(), visionTool()],
+  plugins: [deskTool({ structure: deskStructure })],
 
   schema: {
     types: schemaTypes,
