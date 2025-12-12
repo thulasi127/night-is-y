@@ -1,7 +1,7 @@
 <!-- /pages/home.vue -->
 <script setup lang="ts">
 import NavBar from '~/components/NavBar.vue'
-import sanity from '~/lib/sanity'
+import sanity from '~/utils/sanityClient'
 import { HOMEPAGE_QUERY } from '~/lib/queries/homepage'
 
 // const { data: homepage } = await useAsyncData('homepage', async () => {
@@ -13,6 +13,7 @@ const { data: homepage } = await useAsyncData('homepage', async () => {
   return res
 })
 
+const isVideoReady = ref(false)
 
 useHead({
   title: 'Home | Night is Y',
@@ -23,6 +24,8 @@ useHead({
 <template>
   <div class="wrap">
     <video
+  v-show="!pending && isVideoReady"
+  @loadedmetadata="isVideoReady = true"
   class="bgVideo"
   autoplay
   muted
