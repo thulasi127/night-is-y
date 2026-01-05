@@ -9,7 +9,6 @@ import { HOMEPAGE_QUERY } from '~/lib/queries/homepage'
 // })
 const { data: homepage } = await useAsyncData('homepage', async () => {
   const res = await sanity.fetch(HOMEPAGE_QUERY)
-  console.log('🧪 homepage data:', res) // <— ADD THIS
   return res
 })
 
