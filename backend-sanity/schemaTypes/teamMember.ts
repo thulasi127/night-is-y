@@ -2,7 +2,7 @@ import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'teamMember',
-  title: 'Team Member',
+  title: 'TEAM MEMBERS',
   type: 'document',
   fields: [
     defineField({
@@ -33,9 +33,14 @@ export default defineType({
       name: 'headshot',
       title: 'Headshot',
       type: 'image',
-      options: { hotspot: true },
-      validation: Rule => Rule.required(),
-    }),
+      options: {
+    hotspot: true,
+    accept: 'image/*',
+  },
+  description: 'Upload an image (Recommended: no wider than 4000 pixels, under 3MB)',
+  validation: Rule =>
+    Rule.required().warning('Large images may affect site performance.'),
+}),
     defineField({
       name: 'bio',
       title: 'Bio Text',

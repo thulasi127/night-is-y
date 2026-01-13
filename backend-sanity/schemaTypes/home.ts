@@ -3,7 +3,7 @@ import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'homepage',
-  title: 'Homepage',
+  title: 'HOMEPAGE',
   type: 'document',
   fields: [
     defineField({
@@ -19,11 +19,10 @@ export default defineType({
       title: 'Background Video',
       type: 'file',
       options: {
-        accept: 'video/mp4',
-      },
-      description: 'Upload an .mp4 file (Recommended: 1920x1080, under 100MB)',
-      validation: Rule => Rule.required().error('Background video is required'),
-    }),
+    accept: 'video/mp4',
+  },
+  description: 'Upload an MP4 video (Recommended: 1920x1080, under 100MB)',
+}),
     defineField({
       name: 'alt',
       title: 'Video Alt Text',

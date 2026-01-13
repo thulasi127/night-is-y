@@ -53,5 +53,15 @@ export const deskStructure = (S: StructureBuilder) =>
                     .documentId('team-dw')
                 ),
             ])
-        )
+        ),
+        S.divider(),
+
+S.listItem()
+  .title('Project Menu')
+  .schemaType('projectMenu')
+  .child(
+    S.document()
+      .schemaType('projectMenu')
+      .documentId('project-menu')
+  )
     ])

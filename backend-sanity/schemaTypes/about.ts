@@ -4,7 +4,7 @@ import CharacterCountTextInput from '../components/CharacterCountTextInput'
 
 export default defineType({
   name: 'about',
-  title: 'About Page',
+  title: 'ABOUT PAGE',
   type: 'document',
   fields: [
     defineField({
