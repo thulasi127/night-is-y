@@ -15,8 +15,11 @@ export const deskStructure = (S: StructureBuilder) =>
             .documentId('homepage')
             .views([S.view.form().title('Editor')])
         ),
+
+        S.divider(),
+
       S.listItem()
-        .title('About Page')
+        .title('About NIY')
         .schemaType('about')
         .child(
           S.document()
@@ -27,9 +30,28 @@ export const deskStructure = (S: StructureBuilder) =>
               S.view.component(ReadOnlyNotice).title('Instructions'),
             ])
         ),
-      S.divider(),
+
       S.listItem()
-        .title('Project Menu')
-        .schemaType('projectMenu')
-        .child(S.documentTypeList('projectMenu').title('Project Categories')),
+        .title('About Team Members')
+        .child(
+          S.list()
+            .title('Team Profiles')
+            .items([
+              S.listItem()
+                .title('Devery Jacobs')
+                .child(
+                  S.document()
+                    .schemaType('teamMember')
+                    .documentId('team-devery')
+                ),
+
+              S.listItem()
+                .title('D.W. Waterson')
+                .child(
+                  S.document()
+                    .schemaType('teamMember')
+                    .documentId('team-dw')
+                ),
+            ])
+        )
     ])

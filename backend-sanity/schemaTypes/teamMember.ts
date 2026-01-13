@@ -19,17 +19,16 @@ export default defineType({
       validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'pronouns',
-      title: 'Pronouns',
-      type: 'string',
-      validation: Rule => Rule.required(),
-    }),
-    defineField({
-      name: 'role',
-      title: 'Role / Description',
-      type: 'string',
-      validation: Rule => Rule.required(),
-    }),
+  name: 'roles',
+  title: 'Roles',
+  type: 'array',
+  of: [{ type: 'string' }],
+  options: {
+    layout: 'tags',
+  },
+  validation: Rule => Rule.min(1).required(),
+  description: 'Type a role and press Enter to add it. You can add multiple roles.',
+}),
     defineField({
       name: 'headshot',
       title: 'Headshot',
@@ -60,19 +59,49 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'links',
-      title: 'Social Links',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            { name: 'type', type: 'string', title: 'Platform Type (e.g., imdb, instagram, youtube)' },
-            { name: 'url', type: 'url', title: 'URL' },
-            { name: 'img', type: 'url', title: 'Icon Image URL (svg/png)' },
-          ],
-        },
+  name: 'socials',
+  title: 'Social Profiles',
+  type: 'object',
+  fields: [
+    {
+      name: 'instagram',
+      type: 'object',
+      title: 'Instagram',
+      fields: [
+        { name: 'enabled', type: 'boolean', title: 'Show Instagram', initialValue: true },
+        { name: 'url', type: 'url', title: 'Instagram URL' },
       ],
-    }),
+    },
+    {
+      name: 'imdb',
+      type: 'object',
+      title: 'IMDb',
+      fields: [
+        { name: 'enabled', type: 'boolean', title: 'Show IMDb', initialValue: true },
+        { name: 'url', type: 'url', title: 'IMDb URL' },
+      ],
+    },
+    {
+      name: 'youtube',
+      type: 'object',
+      title: 'YouTube',
+      fields: [
+        { name: 'enabled', type: 'boolean', title: 'Show YouTube', initialValue: false },
+        { name: 'url', type: 'url', title: 'YouTube URL' },
+      ],
+    },
   ],
+}),
+defineField({
+  name: 'pronouns',
+  type: 'string',
+  hidden: true,
+}),
+defineField({
+  name: 'role',
+  type: 'string',
+  hidden: true,
+}),
+  ],
+  
 })

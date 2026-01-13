@@ -17,7 +17,7 @@
       <span class="dw-waterson overline">D.W. WATERSON</span>
     </div>
     <div class="devery-meta">
-      <span class="span">{{ bio.role.toUpperCase() }}</span>
+      <span class="span">{{ formattedRoles }}</span>
     </div>
 
     <!-- Scrollable bio area -->
@@ -87,92 +87,145 @@
 </template>
 
 <script lang="ts" setup>
-import NavBar from "../components/NavBar.vue";
-import bioData from '~/data/bio.json';
-import { ref, watch, onMounted, computed } from "vue";
+import NavBar from "../components/NavBar.vue"
+import client from "~/utils/sanityClient"
+import { ref, watch, onMounted, computed } from "vue"
 
-const storedOffset = ref<number | null>(null);
-// const computedMarginTop = computed(() =>
-//   storedOffset.value ? `calc(50vh - 50% + ${storedOffset.value}px)` : '0'
-// );
+// --- Step 1: Fetch D.W.’s CMS data (singleton) ---
+const query = `*[_type == "teamMember" && _id == "team-dw"][0]{
+  name,
+  pronouns,
+  roles,
+  bio,
+  headshot {
+    asset->{ url }
+  },
+  socials {
+    instagram { enabled, url },
+    imdb { enabled, url },
+    youtube { enabled, url }
+  },
+  notable_works
+}`
 
-onMounted(() => {
-  // No offset logic needed anymore
-});
+const { data: raw } = await useAsyncData("dw-bio", () =>
+  client.fetch(query)
+)
 
-const showVideo = ref(false);
-const videoUrl = ref("");
+// --- Step 2: Map to frontend-safe structure ---
+const bio = computed(() => {
+  if (!raw.value) {
+    return {
+      name: "",
+      pronouns: "",
+      roles: [],
+      headshot: "",
+      bio: "",
+      notable_works: []
+    }
+  }
+
+  return {
+    name: raw.value.name,
+    pronouns: raw.value.pronouns,
+    roles: raw.value.roles ?? [],
+    headshot: raw.value?.headshot?.asset?.url ?? "",
+    bio: raw.value.bio ?? "",
+    notable_works: raw.value.notable_works ?? []
+  }
+})
+
+// --- Step 3: Format roles (ALL CAPS, comma-separated) ---
+const formattedRoles = computed(() => {
+  if (!bio.value.roles.length) return ""
+  return bio.value.roles
+    .map((r: string) => r.trim().toUpperCase())
+    .join(", ")
+})
+
+// --- Step 4: Format bio text ---
+const formattedBio = computed(() => {
+  if (!bio.value.bio) return ""
+  const { name, pronouns, bio: text } = bio.value
+  const header = `<strong>${name} (${pronouns?.toLowerCase?.()})</strong>`
+  return text
+    .replace(new RegExp(`${name}\\s*\\(${pronouns}\\)`, "i"), header)
+    .replace(/\n\n/g, "<br><br>")
+    .replace(/\n/g, "<br>")
+})
+
+// --- Step 5: Fixed icon map ---
+const SOCIAL_ICONS = {
+  instagram: "https://c.animaapp.com/Wqg9SAYU/img/instagram.svg",
+  imdb: "https://c.animaapp.com/Wqg9SAYU/img/imdb-logo@2x.png",
+  youtube: "https://c.animaapp.com/Wqg9SAYU/img/youtube.svg"
+}
+
+// --- Step 6: Ordered social links ---
+const orderedLinks = computed(() => {
+  if (!raw.value?.socials) return []
+
+  const socials = raw.value.socials
+
+  return [
+    socials.instagram?.enabled && socials.instagram.url
+      ? { type: "instagram", url: socials.instagram.url, img: SOCIAL_ICONS.instagram }
+      : null,
+
+    socials.imdb?.enabled && socials.imdb.url
+      ? { type: "imdb", url: socials.imdb.url, img: SOCIAL_ICONS.imdb }
+      : null,
+
+    socials.youtube?.enabled && socials.youtube.url
+      ? { type: "youtube", url: socials.youtube.url, img: SOCIAL_ICONS.youtube }
+      : null
+  ].filter(Boolean)
+})
+
+// --- Video modal logic (unchanged) ---
+const showVideo = ref(false)
+const videoUrl = ref("")
 
 function openVideo(url: string) {
-  // Convert YouTube watch link → embed link
-  videoUrl.value = url.replace("watch?v=", "embed/").split("&")[0];
-  showVideo.value = true;
+  videoUrl.value = url.replace("watch?v=", "embed/").split("&")[0]
+  showVideo.value = true
 }
 
 function closeVideo() {
-  videoUrl.value = "";
-  showVideo.value = false;
+  videoUrl.value = ""
+  showVideo.value = false
 }
 
-// Load YouTube API and listen for video end
 watch(showVideo, (val) => {
-  if (val) {
-    setTimeout(() => {
-      if (!window.YT) {
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        document.body.appendChild(tag);
-      }
-      window.onYouTubeIframeAPIReady = () => {
-        const player = new window.YT.Player('ytplayer', {
-          events: {
-            'onStateChange': (event: any) => {
-              if (event.data === window.YT.PlayerState.ENDED) closeVideo();
-            }
+  if (!val || typeof window === "undefined") return
+
+  setTimeout(() => {
+    if (!window.YT) {
+      const tag = document.createElement("script")
+      tag.src = "https://www.youtube.com/iframe_api"
+      document.body.appendChild(tag)
+    }
+
+    const initPlayer = () => {
+      new window.YT.Player("ytplayer", {
+        events: {
+          onStateChange: (event: any) => {
+            if (event.data === window.YT.PlayerState.ENDED) closeVideo()
           }
-        });
-      };
-      if (window.YT && window.YT.Player) {
-        const player = new window.YT.Player('ytplayer', {
-          events: {
-            'onStateChange': (event: any) => {
-              if (event.data === window.YT.PlayerState.ENDED) closeVideo();
-            }
-          }
-        });
-      }
-    }, 500);
-  }
-});
+        }
+      })
+    }
 
-const bio = bioData.dw_waterson;
+    if (window.YT?.Player) initPlayer()
+    else window.onYouTubeIframeAPIReady = initPlayer
+  }, 500)
+})
 
-const formattedBio = computed(() => {
-  if (!bio.bio) return "";
-
-  // Build the bold header (name + pronouns)
-  const header = `<strong>${bio.name} (${bio.pronouns.toLowerCase()})</strong>`;
-
-  // Replace the first instance of the name/pronouns in the bio text
-  const replacedBio = bio.bio.replace(
-    new RegExp(`${bio.name}\\s*\\(${bio.pronouns}\\)`, "i"),
-    header
-  );
-
-  // Handle line breaks
-  return replacedBio.replace(/\n\n/g, "<br><br>").replace(/\n/g, "<br>");
-});
-
-// Order icons manually (Instagram → IMDb)
-const orderedLinks = bio.links.sort((a, b) => {
-  const order = { instagram: 1, imdb: 2 };
-  return (order[a.type] || 99) - (order[b.type] || 99);
-});
-
+// --- Meta ---
 useHead({
-  title: 'About D.W. Waterson | Night is Y',
-  meta: [{ name: 'description', content: 'About D.W. Waterson.' }]
-});
+  title: "About D.W. Waterson | Night is Y",
+  meta: [{ name: "description", content: "About D.W. Waterson." }]
+})
 </script>
 
 <style scoped>

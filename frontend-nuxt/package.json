@@ -12,6 +12,7 @@
   "dependencies": {
     "@heroicons/vue": "^2.2.0",
     "@sanity/client": "^7.9.0",
+    "@sanity/image-url": "^2.0.2",
     "@splidejs/splide": "^4.1.4",
     "@splidejs/vue-splide": "^0.6.12",
     "normalize-path": "^3.0.0",
