@@ -31,4 +31,12 @@ export default defineType({
       validation: Rule => Rule.optional(),
     }),
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Homepage',
+        subtitle: 'Homepage of the site',
+      }
+    },
+  },
 })

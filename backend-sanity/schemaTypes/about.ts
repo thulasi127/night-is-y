@@ -4,14 +4,14 @@ import CharacterCountTextInput from '../components/CharacterCountTextInput'
 
 export default defineType({
   name: 'about',
-  title: 'ABOUT PAGE',
+  title: 'ABOUT NIY',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
-      initialValue: 'About Page',
+      initialValue: 'About NIY',
       readOnly: true,
       hidden: true,
     }),
@@ -28,4 +28,12 @@ export default defineType({
             Rule.max(1000).error('Bio must be under 1000 characters to avoid layout issues.'),
         }),
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'About NIY',
+        subtitle: 'Press content for the site',
+      }
+    },
+  },
 })

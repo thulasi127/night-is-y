@@ -101,4 +101,15 @@ S.listItem()
       .schemaType('press')
       .documentId('press-page')
   ),
+
+  S.divider(),
+
+S.listItem()
+  .title('Contact')
+  .schemaType('contact')
+  .child(
+    S.document()
+      .schemaType('contact')
+      .documentId('contact-page')
+  ),
     ])
