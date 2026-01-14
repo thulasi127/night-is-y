@@ -10,14 +10,14 @@
 
     <!-- Group by project, ignore category -->
     <section
-      v-for="(project, pIdx) in groupedProjects"
-      :key="pIdx"
-      class="press-project"
-    >
-      <h2 class="project-title">{{ project.project }}</h2>
+  v-for="(project, pIdx) in groupedProjects"
+  :key="pIdx"
+  class="press-project"
+>
+  <h2 class="project-title">{{ project.project }}</h2>
       <div class="press-grid">
         <div
-          v-for="(quote, qIdx) in project.allQuotes"
+          v-for="(quote, qIdx) in project.quotes"
           :key="qIdx"
           class="press-card"
         >
@@ -26,11 +26,11 @@
             <blockquote class="quote-text">“{{ quote.text }}”</blockquote>
             <div class="logo-container">
               <img
-                :src="quote.logo"
-                :alt="quote.source || 'Laurel Logo'"
-                class="source-logo"
-                :class="quote.class"
-              />
+  :src="quote.logo"
+  :alt="quote.source || 'Publication logo'"
+  class="source-logo"
+  :class="{ 'invert-dark-logo': quote.invertDarkLogo }"
+/>
             </div>
           </div>
         </div>
@@ -40,28 +40,25 @@
 </template>
 
 <script setup lang="ts">
-import pressDataRaw from "@/data/press.json"
-import { useHead } from '#imports'
+import { computed } from 'vue'
+import { useAsyncData, useHead } from '#imports'
+
+import NavBar from '~/components/NavBar.vue'
 import TheySaidItBestText from '~/components/PressText.vue'
+import { sanityClient } from '~/utils/sanityClient'
+import { PRESS_QUERY } from '~/lib/queries/press'
 
-// Group all quotes by project, ignoring category
-const groupedProjects = [];
-const projectMap = new Map();
+const { data: press, pending } = await useAsyncData('press', () =>
+  sanityClient().fetch(PRESS_QUERY)
+)
 
-for (const entry of pressDataRaw) {
-  if (!projectMap.has(entry.project)) {
-    projectMap.set(entry.project, { project: entry.project, allQuotes: [] });
-  }
-  projectMap.get(entry.project).allQuotes.push(...(entry.quotes || []));
-}
+// Sanity already groups by project, so we pass it straight through
+const groupedProjects = computed(() => press.value?.projects || [])
 
-groupedProjects.push(...projectMap.values());
-
-// Set the browser tab title and meta description
 useHead({
   title: 'Press | Night Is Y',
   meta: [{ name: 'description', content: 'Press coverage for Night Is Y projects.' }]
-});
+})
 </script>
 
 <style scoped>

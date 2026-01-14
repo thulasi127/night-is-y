@@ -2,7 +2,7 @@ import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'projectMenu',
-  title: 'PROJECT MENU',
+  title: 'PROJECTS MENU',
   type: 'document',
 
   // ✅ ADD THIS

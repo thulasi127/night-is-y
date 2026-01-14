@@ -57,7 +57,7 @@ export const deskStructure = (S: StructureBuilder) =>
         S.divider(),
 
 S.listItem()
-  .title('Project Menu')
+  .title('Projects Menu')
   .schemaType('projectMenu')
   .child(
     S.document()
@@ -89,5 +89,16 @@ S.listItem()
     S.document()
       .schemaType('development')
       .documentId('development-page')
+  ),
+
+  S.divider(),
+
+  S.listItem()
+  .title('Press')
+  .schemaType('press')
+  .child(
+    S.document()
+      .schemaType('press')
+      .documentId('press-page')
   ),
     ])
