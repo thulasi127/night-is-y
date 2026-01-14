@@ -70,10 +70,6 @@ const { data } = await useAsyncData("filmSeries", async () => {
   return result || { films: [] }
 })
 
-watchEffect(() => {
-  console.log("FILMS RAW DATA:", data.value)
-})
-
 const films = computed(() => {
   const items = data.value?.films || []
   return [...items].sort((a, b) => (b.year || 0) - (a.year || 0))

@@ -181,12 +181,6 @@ const orderedLinks = computed(() => {
   ].filter(Boolean)
 })
 
-// --- Debug (safe to remove once confirmed) ---
-watchEffect(() => {
-  console.log("RAW FROM SANITY:", raw.value)
-  console.log("MAPPED BIO:", bio.value)
-})
-
 // --- Modal video player ---
 const showVideo = ref(false)
 const videoUrl = ref("")

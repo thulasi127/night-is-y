@@ -71,5 +71,15 @@ S.listItem()
     S.document()
       .schemaType('filmSeries')
       .documentId('film-series-page')
-  )
+  ),
+
+  /* Place music video section here */
+  S.listItem()
+  .title('In Development')
+  .schemaType('development')
+  .child(
+    S.document()
+      .schemaType('development')
+      .documentId('development-page')
+  ),
     ])

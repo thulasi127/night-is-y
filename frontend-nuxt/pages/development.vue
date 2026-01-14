@@ -10,11 +10,13 @@
       <div class="page-title">IN DEVELOPMENT</div>
     </div>
 
-    <Carousel
-      v-if="projects.length"
-      :items="projects"
-      @onPosterClick="openModal"
-    />
+  <ClientOnly>
+  <Carousel
+    v-if="projects.length > 0"
+    :items="projects"
+    @onPosterClick="openModal"
+  />
+</ClientOnly>
 
     <DevModal
       v-if="modalOpen && modalProject"
@@ -25,44 +27,63 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
-import { ChevronLeftIcon } from "@heroicons/vue/24/solid";
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { ChevronLeftIcon } from '@heroicons/vue/24/solid'
 
-import NavBar from "@/components/NavBar.vue";
-import Carousel from "@/components/Carousel.vue";
-import DevModal from "@/components/DevModal.vue";
+import NavBar from '@/components/NavBar.vue'
+import Carousel from '@/components/Carousel.vue'
+import DevModal from '@/components/DevModal.vue'
 
-import devData from "~/data/dev.json";
+import { sanityClient } from '~/utils/sanityClient'
 
-const router = useRouter();
-const projects = ref([]);
-const modalOpen = ref(false);
-const modalProject = ref(null);
+const router = useRouter()
+const modalOpen = ref(false)
+const modalProject = ref(null)
 
-onMounted(() => {
-  projects.value = devData;
-});
+const query = `*[_type == "development" && _id == "development-page"][0]{
+  projects[]{
+    title,
+    releaseDate,
+    summary,
+    "poster": poster.asset->url,
+    team[]{
+      role,
+      names[]{
+        name,
+        imdb
+      }
+    }
+  }
+}`
+
+const { data } = await useAsyncData('development', async () => {
+  const result = await sanityClient().fetch(query)
+  return result || { projects: [] }
+})
+
+const projects = computed(() => data.value?.projects || [])
 
 function goToProjects() {
-  router.push("/projects");
+  router.push('/projects')
 }
 
 function openModal(project) {
-  modalProject.value = project;
-  modalOpen.value = true;
+  modalProject.value = project
+  modalOpen.value = true
 }
 
 function closeModal() {
-  modalOpen.value = false;
-  modalProject.value = null;
+  modalOpen.value = false
+  modalProject.value = null
 }
 
 useHead({
-  title: "Development | Night is Y",
-  meta: [{ name: "description", content: "Development projects by Night is Y." }]
-});
+  title: 'Development | Night is Y',
+  meta: [{ name: 'description', content: 'Development projects by Night is Y.' }],
+})
 </script>
+
 <style>
 
 .page-title {
