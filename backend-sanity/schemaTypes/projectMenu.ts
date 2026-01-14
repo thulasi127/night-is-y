@@ -2,14 +2,14 @@ import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'projectMenu',
-  title: 'PROJECTS MENU',
+  title: 'PROJECT MENU',
   type: 'document',
 
   // ✅ ADD THIS
   preview: {
     prepare() {
       return {
-        title: 'Projects Menu',
+        title: 'Project Menu',
         subtitle: 'Edit the images shown on the Projects page',
       }
     },

@@ -28,7 +28,7 @@ export const deskStructure = (S: StructureBuilder) =>
         .title('About')
         .child(
           S.list()
-            .title('About')
+            .title('About Pages')
             .items([
               S.listItem()
                 .title('About NIY')
@@ -78,10 +78,10 @@ export const deskStructure = (S: StructureBuilder) =>
         .title('Projects')
         .child(
           S.list()
-            .title('Projects')
+            .title('Project Pages')
             .items([
               S.listItem()
-                .title('Projects Menu')
+                .title('Project Menu')
                 .schemaType('projectMenu')
                 .child(
                   S.document()
