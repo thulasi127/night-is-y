@@ -2,7 +2,7 @@ import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'musicVideos',
-  title: 'MUSIC VIDEOS',
+  title: 'MUSIC VIDEOS PAGE',
   type: 'document',
 
   fields: [
@@ -70,7 +70,7 @@ export default defineType({
   preview: {
     prepare() {
       return {
-        title: 'MUSIC VIDEOS',
+        title: 'Music Videos',
         subtitle: 'Edit music videos shown on the site',
       }
     },

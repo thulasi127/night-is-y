@@ -1,6 +1,6 @@
 export default {
   name: 'contact',
-  title: 'Contact',
+  title: 'CONTACT PAGE',
   type: 'document',
 
   fields: [
@@ -71,7 +71,7 @@ export default {
   preview: {
     prepare() {
       return {
-        title: 'Contact Page',
+        title: 'Contact Info',
         subtitle: 'Manage contact information for each team member',
       }
     },

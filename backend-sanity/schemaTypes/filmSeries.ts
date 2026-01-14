@@ -2,7 +2,7 @@ import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'filmSeries',
-  title: 'FILM & SERIES',
+  title: 'FILM & SERIES PAGE',
   type: 'document',
 
   fields: [
@@ -254,7 +254,7 @@ export default defineType({
   preview: {
     prepare() {
       return {
-        title: 'FILM & SERIES',
+        title: 'Film & Series',
         subtitle: 'Edit films and series shown on the site',
       }
     },

@@ -1,7 +1,7 @@
 // sanity/schemaTypes/press.ts
 export default {
   name: 'press',
-  title: 'Press',
+  title: 'PRESS PAGE',
   type: 'document',
 
   fields: [

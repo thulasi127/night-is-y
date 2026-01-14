@@ -6,6 +6,9 @@ export const deskStructure = (S: StructureBuilder) =>
   S.list()
     .title('Content')
     .items([
+      // ----------------
+      // Homepage
+      // ----------------
       S.listItem()
         .title('Homepage')
         .schemaType('homepage')
@@ -16,100 +19,130 @@ export const deskStructure = (S: StructureBuilder) =>
             .views([S.view.form().title('Editor')])
         ),
 
-        S.divider(),
+      S.divider(),
 
+      // ----------------
+      // About
+      // ----------------
       S.listItem()
-        .title('About NIY')
-        .schemaType('about')
-        .child(
-          S.document()
-            .schemaType('about')
-            .documentId('about')
-            .views([
-              S.view.form().title('Editor'),
-              S.view.component(ReadOnlyNotice).title('Instructions'),
-            ])
-        ),
-
-      S.listItem()
-        .title('About Team Members')
+        .title('About')
         .child(
           S.list()
-            .title('Team Profiles')
+            .title('About')
             .items([
               S.listItem()
-                .title('Devery Jacobs')
+                .title('About NIY')
+                .schemaType('about')
                 .child(
                   S.document()
-                    .schemaType('teamMember')
-                    .documentId('team-devery')
+                    .schemaType('about')
+                    .documentId('about')
+                    .views([
+                      S.view.form().title('Editor'),
+                      S.view.component(ReadOnlyNotice).title('Instructions'),
+                    ])
                 ),
 
               S.listItem()
-                .title('D.W. Waterson')
+                .title('Team Members')
                 .child(
-                  S.document()
-                    .schemaType('teamMember')
-                    .documentId('team-dw')
+                  S.list()
+                    .title('Team Members')
+                    .items([
+                      S.listItem()
+                        .title('Devery Jacobs')
+                        .child(
+                          S.document()
+                            .schemaType('teamMember')
+                            .documentId('team-devery')
+                        ),
+
+                      S.listItem()
+                        .title('D.W. Waterson')
+                        .child(
+                          S.document()
+                            .schemaType('teamMember')
+                            .documentId('team-dw')
+                        ),
+                    ])
                 ),
             ])
         ),
-        S.divider(),
 
-S.listItem()
-  .title('Projects Menu')
-  .schemaType('projectMenu')
-  .child(
-    S.document()
-      .schemaType('projectMenu')
-      .documentId('project-menu')
-  ),
-  S.listItem()
-  .title('Film & Series')
-  .schemaType('filmSeries')
-  .child(
-    S.document()
-      .schemaType('filmSeries')
-      .documentId('film-series-page')
-  ),
+      S.divider(),
 
-  S.listItem()
-  .title('Music Videos')
-  .schemaType('musicVideos')
-  .child(
-    S.document()
-      .schemaType('musicVideos')
-      .documentId('music-videos-page')
-  ),
-  
-  S.listItem()
-  .title('In Development')
-  .schemaType('development')
-  .child(
-    S.document()
-      .schemaType('development')
-      .documentId('development-page')
-  ),
+      // ----------------
+      // Projects
+      // ----------------
+      S.listItem()
+        .title('Projects')
+        .child(
+          S.list()
+            .title('Projects')
+            .items([
+              S.listItem()
+                .title('Projects Menu')
+                .schemaType('projectMenu')
+                .child(
+                  S.document()
+                    .schemaType('projectMenu')
+                    .documentId('project-menu')
+                ),
 
-  S.divider(),
+              S.listItem()
+                .title('Film & Series')
+                .schemaType('filmSeries')
+                .child(
+                  S.document()
+                    .schemaType('filmSeries')
+                    .documentId('film-series-page')
+                ),
 
-  S.listItem()
-  .title('Press')
-  .schemaType('press')
-  .child(
-    S.document()
-      .schemaType('press')
-      .documentId('press-page')
-  ),
+              S.listItem()
+                .title('Music Videos')
+                .schemaType('musicVideos')
+                .child(
+                  S.document()
+                    .schemaType('musicVideos')
+                    .documentId('music-videos-page')
+                ),
 
-  S.divider(),
+              S.listItem()
+                .title('In Development')
+                .schemaType('development')
+                .child(
+                  S.document()
+                    .schemaType('development')
+                    .documentId('development-page')
+                ),
+            ])
+        ),
 
-S.listItem()
-  .title('Contact')
-  .schemaType('contact')
-  .child(
-    S.document()
-      .schemaType('contact')
-      .documentId('contact-page')
-  ),
+      S.divider(),
+
+      // ----------------
+      // Press
+      // ----------------
+      S.listItem()
+        .title('Press')
+        .schemaType('press')
+        .child(
+          S.document()
+            .schemaType('press')
+            .documentId('press-page')
+        ),
+
+      S.divider(),
+
+      // ----------------
+      // Contact
+      // ----------------
+      S.listItem()
+        .title('Contact')
+        .schemaType('contact')
+        .child(
+          S.document()
+            .schemaType('contact')
+            .documentId('contact-page')
+        ),
     ])

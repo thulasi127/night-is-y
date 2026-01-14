@@ -4,7 +4,7 @@ import CharacterCountTextInput from '../components/CharacterCountTextInput'
 
 export default defineType({
   name: 'about',
-  title: 'ABOUT NIY',
+  title: 'ABOUT PAGES',
   type: 'document',
   fields: [
     defineField({
@@ -32,7 +32,7 @@ export default defineType({
     prepare() {
       return {
         title: 'About NIY',
-        subtitle: 'Press content for the site',
+        subtitle: 'Edit the About NIY page content',
       }
     },
   },

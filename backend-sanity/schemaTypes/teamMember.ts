@@ -108,5 +108,18 @@ defineField({
   hidden: true,
 }),
   ],
-  
+  preview: {
+  select: {
+    title: 'name',
+    subtitle: 'roles',
+    media: 'headshot',
+  },
+  prepare({ title, subtitle, media }) {
+    return {
+      title,
+      subtitle: Array.isArray(subtitle) ? subtitle.join(', ') : subtitle,
+      media,
+    }
+  },
+},
 })
