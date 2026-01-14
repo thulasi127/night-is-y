@@ -23,7 +23,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import client from '~/utils/sanityClient'
+import { sanityClient } from '~/utils/sanityClient'
 
 const router = useRouter()
 
@@ -40,7 +40,7 @@ const query = `*[_type == "projectMenu" && _id == "project-menu"][0]{
 }`
 
 const { data } = await useAsyncData('project-menu', () =>
-  client.fetch(query)
+  sanityClient().fetch(query)
 )
 
 const projects = computed(() => [

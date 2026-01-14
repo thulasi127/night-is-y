@@ -22,16 +22,16 @@
 <script setup lang="ts">
 import NavBar from '~/components/NavBar.vue'
 import MeetTheTeamText from '~/components/AboutText.vue'
-import client from '~/utils/sanityClient'
-// import groq from 'groq'
+import { sanityClient } from '~/utils/sanityClient'
 
-// Fetch data from Sanity
-// const query = groq`*[_type == "about" && _id == "about"][0]{ bio }`
 const query = `*[_type == "about" && _id == "about"][0]{ bio }`
-const { data: aboutData } = await useAsyncData('aboutData', () => client.fetch(query))
+
+const { data: aboutData } = await useAsyncData('aboutData', () =>
+  sanityClient().fetch(query)
+)
 
 const about = {
- text: (aboutData.value?.bio || '').replace(/\n/g, '<br />'),
+  text: (aboutData.value?.bio || '').replace(/\n/g, '<br />'),
   meetTheTeamLabel: 'Meet the Team',
   meetTheTeamVideo: '/videos/cutout-final.mp4',
 }
@@ -41,7 +41,6 @@ useHead({
   meta: [{ name: 'description', content: 'About Night is Y.' }]
 })
 </script>
-
 
 <style scoped>
 .about-page-NIY {

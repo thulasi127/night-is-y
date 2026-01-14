@@ -34,7 +34,6 @@ import { ChevronLeftIcon } from '@heroicons/vue/24/solid'
 import NavBar from '@/components/NavBar.vue'
 import Carousel from '@/components/Carousel.vue'
 import DevModal from '@/components/DevModal.vue'
-
 import { sanityClient } from '~/utils/sanityClient'
 
 const router = useRouter()

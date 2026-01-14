@@ -73,7 +73,15 @@ S.listItem()
       .documentId('film-series-page')
   ),
 
-  /* Place music video section here */
+  S.listItem()
+  .title('Music Videos')
+  .schemaType('musicVideos')
+  .child(
+    S.document()
+      .schemaType('musicVideos')
+      .documentId('music-videos-page')
+  ),
+  
   S.listItem()
   .title('In Development')
   .schemaType('development')

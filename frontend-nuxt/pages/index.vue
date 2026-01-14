@@ -1,18 +1,26 @@
 <!-- /pages/index.vue -->
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import siteData from '~/data/site.json'
 
 const landingVideo = siteData.landing_video
-
-definePageMeta({
-  pageTransition: { name: 'fade', mode: 'out-in' }
-})
+const videoRef = ref<HTMLVideoElement | null>(null)
 
 const goHome = () => navigateTo('/home')
 
-useHead({
-  title: 'Night is Y',
-  meta: [{ name: 'description', content: 'Welcome to Night is Y.' }]
+onMounted(async () => {
+  if (videoRef.value) {
+    try {
+      await videoRef.value.play()
+    } catch {
+      // fallback if autoplay is blocked
+      setTimeout(goHome, 3000)
+    }
+  }
+})
+
+definePageMeta({
+  pageTransition: { name: 'fade', mode: 'out-in' }
 })
 </script>
 

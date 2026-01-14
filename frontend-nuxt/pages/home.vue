@@ -1,18 +1,17 @@
 <!-- /pages/home.vue -->
 <script setup lang="ts">
+import { ref } from 'vue'
+import { useAsyncData, useHead } from '#app'
+
 import NavBar from '~/components/NavBar.vue'
-import sanity from '~/utils/sanityClient'
+import { sanityClient } from '~/utils/sanityClient'
 import { HOMEPAGE_QUERY } from '~/lib/queries/homepage'
 
-// const { data: homepage } = await useAsyncData('homepage', async () => {
-//   return await sanity.fetch(HOMEPAGE_QUERY)
-// })
-const { data: homepage } = await useAsyncData('homepage', async () => {
-  const res = await sanity.fetch(HOMEPAGE_QUERY)
-  return res
+const { data: homepage, pending } = await useAsyncData('homepage', async () => {
+  return await sanityClient().fetch(HOMEPAGE_QUERY)
 })
 
-const isVideoReady = ref(false)
+// const isVideoReady = ref(false)
 
 useHead({
   title: 'Home | Night is Y',
@@ -23,8 +22,7 @@ useHead({
 <template>
   <div class="wrap">
     <video
-  v-show="!pending && isVideoReady"
-  @loadedmetadata="isVideoReady = true"
+  v-if="!pending && homepage?.src"
   class="bgVideo"
   autoplay
   muted
@@ -33,13 +31,13 @@ useHead({
   preload="auto"
   @error="console.warn(`Could not load ${homepage?.src}`)"
 >
-  <source :src="homepage?.src || '/videos/default.mp4'" type="video/mp4" />
+  <source :src="homepage.src" type="video/mp4" />
 </video>
 
 <!-- optional accessibility text -->
 <p v-if="homepage?.alt" class="sr-only">{{ homepage.alt }}</p>
 
-    <NavBar />
+<NavBar />
   </div>
 </template>
 

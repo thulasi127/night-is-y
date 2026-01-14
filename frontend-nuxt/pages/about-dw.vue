@@ -88,7 +88,7 @@
 
 <script lang="ts" setup>
 import NavBar from "../components/NavBar.vue"
-import client from "~/utils/sanityClient"
+import { sanityClient } from "~/utils/sanityClient"
 import { ref, watch, onMounted, computed } from "vue"
 
 // --- Step 1: Fetch D.W.’s CMS data (singleton) ---
@@ -109,7 +109,7 @@ const query = `*[_type == "teamMember" && _id == "team-dw"][0]{
 }`
 
 const { data: raw } = await useAsyncData("dw-bio", () =>
-  client.fetch(query)
+  sanityClient().fetch(query)
 )
 
 // --- Step 2: Map to frontend-safe structure ---

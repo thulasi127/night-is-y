@@ -88,7 +88,7 @@
 
 <script lang="ts" setup>
 import NavBar from "../components/NavBar.vue"
-import client from "~/utils/sanityClient"
+import { sanityClient } from "~/utils/sanityClient"
 import { ref, computed, onMounted, watch } from "vue"
 
 // --- Step 1: Fetch Devery’s CMS data (singleton, same pattern as about.vue) ---
@@ -109,7 +109,7 @@ const query = `*[_type == "teamMember" && _id == "team-devery"][0]{
 }`
 
 const { data: raw } = await useAsyncData("devery-bio", () =>
-  client.fetch(query)
+  sanityClient().fetch(query)
 )
 
 const formattedRoles = computed(() => {
