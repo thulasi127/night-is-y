@@ -9,12 +9,14 @@
       <div class="page-title">FILM &amp; SERIES</div>
     </div>
 
-    <!-- Carousel integration -->
-    <Carousel
-      v-if="films.length > 0"
-      :items="films"
-      @onPosterClick="openModal"
-    />
+    <!-- Carousel integration (client-only to avoid SSR window error) -->
+    <ClientOnly>
+      <Carousel
+        v-if="films.length > 0"
+        :items="films"
+        @onPosterClick="openModal"
+      />
+    </ClientOnly>
 
     <FilmModal
       v-if="modalOpen && modalFilm"
@@ -25,43 +27,77 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import NavBar from "../components/NavBar.vue";
-import Carousel from "../components/Carousel.vue";
-import FilmModal from "../components/FilmModal.vue";
-import filmsData from "../data/films.json";
-import { useRouter } from "vue-router";
-import { ChevronLeftIcon } from "@heroicons/vue/24/solid";
+import { ref, computed, watchEffect } from "vue"
+import { useAsyncData, useHead } from "#app"
+import NavBar from "../components/NavBar.vue"
+import Carousel from "../components/Carousel.vue"
+import FilmModal from "../components/FilmModal.vue"
+import { useRouter } from "vue-router"
+import { ChevronLeftIcon } from "@heroicons/vue/24/solid"
+import { sanityClient } from "~/utils/sanityClient"
 
-const films = ref([]);
-const modalOpen = ref(false);
-const modalFilm = ref(null);
-const router = useRouter();
+const router = useRouter()
+const modalOpen = ref(false)
+const modalFilm = ref(null)
 
-onMounted(() => {
-  films.value = filmsData.sort((a, b) => b.year - a.year);
-});
+const query = `*[_type == "filmSeriesPage" && _id == "film-series-page"][0]{
+  films[]{
+    title,
+    year,
+    duration,
+    description,
+    trailer,
+    credits[]{
+      role,
+      people[]{
+        name,
+        imdb
+      }
+    },
+    awardsAndNominations,
+    articles,
+    laurels[]{
+      name,
+      shouldDisplay,
+      "img": img.asset->url
+    },
+    "poster": poster.asset->url
+  }
+}`
+
+const { data } = await useAsyncData("filmSeries", async () => {
+  const result = await sanityClient().fetch(query)
+  return result || { films: [] }
+})
+
+watchEffect(() => {
+  console.log("FILMS RAW DATA:", data.value)
+})
+
+const films = computed(() => {
+  const items = data.value?.films || []
+  return [...items].sort((a, b) => (b.year || 0) - (a.year || 0))
+})
 
 function goToProjects() {
-  router.push("/projects");
+  router.push("/projects")
 }
 
-function openModal(film, event) {
-  modalFilm.value = film;
-  modalOpen.value = true;
+function openModal(film) {
+  modalFilm.value = film
+  modalOpen.value = true
 }
 
 function closeModal() {
-  modalOpen.value = false;
-  modalFilm.value = null;
+  modalOpen.value = false
+  modalFilm.value = null
 }
 
 useHead({
-  title: 'Film & Series | Night is Y',
-  meta: [{ name: 'description', content: 'Film and series by Night is Y.' }]
-});
+  title: "Film & Series | Night is Y",
+  meta: [{ name: "description", content: "Film and series by Night is Y." }],
+})
 </script>
-
 
 
 <style>

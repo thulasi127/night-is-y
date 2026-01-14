@@ -63,5 +63,13 @@ S.listItem()
     S.document()
       .schemaType('projectMenu')
       .documentId('project-menu')
+  ),
+  S.listItem()
+  .title('Film & Series')
+  .schemaType('filmSeries')
+  .child(
+    S.document()
+      .schemaType('filmSeries')
+      .documentId('film-series-page')
   )
     ])

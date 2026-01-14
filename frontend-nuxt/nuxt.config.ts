@@ -1,4 +1,18 @@
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      sanityProjectId: process.env.SANITY_PROJECT_ID,
+      sanityDataset: process.env.SANITY_DATASET,
+      sanityApiVersion: process.env.SANITY_API_VERSION || '2023-03-01',
+      sanityUseCdn: process.env.SANITY_USE_CDN === 'true',
+    },
+  },
+  devServer: {
+    quiet: true,
+  },
+  vite: {
+    logLevel: 'error',
+  },
   css: [
     '~/assets/css/global.css',       // your base styles
     '~/assets/css/main.css',         // general site-wide styles
