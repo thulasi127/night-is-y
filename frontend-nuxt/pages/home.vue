@@ -11,6 +11,12 @@ const { data: homepage, pending } = await useAsyncData('homepage', async () => {
   return await sanityClient().fetch(HOMEPAGE_QUERY)
 })
 
+if (process.client) {
+  console.log('pending:', pending.value)
+  console.log('homepage:', homepage.value)
+  console.log('homepage src:', homepage.value?.src)
+}
+
 // const isVideoReady = ref(false)
 
 useHead({
