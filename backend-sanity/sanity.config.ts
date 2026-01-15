@@ -5,7 +5,6 @@ import { resolveDocumentNode } from './sanity/resolveDocumentNode'
 import { documentActions } from './sanity/documentActions' // optional
 import { schemaTypes } from './schemaTypes'
 import { resolveDocumentActions } from './document.actions'
-import { visionTool } from '@sanity/vision'
 
 export default defineConfig({
   name: 'default',
@@ -19,7 +18,6 @@ export default defineConfig({
       structure: deskStructure,
       defaultDocumentNode: resolveDocumentNode,
     }),
-    visionTool(),
   ],
 
   schema: {
