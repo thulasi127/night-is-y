@@ -13,8 +13,8 @@
       <section class="veil-wrap">
         <div class="veil">
           <div class="inner">
-            <div class="contacts">
-              <section v-for="person in people" :key="person.name" class="person">
+            <div class="contacts" v-if="people.length">
+  <section v-for="person in people" :key="person.name" class="person">
                 <h2 class="person-fullname">{{ person.name }}</h2>
                 <div v-for="(e, idx) in person.entries" :key="person.name + idx" class="entry">
                   <div class="role">{{ e.role }}</div>

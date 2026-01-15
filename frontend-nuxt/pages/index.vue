@@ -5,7 +5,6 @@ import siteData from '~/data/site.json'
 
 const landingVideo = siteData.landing_video
 const videoRef = ref<HTMLVideoElement | null>(null)
-
 const goHome = () => navigateTo('/home')
 
 onMounted(async () => {

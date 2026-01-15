@@ -10,7 +10,7 @@ export default defineConfig({
   name: 'default',
   title: 'niy-portfolio',
 
-  projectId: 'qbh5z1zl',
+  projectId: 'a9t1mosy',
   dataset: 'production',
 
   plugins: [
@@ -19,6 +19,10 @@ export default defineConfig({
       defaultDocumentNode: resolveDocumentNode,
     }),
   ],
+
+  studio: {
+    unstable_disableAutoUpdates: true,
+  },
 
   schema: {
     types: schemaTypes,

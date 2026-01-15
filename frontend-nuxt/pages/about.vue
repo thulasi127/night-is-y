@@ -5,7 +5,7 @@
     <div class="centered-content">
       <div class="content">
 
-        <p class="about-text" v-html="about.text"></p>
+        <p v-if="about.text" class="about-text" v-html="about.text"></p>
 
         <NuxtLink to="/about-devery" class="meet-the-team-link">
           <MeetTheTeamText

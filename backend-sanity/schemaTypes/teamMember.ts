@@ -27,7 +27,7 @@ export default defineType({
     layout: 'tags',
   },
   validation: Rule => Rule.min(1).required(),
-  description: 'Type a role and press Enter to add it. You can add multiple roles.',
+  description: 'Type a role and press ENTER to add it. You can add multiple roles.',
 }),
     defineField({
       name: 'headshot',

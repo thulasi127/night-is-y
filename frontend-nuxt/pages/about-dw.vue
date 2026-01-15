@@ -87,6 +87,10 @@
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+  pageTransition: false
+})
+
 import NavBar from "../components/NavBar.vue"
 import { sanityClient } from "~/utils/sanityClient"
 import { ref, watch, onMounted, computed } from "vue"

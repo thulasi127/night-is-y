@@ -22,6 +22,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-09-03',
 
   app: {
+    pageTransition: { name: 'fade-fast', mode: 'out-in' },
     head: {
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
