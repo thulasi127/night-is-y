@@ -10,10 +10,13 @@
     </div>
 
     <!-- Carousel integration -->
-    <GridRows
-  :items="musicVideos"
-  @onItemClick="openModal"
-/>
+    <ClientOnly>
+  <GridRows
+    v-if="musicVideos.length"
+    :items="musicVideos"
+    @onItemClick="openModal"
+  />
+</ClientOnly>
     <!-- Fixed: use modalVideo and pass :video -->
     <MusicVideoModal
       v-if="modalOpen && modalVideo"
@@ -24,44 +27,55 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import NavBar from "../components/NavBar.vue";
-import MusicVideoModal from "../components/MusicVideoModal.vue";
-import musicVideosData from "../data/music.json";
-import { useRouter } from "vue-router";
-import { ChevronLeftIcon } from "@heroicons/vue/24/solid";
+import { ref, computed } from 'vue'
+import { useAsyncData, useHead } from '#app'
+import { useRouter } from 'vue-router'
+import { ChevronLeftIcon } from '@heroicons/vue/24/solid'
 
-const musicVideos = ref([]);
-const modalOpen   = ref(false);
-const modalVideo  = ref(null);
+import NavBar from '@/components/NavBar.vue'
+import GridRows from '@/components/GridRows.vue'
+import MusicVideoModal from '@/components/MusicVideoModal.vue'
+import { sanityClient } from '~/utils/sanityClient'
 
-const router = useRouter();
+const router = useRouter()
+const modalOpen = ref(false)
+const modalVideo = ref(null)
 
-onMounted(() => {
-  musicVideos.value = musicVideosData.music_videos.sort((a, b) => a.id - b.id);
-});
+const query = `*[_type == "musicVideos" && _id == "music-videos-page"][0]{
+  videos[]{
+    title,
+    artist,
+    "poster": poster.asset->url,
+    youtubeUrl
+  }
+}`
+
+const { data } = await useAsyncData('musicVideos', async () => {
+  const result = await sanityClient().fetch(query)
+  return result || { videos: [] }
+})
+
+const musicVideos = computed(() => data.value?.videos || [])
 
 function goToProjects() {
-  router.push("/projects");
+  router.push('/projects')
 }
 
 function openModal(video) {
-  modalVideo.value = video;
-  modalOpen.value = true;
+  modalVideo.value = video
+  modalOpen.value = true
 }
 
 function closeModal() {
-  modalOpen.value = false;
-  modalVideo.value = null;
+  modalOpen.value = false
+  modalVideo.value = null
 }
 
 useHead({
   title: 'Music Videos | Night is Y',
-  meta: [{ name: 'description', content: 'Music videos by Night is Y.' }]
-});
+  meta: [{ name: 'description', content: 'Music videos by Night is Y.' }],
+})
 </script>
-
-
 
 <style>
 .centered-layout {

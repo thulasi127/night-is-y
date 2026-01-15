@@ -16,14 +16,14 @@
   </svg>
 </button>
         <iframe
-          v-if="video?.youtube_url"
-          id="ytplayer"
-          :src="autoplayUrl"
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          allowfullscreen
-          title="Music Video"
-        ></iframe>
+  v-if="video?.youtubeUrl"
+  id="ytplayer"
+  :src="autoplayUrl"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen
+  title="Music Video"
+></iframe>
       </div>
     </div>
   </transition>
@@ -40,11 +40,11 @@ const props = defineProps({
 const isFadingOut = ref(false);
 
 const autoplayUrl = computed(() => {
-  if (!props.video?.youtube_url) return "";
-  const hasQuery = props.video.youtube_url.includes("?");
-  const sep = hasQuery ? "&" : "?";
-  return `${props.video.youtube_url}${sep}autoplay=1&enablejsapi=1`;
-});
+  if (!props.video?.youtubeUrl) return ""
+  const hasQuery = props.video.youtubeUrl.includes("?")
+  const sep = hasQuery ? "&" : "?"
+  return `${props.video.youtubeUrl}${sep}autoplay=1&enablejsapi=1`
+})
 
 function handleKeydown(e) {
   if (e.key === "Escape") fadeOutAndClose();

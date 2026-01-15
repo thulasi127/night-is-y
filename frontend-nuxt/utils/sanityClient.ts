@@ -1,15 +1,14 @@
+// frontend-nuxt/utils/sanityClient.ts
 import { createClient } from '@sanity/client'
+import { useRuntimeConfig } from '#imports'
 
-const projectId = process.env.SANITY_PROJECT_ID || ''
-const dataset = process.env.SANITY_DATASET || 'production'
-// Only send the token on the server bundle
-const token = process.server ? process.env.SANITY_READ_TOKEN : undefined
+export const sanityClient = () => {
+  const config = useRuntimeConfig()
 
-export const client = createClient({
-  projectId,
-  dataset,
-  apiVersion: '2023-08-01',
-  useCdn: !token,         // use CDN for public datasets, skip when using token
-  token,                  // needed only for private datasets
-  perspective: 'published'
-})
+  return createClient({
+    projectId: config.public.sanityProjectId,
+    dataset: config.public.sanityDataset,
+    apiVersion: config.public.sanityApiVersion,
+    useCdn: config.public.sanityUseCdn,
+  })
+}

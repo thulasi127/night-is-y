@@ -22,23 +22,56 @@
 </template>
 
 <script setup>
-import projectsData from "~/data/projects.json";
-import { useRouter } from "vue-router";
+import { useRouter } from 'vue-router'
+import { sanityClient } from '~/utils/sanityClient'
 
-const router = useRouter();
-const projects = projectsData.projects;
+const router = useRouter()
 
-// generic dynamic navigation
+const query = `*[_type == "projectMenu" && _id == "project-menu"][0]{
+  filmSeries {
+    poster { asset->{ url } }
+  },
+  musicVideos {
+    poster { asset->{ url } }
+  },
+  inDevelopment {
+    poster { asset->{ url } }
+  }
+}`
+
+const { data } = await useAsyncData('project-menu', () =>
+  sanityClient().fetch(query)
+)
+
+const projects = computed(() => [
+  {
+    id: 1,
+    title: 'FILM & SERIES',
+    slug: 'film-series',
+    poster: data.value?.filmSeries?.poster?.asset?.url ?? '',
+  },
+  {
+    id: 2,
+    title: 'MUSIC VIDEOS',
+    slug: 'music-videos',
+    poster: data.value?.musicVideos?.poster?.asset?.url ?? '',
+  },
+  {
+    id: 3,
+    title: 'IN DEVELOPMENT',
+    slug: 'development',
+    poster: data.value?.inDevelopment?.poster?.asset?.url ?? '',
+  },
+])
+
 function goTo(slug) {
-  router.push(`/${slug}`);
+  router.push(`/${slug}`)
 }
 
 useHead({
-  title: "Projects | Night is Y",
-  meta: [
-    { name: "description", content: "Projects by Night is Y." }
-  ]
-});
+  title: 'Projects | Night is Y',
+  meta: [{ name: 'description', content: 'Projects by Night is Y.' }],
+})
 </script>
 
 <style scoped>

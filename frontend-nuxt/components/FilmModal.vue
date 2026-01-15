@@ -32,7 +32,7 @@
           <div class="film-subtitle-row">
             <span>{{ film.year }}</span>
             <span class="dot">&#183;</span>
-            <span>{{ film.duration }}</span>
+            <span>{{ film.duration?.toLowerCase() }}</span>
           </div>
 
           <div class="div">
@@ -40,44 +40,45 @@
           </div>
 
           <!-- Grouped info rows -->
-          <div class="info-labels">
-            <span v-if="film.director">
-              <span class="label-title">DIRECTOR | </span>
-              <a :href="film.director.imdb" target="_blank" rel="noopener">
-                <span class="label-link">{{ film.director.name }}</span>
-              </a>
-            </span>
-            <span v-if="film.writers && film.writers.length">
-              <span class="label-title"> WRITERS | </span>
-              <template v-for="(writer, i) in film.writers" :key="i">
-                <a v-if="writer.imdb && writer.imdb.trim() !== ''" :href="writer.imdb" target="_blank" rel="noopener">
-                  <span class="label-link">{{ writer.name }}</span>
-                </a>
-                <span v-else class="label-link no-hover">{{ writer.name }}</span>
-                <span v-if="i < film.writers.length - 1" class="dot">&#183;</span>
-              </template>
-            </span>
-            <span v-if="film.starring && film.starring.length">
-              <span class="label-title"> STARRING | </span>
-              <template v-for="(actor, i) in film.starring" :key="i">
-                <a v-if="actor.imdb && actor.imdb.trim() !== ''" :href="actor.imdb" target="_blank" rel="noopener">
-                  <span class="label-link">{{ actor.name }}</span>
-                </a>
-                <span v-else class="label-link no-hover">{{ actor.name }}</span>
-                <span v-if="i < film.starring.length - 1" class="dot">&#183;</span>
-              </template>
-            </span>
-            <span v-if="film.executiveProducers && film.executiveProducers.length">
-              <span class="label-title"> EXECUTIVE PRODUCER | </span>
-              <template v-for="(ep, i) in film.executiveProducers" :key="i">
-                <a v-if="ep.imdb && ep.imdb.trim() !== ''" :href="ep.imdb" target="_blank" rel="noopener">
-                  <span class="label-link">{{ ep.name }}</span>
-                </a>
-                <span v-else class="label-link no-hover">{{ ep.name }}</span>
-                <span v-if="i < film.executiveProducers.length - 1" class="dot">&#183;</span>
-              </template>
-            </span>
-          </div>
+          <div v-if="film.credits && film.credits.length" class="info-labels">
+  <div
+    v-for="(credit, i) in film.credits"
+    :key="i"
+  >
+    <span class="label-title">
+      {{ credit.role.toUpperCase() }} |
+    </span>
+
+    <template
+      v-for="(person, j) in credit.people"
+      :key="j"
+    >
+      <a
+        v-if="person.imdb"
+        :href="person.imdb"
+        target="_blank"
+        rel="noopener"
+        class="label-link"
+      >
+        {{ toTitleCase(person.name) }}
+      </a>
+      <span
+        v-else
+        class="label-link no-hover"
+      >
+        {{ toTitleCase(person.name) }}
+      </span>
+
+      <span
+        v-if="j < credit.people.length - 1"
+        class="dot"
+      >
+        &#183;
+      </span>
+    </template>
+  </div>
+</div>
+
 
           <iframe
             v-if="film.trailer"
@@ -133,14 +134,27 @@
           </div>
 
           <div v-if="film.articles && film.articles.length" class="article-list-section">
-            <h2 class="section-heading">ARTICLES</h2>
-            <ul class="article-list">
-              <li v-for="(article, i) in film.articles" :key="i">
-                <span class="bullet">&#8226;</span>
-                <span class="article-title">{{ article.title.toUpperCase() }}</span>
-              </li>
-            </ul>
-          </div>
+  <h2 class="section-heading">ARTICLES</h2>
+
+  <ul class="article-list">
+    <li
+      v-for="(article, i) in film.articles"
+      :key="i"
+      class="article-item"
+    >
+      <span class="article-bullet"></span>
+
+      <a
+        :href="article.link"
+        target="_blank"
+        rel="noopener"
+        class="article-link"
+      >
+        {{ article.title.toUpperCase() }}
+      </a>
+    </li>
+  </ul>
+</div>
 
           <!-- Scroll Indicator -->
           <div
@@ -184,10 +198,18 @@ export default {
     if (content) content.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
-    handleScroll(e) {
-      if (e.target.scrollTop > 10) this.showScrollIndicator = false;
-    }
+  handleScroll(e) {
+    if (e.target.scrollTop > 10) this.showScrollIndicator = false;
   },
+
+  toTitleCase(str) {
+    if (!str) return ''
+    return str
+      .toLowerCase()
+      .replace(/\b\w/g, char => char.toUpperCase())
+  }
+}
+,
   computed: {
     orderedLaurels() {
       if (!this.film.laurels) return [];
@@ -637,6 +659,34 @@ export default {
 
 .article-title {
   font-style: italic;
+  transition: color 0.15s, filter 0.15s;
+}
+
+.article-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.article-bullet {
+  width: 5px;
+  height: 5px;
+  background-color: #fff;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transform: translateY(-0.5px);
+  /* Key alignment fixes */
+  display: inline-block;
+  align-self: center;
+}
+
+.article-link {
+  font-family: "proxima-nova", sans-serif;
+  font-size: 16px;
+  font-style: italic;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
   transition: color 0.15s, filter 0.15s;
 }
 

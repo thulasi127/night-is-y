@@ -32,9 +32,13 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue'
+import { useAsyncData, useHead } from '#imports'
+
 import NavBar from '@/components/NavBar.vue'
 import data from '~/data/contact.json'
-import { onMounted } from 'vue'
+import { sanityClient } from '~/utils/sanityClient'
+import { CONTACT_QUERY } from '~/lib/queries/contact'
 
 type Entry = {
   role: string
@@ -47,20 +51,22 @@ type Person = {
   entries: Entry[]
 }
 
-const people = data.people as Person[]
+const { data: contact } = await useAsyncData('contact', () =>
+  sanityClient().fetch(CONTACT_QUERY)
+)
 
-useHead({ title: 'Contact | Night is Y' })
+// Contacts come from Sanity
+const people = (contact.value?.people || []) as Person[]
+
+// Background video stays locked in JSON
+const backgroundVideo = data.backgroundVideo
+
+useHead({ title: 'Contact | Night Is Y' })
 
 onMounted(() => {
-  const video = document.querySelector('.bg-video') as HTMLVideoElement | null;
+  const video = document.querySelector('.bg-video') as HTMLVideoElement | null
   if (video) {
-    video.playbackRate = 0.5; // Slow down the video even more
-  }
-  const logo = document.querySelector('.bg-logo')
-  if (logo) {
-    setTimeout(() => {
-      logo.classList.add('visible')
-    }, 1200)
+    video.playbackRate = 0.5
   }
 })
 </script>

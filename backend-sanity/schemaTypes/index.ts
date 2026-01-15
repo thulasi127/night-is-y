@@ -1,4 +1,11 @@
-// ./schemas/index.ts
-import homepage from './homepage'
+import home from './home'
+import about from './about'
+import projectMenu from './projectMenu'
+import teamMember from './teamMember'
+import filmSeries from './filmSeries'
+import musicVideos from './musicVideos'
+import development from './development'
+import press from './press'
+import contact from './contact'
 
-export const schemaTypes = [homepage]
+export const schemaTypes = [home, about, projectMenu, teamMember, filmSeries, musicVideos, development, press, contact,]

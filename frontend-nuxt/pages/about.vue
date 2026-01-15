@@ -22,9 +22,19 @@
 <script setup lang="ts">
 import NavBar from '~/components/NavBar.vue'
 import MeetTheTeamText from '~/components/AboutText.vue'
-import bioData from '~/data/bio.json'
+import { sanityClient } from '~/utils/sanityClient'
 
-const about = bioData.about
+const query = `*[_type == "about" && _id == "about"][0]{ bio }`
+
+const { data: aboutData } = await useAsyncData('aboutData', () =>
+  sanityClient().fetch(query)
+)
+
+const about = {
+  text: (aboutData.value?.bio || '').replace(/\n/g, '<br />'),
+  meetTheTeamLabel: 'Meet the Team',
+  meetTheTeamVideo: '/videos/cutout-final.mp4',
+}
 
 useHead({
   title: 'About | Night is Y',
