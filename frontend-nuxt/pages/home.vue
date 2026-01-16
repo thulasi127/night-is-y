@@ -7,14 +7,10 @@ import NavBar from '~/components/NavBar.vue'
 import { sanityClient } from '~/utils/sanityClient'
 import { HOMEPAGE_QUERY } from '~/lib/queries/homepage'
 
-const { data: homepage } = await useAsyncData(
-  'homepage',
-  () => sanityClient().fetch(HOMEPAGE_QUERY),
-  {
-    server: true,
-    lazy: false
-  }
-)
+await useAsyncData('homepage', () => sanityClient().fetch(HOMEPAGE_QUERY), {
+  server: true,
+  lazy: false
+})
 
 if (process.client) {
   console.log('pending:', pending.value)
@@ -32,21 +28,22 @@ useHead({
 
 <template>
   <div class="wrap">
-    <p style="position:fixed;top:0;left:0;z-index:9999;background:#fff;color:#000;padding:6px;">
+    <!-- <p style="position:fixed;top:0;left:0;z-index:9999;background:#fff;color:#000;padding:6px;">
   {{ homepage?.src || 'NO SRC' }}
-</p>
-    <video
-  v-if="homepage?.src"
-  class="bgVideo"
-  autoplay
-  muted
-  loop
-  playsinline
-  preload="auto"
-  @error="console.warn(`Could not load ${homepage?.src}`)"
->
-  <source :src="homepage.src" type="video/mp4" />
-</video>
+</p> -->
+  <ClientOnly>
+  <video
+    v-if="homepage?.src"
+    class="bgVideo"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  >
+    <source :src="homepage.src" type="video/mp4" />
+  </video>
+</ClientOnly>
 
 <!-- optional accessibility text -->
 <p v-if="homepage?.alt" class="sr-only">{{ homepage.alt }}</p>
