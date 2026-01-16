@@ -27,8 +27,11 @@ useHead({
 
 <template>
   <div class="wrap">
+    <p style="position:fixed;top:0;left:0;z-index:9999;background:#fff;color:#000;padding:6px;">
+  {{ homepage?.src || 'NO SRC' }}
+</p>
     <video
-  v-if="!pending && homepage?.src"
+  v-if="homepage?.src"
   class="bgVideo"
   autoplay
   muted
