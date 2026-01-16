@@ -7,9 +7,14 @@ import NavBar from '~/components/NavBar.vue'
 import { sanityClient } from '~/utils/sanityClient'
 import { HOMEPAGE_QUERY } from '~/lib/queries/homepage'
 
-const { data: homepage, pending } = await useAsyncData('homepage', async () => {
-  return await sanityClient().fetch(HOMEPAGE_QUERY)
-})
+const { data: homepage } = await useAsyncData(
+  'homepage',
+  () => sanityClient().fetch(HOMEPAGE_QUERY),
+  {
+    server: true,
+    lazy: false
+  }
+)
 
 if (process.client) {
   console.log('pending:', pending.value)
