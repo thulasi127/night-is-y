@@ -1,22 +1,17 @@
 <!-- /pages/home.vue -->
 <script setup lang="ts">
-import { ref } from 'vue'
+// import { ref } from 'vue'
 import { useAsyncData, useHead } from '#app'
 
 import NavBar from '~/components/NavBar.vue'
 import { sanityClient } from '~/utils/sanityClient'
 import { HOMEPAGE_QUERY } from '~/lib/queries/homepage'
 
-await useAsyncData('homepage', () => sanityClient().fetch(HOMEPAGE_QUERY), {
-  server: true,
-  lazy: false
-})
-
-if (process.client) {
-  console.log('pending:', pending.value)
-  console.log('homepage:', homepage.value)
-  console.log('homepage src:', homepage.value?.src)
-}
+const { data: homepage } = await useAsyncData(
+  'homepage',
+  () => sanityClient().fetch(HOMEPAGE_QUERY),
+  { server: true, lazy: false }
+)
 
 // const isVideoReady = ref(false)
 
