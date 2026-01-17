@@ -56,7 +56,11 @@ const { data: contact } = await useAsyncData('contact', () =>
 )
 
 // Contacts come from Sanity
-const people = (contact.value?.people || []) as Person[]
+import { computed } from 'vue'
+
+const people = computed<Person[]>(() => {
+  return contact.value?.people || []
+})
 
 // Background video stays locked in JSON
 const backgroundVideo = data.backgroundVideo
