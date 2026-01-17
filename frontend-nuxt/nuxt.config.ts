@@ -4,7 +4,7 @@ export default defineNuxtConfig({
       sanityProjectId: process.env.SANITY_PROJECT_ID,
       sanityDataset: process.env.SANITY_DATASET,
       sanityApiVersion: process.env.SANITY_API_VERSION || '2023-03-01',
-      sanityUseCdn: process.env.SANITY_USE_CDN === 'true',
+      sanityUseCdn: process.env.SANITY_USE_CDN !== 'false',
     },
   },
   devServer: {

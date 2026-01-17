@@ -1,6 +1,5 @@
 <!-- /pages/home.vue -->
 <script setup lang="ts">
-// import { ref } from 'vue'
 import { useAsyncData, useHead } from '#app'
 
 import NavBar from '~/components/NavBar.vue'
@@ -10,10 +9,12 @@ import { HOMEPAGE_QUERY } from '~/lib/queries/homepage'
 const { data: homepage } = await useAsyncData(
   'homepage',
   () => sanityClient().fetch(HOMEPAGE_QUERY),
-  { server: true, lazy: false }
+  {
+    server: true,
+    lazy: false,
+    default: () => null,
+  }
 )
-
-// const isVideoReady = ref(false)
 
 useHead({
   title: 'Home | Night is Y',
@@ -23,9 +24,6 @@ useHead({
 
 <template>
   <div class="wrap">
-    <!-- <p style="position:fixed;top:0;left:0;z-index:9999;background:#fff;color:#000;padding:6px;">
-  {{ homepage?.src || 'NO SRC' }}
-</p> -->
   <ClientOnly>
   <video
     v-if="homepage?.src"
