@@ -10,13 +10,11 @@
     </div>
 
     <!-- Carousel integration -->
-    <ClientOnly>
   <GridRows
     v-if="musicVideos.length"
     :items="musicVideos"
     @onItemClick="openModal"
   />
-</ClientOnly>
     <!-- Fixed: use modalVideo and pass :video -->
     <MusicVideoModal
       v-if="modalOpen && modalVideo"

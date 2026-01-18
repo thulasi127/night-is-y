@@ -10,7 +10,7 @@
     </div>
 
     <!-- Carousel integration (client-only to avoid SSR window error) -->
-    <ClientOnly>
+
       <Carousel
         v-if="films.length > 0"
         :items="films"

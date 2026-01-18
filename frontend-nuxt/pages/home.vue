@@ -12,7 +12,7 @@ const { data: homepage } = await useAsyncData(
   {
     server: true,
     lazy: false,
-    default: () => null,
+    default: () => ({ src: '', alt: '' }),
   }
 )
 
@@ -24,7 +24,6 @@ useHead({
 
 <template>
   <div class="wrap">
-  <ClientOnly>
   <video
     v-if="homepage?.src"
     class="bgVideo"
@@ -36,7 +35,6 @@ useHead({
   >
     <source :src="homepage.src" type="video/mp4" />
   </video>
-</ClientOnly>
 
 <!-- optional accessibility text -->
 <p v-if="homepage?.alt" class="sr-only">{{ homepage.alt }}</p>

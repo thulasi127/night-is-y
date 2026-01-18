@@ -10,13 +10,11 @@
       <div class="page-title">IN DEVELOPMENT</div>
     </div>
 
-  <ClientOnly>
   <Carousel
     v-if="projects.length > 0"
     :items="projects"
     @onPosterClick="openModal"
   />
-</ClientOnly>
 
     <DevModal
       v-if="modalOpen && modalProject"
