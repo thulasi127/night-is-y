@@ -34,6 +34,9 @@ useHead({
   playsinline
   preload="auto"
 >
+  <source :src="homepage.src" type="video/mp4" />
+</video>
+
 <!-- optional accessibility text -->
 <p v-if="homepage?.alt" class="sr-only">{{ homepage.alt }}</p>
 
