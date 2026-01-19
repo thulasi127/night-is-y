@@ -10,8 +10,7 @@ const { data: homepage } = await useAsyncData(
   'homepage',
   () => sanityClient().fetch(HOMEPAGE_QUERY),
   {
-    server: true,
-    lazy: false,
+    server: false,
     default: () => ({ src: '', alt: '' }),
   }
 )
