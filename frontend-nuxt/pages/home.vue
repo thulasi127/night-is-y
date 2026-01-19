@@ -1,19 +1,17 @@
 <!-- /pages/home.vue -->
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useAsyncData, useHead } from '#app'
 
 import NavBar from '~/components/NavBar.vue'
 import { sanityClient } from '~/utils/sanityClient'
 import { HOMEPAGE_QUERY } from '~/lib/queries/homepage'
 
-const { data: homepage } = await useAsyncData(
-  'homepage',
-  () => sanityClient().fetch(HOMEPAGE_QUERY),
-  {
-    server: false,
-    default: () => ({ src: '', alt: '' }),
-  }
-)
+const { data: homepage, pending } = await useAsyncData('homepage', async () => {
+  return await sanityClient().fetch(HOMEPAGE_QUERY)
+})
+
+// const isVideoReady = ref(false)
 
 useHead({
   title: 'Home | Night is Y',
@@ -23,15 +21,15 @@ useHead({
 
 <template>
   <div class="wrap">
-  <video
-  v-if="homepage?.src"
-  :key="homepage.src"
+    <video
+  v-if="!pending && homepage?.src"
   class="bgVideo"
   autoplay
   muted
   loop
   playsinline
   preload="auto"
+  @error="console.warn(`Could not load ${homepage?.src}`)"
 >
   <source :src="homepage.src" type="video/mp4" />
 </video>
