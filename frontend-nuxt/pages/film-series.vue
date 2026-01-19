@@ -11,12 +11,14 @@
 
     <!-- Carousel integration (client-only to avoid SSR window error) -->
 
-      <Carousel
-        v-if="films.length > 0"
-        :items="films"
-        @onPosterClick="openModal"
-      />
-    </ClientOnly>
+    <!-- Carousel integration (client-only to avoid SSR window error) -->
+  <ClientOnly>
+    <Carousel
+      v-if="films.length > 0"
+      :items="films"
+      @onPosterClick="openModal"
+    />
+  </ClientOnly>
 
     <FilmModal
       v-if="modalOpen && modalFilm"
@@ -96,7 +98,7 @@ useHead({
 </script>
 
 
-<style>
+<style lang="scss">
 .centered-layout {
   display: flex;
   flex-direction: column;
