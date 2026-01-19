@@ -25,17 +25,15 @@ useHead({
 <template>
   <div class="wrap">
   <video
-    v-if="homepage?.src"
-    class="bgVideo"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
-  >
-    <source :src="homepage.src" type="video/mp4" />
-  </video>
-
+  v-if="homepage?.src"
+  :key="homepage.src"
+  class="bgVideo"
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+>
 <!-- optional accessibility text -->
 <p v-if="homepage?.alt" class="sr-only">{{ homepage.alt }}</p>
 
