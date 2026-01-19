@@ -27,7 +27,7 @@ export default defineType({
       name: 'alt',
       title: 'Video Alt Text (Optional)',
       type: 'string',
-      description: 'Describe the video for accessibility and SEO (e.g., “Looping footage of ocean waves”)',
+      description: 'Optional. Describe the video for accessibility and SEO (e.g., “Looping footage of ocean waves”)',
       validation: Rule => Rule.optional(),
     }),
   ],
