@@ -5,13 +5,13 @@ export default defineType({
   title: 'TEAM MEMBERS',
   type: 'document',
   fields: [
-    defineField({
-      name: 'title',
-      title: 'Heading Title',
-      type: 'string',
-      initialValue: 'DEVERY JACOBS',
-      validation: Rule => Rule.required(),
-    }),
+    // defineField({
+    //   name: 'title',
+    //   title: 'Heading Title',
+    //   type: 'string',
+    //   initialValue: 'DEVERY JACOBS',
+    //   validation: Rule => Rule.required(),
+    // }),
     defineField({
       name: 'name',
       title: 'Full Name',
