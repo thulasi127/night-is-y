@@ -121,33 +121,44 @@ export default defineType({
             }),
 
             defineField({
-              name: 'laurels',
-              title: 'LAURELS',
-              type: 'array',
-              of: [
-                {
-                  type: 'object',
-                  fields: [
-                    defineField({
-                      name: 'name',
-                      title: 'NAME',
-                      type: 'string',
-                    }),
-                    defineField({
-                      name: 'img',
-                      title: 'LAUREL IMAGE',
-                      type: 'image',
-                    }),
-                    defineField({
-                      name: 'shouldDisplay',
-                      title: 'SHOW',
-                      type: 'boolean',
-                      initialValue: true,
-                    }),
-                  ],
-                },
-              ],
-            }),
+  name: 'laurels',
+  title: 'LAURELS',
+  type: 'array',
+  description:
+    'Festival laurels or recognitions associated with this project.',
+  of: [
+    {
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'name',
+          title: 'NAME',
+          type: 'string',
+          description:
+            'Name of the festival, award, or recognition (for example, TIFF Official Selection).',
+        }),
+        defineField({
+          name: 'img',
+          title: 'LAUREL IMAGE',
+          type: 'image',
+          options: {
+            accept: 'image/svg+xml,image/png',
+          },
+          description:
+            'Upload the laurel image. SVG or PNG formats work best.',
+        }),
+        defineField({
+          name: 'shouldDisplay',
+          title: 'SHOW',
+          type: 'boolean',
+          initialValue: true,
+          description:
+            'Toggle whether this laurel should be displayed on the website.',
+        }),
+      ],
+    },
+  ],
+}),
 
             defineField({
               name: 'awardsAndNominations',
