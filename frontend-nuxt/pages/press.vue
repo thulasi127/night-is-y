@@ -1,6 +1,8 @@
 <template>
-  <NavBar />
   <div class="press-page">
+    <!-- Keep NavBar inside .press-page: pages need a single root element,
+         otherwise the page transition breaks and the next page renders blank. -->
+    <NavBar />
     <!-- Hero Heading -->
     <header class="press-header">
   <div class="video-text-wrapper">
