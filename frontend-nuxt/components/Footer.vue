@@ -1,13 +1,14 @@
 <template>
   <footer class="site-footer">
     <p style="font-family: 'proxima-nova', sans-serif; font-weight: 100; font-style: italic;">
-      2025 Copyright Night is Y ©
+      {{ currentYear }} Copyright Night is Y ©
     </p>
   </footer>
 </template>
 
 <script setup>
-// No logic needed for now — purely presentational
+// Always shows the current year, so the copyright never needs a manual update
+const currentYear = new Date().getFullYear()
 </script>
 
 <style scoped>

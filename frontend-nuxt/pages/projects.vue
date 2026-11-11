@@ -13,7 +13,7 @@
   >
     <img :src="project.poster" :alt="project.title" />
     <div class="img-overlay"></div>
-    <div class="row-label">{{ project.title }}</div>
+    <div v-if="!project.hideLabel" class="row-label">{{ project.title }}</div>
   </div>
 </div>
       </div>
@@ -61,6 +61,8 @@ const projects = computed(() => [
     title: 'IN DEVELOPMENT',
     slug: 'development',
     poster: data.value?.inDevelopment?.poster?.asset?.url ?? '',
+    // The poster image already says "In Development...", so the overlay label is hidden
+    hideLabel: true,
   },
 ])
 
