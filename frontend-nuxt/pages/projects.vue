@@ -13,7 +13,7 @@
   >
     <img :src="project.poster" :alt="project.title" />
     <div class="img-overlay"></div>
-    <div v-if="!project.hideLabel" class="row-label">{{ project.title }}</div>
+    <div class="row-label">{{ project.title }}</div>
   </div>
 </div>
       </div>
@@ -43,26 +43,27 @@ const { data } = await useAsyncData('project-menu', () =>
   sanityClient().fetch(query)
 )
 
+// Shown for any row that has no cover image uploaded in Sanity yet
+const DEFAULT_BANNER = '/Image/project-covers/default-banner.jpg'
+
 const projects = computed(() => [
   {
     id: 1,
     title: 'FILM & SERIES',
     slug: 'film-series',
-    poster: data.value?.filmSeries?.poster?.asset?.url ?? '',
+    poster: data.value?.filmSeries?.poster?.asset?.url || DEFAULT_BANNER,
   },
   {
     id: 2,
     title: 'MUSIC VIDEOS',
     slug: 'music-videos',
-    poster: data.value?.musicVideos?.poster?.asset?.url ?? '',
+    poster: data.value?.musicVideos?.poster?.asset?.url || DEFAULT_BANNER,
   },
   {
     id: 3,
     title: 'IN DEVELOPMENT',
     slug: 'development',
-    poster: data.value?.inDevelopment?.poster?.asset?.url ?? '',
-    // The poster image already says "In Development...", so the overlay label is hidden
-    hideLabel: true,
+    poster: data.value?.inDevelopment?.poster?.asset?.url || DEFAULT_BANNER,
   },
 ])
 
