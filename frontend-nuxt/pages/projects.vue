@@ -13,7 +13,7 @@
   >
     <img :src="project.poster" :alt="project.title" />
     <div class="img-overlay"></div>
-    <div class="row-label">{{ project.title }}</div>
+    <div v-if="project.showLabel" class="row-label">{{ project.title }}</div>
   </div>
 </div>
       </div>
@@ -46,24 +46,31 @@ const { data } = await useAsyncData('project-menu', () =>
 // Shown for any row that has no cover image uploaded in Sanity yet
 const DEFAULT_BANNER = '/Image/project-covers/default-banner.jpg'
 
+const inDevImage = computed(() => data.value?.inDevelopment?.poster?.asset?.url)
+
 const projects = computed(() => [
   {
     id: 1,
     title: 'FILM & SERIES',
     slug: 'film-series',
     poster: data.value?.filmSeries?.poster?.asset?.url || DEFAULT_BANNER,
+    showLabel: true,
   },
   {
     id: 2,
     title: 'MUSIC VIDEOS',
     slug: 'music-videos',
     poster: data.value?.musicVideos?.poster?.asset?.url || DEFAULT_BANNER,
+    showLabel: true,
   },
   {
     id: 3,
     title: 'IN DEVELOPMENT',
     slug: 'development',
-    poster: data.value?.inDevelopment?.poster?.asset?.url || DEFAULT_BANNER,
+    poster: inDevImage.value || DEFAULT_BANNER,
+    // Label removed at D.W.'s request: their cover graphic for this row
+    // already says "In Development".
+    showLabel: false,
   },
 ])
 
