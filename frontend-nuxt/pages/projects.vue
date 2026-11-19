@@ -68,10 +68,9 @@ const projects = computed(() => [
     title: 'IN DEVELOPMENT',
     slug: 'development',
     poster: inDevImage.value || DEFAULT_BANNER,
-    // D.W.'s cover graphic for this row already says "In Development", so the
-    // label is hidden whenever an image is uploaded in Sanity. It only shows
-    // on the default dark banner, so the row is never blank and unlabeled.
-    showLabel: !inDevImage.value,
+    // Label removed at D.W.'s request: their cover graphic for this row
+    // already says "In Development".
+    showLabel: false,
   },
 ])
 
